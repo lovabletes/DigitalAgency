@@ -1,0 +1,348 @@
+@import "tailwindcss";
+
+/* ===== TRUE LUXURY THEME ===== */
+:root {
+  /* Luxury Jewel Tone Palette */
+  --lux-sapphire: #1a1a3e;
+  --lux-navy: #0f1429;
+  --lux-burgundy: #7f1d1d;
+  --lux-gold: #d4af37;
+  --lux-gold-light: #e9c46a;
+  --lux-champagne: #f7e7ce;
+  --lux-cream: #faf8f3;
+  --lux-bronze: #cd7f32;
+
+  /* Light Mode (Default) - Rich & Elegant */
+  --background: linear-gradient(to bottom, #faf8f3 0%, #f5f1e8 100%);
+  --background-solid: #faf8f3;
+  --background-accent: #f7e7ce;
+  --foreground: #1a1a3e;
+
+  --primary: #1a1a3e;
+  --primary-foreground: #ffffff;
+
+  --secondary: #f0e6d2;
+  --secondary-foreground: #1a1a3e;
+
+  --accent: #d4af37;
+  --accent-foreground: #1a1a3e;
+
+  --muted: #e8dcc8;
+  --muted-foreground: #3a3a4e;
+
+  --card: rgba(255, 255, 255, 0.8);
+  --card-foreground: #1a1a3e;
+
+  --border: #d4c4a8;
+  --input: #f0e6d2;
+  --ring: #d4af37;
+
+  --radius: 0.75rem;
+
+  /* Light Mode Glow Effects */
+  --glow-primary: rgba(212, 175, 55, 0.25);
+  --glow-accent: rgba(127, 29, 29, 0.15);
+
+  /* Selection */
+  --selection-bg: #d4af37;
+  --selection-text: #1a1a3e;
+}
+
+/* ===== Dark Mode - Deep Luxury Theme ===== */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: var(--lux-navy);
+    --foreground: #f7e7ce;
+
+    --primary: var(--lux-gold);
+    --primary-foreground: var(--lux-sapphire);
+
+    --secondary: #1f1f3a;
+    --secondary-foreground: #f7e7ce;
+
+    --accent: var(--lux-burgundy);
+    --accent-foreground: #f7e7ce;
+
+    --muted: #2a2a4a;
+    --muted-foreground: #a8a8b8;
+
+    --card: var(--lux-sapphire);
+    --card-foreground: #f7e7ce;
+
+    --border: rgba(212, 175, 55, 0.15);
+    --input: #1f1f3a;
+    --ring: var(--lux-gold);
+
+    /* Dark Mode Glow Effects */
+    --glow-primary: rgba(212, 175, 55, 0.4);
+    --glow-accent: rgba(127, 29, 29, 0.3);
+
+    /* Selection */
+    --selection-bg: #d4af37;
+    --selection-text: #0f1429;
+  }
+}
+
+/* ===== Tailwind v4 Theme Configuration ===== */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Custom Luxury Colors */
+  --color-lux-sapphire: var(--lux-sapphire);
+  --color-lux-gold: var(--lux-gold);
+  --color-lux-burgundy: var(--lux-burgundy);
+  --color-lux-champagne: var(--lux-champagne);
+
+  /* Typography */
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  /* Spacing */
+  --spacing-18: 4.5rem;
+  --spacing-22: 5.5rem;
+
+  /* Radius */
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-3xl: 2rem;
+}
+
+/* ===== Base Styles ===== */
+body {
+  background: #faf8f3;
+  background-image: linear-gradient(to bottom, #faf8f3 0%, #f5f1e8 100%);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #0f1429;
+    background-image: radial-gradient(ellipse at top, #1a1a3e 0%, #0f1429 100%);
+  }
+}
+
+::selection {
+  background: var(--selection-bg);
+  color: var(--selection-text);
+}
+
+::-moz-selection {
+  background: var(--selection-bg);
+  color: var(--selection-text);
+}
+
+/* ===== Premium Utility Classes ===== */
+@layer utilities {
+  .text-glow {
+    text-shadow: 0 0 30px var(--glow-primary);
+  }
+
+  .text-glow-accent {
+    text-shadow: 0 0 25px var(--glow-accent);
+  }
+
+  .gradient-lux {
+    background: linear-gradient(135deg, var(--lux-sapphire) 0%, var(--lux-burgundy) 100%);
+  }
+
+  .gradient-gold {
+    background: linear-gradient(135deg, var(--lux-gold) 0%, var(--lux-gold-light) 100%);
+  }
+
+  .glass-card {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(212, 175, 55, 0.15);
+    box-shadow: 0 8px 32px 0 rgba(26, 26, 62, 0.08);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .glass-card {
+      background: rgba(26, 26, 62, 0.75);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+    }
+  }
+
+  .glass-card-hover:hover {
+    border-color: var(--lux-gold);
+    box-shadow: 0 12px 40px var(--glow-primary);
+    transform: translateY(-3px);
+  }
+
+  .shadow-lux {
+    box-shadow: 0 0 50px var(--glow-primary);
+  }
+
+  .animate-pulse-slow {
+    animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  /* ===== 3D & Royal Animations ===== */
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .card-3d {
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-style: preserve-3d;
+  }
+
+  .card-3d:hover {
+    transform: translateY(-10px) rotateX(2deg) rotateY(2deg);
+    box-shadow: 0 30px 60px -12px rgba(212, 175, 55, 0.3);
+    /* Royal Gold Shadow */
+  }
+
+  .card-inner-3d {
+    transform: translateZ(20px);
+  }
+
+  .text-shimmer {
+    background: linear-gradient(to right, #ae8625 0%, #f7ef8a 20%, #d2ac47 40%, #ae8625 100%);
+    background-size: 200% auto;
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: shine 4s linear infinite;
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-float-delayed {
+    animation: float 6s ease-in-out 3s infinite;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  .delay-100 {
+    animation-delay: 100ms;
+  }
+
+  .bg-noise {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 50;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    mask-image: radial-gradient(circle at center, black 60%, transparent 100%);
+  }
+
+  .animate-marquee {
+    animation: marquee 40s linear infinite;
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes shine {
+  to {
+    background-position: 200% center;
+  }
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes slideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.75;
+  }
+}
+
+/* ===== Component Overrides ===== */
+@layer components {
+  .btn-lux-primary {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-full font-bold transition-all duration-300 text-sm;
+    background: var(--lux-gold);
+    color: var(--lux-sapphire);
+    box-shadow: 0 4px 20px var(--glow-primary);
+  }
+
+  .btn-lux-primary:hover {
+    @apply scale-105;
+    background: var(--lux-gold-light);
+    box-shadow: 0 6px 30px var(--glow-primary);
+  }
+
+  .btn-lux-outline {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-full font-bold border-2 transition-all duration-300 text-sm;
+    border-color: var(--lux-gold);
+    color: var(--lux-gold);
+    background: transparent;
+  }
+
+  .btn-lux-outline:hover {
+    background: var(--lux-gold);
+    color: var(--lux-sapphire);
+    @apply scale-105;
+  }
+
+  .section-padding {
+    @apply py-16 px-6 md:py-20 md:px-8;
+  }
+
+  .container-custom {
+    @apply max-w-7xl mx-auto;
+  }
+}
