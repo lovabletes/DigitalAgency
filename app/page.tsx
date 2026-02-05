@@ -1,9 +1,9 @@
+
 "use client";
 
 import React from "react";
 import {
   ChevronRightIcon,
-  GithubIcon,
   MenuIcon,
   CloseIcon,
   HomeIcon,
@@ -14,9 +14,97 @@ import {
 import { Zap, Shield, Users, CheckCircle, Star, Quote } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { classNames } from "@/utils/class-names";
+import { ProjectsGallery } from "@/components/home/ProjectsGallery";
+import { Footer } from "@/components/home/Footer";
 
 export default function LandingPage() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [isScrolled, setIsScrolled] = React.useState(false);
+  const [scrollProgress, setScrollProgress] = React.useState(0);
+  const [activeTestimonial, setActiveTestimonial] = React.useState(0);
+  const [selectedProject, setSelectedProject] = React.useState<any>(null);
+
+  // Scroll progress and sticky nav
+  React.useEffect(() => {
+    const handleScroll = () => {
+      const scrolled = window.scrollY > 50;
+      setIsScrolled(scrolled);
+
+      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = (window.scrollY / totalHeight) * 100;
+      setScrollProgress(progress);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Auto-rotate testimonials
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveTestimonial((prev) => (prev + 1) % 3); // 3 testimonials
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
+  // Custom hook for count-up animation
+  const useCountUp = (end: number, duration: number = 2000) => {
+    const [count, setCount] = React.useState(0);
+    const [hasStarted, setHasStarted] = React.useState(false);
+    const elementRef = React.useRef<HTMLDivElement>(null);
+
+    React.useEffect(() => {
+      const element = elementRef.current;
+      if (!element) return;
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          if (entries[0].isIntersecting && !hasStarted) {
+            setHasStarted(true);
+            const startTime = Date.now();
+            const animate = () => {
+              const elapsed = Date.now() - startTime;
+              const progress = Math.min(elapsed / duration, 1);
+              setCount(Math.floor(progress * end));
+              if (progress < 1) requestAnimationFrame(animate);
+            };
+            animate();
+          }
+        },
+        { threshold: 0.5 }
+      );
+
+      observer.observe(element);
+      return () => observer.disconnect();
+    }, [end, duration, hasStarted]);
+
+    return { count, elementRef };
+  };
+
+  // Custom hook for scroll-triggered animations
+  const useScrollReveal = () => {
+    const elementRef = React.useRef<HTMLDivElement>(null);
+    const [isVisible, setIsVisible] = React.useState(false);
+
+    React.useEffect(() => {
+      const element = elementRef.current;
+      if (!element) return;
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          if (entries[0].isIntersecting) {
+            setIsVisible(true);
+          }
+        },
+        { threshold: 0.1 }
+      );
+
+      observer.observe(element);
+      return () => observer.disconnect();
+    }, []);
+
+    return { elementRef, isVisible };
+  };
 
   const navLinks = [
     { name: "Services", href: "#services" },
@@ -215,16 +303,34 @@ export default function LandingPage() {
     }
   ];
 
-  const footerCols = [
-    { id: "f-1", title: "Specialties", links: ["Web Architectures", "Mobile Ecosystems", "Custom Logic", "Cloud Forge"] },
-    { id: "f-2", title: "Company", links: ["About House", "Legacy Gallery", "Elite Careers", "Direct Line"] },
-    { id: "f-3", title: "Headquarters", links: ["Digital-First (IST)", "Mon-Fri / 9-6", "+91 LUX-CALL-NOW", "elite@sitecreation.in"] }
-  ];
+  // Scroll reveal hooks for sections
+  const servicesReveal = useScrollReveal();
+  const packagesReveal = useScrollReveal();
+
+  // Count-up hooks for stats
+  const stat1Count = useCountUp(8, 2500);
+  const stat2Count = useCountUp(200, 2500);
+  const stat3Count = useCountUp(50, 2500);
+  const stat4Count = useCountUp(24, 2500);
+  const statCounts = [stat1Count, stat2Count, stat3Count, stat4Count];
 
   return (
     <div className="flex min-h-screen flex-col">
-      {/* Luxury Navigation - Deep Sapphire */}
-      <header className="sticky top-0 z-50 w-full border-b border-accent/30 bg-gradient-to-r from-[#1a1a3e] via-[#1a1a3e] to-[#2a2a4e] dark:from-[#0f1429] dark:to-[#1a1a3e] backdrop-blur-xl shadow-lg">
+      {/* Scroll Progress Bar */}
+      <div className="fixed top-0 left-0 right-0 h-1 bg-transparent z-[100]">
+        <div
+          className="h-full bg-gradient-to-r from-accent via-[#f7ef8a] to-accent shadow-lg shadow-accent/50 transition-all duration-300"
+          style={{ width: `${scrollProgress}%` }}
+        />
+      </div>
+
+      {/* Luxury Navigation - Enhanced with Scroll Effects */}
+      <header className={classNames(
+        "sticky top-0 z-50 w-full border-b border-accent/30 backdrop-blur-xl transition-all duration-500",
+        isScrolled
+          ? "bg-[#1a1a3e]/95 dark:bg-[#0f1429]/95 shadow-2xl shadow-accent/10"
+          : "bg-gradient-to-r from-[#1a1a3e] via-[#1a1a3e] to-[#2a2a4e] dark:from-[#0f1429] dark:to-[#1a1a3e] shadow-lg"
+      )}>
         <div className="container-custom flex h-16 items-center justify-between px-6">
           <div className="flex items-center gap-2.5 group cursor-pointer">
             <div className="relative h-10 w-10 flex items-center justify-center rounded-xl bg-gradient-gold shadow-lux group-hover:scale-105 transition-transform duration-300">
@@ -295,27 +401,89 @@ export default function LandingPage() {
             {/* Dark Luxury Overlay for Text Contrast */}
             <div className="absolute inset-0 bg-gradient-to-b from-[#0f1429]/90 via-[#1a1a3e]/80 to-[#faf8f3] dark:to-[#0f1429] mix-blend-multiply" />
             <div className="absolute inset-0 bg-black/40" />
+
+            {/* Animated Ambient Glow Effects */}
+            <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-accent/10 rounded-full blur-[120px] animate-pulse" style={{ animationDuration: '4s' }} />
+            <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-purple-500/10 rounded-full blur-[100px] animate-pulse" style={{ animationDuration: '6s', animationDelay: '1s' }} />
           </div>
 
-          <div className="container-custom relative z-10 pt-10">
-            <div className="max-w-5xl mx-auto text-center">
-              <h1 className="text-5xl md:text-8xl font-black tracking-tight mb-10 text-white leading-[1.05] drop-shadow-2xl animate-slide-up delay-100">
-                Crafting <span className="text-accent italic pr-2">Luxury</span> <br />
-                Digital Legacies
+          <div className="container-custom relative z-10 pt-0">
+            <div className="max-w-6xl mx-auto text-center">
+              {/* Decorative Top Ornament */}
+              <div className="flex items-center justify-center gap-3 mb-4 animate-slide-up delay-100">
+                <div className="h-px w-12 bg-gradient-to-r from-transparent to-accent/50" />
+                <span className="text-accent text-xl">◆</span>
+                <div className="h-px w-12 bg-gradient-to-l from-transparent to-accent/50" />
+              </div>
+
+              {/* Main Heading - Enhanced Horizontal Layout */}
+              <h1 className="relative text-5xl md:text-7xl lg:text-8xl font-black tracking-tight mb-6 leading-tight drop-shadow-2xl animate-slide-up delay-150">
+                <span className="relative inline-block text-white">
+                  Crafting{" "}
+                  <span className="relative inline-block">
+                    <span className="text-accent italic relative z-10">Luxury</span>
+                    {/* Subtle glow effect */}
+                    <span className="absolute inset-0 blur-xl bg-accent/30 -z-10" />
+                  </span>
+                </span>
+                {" "}
+                <br className="md:hidden" />
+                <span className="relative inline-block">
+                  <span className="bg-gradient-to-r from-white via-white to-white/90 bg-clip-text text-transparent">
+                    Legacies
+                  </span>
+                  {/* Shimmer overlay */}
+                  <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent bg-clip-text text-transparent animate-shimmer" />
+                </span>
               </h1>
 
-              <p className="mx-auto max-w-2xl text-xl md:text-2xl text-white/90 mb-12 font-medium leading-relaxed drop-shadow-lg animate-slide-up delay-200">
-                We transform ambitious visions into high-performance realities.
-                Experience the pinnacle of web & mobile craftsmanship.
+              {/* Decorative Divider */}
+              <div className="flex items-center justify-center gap-3 mb-10 animate-slide-up delay-200">
+                <div className="flex items-center gap-1">
+                  <div className="h-px w-8 bg-gradient-to-r from-transparent to-accent/60" />
+                  <div className="h-1 w-1 rounded-full bg-accent/60" />
+                </div>
+                <div className="h-2 w-2 rotate-45 border border-accent bg-accent/20 shadow-lg shadow-accent/50" />
+                <div className="flex items-center gap-1">
+                  <div className="h-1 w-1 rounded-full bg-accent/60" />
+                  <div className="h-px w-8 bg-gradient-to-l from-transparent to-accent/60" />
+                </div>
+              </div>
+
+              {/* Enhanced Description */}
+              <p className="mx-auto max-w-3xl text-lg md:text-2xl text-white/90 mb-12 font-medium leading-relaxed drop-shadow-lg animate-slide-up delay-250">
+                We transform{" "}
+                <span className="relative inline-block font-bold text-white">
+                  ambitious visions
+                  <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-accent/0 via-accent/60 to-accent/0" />
+                </span>{" "}
+                into{" "}
+                <span className="relative inline-block font-bold bg-gradient-to-r from-accent via-accent to-accent bg-clip-text text-transparent">
+                  high-performance realities
+                </span>
+                .
+                <span className="block mt-3 text-base md:text-xl text-white/60 font-normal">
+                  Experience the pinnacle of web & mobile craftsmanship.
+                </span>
               </p>
 
               <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-24 animate-slide-up delay-300">
-                <Button className="btn-lux-primary shadow-lux scale-110 border-none text-white hover-3d-tilt">
-                  Secure Your Project
+                <Button className="btn-lux-primary shadow-lux scale-110 border-none text-white hover-3d-tilt group">
+                  <span>Secure Your Project</span>
+                  <span className="ml-2 group-hover:translate-x-1 transition-transform inline-block">→</span>
                 </Button>
-                <Button variant="outline" className="h-14 px-10 rounded-full border-2 border-white/30 text-white bg-white/5 backdrop-blur-md hover:bg-white hover:text-[#1a1a3e] font-bold text-sm uppercase tracking-wider transition-all duration-300 hover-3d-tilt">
-                  View Masterpieces
+                <Button variant="outline" className="h-14 px-10 rounded-full border-2 border-white/30 text-white bg-white/5 backdrop-blur-md hover:bg-white hover:text-[#1a1a3e] font-bold text-sm uppercase tracking-wider transition-all duration-300 hover-3d-tilt group">
+                  <span>View Masterpieces</span>
+                  <span className="ml-2 group-hover:scale-110 transition-transform inline-block">◆</span>
                 </Button>
+              </div>
+
+              {/* Scroll Indicator */}
+              <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+                <div className="flex flex-col items-center gap-2">
+                  <span className="text-xs font-bold uppercase tracking-widest text-white/40">Scroll</span>
+                  <div className="h-8 w-[2px] bg-gradient-to-b from-accent/60 to-transparent" />
+                </div>
               </div>
             </div>
 
@@ -323,7 +491,7 @@ export default function LandingPage() {
             <div className="relative z-20 mt-28 w-full max-w-7xl mx-auto px-4">
               <div className="grid grid-cols-2 md:grid-cols-4 relative">
                 {stats.map((stat, idx) => (
-                  <div key={stat.id} className="relative flex flex-col items-center justify-center py-6 group">
+                  <div key={stat.id} ref={statCounts[idx].elementRef} className="relative flex flex-col items-center justify-center py-6 group">
                     {/* Vertical Gold Divider (Not on first item) */}
                     {idx !== 0 && (
                       <div className="absolute left-0 top-1/2 -translate-y-1/2 h-16 w-[1px] bg-gradient-to-b from-transparent via-accent/50 to-transparent hidden md:block" />
@@ -333,7 +501,9 @@ export default function LandingPage() {
                       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-16 h-[1px] bg-gradient-to-r from-transparent via-accent/50 to-transparent md:hidden" />
                     )}
 
-                    <span className="text-5xl md:text-6xl font-black bg-gradient-to-br from-white via-[#f7e7ce] to-[#d4af37] bg-clip-text text-transparent mb-3 tracking-tight drop-shadow-2xl scale-100 group-hover:scale-110 transition-transform duration-500">{stat.val}</span>
+                    <span className="text-5xl md:text-6xl font-black bg-gradient-to-br from-white via-[#f7e7ce] to-[#d4af37] bg-clip-text text-transparent mb-3 tracking-tight drop-shadow-2xl scale-100 group-hover:scale-110 transition-transform duration-500">
+                      {statCounts[idx].count}{stat.val.replace(/\d/g, '')}
+                    </span>
                     <span className="text-xs font-bold text-accent/80 uppercase tracking-[0.25em] group-hover:text-accent transition-colors shadow-black drop-shadow-md">{stat.label}</span>
                   </div>
                 ))}
@@ -357,74 +527,100 @@ export default function LandingPage() {
           </div>
         </section>
 
-        {/* Exclusive Services Section */}
-        <section id="services" className="section-padding relative bg-gradient-to-b from-white via-[#f7e7ce]/30 to-white dark:from-[#0f1429] dark:via-[#1a1a3e]/50 dark:to-[#0f1429]">
-          <div className="container-custom">
-            <div className="flex flex-col md:flex-row md:items-end justify-between mb-24 gap-10">
-              <div className="max-w-2xl">
-                <span className="text-xs font-black uppercase tracking-[0.2em] text-accent mb-4 block">Our Craft</span>
-                <h2 className="text-3xl md:text-5xl font-black text-foreground tracking-tight mb-6">Bespoke Digital Solutions</h2>
-                <p className="text-lg text-muted-foreground font-medium leading-relaxed">
-                  Every project is a unique collaboration. We deliver uncompromising quality across every digital frontier.
-                </p>
+        {/* Exclusive Services Section - Redesigned */}
+        <section id="services" className="section-padding relative overflow-hidden bg-gradient-to-b from-white via-[#faf8f3] to-white dark:from-[#0f1429] dark:via-[#1a1a3e]/30 dark:to-[#0f1429]">
+          {/* Decorative Background Elements */}
+          <div className="absolute top-20 left-10 w-72 h-72 bg-accent/5 rounded-full blur-[120px] animate-pulse-slow" />
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-500/5 rounded-full blur-[150px]" />
+
+          <div className="container-custom relative z-10">
+            {/* Section Header - Centered & Enhanced */}
+            <div
+              ref={servicesReveal.elementRef}
+              className={classNames(
+                "text-center max-w-3xl mx-auto mb-20 fade-in-up",
+                servicesReveal.isVisible ? "is-visible" : ""
+              )}
+            >
+              <div className="flex items-center justify-center gap-3 mb-6">
+                <div className="h-px w-12 bg-gradient-to-r from-transparent to-accent/50" />
+                <span className="text-xs font-black uppercase tracking-[0.3em] text-accent">Our Craft</span>
+                <div className="h-px w-12 bg-gradient-to-l from-transparent to-accent/50" />
               </div>
-              <div className="h-1 shadow-lux bg-accent w-20 mb-4 hidden md:block" />
+
+              <h2 className="text-4xl md:text-6xl font-black text-foreground tracking-tight mb-6 leading-tight">
+                Bespoke Digital <span className="text-accent italic">Solutions</span>
+              </h2>
+
+              <p className="text-lg md:text-xl text-muted-foreground font-medium leading-relaxed">
+                Every project is a unique collaboration. We deliver uncompromising quality across every digital frontier.
+              </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+            {/* Services Grid - Enhanced Cards */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 perspective-1000">
               {services.map((service, idx) => (
                 <div
                   key={service.id}
-                  className="group relative bg-white dark:bg-[#1a1a3e]/40 p-8 lg:p-12 rounded-3xl border-2 border-border dark:border-white/5 hover:border-accent/50 dark:hover:border-accent/50 overflow-hidden animate-slide-up hover:shadow-2xl hover:shadow-accent/20 hover:scale-[1.02] transition-all duration-500 ease-out backdrop-blur-sm cursor-pointer"
-                  style={{ animationDelay: `${idx * 100}ms` }}
+                  className="group relative animate-slide-up"
+                  style={{ animationDelay: `${idx * 150}ms` }}
                 >
-                  {/* Subtle Number Overlay */}
-                  <div className="absolute top-6 right-6 text-[10rem] font-black text-foreground/[0.02] dark:text-white/[0.02] group-hover:text-accent/[0.08] transition-colors duration-700 font-serif leading-none pointer-events-none select-none">
-                    {String(idx + 1).padStart(2, '0')}
-                  </div>
+                  {/* Card with gradient border effect */}
+                  <div className="relative h-full">
+                    {/* Gradient Border Container */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-accent/40 via-accent/20 to-transparent rounded-[2rem] opacity-0 group-hover:opacity-100 blur-sm transition-opacity duration-500" />
 
-                  {/* Very Subtle Gradient Overlay on Hover */}
-                  <div className={classNames("absolute inset-0 bg-gradient-to-br transition-opacity duration-700 opacity-0 group-hover:opacity-[0.05]", service.accent)} />
+                    {/* Main Card */}
+                    <div className="relative h-full bg-white dark:bg-[#1a1a3e]/60 backdrop-blur-xl rounded-[2rem] p-10 border-2 border-border/50 dark:border-white/10 group-hover:border-accent/30 overflow-hidden transition-all duration-500 shadow-xl group-hover:shadow-2xl group-hover:shadow-accent/10">
+                      {/* Animated Background Gradient */}
+                      <div className={classNames("absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-[0.08] transition-opacity duration-700", service.accent)} />
 
-                  <div className="relative z-10">
-                    {/* Icon with improved styling */}
-                    <div className="mb-10 inline-flex h-20 w-20 items-center justify-center rounded-2xl bg-accent/10 text-accent border-2 border-accent/20 group-hover:border-accent group-hover:scale-110 group-hover:bg-accent/20 transition-all duration-500 shadow-sm">
-                      {service.icon}
-                    </div>
+                      {/* Number Watermark */}
+                      <div className="absolute top-4 right-6 text-[8rem] font-black text-foreground/[0.03] dark:text-white/[0.03] group-hover:text-accent/[0.12] transition-all duration-700 font-serif leading-none pointer-events-none select-none group-hover:scale-110">
+                        {String(idx + 1).padStart(2, '0')}
+                      </div>
 
-                    {/* Title */}
-                    <h3 className="text-2xl lg:text-3xl font-black text-foreground mb-4 tracking-tight leading-tight group-hover:text-accent transition-colors duration-300">
-                      {service.title}
-                    </h3>
+                      <div className="relative z-10">
+                        {/* Icon */}
+                        <div className="mb-8 inline-flex h-16 w-16 items-center justify-center rounded-xl bg-gradient-to-br from-accent/20 to-accent/10 text-accent border border-accent/30 group-hover:scale-110 group-hover:rotate-6 group-hover:from-accent/30 group-hover:to-accent/20 transition-all duration-500 shadow-lg shadow-accent/10">
+                          {service.icon}
+                        </div>
 
-                    {/* Description with better line height */}
-                    <p className="text-base lg:text-lg text-muted-foreground mb-8 leading-relaxed font-medium">
-                      {service.desc}
-                    </p>
+                        {/* Title */}
+                        <h3 className="text-2xl md:text-3xl font-black text-foreground dark:text-white mb-4 tracking-tight leading-tight group-hover:text-accent transition-colors duration-300">
+                          {service.title}
+                        </h3>
 
-                    {/* Refined Tag Pills with better spacing */}
-                    <div className="flex flex-wrap gap-2.5 mb-8">
-                      {service.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="px-4 py-2 rounded-full border border-accent/20 bg-accent/5 text-xs font-bold text-accent/70 tracking-wide uppercase group-hover:bg-accent/10 group-hover:border-accent/40 group-hover:text-accent transition-all duration-300"
+                        {/* Decorative underline */}
+                        <div className="w-16 h-1 bg-gradient-to-r from-accent to-accent/30 mb-6 group-hover:w-24 transition-all duration-500" />
+
+                        {/* Description */}
+                        <p className="text-base text-muted-foreground dark:text-[#f7e7ce]/70 mb-8 leading-relaxed font-medium">
+                          {service.desc}
+                        </p>
+
+                        {/* Feature Tags */}
+                        <div className="flex flex-wrap gap-2.5 mb-10">
+                          {service.tags.map((tag) => (
+                            <span
+                              key={tag}
+                              className="px-3 py-1.5 rounded-lg bg-accent/5 dark:bg-accent/10 border border-accent/20 text-xs font-bold text-accent/80 tracking-wide uppercase group-hover:bg-accent/10 group-hover:border-accent/40 group-hover:text-accent dark:group-hover:text-accent transition-all duration-300"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+
+                        {/* CTA - Enhanced */}
+                        <a
+                          href="/"
+                          className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-accent/5 border border-accent/30 text-accent font-bold text-sm uppercase tracking-wider group-hover:bg-accent group-hover:text-accent-foreground group-hover:border-accent group-hover:shadow-lg group-hover:shadow-accent/30 transition-all duration-300"
                         >
-                          {tag}
-                        </span>
-                      ))}
+                          <span>Explore Service</span>
+                          <ChevronRightIcon size={16} className="group-hover:translate-x-1 transition-transform" />
+                        </a>
+                      </div>
                     </div>
-
-                    {/* CTA Link with underline animation */}
-                    <a
-                      href="/"
-                      className="inline-flex items-center gap-2 text-sm font-black text-accent uppercase tracking-[0.2em] group-hover:gap-4 transition-all duration-300 relative"
-                    >
-                      <span className="relative">
-                        Explore Service
-                        <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-500" />
-                      </span>
-                      <ChevronRightIcon size={16} className="group-hover:translate-x-1 transition-transform" />
-                    </a>
                   </div>
                 </div>
               ))}
@@ -462,46 +658,8 @@ export default function LandingPage() {
           </div>
         </section>
 
-        {/* Featured Masterpieces */}
-        <section id="work" className="section-padding overflow-hidden">
-          <div className="container-custom">
-            <div className="flex flex-col md:flex-row md:items-end justify-between mb-24 gap-10">
-              <div>
-                <span className="text-xs font-black uppercase tracking-[0.2em] text-accent mb-4 block">Masterpieces</span>
-                <h2 className="text-3xl md:text-5xl font-black text-foreground tracking-tight">Our Gallery</h2>
-              </div>
-              <Button variant="outline" className="btn-lux-outline glass-card">View Full Portfolio</Button>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 perspective-1000">
-              {projects.map((project, idx) => (
-                <div key={project.id} className="group cursor-pointer card-3d animate-slide-up" style={{ animationDelay: `${idx * 100 + 200}ms` }}>
-                  <div className="relative aspect-[4/5] overflow-hidden rounded-2xl glass-card border-none mb-6 shadow-xl card-inner-3d">
-                    {/* Project Image */}
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
-                    />
-                    {/* Color Overlay */}
-                    <div className={classNames("absolute inset-0 opacity-30 mix-blend-multiply transition-opacity duration-500 group-hover:opacity-20", project.color)} />
-                    {/* Strong Gradient Overlay for Text Readability */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
-                    {/* Hover CTA */}
-                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm bg-primary/10">
-                      <Button className="btn-lux-primary scale-90 group-hover:scale-100 transition-transform">Inquire Project</Button>
-                    </div>
-                    {/* Project Info */}
-                    <div className="absolute bottom-6 left-6 right-6 z-10">
-                      <span className="text-xs font-bold text-accent uppercase tracking-wider mb-2 block drop-shadow-lg">{project.cat}</span>
-                      <h3 className="text-xl md:text-2xl font-black text-white tracking-tight" style={{ textShadow: '0 2px 10px rgba(0,0,0,0.8)' }}>{project.title}</h3>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        {/* Featured Masterpieces - Using Component */}
+        <ProjectsGallery projects={projects} />
 
         {/* Premium Packages Section */}
         <section className="section-padding relative overflow-hidden bg-gradient-to-b from-white via-[#faf8f3] to-white dark:from-[#0f1429] dark:via-[#1a1a3e] dark:to-[#0f1429]">
@@ -652,54 +810,8 @@ export default function LandingPage() {
         </section>
       </main>
 
-      {/* Luxury Footer - Deep Jewel Tones */}
-      <footer className="pt-24 pb-12 bg-gradient-to-br from-[#1a1a3e] via-[#2a2a4e] to-[#1a1a3e] dark:from-[#0f1429] dark:via-[#1a1a3e] dark:to-[#0f1429] border-t-2 border-accent/30">
-        <div className="container-custom px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-20 mb-32">
-            <div className="lg:col-span-1">
-              <div className="flex items-center gap-2.5 mb-8 group cursor-pointer">
-                <div className="h-10 w-10 flex items-center justify-center rounded-xl bg-gradient-gold shadow-lux group-hover:scale-105 transition-transform duration-300">
-                  <span className="text-lg font-black text-[#1a1a3e] tracking-tighter">S</span>
-                </div>
-                <span className="text-xl font-black tracking-tight text-white dark:text-[#f7e7ce]">SiteCreation<span className="text-accent italic">.in</span></span>
-              </div>
-              <p className="text-[#f7e7ce]/80 dark:text-[#f7e7ce]/80 text-lg leading-relaxed font-medium mb-10">
-                Architecting premium digital assets for the world's most ambitious brands. Uncompromising quality since 2018.
-              </p>
-              <div className="flex gap-4">
-                {[1, 2, 3, 4].map((id) => (
-                  <a key={id} href="/" className="h-12 w-12 rounded-xl border-2 border-accent/30 bg-accent/10 flex items-center justify-center hover:bg-accent hover:border-accent transition-all duration-300">
-                    <GithubIcon size={20} className="text-accent hover:text-[#1a1a3e]" />
-                  </a>
-                ))}
-              </div>
-            </div>
-
-            {footerCols.map((col) => (
-              <div key={col.id}>
-                <h3 className="text-sm font-black uppercase tracking-wider text-accent mb-6">{col.title}</h3>
-                <ul className="space-y-6">
-                  {col.links.map(link => (
-                    <li key={link}>
-                      <a href="/" className="text-[#f7e7ce]/70 hover:text-white dark:text-[#f7e7ce]/70 dark:hover:text-white font-bold transition-all duration-300 tracking-tight">
-                        {link}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-
-          <div className="pt-16 border-t-2 border-accent/20 flex flex-col md:flex-row justify-between items-center gap-10">
-            <p className="text-sm font-bold text-[#f7e7ce]/50 dark:text-[#f7e7ce]/50 uppercase tracking-widest">© 2026 SiteCreation.in — All Systems Operational</p>
-            <div className="flex gap-12">
-              <a href="/" className="text-xs font-black text-[#f7e7ce]/50 hover:text-accent uppercase tracking-[0.2em] transition-colors">Privacy Codex</a>
-              <a href="/" className="text-xs font-black text-[#f7e7ce]/50 hover:text-accent uppercase tracking-[0.2em] transition-colors">Terms of Protocol</a>
-            </div>
-          </div>
-        </div>
-      </footer>
+      {/* Enhanced Luxury Footer with Newsletter */}
+      <Footer />
     </div>
   );
 }

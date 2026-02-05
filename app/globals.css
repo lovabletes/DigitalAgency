@@ -314,15 +314,15 @@ body {
 @layer components {
   .btn-lux-primary {
     @apply inline-flex items-center justify-center px-6 py-3 rounded-full font-bold transition-all duration-300 text-sm;
-    background: var(--lux-gold);
-    color: var(--lux-sapphire);
-    box-shadow: 0 4px 20px var(--glow-primary);
+    background: linear-gradient(135deg, #991b1b 0%, #dc2626 100%);
+    color: #ffffff;
+    box-shadow: 0 4px 20px rgba(153, 27, 27, 0.4);
   }
 
   .btn-lux-primary:hover {
     @apply scale-105;
-    background: var(--lux-gold-light);
-    box-shadow: 0 6px 30px var(--glow-primary);
+    background: linear-gradient(135deg, #b91c1c 0%, #ef4444 100%);
+    box-shadow: 0 6px 30px rgba(220, 38, 38, 0.5);
   }
 
   .btn-lux-outline {
@@ -344,5 +344,107 @@ body {
 
   .container-custom {
     @apply max-w-7xl mx-auto;
+  }
+
+  /* Scroll Reveal Animations */
+  .scroll-reveal {
+    opacity: 0;
+    transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+
+  .scroll-reveal.is-visible {
+    opacity: 1;
+  }
+
+  .fade-in-up {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+
+  .fade-in-up.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .fade-in-left {
+    opacity: 0;
+    transform: translateX(-40px);
+    transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+
+  .fade-in-left.is-visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .fade-in-right {
+    opacity: 0;
+    transform: translateX(40px);
+    transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+
+  .fade-in-right.is-visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* Modal Animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes zoomIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .animate-in {
+    animation-fill-mode: both;
+  }
+
+  .fade-in {
+    animation: fadeIn 0.3s ease-out;
+  }
+
+  .zoom-in-95 {
+    animation: zoomIn 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+
+  .duration-300 {
+    animation-duration: 300ms;
+  }
+
+  .duration-500 {
+    animation-duration: 500ms;
+  }
+
+  /* Shimmer Animation for Luxury Text */
+  @keyframes shimmer {
+    0% {
+      background-position: -200% center;
+    }
+
+    100% {
+      background-position: 200% center;
+    }
+  }
+
+  .animate-shimmer {
+    background-size: 200% 100%;
+    animation: shimmer 8s linear infinite;
   }
 }
