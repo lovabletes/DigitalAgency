@@ -2,6 +2,7 @@
 
 import React from "react";
 import { ChevronRightIcon, MenuIcon, CloseIcon } from "@/components/icons/icons";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { classNames } from "@/utils/class-names";
 
@@ -35,8 +36,15 @@ export function Header({ navLinks }: Readonly<HeaderProps>) {
         )}>
             <div className="container-custom flex h-16 items-center justify-between px-6">
                 <div className="flex items-center gap-2.5 group cursor-pointer">
-                    <div className="relative h-10 w-10 flex items-center justify-center rounded-xl bg-gradient-gold shadow-lux group-hover:scale-105 transition-transform duration-300">
-                        <span className="text-lg font-black text-[#1a1a3e] tracking-tighter">S</span>
+                    <div className="relative h-10 w-10 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+                        <Image
+                            src="/images/Logo.png"
+                            alt="Logo"
+                            width={40}
+                            height={40}
+                            className="object-contain"
+                            priority
+                        />
                     </div>
                     <span className="text-xl font-black tracking-tight text-white dark:text-[#f7e7ce]">
                         SiteCreation<span className="text-accent italic">.in</span>

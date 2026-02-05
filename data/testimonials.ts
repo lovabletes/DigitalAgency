@@ -1,6 +1,6 @@
 export const testimonials = [
     {
-        quote: "SiteCreation transformed our idea into a stunning mobile app. Their attention to detail and commitment to quality exceeded our expectations.",
+        quote: "SiteCreation.in transformed our idea into a stunning mobile app. Their attention to detail and commitment to quality exceeded our expectations.",
         name: "Sarah Johnson",
         role: "CEO, TechStart",
         image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80"

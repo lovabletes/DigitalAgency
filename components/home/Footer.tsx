@@ -2,6 +2,7 @@
 
 import React from "react";
 import { GithubIcon } from "@/components/icons/icons";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 
 export function Footer() {
@@ -40,8 +41,14 @@ export function Footer() {
                     {/* Brand Column */}
                     <div className="lg:col-span-2">
                         <div className="flex items-center gap-2.5 mb-8 group cursor-pointer">
-                            <div className="h-12 w-12 flex items-center justify-center rounded-xl bg-gradient-gold shadow-lux group-hover:scale-105 transition-transform duration-300">
-                                <span className="text-xl font-black text-[#1a1a3e] tracking-tighter">S</span>
+                            <div className="relative h-12 w-12 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+                                <Image
+                                    src="/images/Logo.png"
+                                    alt="Logo"
+                                    width={48}
+                                    height={48}
+                                    className="object-contain"
+                                />
                             </div>
                             <span className="text-2xl font-black tracking-tight text-white">
                                 SiteCreation<span className="text-accent italic">.in</span>
