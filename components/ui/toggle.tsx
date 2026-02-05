@@ -33,7 +33,7 @@ type ToggleProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   size?: ToggleSize
 }
 
-function Toggle({ className, variant, size, pressed, defaultPressed, onPressedChange, onClick, ...props }: ToggleProps) {
+function Toggle({ className, variant, size, pressed, defaultPressed, onPressedChange, onClick, ...props }: Readonly<ToggleProps>) {
   const isControlled = pressed !== undefined
   const [internal, setInternal] = React.useState<boolean>(!!defaultPressed)
   const isOn = isControlled ? !!pressed : internal
@@ -49,7 +49,6 @@ function Toggle({ className, variant, size, pressed, defaultPressed, onPressedCh
   return (
     <button
       type="button"
-      role="button"
       aria-pressed={isOn}
       data-state={isOn ? "on" : "off"}
       className={classNames(toggleVariants({ variant, size, className }))}

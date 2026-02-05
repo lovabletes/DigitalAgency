@@ -5,12 +5,14 @@ import { MinusIcon } from "@/components/icons/icons";
 import { classNames } from "@/utils/class-names";
 
 // Create a context to share OTP state across components
-const OTPContext = React.createContext<{
+type OTPContextValue = {
   value: string[];
   activeIndex: number;
   onChange: (value: string[]) => void;
   onFocus: (index: number) => void;
-}>({
+}
+
+const OTPContext = React.createContext<OTPContextValue>({
   value: [],
   activeIndex: -1,
   onChange: () => { },
@@ -23,38 +25,46 @@ function InputOTP({
   maxLength = 6, // Default OTP length
   onChange: onChangeProp,
   value: valueProp = "",
+  children,
   ...props
-}: React.ComponentProps<"div"> & {
+}: Readonly<React.ComponentProps<"div"> & {
   containerClassName?: string;
   maxLength?: number;
   value?: string;
   onChange?: (value: string) => void;
-}) {
+}>) {
   const [value, setValue] = React.useState<string[]>(
-    valueProp.split("").slice(0, maxLength) || Array(maxLength).fill("")
+    valueProp.split("").slice(0, maxLength) || new Array(maxLength).fill("")
   );
   const [activeIndex, setActiveIndex] = React.useState<number>(-1);
 
   // Update internal state when controlled value changes
   React.useEffect(() => {
-    setValue(valueProp.split("").slice(0, maxLength) || Array(maxLength).fill(""));
+    setValue(valueProp.split("").slice(0, maxLength) || new Array(maxLength).fill(""));
   }, [valueProp, maxLength]);
 
   // Handle value changes
-  const handleChange = (newValue: string[]) => {
+  const handleChange = React.useCallback((newValue: string[]) => {
     setValue(newValue);
     if (onChangeProp) {
       onChangeProp(newValue.join(""));
     }
-  };
+  }, [onChangeProp]);
 
   // Handle focus on a specific slot
-  const handleFocus = (index: number) => {
+  const handleFocus = React.useCallback((index: number) => {
     setActiveIndex(index);
-  };
+  }, []);
+
+  const contextValue = React.useMemo(() => ({
+    value,
+    activeIndex,
+    onChange: handleChange,
+    onFocus: handleFocus
+  }), [value, activeIndex, handleChange, handleFocus])
 
   return (
-    <OTPContext.Provider value={{ value, activeIndex, onChange: handleChange, onFocus: handleFocus }}>
+    <OTPContext.Provider value={contextValue}>
       <div
         data-slot="input-otp"
         className={classNames(
@@ -63,14 +73,14 @@ function InputOTP({
         )}
         {...props}
       >
-        {props.children}
+        {children}
       </div>
     </OTPContext.Provider>
   );
 }
 
 // OTP Group component to wrap slots
-function InputOTPGroup({ className, ...props }: React.ComponentProps<"div">) {
+function InputOTPGroup({ className, ...props }: Readonly<React.ComponentProps<"div">>) {
   return (
     <div
       data-slot="input-otp-group"
@@ -85,9 +95,9 @@ function InputOTPSlot({
   index,
   className,
   ...props
-}: React.ComponentProps<"div"> & {
+}: Readonly<React.ComponentProps<"div"> & {
   index: number;
-}) {
+}>) {
   const { value, activeIndex, onChange, onFocus } = React.useContext(OTPContext);
   const inputRef = React.useRef<HTMLInputElement>(null);
 
@@ -141,8 +151,9 @@ function InputOTPSlot({
     const pastedData = e.clipboardData.getData("text").slice(0, value.length - index);
     const newValue = [...value];
     for (let i = 0; i < pastedData.length; i++) {
-      if (/^[a-zA-Z0-9]$/.test(pastedData[i])) {
-        newValue[index + i] = pastedData[i];
+      const char = pastedData[i];
+      if (char && /^[a-zA-Z0-9]$/.test(char)) {
+        newValue[index + i] = char;
       }
     }
     onChange(newValue);
@@ -183,7 +194,7 @@ function InputOTPSlot({
         onPaste={handlePaste}
         onFocus={() => onFocus(index)}
         className="absolute inset-0 bg-transparent text-center text-sm outline-none"
-        aria-invalid={!!value[index] && !/^[a-zA-Z0-9]$/.test(value[index])}
+        aria-invalid={!!(value[index] && !/^[a-zA-Z0-9]$/.test(value[index]))}
       />
       {value[index] || (activeIndex === index && (
         <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
@@ -195,11 +206,11 @@ function InputOTPSlot({
 }
 
 // OTP Separator component
-function InputOTPSeparator({ ...props }: React.ComponentProps<"div">) {
+function InputOTPSeparator({ ...props }: Readonly<React.ComponentProps<"hr">>) {
   return (
-    <div data-slot="input-otp-separator" role="separator" {...props}>
+    <hr data-slot="input-otp-separator" className="border-none flex items-center justify-center p-1" {...props}>
       <MinusIcon />
-    </div>
+    </hr>
   );
 }
 

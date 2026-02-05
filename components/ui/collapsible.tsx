@@ -18,17 +18,24 @@ type CollapsibleProps = {
   children: React.ReactNode
 } & React.HTMLAttributes<HTMLDivElement>
 
-function Collapsible({ open, defaultOpen, onOpenChange, disabled, children, className, ...props }: CollapsibleProps) {
+function Collapsible({ open, defaultOpen, onOpenChange, disabled, children, className, ...props }: Readonly<CollapsibleProps>) {
   const isControlled = open !== undefined
   const [internalOpen, setInternalOpen] = React.useState<boolean>(defaultOpen ?? false)
   const isOpen = isControlled ? !!open : internalOpen
-  const setOpen = (v: boolean) => {
+
+  const setOpen = React.useCallback((v: boolean) => {
     if (!isControlled) setInternalOpen(v)
     onOpenChange?.(v)
-  }
+  }, [isControlled, onOpenChange])
+
+  const contextValue = React.useMemo(() => ({
+    open: isOpen,
+    setOpen,
+    disabled
+  }), [isOpen, setOpen, disabled])
 
   return (
-    <CollapsibleCtx.Provider value={{ open: isOpen, setOpen, disabled }}>
+    <CollapsibleCtx.Provider value={contextValue}>
       <div
         data-slot="collapsible"
         data-state={isOpen ? "open" : "closed"}
@@ -44,10 +51,10 @@ function Collapsible({ open, defaultOpen, onOpenChange, disabled, children, clas
 
 type CollapsibleTriggerProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   asChild?: boolean
-  children: React.ReactElement<React.HTMLAttributes<HTMLElement> & { className?: string; ['data-slot']?: string }> | React.ReactNode
+  children: React.ReactElement<React.HTMLAttributes<HTMLElement> & { className?: string;['data-slot']?: string }> | React.ReactNode
 }
 
-function CollapsibleTrigger({ asChild, children, className, onClick, ...props }: CollapsibleTriggerProps) {
+function CollapsibleTrigger({ asChild, children, className, onClick, ...props }: Readonly<CollapsibleTriggerProps>) {
   const ctx = React.useContext(CollapsibleCtx)
   if (!ctx) throw new Error("CollapsibleTrigger must be used within Collapsible")
   const { open, setOpen, disabled } = ctx
@@ -75,7 +82,7 @@ function CollapsibleTrigger({ asChild, children, className, onClick, ...props }:
         if (disabled) return
         setOpen(!open)
       },
-      className: [ child.props?.className, className ].filter(Boolean).join(" "),
+      className: [child.props?.className, className].filter(Boolean).join(" "),
       "data-slot": "collapsible-trigger",
       "data-state": open ? "open" : "closed",
       "aria-expanded": open,
@@ -103,7 +110,7 @@ type CollapsibleContentProps = React.HTMLAttributes<HTMLDivElement> & {
   asChild?: boolean
 }
 
-function CollapsibleContent({ asChild, children, className, ...props }: CollapsibleContentProps) {
+function CollapsibleContent({ asChild, children, className, ...props }: Readonly<CollapsibleContentProps>) {
   const ctx = React.useContext(CollapsibleCtx)
   if (!ctx) throw new Error("CollapsibleContent must be used within Collapsible")
   const { open } = ctx
@@ -127,7 +134,7 @@ function CollapsibleContent({ asChild, children, className, ...props }: Collapsi
     const child = children as React.ReactElement<ChildProps>
     return React.cloneElement(child, {
       ...commonProps,
-      className: [ child.props?.className, className ].filter(Boolean).join(" "),
+      className: [child.props?.className, className].filter(Boolean).join(" "),
     })
   }
 

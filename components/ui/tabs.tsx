@@ -17,7 +17,7 @@ type TabsProps = React.HTMLAttributes<HTMLDivElement> & {
   onValueChange?: (v: string) => void
 }
 
-function Tabs({ className, value, defaultValue, onValueChange, children, ...rest }: TabsProps) {
+function Tabs({ className, value, defaultValue, onValueChange, children, ...rest }: Readonly<TabsProps>) {
   const isControlled = value !== undefined
   const [internal, setInternal] = React.useState<string | undefined>(defaultValue)
   const current = isControlled ? value : internal
@@ -41,7 +41,7 @@ function Tabs({ className, value, defaultValue, onValueChange, children, ...rest
   )
 }
 
-function TabsList({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
+function TabsList({ className, ...props }: Readonly<React.HTMLAttributes<HTMLDivElement>>) {
   return (
     <div
       role="tablist"
@@ -59,7 +59,7 @@ type TabsTriggerProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   value: string
 }
 
-function TabsTrigger({ className, value, ...props }: TabsTriggerProps) {
+function TabsTrigger({ className, value, ...props }: Readonly<TabsTriggerProps>) {
   const ctx = React.useContext(TabsCtx)
   if (!ctx) throw new Error("TabsTrigger must be used within <Tabs>")
   const active = ctx.value === value
@@ -83,7 +83,7 @@ type TabsContentProps = React.HTMLAttributes<HTMLDivElement> & {
   value: string
 }
 
-function TabsContent({ className, value, children, ...props }: TabsContentProps) {
+function TabsContent({ className, value, children, ...props }: Readonly<TabsContentProps>) {
   const ctx = React.useContext(TabsCtx)
   if (!ctx) throw new Error("TabsContent must be used within <Tabs>")
   const active = ctx.value === value
@@ -94,6 +94,7 @@ function TabsContent({ className, value, children, ...props }: TabsContentProps)
       data-state={active ? "active" : "inactive"}
       data-slot="tabs-content"
       className={classNames("flex-1 outline-none", className)}
+      tabIndex={0}
       {...props}
     >
       {active ? children : null}

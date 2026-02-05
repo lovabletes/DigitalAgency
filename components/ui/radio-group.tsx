@@ -22,7 +22,7 @@ type RadioGroupProps = React.HTMLAttributes<HTMLDivElement> & {
   disabled?: boolean
 }
 
-const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
+const RadioGroup = React.forwardRef<HTMLDivElement, Readonly<RadioGroupProps>>(
   ({ className, value, defaultValue, onValueChange, name, disabled, children, ...props }, ref) => {
     const generated = React.useId()
     const groupName = name ?? generated
@@ -30,12 +30,17 @@ const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
     const [internal, setInternal] = React.useState<string | undefined>(defaultValue)
     const current = isControlled ? value : internal
 
-    const setValue = (val: string) => {
+    const setValue = React.useCallback((val: string) => {
       if (!isControlled) setInternal(val)
       onValueChange?.(val)
-    }
+    }, [isControlled, onValueChange])
 
-    const ctx: RadioGroupContextValue = { name: groupName, value: current, setValue, disabled }
+    const ctx = React.useMemo<RadioGroupContextValue>(() => ({
+      name: groupName,
+      value: current,
+      setValue,
+      disabled
+    }), [groupName, current, setValue, disabled])
 
     return (
       <RadioGroupContext.Provider value={ctx}>
@@ -58,7 +63,7 @@ type RadioGroupItemProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, "ty
   value: string
 }
 
-const RadioGroupItem = React.forwardRef<HTMLInputElement, RadioGroupItemProps>(
+const RadioGroupItem = React.forwardRef<HTMLInputElement, Readonly<RadioGroupItemProps>>(
   ({ className, value, id, disabled, ...props }, ref) => {
     const ctx = React.useContext(RadioGroupContext)
     if (!ctx) {

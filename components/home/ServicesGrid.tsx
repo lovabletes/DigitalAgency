@@ -17,75 +17,107 @@ interface ServicesGridProps {
     services: Service[];
 }
 
-export function ServicesGrid({ services }: ServicesGridProps) {
+export function ServicesGrid({ services }: Readonly<ServicesGridProps>) {
     return (
-        <section id="services" className="section-padding relative bg-gradient-to-b from-white via-[#f7e7ce]/30 to-white dark:from-[#0f1429] dark:via-[#1a1a3e]/50 dark:to-[#0f1429]">
-            <div className="container-custom">
-                <div className="flex flex-col md:flex-row md:items-end justify-between mb-24 gap-10 fade-in-up">
-                    <div className="max-w-2xl">
-                        <span className="text-xs font-black uppercase tracking-[0.2em] text-accent mb-4 block">Our Craft</span>
-                        <h2 className="text-3xl md:text-5xl font-black text-foreground tracking-tight mb-6">Bespoke Digital Solutions</h2>
-                        <p className="text-lg text-muted-foreground font-medium leading-relaxed">
-                            Every project is a unique collaboration. We deliver uncompromising quality across every digital frontier.
-                        </p>
+        <section id="services" className="section-padding relative overflow-hidden bg-gradient-to-b from-white via-[#faf8f3] to-white dark:from-[#0f1429] dark:via-[#1a1a3e]/30 dark:to-[#0f1429]">
+            {/* Decorative Background Elements */}
+            <div className="absolute top-20 left-10 w-72 h-72 bg-accent/5 rounded-full blur-[120px] animate-pulse-slow" />
+            <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-500/5 rounded-full blur-[150px]" />
+
+            <div className="container-custom relative z-10">
+                {/* Section Header - Centered & Enhanced */}
+                <div className="text-center max-w-3xl mx-auto mb-20 fade-in-up is-visible">
+                    <div className="flex items-center justify-center gap-3 mb-6">
+                        <div className="h-px w-12 bg-gradient-to-r from-transparent to-accent/50" />
+                        <span className="text-xs font-black uppercase tracking-[0.3em] text-accent">Our Craft</span>
+                        <div className="h-px w-12 bg-gradient-to-l from-transparent to-accent/50" />
                     </div>
-                    <div className="h-1 shadow-lux bg-accent w-20 mb-4 hidden md:block" />
+
+                    <h2 className="text-4xl md:text-6xl font-black text-foreground tracking-tight mb-6 leading-tight">
+                        Bespoke Digital <span className="text-accent italic">Solutions</span>
+                    </h2>
+
+                    <p className="text-lg md:text-xl text-muted-foreground font-medium leading-relaxed">
+                        Every project is a unique collaboration. We deliver uncompromising quality across every digital frontier.
+                    </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+                {/* Services Grid - Enhanced Cards with 3D Effects */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 perspective-1500">
                     {services.map((service, idx) => (
                         <div
                             key={service.id}
-                            className="group relative bg-white dark:bg-[#1a1a3e]/40 p-8 lg:p-12 rounded-3xl border-2 border-border dark:border-white/5 hover:border-accent/50 dark:hover:border-accent/50 overflow-hidden animate-slide-up hover:shadow-2xl hover:shadow-accent/20 hover:scale-[1.02] transition-all duration-500 ease-out backdrop-blur-sm cursor-pointer"
-                            style={{ animationDelay: `${idx * 100}ms` }}
+                            className="group relative animate-slide-up"
+                            style={{
+                                animationDelay: `${idx * 150}ms`,
+                            }}
                         >
-                            {/* Subtle Number Overlay */}
-                            <div className="absolute top-6 right-6 text-[10rem] font-black text-foreground/[0.02] dark:text-white/[0.02] group-hover:text-accent/[0.08] transition-colors duration-700 font-serif leading-none pointer-events-none select-none">
-                                {String(idx + 1).padStart(2, '0')}
-                            </div>
+                            {/* Card with gradient border effect */}
+                            <div className="relative h-full">
+                                {/* Gradient Border Container */}
+                                <div className="absolute inset-0 bg-gradient-to-br from-accent/40 via-accent/20 to-transparent rounded-[2rem] opacity-0 group-hover:opacity-100 blur-sm transition-opacity duration-500" />
 
-                            {/* Very Subtle Gradient Overlay on Hover */}
-                            <div className={classNames("absolute inset-0 bg-gradient-to-br transition-opacity duration-700 opacity-0 group-hover:opacity-[0.05]", service.accent)} />
-
-                            <div className="relative z-10">
-                                {/* Icon with improved styling */}
-                                <div className="mb-10 inline-flex h-20 w-20 items-center justify-center rounded-2xl bg-accent/10 text-accent border-2 border-accent/20 group-hover:border-accent group-hover:scale-110 group-hover:bg-accent/20 transition-all duration-500 shadow-sm">
-                                    {service.icon}
-                                </div>
-
-                                {/* Title */}
-                                <h3 className="text-2xl lg:text-3xl font-black text-foreground mb-4 tracking-tight leading-tight group-hover:text-accent transition-colors duration-300">
-                                    {service.title}
-                                </h3>
-
-                                {/* Description with better line height */}
-                                <p className="text-base lg:text-lg text-muted-foreground mb-8 leading-relaxed font-medium">
-                                    {service.desc}
-                                </p>
-
-                                {/* Refined Tag Pills with better spacing */}
-                                <div className="flex flex-wrap gap-2.5 mb-8">
-                                    {service.tags.map((tag) => (
-                                        <span
-                                            key={tag}
-                                            className="px-4 py-2 rounded-full border border-accent/20 bg-accent/5 text-xs font-bold text-accent/70 tracking-wide uppercase group-hover:bg-accent/10 group-hover:border-accent/40 group-hover:text-accent transition-all duration-300"
-                                        >
-                                            {tag}
-                                        </span>
-                                    ))}
-                                </div>
-
-                                {/* CTA Link with underline animation */}
-                                <a
-                                    href="/"
-                                    className="inline-flex items-center gap-2 text-sm font-black text-accent uppercase tracking-[0.2em] group-hover:gap-4 transition-all duration-300 relative"
+                                {/* Main Card with 3D Effect */}
+                                <div
+                                    className={classNames(
+                                        "relative h-full bg-white dark:bg-[#1a1a3e]/60 backdrop-blur-xl rounded-[2rem] p-10 border-2 border-border/50 dark:border-white/10 group-hover:border-accent/30 shadow-xl card-3d-deep depth-layer-2 flex flex-col",
+                                    )}
                                 >
-                                    <span className="relative">
-                                        Explore Service
-                                        <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-500" />
-                                    </span>
-                                    <ChevronRightIcon size={16} className="group-hover:translate-x-1 transition-transform" />
-                                </a>
+                                    {/* Animated Background Gradient */}
+                                    <div className={classNames("absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-[0.08] transition-opacity duration-700", service.accent)} />
+
+                                    {/* Number Watermark with 3D float */}
+                                    <div className="absolute top-4 right-6 text-[8rem] font-black text-foreground/[0.03] dark:text-white/[0.03] group-hover:text-accent/[0.12] transition-all duration-700 font-serif leading-none pointer-events-none select-none group-hover:scale-110 layer-3d-back">
+                                        {String(idx + 1).padStart(2, '0')}
+                                    </div>
+
+                                    <div className="relative z-10 layer-3d-front flex flex-col h-full">
+                                        {/* Icon with 3D tilt */}
+                                        <div
+                                            className="mb-8 inline-flex h-16 w-16 items-center justify-center rounded-xl bg-gradient-to-br from-accent/20 to-accent/10 text-accent border border-accent/30 shadow-lg shadow-accent/10 tilt-hover"
+                                        >
+                                            {service.icon}
+                                        </div>
+
+                                        {/* Title */}
+                                        <div className="min-h-[80px] flex flex-col justify-center">
+                                            <h3 className="text-2xl md:text-3xl font-black text-foreground dark:text-white mb-0 tracking-tight leading-tight group-hover:text-accent transition-colors duration-300">
+                                                {service.title}
+                                            </h3>
+                                        </div>
+
+                                        {/* Decorative underline */}
+                                        <div className="w-16 h-1 bg-gradient-to-r from-accent to-accent/30 mb-6 group-hover:w-24 transition-all duration-500" />
+
+                                        {/* Description */}
+                                        <div className="min-h-[100px] mb-8">
+                                            <p className="text-base text-muted-foreground dark:text-[#f7e7ce]/70 leading-relaxed font-medium">
+                                                {service.desc}
+                                            </p>
+                                        </div>
+
+                                        {/* Feature Tags */}
+                                        <div className="flex flex-wrap gap-2.5 mb-10 flex-grow">
+                                            {service.tags.map((tag) => (
+                                                <span
+                                                    key={tag}
+                                                    className="px-3 py-1.5 rounded-lg bg-accent/5 dark:bg-accent/10 border border-accent/20 text-xs font-bold text-accent/80 tracking-wide uppercase group-hover:bg-accent/10 group-hover:border-accent/40 group-hover:text-accent dark:group-hover:text-accent transition-all duration-300 depth-layer-1"
+                                                >
+                                                    {tag}
+                                                </span>
+                                            ))}
+                                        </div>
+
+                                        {/* CTA - Text Link with Arrow */}
+                                        <a
+                                            href="/"
+                                            className="inline-flex items-center gap-2 text-accent font-black text-xs uppercase tracking-[0.2em] group-hover:gap-4 transition-all duration-300"
+                                        >
+                                            <span className="relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-0.5 after:bg-accent group-hover:after:w-full after:transition-all after:duration-300">Explore Service</span>
+                                            <ChevronRightIcon size={16} className="group-hover:translate-x-1 transition-transform" />
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     ))}

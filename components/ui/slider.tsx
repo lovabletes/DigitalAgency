@@ -15,7 +15,7 @@ type SliderProps = {
   className?: string
 }
 
-const Slider = React.forwardRef<HTMLInputElement, SliderProps>(
+const Slider = React.forwardRef<HTMLInputElement, Readonly<SliderProps>>(
   (
     {
       value,
@@ -35,7 +35,7 @@ const Slider = React.forwardRef<HTMLInputElement, SliderProps>(
       defaultValue?.[0] ?? 0
     )
 
-    const current = isControlled ? value![0] ?? 0 : internal
+    const current = isControlled ? value?.[0] ?? 0 : internal
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const next = Number(e.target.value)

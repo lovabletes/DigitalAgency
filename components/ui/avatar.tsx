@@ -9,7 +9,7 @@ function Avatar({
   className,
   children,
   ...props
-}: React.ComponentProps<"div">) {
+}: Readonly<React.ComponentProps<"div">>) {
   return (
     <div
       data-slot="avatar"
@@ -24,16 +24,18 @@ function Avatar({
   )
 }
 
+type AvatarImageProps = {
+  className?: string;
+  alt?: string;
+  src?: string;
+} & Omit<React.ImgHTMLAttributes<HTMLImageElement>, 'src'>;
+
 function AvatarImage({
   className,
   alt = "",
   src,
   ...props
-}: {
-  className?: string;
-  alt?: string;
-  src?: string;
-} & Omit<React.ImgHTMLAttributes<HTMLImageElement>, 'src'>) {
+}: Readonly<AvatarImageProps>) {
   return (
     <Image
       data-slot="avatar-image"
@@ -48,8 +50,9 @@ function AvatarImage({
 
 function AvatarFallback({
   className,
+  children,
   ...props
-}: React.HTMLAttributes<HTMLSpanElement>) {
+}: Readonly<React.ComponentProps<"span">>) {
   return (
     <span
       data-slot="avatar-fallback"
@@ -58,7 +61,9 @@ function AvatarFallback({
         className
       )}
       {...props}
-    />
+    >
+      {children}
+    </span>
   )
 }
 

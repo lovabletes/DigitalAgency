@@ -16,7 +16,7 @@ export function LazyLoad({
   rootMargin = '50px',
   threshold = 0.1,
   className = ''
-}: LazyLoadProps) {
+}: Readonly<LazyLoadProps>) {
   const [isVisible, setIsVisible] = useState(false)
   const [isLoaded, setIsLoaded] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
@@ -25,7 +25,6 @@ export function LazyLoad({
     const element = ref.current
     if (!element) return
 
-    // Use requestIdleCallback for better performance
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -67,22 +66,21 @@ export function LazyLoadCritical({
   children,
   fallback,
   className = ''
-}: {
+}: Readonly<{
   children: React.ReactNode
   fallback?: React.ReactNode
   className?: string
-}) {
+}>) {
   const [isLoaded, setIsLoaded] = useState(false)
 
   useEffect(() => {
-    // Use requestIdleCallback to defer loading
     const loadComponent = () => setIsLoaded(true)
 
-    if ('requestIdleCallback' in window) {
-      requestIdleCallback(loadComponent, { timeout: 2000 })
+    if ('requestIdleCallback' in globalThis) {
+      globalThis.requestIdleCallback(loadComponent, { timeout: 2000 })
     } else {
       // Fallback for browsers without requestIdleCallback
-      setTimeout(loadComponent, 100)
+      globalThis.setTimeout(loadComponent, 100)
     }
   }, [])
 

@@ -18,9 +18,9 @@ const FormContext = React.createContext<FormContextValue>({
   values: {},
   errors: {},
   touched: {},
-  setFieldValue: () => {},
-  setFieldError: () => {},
-  setFieldTouched: () => {},
+  setFieldValue: () => { },
+  setFieldError: () => { },
+  setFieldTouched: () => { },
 });
 
 // Form provider component
@@ -28,26 +28,26 @@ function Form({
   children,
   onSubmit,
   initialValues = {},
-}: {
+}: Readonly<{
   children: React.ReactNode;
   onSubmit?: (values: Record<string, unknown>) => void;
   initialValues?: Record<string, unknown>;
-}) {
+}>) {
   const [values, setValues] = React.useState<Record<string, unknown>>(initialValues);
   const [errors, setErrors] = React.useState<Record<string, string | undefined>>({});
   const [touched, setTouched] = React.useState<Record<string, boolean>>({});
 
-  const setFieldValue = (name: string, value: unknown) => {
+  const setFieldValue = React.useCallback((name: string, value: unknown) => {
     setValues((prev) => ({ ...prev, [name]: value }));
-  };
+  }, []);
 
-  const setFieldError = (name: string, error: string | undefined) => {
+  const setFieldError = React.useCallback((name: string, error: string | undefined) => {
     setErrors((prev) => ({ ...prev, [name]: error }));
-  };
+  }, []);
 
-  const setFieldTouched = (name: string, touched: boolean) => {
+  const setFieldTouched = React.useCallback((name: string, touched: boolean) => {
     setTouched((prev) => ({ ...prev, [name]: touched }));
-  };
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -56,10 +56,17 @@ function Form({
     }
   };
 
+  const contextValue = React.useMemo(() => ({
+    values,
+    errors,
+    touched,
+    setFieldValue,
+    setFieldError,
+    setFieldTouched
+  }), [values, errors, touched, setFieldValue, setFieldError, setFieldTouched]);
+
   return (
-    <FormContext.Provider
-      value={{ values, errors, touched, setFieldValue, setFieldError, setFieldTouched }}
-    >
+    <FormContext.Provider value={contextValue}>
       <form onSubmit={handleSubmit}>{children}</form>
     </FormContext.Provider>
   );
@@ -79,11 +86,11 @@ function FormField({
   name,
   children,
   validate,
-}: {
+}: Readonly<{
   name: string;
   children: React.ReactNode;
   validate?: (value: unknown) => string | undefined;
-}) {
+}>) {
   const form = React.useContext(FormContext);
   const { setFieldError } = form;
 
@@ -96,8 +103,10 @@ function FormField({
     }
   }, [name, validate, setFieldError, form.values]);
 
+  const contextValue = React.useMemo(() => ({ name }), [name]);
+
   return (
-    <FormFieldContext.Provider value={{ name }}>
+    <FormFieldContext.Provider value={contextValue}>
       {children}
     </FormFieldContext.Provider>
   );
@@ -109,7 +118,7 @@ function useFormField() {
   const formContext = React.useContext(FormContext);
   const id = React.useId();
 
-  if (!fieldContext.name) {
+  if (!fieldContext?.name) {
     throw new Error("useFormField should be used within <FormField>");
   }
 
@@ -142,11 +151,12 @@ const FormItemContext = React.createContext<FormItemContextValue>(
 );
 
 // Form item component to group field elements
-function FormItem({ className, ...props }: React.ComponentProps<"div">) {
+function FormItem({ className, ...props }: Readonly<React.ComponentProps<"div">>) {
   const id = React.useId();
+  const contextValue = React.useMemo(() => ({ id }), [id]);
 
   return (
-    <FormItemContext.Provider value={{ id }}>
+    <FormItemContext.Provider value={contextValue}>
       <div
         data-slot="form-item"
         className={classNames("grid gap-2", className)}
@@ -157,7 +167,7 @@ function FormItem({ className, ...props }: React.ComponentProps<"div">) {
 }
 
 // Form label component
-function FormLabel({ className, ...props }: React.ComponentProps<typeof Label>) {
+function FormLabel({ className, ...props }: Readonly<React.ComponentProps<typeof Label>>) {
   const { error, formItemId } = useFormField();
 
   return (
@@ -175,15 +185,15 @@ function FormLabel({ className, ...props }: React.ComponentProps<typeof Label>) 
 function FormControl({
   children,
   ...props
-}: React.ComponentProps<"div"> & { children: React.ReactNode }) {
+}: Readonly<React.ComponentProps<"div"> & { children: React.ReactNode }>) {
   const { error, formItemId, formDescriptionId, formMessageId, value, setValue, setTouched } =
     useFormField();
 
   // Handle input changes for controlled inputs
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = React.useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setValue(e.target.value);
     setTouched(true);
-  };
+  }, [setValue, setTouched]);
 
   // Clone children to inject props
   const enhancedChildren = React.Children.map(children, (child) => {
@@ -198,7 +208,7 @@ function FormControl({
         value: (value as string) ?? "",
         onChange,
         onBlur,
-        "aria-describedby": !error ? formDescriptionId : `${formDescriptionId} ${formMessageId}`,
+        "aria-describedby": error ? `${formDescriptionId} ${formMessageId}` : formDescriptionId,
         "aria-invalid": !!error,
       });
     }
@@ -211,7 +221,7 @@ function FormControl({
         value: (value as string) ?? "",
         onChange,
         onBlur,
-        "aria-describedby": !error ? formDescriptionId : `${formDescriptionId} ${formMessageId}`,
+        "aria-describedby": error ? `${formDescriptionId} ${formMessageId}` : formDescriptionId,
         "aria-invalid": !!error,
       });
     }
@@ -227,7 +237,7 @@ function FormControl({
 }
 
 // Form description component
-function FormDescription({ className, ...props }: React.ComponentProps<"p">) {
+function FormDescription({ className, ...props }: Readonly<React.ComponentProps<"p">>) {
   const { formDescriptionId } = useFormField();
 
   return (
@@ -241,7 +251,7 @@ function FormDescription({ className, ...props }: React.ComponentProps<"p">) {
 }
 
 // Form message component for errors
-function FormMessage({ className, children, ...props }: React.ComponentProps<"p">) {
+function FormMessage({ className, children, ...props }: Readonly<React.ComponentProps<"p">>) {
   const { error, formMessageId } = useFormField();
   const body = error ? String(error) : children;
 

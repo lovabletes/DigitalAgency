@@ -4,21 +4,19 @@ import * as React from "react"
 import { XIcon } from "@/components/icons/icons"
 
 import { classNames } from "@/utils/class-names"
-import {
-  Dialog as Sheet,
-  DialogTrigger as SheetTrigger,
-  DialogClose as SheetClose,
-  DialogContent as SheetContentBase,
-  DialogPortal as SheetPortal,
-  DialogOverlay as SheetOverlay,
-} from "@/components/ui/dialog"
+import * as DialogPrimitive from "@/components/ui/dialog"
 
 type SheetSide = "top" | "right" | "bottom" | "left"
 
-function SheetContent({ className, children, side = "right", ...props }: React.HTMLAttributes<HTMLDivElement> & { side?: SheetSide }) {
-  // Use DialogContent to inherit open state, overlay, and escape/overlay closing behavior.
+const Sheet = DialogPrimitive.Dialog
+const SheetTrigger = DialogPrimitive.DialogTrigger
+const SheetClose = DialogPrimitive.DialogClose
+const SheetPortal = DialogPrimitive.DialogPortal
+const SheetOverlay = DialogPrimitive.DialogOverlay
+
+function SheetContent({ className, children, side = "right", ...props }: Readonly<React.HTMLAttributes<HTMLDialogElement> & { side?: SheetSide }>) {
   return (
-    <SheetContentBase
+    <DialogPrimitive.DialogContent
       position="custom"
       data-slot="sheet-content"
       role="dialog"
@@ -42,11 +40,11 @@ function SheetContent({ className, children, side = "right", ...props }: React.H
         <XIcon className="size-4" />
         <span className="sr-only">Close</span>
       </SheetClose>
-    </SheetContentBase>
+    </DialogPrimitive.DialogContent>
   )
 }
 
-function SheetHeader({ className, ...props }: React.ComponentProps<"div">) {
+function SheetHeader({ className, ...props }: Readonly<React.ComponentProps<"div">>) {
   return (
     <div
       data-slot="sheet-header"
@@ -56,7 +54,7 @@ function SheetHeader({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-function SheetFooter({ className, ...props }: React.ComponentProps<"div">) {
+function SheetFooter({ className, ...props }: Readonly<React.ComponentProps<"div">>) {
   return (
     <div
       data-slot="sheet-footer"
@@ -66,17 +64,19 @@ function SheetFooter({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-function SheetTitle({ className, ...props }: React.ComponentProps<"h2">) {
+function SheetTitle({ className, children, ...props }: Readonly<React.ComponentProps<"h2">>) {
   return (
     <h2
       data-slot="sheet-title"
       className={classNames("text-foreground font-semibold", className)}
       {...props}
-    />
+    >
+      {children || <span className="sr-only">Sheet Title</span>}
+    </h2>
   )
 }
 
-function SheetDescription({ className, ...props }: React.ComponentProps<"p">) {
+function SheetDescription({ className, ...props }: Readonly<React.ComponentProps<"p">>) {
   return (
     <p
       data-slot="sheet-description"

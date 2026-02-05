@@ -5,12 +5,15 @@ import { createPortal } from "react-dom"
 
 import { classNames } from "@/utils/class-names"
 
+type Side = "top" | "right" | "bottom" | "left"
+type Align = "start" | "center" | "end"
+
 type PopoverContextValue = {
   open: boolean
   setOpen: (v: boolean) => void
   triggerRef: React.RefObject<HTMLElement | null>
-  side: "top" | "right" | "bottom" | "left"
-  align: "start" | "center" | "end"
+  side: Side
+  align: Align
   sideOffset: number
 }
 
@@ -23,7 +26,7 @@ type PopoverProps = {
   children: React.ReactNode
 }
 
-function Popover({ open, defaultOpen, onOpenChange, children }: PopoverProps) {
+function Popover({ open, defaultOpen, onOpenChange, children }: Readonly<PopoverProps>) {
   const isControlled = open !== undefined
   const [internalOpen, setInternalOpen] = React.useState<boolean>(defaultOpen ?? false)
   const triggerRef = React.useRef<HTMLElement | null>(null)
@@ -32,22 +35,31 @@ function Popover({ open, defaultOpen, onOpenChange, children }: PopoverProps) {
     if (!isControlled) setInternalOpen(v)
     onOpenChange?.(v)
   }, [isControlled, onOpenChange])
-  const value = React.useMemo(
-    () => ({ open: isControlled ? !!open : internalOpen, setOpen, triggerRef, side: "bottom" as const, align: "center" as const, sideOffset: 4 }),
+
+  const value = React.useMemo<PopoverContextValue>(
+    () => ({
+      open: isControlled ? !!open : internalOpen,
+      setOpen,
+      triggerRef,
+      side: "bottom",
+      align: "center",
+      sideOffset: 4
+    }),
     [isControlled, open, internalOpen, setOpen]
   )
 
   return <PopoverCtx.Provider value={value}>{children}</PopoverCtx.Provider>
 }
 
-function mergeRefs<T = unknown>(...refs: Array<React.Ref<T> | undefined>) {
+function mergeRefs<T>(...refs: Array<React.Ref<T> | undefined>) {
   return (value: T) => {
     for (const ref of refs) {
       if (!ref) continue
-      if (typeof ref === "function") ref(value)
-      else try {
-        (ref as unknown as React.MutableRefObject<T | null>).current = value
-      } catch {}
+      if (typeof ref === "function") {
+        ref(value)
+      } else if (ref && typeof ref === "object") {
+        (ref as any).current = value
+      }
     }
   }
 }
@@ -65,7 +77,7 @@ type PopoverTriggerProps = React.HTMLAttributes<HTMLElement> & {
   children: React.ReactElement<ChildProps>
 }
 
-function PopoverTrigger({ asChild, children, className, ...props }: PopoverTriggerProps) {
+function PopoverTrigger({ asChild, children, className, ...props }: Readonly<PopoverTriggerProps>) {
   const ctx = React.useContext(PopoverCtx)
   if (!ctx) throw new Error("PopoverTrigger must be used within Popover")
   const { setOpen, triggerRef, open } = ctx
@@ -93,7 +105,7 @@ function PopoverTrigger({ asChild, children, className, ...props }: PopoverTrigg
 
   return (
     <button
-      ref={triggerRef as unknown as React.Ref<HTMLButtonElement>}
+      ref={triggerRef as React.Ref<HTMLButtonElement>}
       type="button"
       onClick={handleClick}
       className={classNames(className)}
@@ -108,17 +120,17 @@ function PopoverTrigger({ asChild, children, className, ...props }: PopoverTrigg
 }
 
 type PopoverContentProps = React.HTMLAttributes<HTMLDivElement> & {
-  align?: "start" | "center" | "end"
-  side?: "top" | "right" | "bottom" | "left"
+  align?: Align
+  side?: Side
   sideOffset?: number
 }
 
-const PopoverContent = React.forwardRef<HTMLDivElement, PopoverContentProps>(
+const PopoverContent = React.forwardRef<HTMLDivElement, Readonly<PopoverContentProps>>(
   ({ className, align = "center", side = "bottom", sideOffset = 4, style, ...props }, ref) => {
     const ctx = React.useContext(PopoverCtx)
     if (!ctx) throw new Error("PopoverContent must be used within Popover")
     const { open, setOpen, triggerRef } = ctx
-    const contentRef = React.useRef<HTMLDivElement | null>(null)
+    const contentRef = React.useRef<HTMLElement | null>(null)
 
     // Close on outside click / Escape / Scroll / Resize
     React.useEffect(() => {
@@ -126,14 +138,13 @@ const PopoverContent = React.forwardRef<HTMLDivElement, PopoverContentProps>(
       const onDocClick = (e: MouseEvent) => {
         const t = e.target as Node
         if (contentRef.current?.contains(t)) return
-        if (triggerRef.current?.contains(t as Node)) return
+        if (triggerRef.current?.contains(t)) return
         setOpen(false)
       }
       const onKey = (e: KeyboardEvent) => {
         if (e.key === "Escape") setOpen(false)
       }
       const onScroll = (e: Event) => {
-        // Close if scrolling outside the popover content
         if (contentRef.current && !contentRef.current.contains(e.target as Node)) {
           setOpen(false)
         }
@@ -144,19 +155,18 @@ const PopoverContent = React.forwardRef<HTMLDivElement, PopoverContentProps>(
       document.addEventListener("mousedown", onDocClick)
       document.addEventListener("keydown", onKey)
       document.addEventListener("scroll", onScroll, true)
-      window.addEventListener("resize", onResize)
+      globalThis.addEventListener("resize", onResize)
       return () => {
         document.removeEventListener("mousedown", onDocClick)
         document.removeEventListener("keydown", onKey)
         document.removeEventListener("scroll", onScroll, true)
-        window.removeEventListener("resize", onResize)
+        globalThis.removeEventListener("resize", onResize)
       }
     }, [open, setOpen, triggerRef])
 
-    // Simple positioning near trigger with collision detection
     const [pos, setPos] = React.useState<{ top: number; left: number } | null>(null)
-    React.useLayoutEffect(() => {
-      if (!open) return
+
+    const updatePosition = React.useCallback(() => {
       const el = triggerRef.current
       const content = contentRef.current
       if (!el || !content) return
@@ -165,72 +175,71 @@ const PopoverContent = React.forwardRef<HTMLDivElement, PopoverContentProps>(
       let top = 0
       let left = 0
       const offset = sideOffset
-      const padding = 10 // viewport padding
-      
-      if (side === "bottom") top = rect.bottom + offset
-      if (side === "top") top = rect.top - cRect.height - offset
-      if (side === "right") top = rect.top + (rect.height - cRect.height) / 2
-      if (side === "left") top = rect.top + (rect.height - cRect.height) / 2
+      const padding = 10
+
+      switch (side) {
+        case "bottom": top = rect.bottom + offset; break;
+        case "top": top = rect.top - cRect.height - offset; break;
+        case "right":
+        case "left":
+          top = rect.top + (rect.height - cRect.height) / 2;
+          break;
+      }
 
       if (side === "bottom" || side === "top") {
         if (align === "start") left = rect.left
-        if (align === "center") left = rect.left + rect.width / 2 - cRect.width / 2
-        if (align === "end") left = rect.right - cRect.width
+        else if (align === "center") left = rect.left + rect.width / 2 - cRect.width / 2
+        else left = rect.right - cRect.width
+      } else if (side === "right") {
+        left = rect.right + offset
       } else {
-        if (side === "right") left = rect.right + offset
-        if (side === "left") left = rect.left - cRect.width - offset
+        left = rect.left - cRect.width - offset
       }
-      
-      // Collision detection - keep within viewport
-      const viewportWidth = window.innerWidth
-      const viewportHeight = window.innerHeight
-      
-      // Prevent overflow on right
-      if (left + cRect.width > viewportWidth - padding) {
-        left = viewportWidth - cRect.width - padding
-      }
-      // Prevent overflow on left
-      if (left < padding) {
-        left = padding
-      }
-      // Prevent overflow on bottom
-      if (top + cRect.height > viewportHeight - padding) {
-        top = viewportHeight - cRect.height - padding
-      }
-      // Prevent overflow on top
-      if (top < padding) {
-        top = padding
-      }
-      
+
+      const viewportWidth = globalThis.innerWidth
+      const viewportHeight = globalThis.innerHeight
+
+      left = Math.max(padding, Math.min(left, viewportWidth - cRect.width - padding))
+      top = Math.max(padding, Math.min(top, viewportHeight - cRect.height - padding))
+
       setPos({ top, left })
-    }, [open, align, side, sideOffset, triggerRef])
+    }, [side, align, sideOffset, triggerRef])
+
+    React.useLayoutEffect(() => {
+      if (open) updatePosition()
+    }, [open, updatePosition])
 
     if (!open) return null
 
-    const content = (
-      <div
+    const dialogContent = (
+      <dialog
         ref={(node) => {
-          ;(contentRef as unknown as React.MutableRefObject<HTMLDivElement | null>).current = node
-          if (typeof ref === "function") ref(node as HTMLDivElement)
-          else if (ref && typeof ref === "object") (ref as unknown as React.MutableRefObject<HTMLDivElement | null>).current = node
+          contentRef.current = node
+          if (typeof ref === "function") ref(node as any)
+          else if (ref && typeof ref === "object") {
+            (ref as any).current = node
+          }
         }}
         data-slot="popover-content"
         data-state={open ? "open" : "closed"}
         data-side={side}
+        open={open}
         className={classNames(
-          "z-[9999] rounded-lg border bg-card shadow-xl outline-none",
+          "fixed z-[9999] rounded-lg border bg-card p-0 shadow-xl outline-none block border-none bg-transparent",
           className
         )}
-        style={{ position: "fixed", top: pos?.top, left: pos?.left, ...style }}
-        role="dialog"
-        {...props}
-      />
+        style={{ top: pos?.top, left: pos?.left, ...style }}
+        {...(props as React.DialogHTMLAttributes<HTMLDialogElement>)}
+      >
+        <div className="bg-card rounded-lg border shadow-xl">
+          {props.children}
+        </div>
+      </dialog>
     )
 
-    // Portal to body
-    return typeof document !== "undefined"
-      ? createPortal(content, document.body)
-      : content
+    if (typeof document === "undefined") return dialogContent
+
+    return createPortal(dialogContent, document.body)
   }
 )
 PopoverContent.displayName = "PopoverContent"

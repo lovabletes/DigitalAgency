@@ -1,13 +1,10 @@
-
 "use client";
 
 import * as React from "react";
 import { classNames } from "@/utils/class-names";
 
-interface CarouselProps extends React.ComponentProps<"div"> {
+interface CarouselProps extends React.ComponentProps<"section"> {
   orientation?: "horizontal" | "vertical";
-  className?: string;
-  children?: React.ReactNode;
 }
 
 interface CarouselContextProps {
@@ -37,7 +34,7 @@ function Carousel({
   className,
   children,
   ...props
-}: CarouselProps) {
+}: Readonly<CarouselProps>) {
   const [currentIndex, setCurrentIndex] = React.useState(0);
   const [totalSlides, setTotalSlides] = React.useState(0);
 
@@ -65,10 +62,8 @@ function Carousel({
     [totalSlides]
   );
 
-  // totalSlides will be managed by CarouselContent when it mounts
-
   const handleKeyDown = React.useCallback(
-    (event: React.KeyboardEvent<HTMLDivElement>) => {
+    (event: React.KeyboardEvent<HTMLElement>) => {
       if (
         (orientation === "horizontal" && event.key === "ArrowLeft") ||
         (orientation === "vertical" && event.key === "ArrowUp")
@@ -86,37 +81,44 @@ function Carousel({
     [scrollPrev, scrollNext, orientation]
   );
 
+  const contextValue = React.useMemo(() => ({
+    currentIndex,
+    totalSlides,
+    scrollPrev,
+    scrollNext,
+    canScrollPrev,
+    canScrollNext,
+    goToSlide,
+    orientation,
+    setTotalSlides,
+  }), [
+    currentIndex,
+    totalSlides,
+    scrollPrev,
+    scrollNext,
+    canScrollPrev,
+    canScrollNext,
+    goToSlide,
+    orientation,
+  ])
+
   return (
-    <CarouselContext.Provider
-      value={{
-        currentIndex,
-        totalSlides,
-        scrollPrev,
-        scrollNext,
-        canScrollPrev,
-        canScrollNext,
-        goToSlide,
-        orientation,
-        setTotalSlides,
-      }}
-    >
-      <div
+    <CarouselContext.Provider value={contextValue}>
+      <section
         onKeyDownCapture={handleKeyDown}
-        className={classNames("relative group/carousel", className)}
-        role="region"
+        className={classNames("relative group/carousel focus:outline-none", className)}
         aria-roledescription="carousel"
-        aria-label="Carousel"
-        tabIndex={0}
+        aria-label="Carousel content"
         data-slot="carousel"
         {...props}
       >
         {children}
-      </div>
+      </section>
     </CarouselContext.Provider>
   );
 }
 
-function CarouselContent({ className, ...props }: React.ComponentProps<"div">) {
+function CarouselContent({ className, children, ...props }: Readonly<React.ComponentProps<"div">>) {
   const { currentIndex, orientation, setTotalSlides } = useCarousel();
   const contentRef = React.useRef<HTMLDivElement>(null);
   const slideRefs = React.useRef<(HTMLDivElement | null)[]>([]);
@@ -134,41 +136,36 @@ function CarouselContent({ className, ...props }: React.ComponentProps<"div">) {
     }
   }, [currentIndex, orientation]);
 
-  // Update slide refs when children change
   const setSlideRef = React.useCallback((index: number) => (el: HTMLDivElement | null) => {
     slideRefs.current[index] = el;
   }, []);
 
-  // Define carousel item props interface
   interface CarouselItemProps extends React.HTMLAttributes<HTMLDivElement> {
     'data-carousel-item'?: string;
     ref?: React.Ref<HTMLDivElement>;
   }
 
-  // Get valid children that are CarouselItem components
   const { childrenWithRefs } = React.useMemo(() => {
-    const validChildren = React.Children.toArray(props.children).filter(
+    const validChildren = React.Children.toArray(children).filter(
       (child) => React.isValidElement(child) && child.type === CarouselItem
     ) as Array<React.ReactElement<CarouselItemProps>>;
 
-    // Pass slide refs to children
     const childrenWithRefs = validChildren.map((child, index) => {
-      const element = child as React.ReactElement<CarouselItemProps>;
+      const element = child;
       const newProps: CarouselItemProps = {
         ...element.props,
         'data-carousel-item': 'true',
       };
-      
-      // Add ref using Object.assign to avoid TypeScript errors
+
       Object.assign(newProps, { ref: setSlideRef(index) });
-      
+
       return React.cloneElement(element, newProps);
     });
 
     return {
       childrenWithRefs
     };
-  }, [props.children, setSlideRef]);
+  }, [children, setSlideRef]);
 
   React.useEffect(() => {
     setTotalSlides(childrenWithRefs.length);
@@ -230,15 +227,20 @@ const CarouselItem = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLD
   }
 );
 
+interface CarouselControlProps extends React.ComponentProps<"button"> {
+  variant?: "default" | "outline" | "ghost"
+}
+
 function CarouselPrevious({
   className,
   variant = "outline",
   ...props
-}: React.ComponentProps<"button"> & { variant?: "default" | "outline" | "ghost" }) {
+}: Readonly<CarouselControlProps>) {
   const { orientation, scrollPrev, canScrollPrev } = useCarousel();
 
   return (
     <button
+      type="button"
       data-slot="carousel-previous"
       className={classNames(
         "absolute size-8 rounded-full flex items-center justify-center transition-colors",
@@ -268,11 +270,12 @@ function CarouselNext({
   className,
   variant = "outline",
   ...props
-}: React.ComponentProps<"button"> & { variant?: "default" | "outline" | "ghost" }) {
+}: Readonly<CarouselControlProps>) {
   const { orientation, scrollNext, canScrollNext } = useCarousel();
 
   return (
     <button
+      type="button"
       data-slot="carousel-next"
       className={classNames(
         "absolute size-8 rounded-full flex items-center justify-center transition-colors",
@@ -298,14 +301,15 @@ function CarouselNext({
   );
 }
 
+interface CarouselNavProps {
+  className?: string
+  variant?: "overlay" | "inline"
+}
+
 function CarouselNav({
   className,
   variant = "overlay",
-}: {
-  className?: string
-  variant?: "overlay" | "inline"
-}) {
-  // Renders standardized Previous/Next with consistent styles/positions
+}: Readonly<CarouselNavProps>) {
   const baseBtn = "h-10 w-10 rounded-full bg-white border border-border shadow-lg opacity-0 transition-opacity group-hover/carousel:opacity-100"
   const prevPos = "left-0 sm:left-2 top-auto bottom-2 sm:bottom-auto sm:top-1/2 sm:-translate-y-1/2"
   const nextPos = "right-0 sm:right-2 top-auto bottom-2 sm:bottom-auto sm:top-1/2 sm:-translate-y-1/2"
@@ -319,7 +323,7 @@ function CarouselNav({
   )
 }
 
-function CarouselDots({ className }: { className?: string }) {
+function CarouselDots({ className }: Readonly<{ className?: string }>) {
   const { currentIndex, totalSlides, goToSlide } = useCarousel();
 
   if (totalSlides <= 1) return null;
@@ -334,7 +338,8 @@ function CarouselDots({ className }: { className?: string }) {
     >
       {Array.from({ length: totalSlides }).map((_, index) => (
         <button
-          key={index}
+          key={`carousel-dot-${index}-${totalSlides}`}
+          type="button"
           className={classNames(
             "size-2 rounded-full transition-colors",
             index === currentIndex ? "bg-primary" : "bg-muted hover:bg-muted-foreground"

@@ -1,13 +1,14 @@
+"use client"
+
 import * as React from "react"
 import { ChevronRightIcon, MoreHorizontalIcon } from "@/components/icons/icons"
-
 import { classNames } from "@/utils/class-names"
 
-function Breadcrumb({ ...props }: React.ComponentProps<"nav">) {
+function Breadcrumb({ ...props }: Readonly<React.ComponentProps<"nav">>) {
   return <nav aria-label="breadcrumb" data-slot="breadcrumb" {...props} />
 }
 
-function BreadcrumbList({ className, ...props }: React.ComponentProps<"ol">) {
+function BreadcrumbList({ className, ...props }: Readonly<React.ComponentProps<"ol">>) {
   return (
     <ol
       data-slot="breadcrumb-list"
@@ -20,7 +21,7 @@ function BreadcrumbList({ className, ...props }: React.ComponentProps<"ol">) {
   )
 }
 
-function BreadcrumbItem({ className, ...props }: React.ComponentProps<"li">) {
+function BreadcrumbItem({ className, ...props }: Readonly<React.ComponentProps<"li">>) {
   return (
     <li
       data-slot="breadcrumb-item"
@@ -30,17 +31,20 @@ function BreadcrumbItem({ className, ...props }: React.ComponentProps<"li">) {
   )
 }
 
+type BreadcrumbLinkProps = React.ComponentProps<"a"> & {
+  asChild?: boolean
+}
+
 function BreadcrumbLink({
   asChild,
   className,
+  children,
   ...props
-}: React.ComponentProps<"a"> & {
-  asChild?: boolean
-}) {
+}: Readonly<BreadcrumbLinkProps>) {
   const computed = classNames("hover:text-foreground transition-colors", className)
-  if (asChild && React.isValidElement(props.children)) {
+  if (asChild && React.isValidElement(children)) {
     type AnchorChildProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & { className?: string;['data-slot']?: string }
-    const { children, ...rest } = props
+    const { ...rest } = props
     const child = children as React.ReactElement<AnchorChildProps>
     return React.cloneElement(child, {
       ...(rest as AnchorChildProps),
@@ -49,20 +53,23 @@ function BreadcrumbLink({
     })
   }
   return (
-    <a data-slot="breadcrumb-link" className={computed} {...props} />
+    <a data-slot="breadcrumb-link" className={computed} {...props}>
+      {children}
+    </a>
   )
 }
 
-function BreadcrumbPage({ className, ...props }: React.ComponentProps<"span">) {
+function BreadcrumbPage({ className, children, ...props }: Readonly<React.ComponentProps<"span">>) {
   return (
     <span
       data-slot="breadcrumb-page"
-      role="link"
       aria-disabled="true"
       aria-current="page"
       className={classNames("text-foreground font-normal", className)}
       {...props}
-    />
+    >
+      {children}
+    </span>
   )
 }
 
@@ -70,11 +77,10 @@ function BreadcrumbSeparator({
   children,
   className,
   ...props
-}: React.ComponentProps<"li">) {
+}: Readonly<React.ComponentProps<"li">>) {
   return (
     <li
       data-slot="breadcrumb-separator"
-      role="presentation"
       aria-hidden="true"
       className={classNames("[&>svg]:size-3.5", className)}
       {...props}
@@ -87,11 +93,10 @@ function BreadcrumbSeparator({
 function BreadcrumbEllipsis({
   className,
   ...props
-}: React.ComponentProps<"span">) {
+}: Readonly<React.ComponentProps<"span">>) {
   return (
     <span
       data-slot="breadcrumb-ellipsis"
-      role="presentation"
       aria-hidden="true"
       className={classNames("flex size-9 items-center justify-center", className)}
       {...props}

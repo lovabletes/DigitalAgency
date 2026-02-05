@@ -4,7 +4,7 @@ import * as React from "react"
 
 import { classNames } from "@/utils/class-names"
 
-function Table({ className, ...props }: React.ComponentProps<"table">) {
+function Table({ className, ...props }: Readonly<React.ComponentProps<"table">>) {
   return (
     <div
       data-slot="table-container"
@@ -14,22 +14,25 @@ function Table({ className, ...props }: React.ComponentProps<"table">) {
         data-slot="table"
         className={classNames("w-full caption-bottom text-sm", className)}
         {...props}
-      />
+      >
+        <caption className="sr-only">Data Table</caption>
+        {props.children}
+      </table>
     </div>
   )
 }
 
-function TableHeader({ className, ...props }: React.ComponentProps<"thead">) {
+function TableHeader({ className, ...props }: Readonly<React.ComponentProps<"thead">>) {
   return (
     <thead
       data-slot="table-header"
-      className={classNames("[&_tr]:border-b", className)}
+      className={classNames("[&_tr]:border-b font-medium", className)}
       {...props}
     />
   )
 }
 
-function TableBody({ className, ...props }: React.ComponentProps<"tbody">) {
+function TableBody({ className, ...props }: Readonly<React.ComponentProps<"tbody">>) {
   return (
     <tbody
       data-slot="table-body"
@@ -39,7 +42,7 @@ function TableBody({ className, ...props }: React.ComponentProps<"tbody">) {
   )
 }
 
-function TableFooter({ className, ...props }: React.ComponentProps<"tfoot">) {
+function TableFooter({ className, ...props }: Readonly<React.ComponentProps<"tfoot">>) {
   return (
     <tfoot
       data-slot="table-footer"
@@ -52,7 +55,7 @@ function TableFooter({ className, ...props }: React.ComponentProps<"tfoot">) {
   )
 }
 
-function TableRow({ className, ...props }: React.ComponentProps<"tr">) {
+function TableRow({ className, ...props }: Readonly<React.ComponentProps<"tr">>) {
   return (
     <tr
       data-slot="table-row"
@@ -65,10 +68,11 @@ function TableRow({ className, ...props }: React.ComponentProps<"tr">) {
   )
 }
 
-function TableHead({ className, ...props }: React.ComponentProps<"th">) {
+function TableHead({ className, ...props }: Readonly<React.ComponentProps<"th">>) {
   return (
     <th
       data-slot="table-head"
+      scope="col"
       className={classNames(
         "text-foreground h-10 px-2 text-left align-middle font-medium whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]",
         className
@@ -78,7 +82,7 @@ function TableHead({ className, ...props }: React.ComponentProps<"th">) {
   )
 }
 
-function TableCell({ className, ...props }: React.ComponentProps<"td">) {
+function TableCell({ className, ...props }: Readonly<React.ComponentProps<"td">>) {
   return (
     <td
       data-slot="table-cell"
@@ -94,7 +98,7 @@ function TableCell({ className, ...props }: React.ComponentProps<"td">) {
 function TableCaption({
   className,
   ...props
-}: React.ComponentProps<"caption">) {
+}: Readonly<React.ComponentProps<"caption">>) {
   return (
     <caption
       data-slot="table-caption"

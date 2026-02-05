@@ -25,7 +25,7 @@ export function SearchBar({
   buttonClassName = '',
   showLocationIcon = true,
   ...props
-}: SearchBarProps) {
+}: Readonly<SearchBarProps>) {
   return (
     <div className={`w-full ${className}`}>
       <div className="flex items-center gap-2 w-full">

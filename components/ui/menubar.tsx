@@ -27,36 +27,56 @@ const MenubarContext = React.createContext<MenubarContextValue>({
   toggleCheckbox: () => { },
 });
 
+const createHandleKbd = (
+  onKeyDown?: (e: React.KeyboardEvent<HTMLDivElement>) => void,
+  onAction?: () => void
+) => (e: React.KeyboardEvent<HTMLDivElement>) => {
+  onKeyDown?.(e)
+  if (e.key === 'Enter' || e.key === ' ') {
+    e.preventDefault()
+    onAction?.()
+  }
+}
+
 // Menubar root component
-function Menubar({ className, children, ...props }: React.ComponentProps<"div">) {
+function Menubar({ className, children, ...props }: Readonly<React.ComponentProps<"div">>) {
   const [openMenu, setOpenMenu] = React.useState<string | null>(null);
   const [activeItem, setActiveItem] = React.useState<string | null>(null);
   const [radioGroups, setRadioGroups] = React.useState<Record<string, string>>({});
   const [checkboxValues, setCheckboxValues] = React.useState<Record<string, boolean>>({});
 
-  const setRadioValue = (group: string, value: string) => {
+  const handleSetRadioValue = React.useCallback((group: string, value: string) => {
     setRadioGroups((prev) => ({ ...prev, [group]: value }));
-  };
+  }, []);
 
-  const toggleCheckbox = (value: string) => {
+  const handleToggleCheckbox = React.useCallback((value: string) => {
     setCheckboxValues((prev) => ({ ...prev, [value]: !prev[value] }));
-  };
+  }, []);
+
+  const handleSetOpenMenu = React.useCallback((val: string | null) => {
+    setOpenMenu(val);
+  }, []);
+
+  const handleSetActiveItem = React.useCallback((val: string | null) => {
+    setActiveItem(val);
+  }, []);
+
+  const contextValue = React.useMemo(() => ({
+    openMenu,
+    setOpenMenu: handleSetOpenMenu,
+    activeItem,
+    setActiveItem: handleSetActiveItem,
+    radioGroups,
+    setRadioValue: handleSetRadioValue,
+    checkboxValues,
+    toggleCheckbox: handleToggleCheckbox,
+  }), [openMenu, handleSetOpenMenu, activeItem, handleSetActiveItem, radioGroups, handleSetRadioValue, checkboxValues, handleToggleCheckbox]);
 
   return (
-    <MenubarContext.Provider
-      value={{
-        openMenu,
-        setOpenMenu,
-        activeItem,
-        setActiveItem,
-        radioGroups,
-        setRadioValue,
-        checkboxValues,
-        toggleCheckbox,
-      }}
-    >
+    <MenubarContext.Provider value={contextValue}>
       <div
         data-slot="menubar"
+        role="menubar"
         className={classNames(
           "bg-background flex h-9 items-center gap-1 rounded-md border p-1 shadow-xs",
           className
@@ -70,12 +90,12 @@ function Menubar({ className, children, ...props }: React.ComponentProps<"div">)
 }
 
 // Menubar menu component
-function MenubarMenu({ children }: { children: React.ReactNode }) {
+function MenubarMenu({ children }: Readonly<{ children: React.ReactNode }>) {
   return <div data-slot="menubar-menu">{children}</div>;
 }
 
 // Menubar group component
-function MenubarGroup({ children, ...props }: React.ComponentProps<"div">) {
+function MenubarGroup({ children, ...props }: Readonly<React.ComponentProps<"div">>) {
   return (
     <div data-slot="menubar-group" {...props}>
       {children}
@@ -84,7 +104,7 @@ function MenubarGroup({ children, ...props }: React.ComponentProps<"div">) {
 }
 
 // Menubar portal (simplified, no portal needed)
-function MenubarPortal({ children, ...props }: React.ComponentProps<"div">) {
+function MenubarPortal({ children, ...props }: Readonly<React.ComponentProps<"div">>) {
   return (
     <div data-slot="menubar-portal" {...props}>
       {children}
@@ -97,15 +117,25 @@ function MenubarRadioGroup({
   value,
   onValueChange,
   children,
-}: {
+}: Readonly<{
   value?: string;
   onValueChange?: (value: string) => void;
   children: React.ReactNode;
-}) {
+}>) {
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault()
+      if (onValueChange && value) onValueChange(value)
+    }
+  }
+
   return (
     <div
       data-slot="menubar-radio-group"
+      role="radiogroup"
+      tabIndex={onValueChange ? 0 : -1}
       onClick={() => onValueChange && value && onValueChange(value)}
+      onKeyDown={handleKeyDown}
     >
       {children}
     </div>
@@ -118,7 +148,7 @@ function MenubarTrigger({
   children,
   value,
   ...props
-}: React.ComponentProps<"button"> & { value: string }) {
+}: Readonly<React.ComponentProps<"button"> & { value: string }>) {
   const { openMenu, setOpenMenu, setActiveItem } = React.useContext(MenubarContext);
   const isOpen = openMenu === value;
   const ref = React.useRef<HTMLButtonElement>(null);
@@ -139,8 +169,11 @@ function MenubarTrigger({
   return (
     <button
       ref={ref}
+      type="button"
       data-slot="menubar-trigger"
       data-state={isOpen ? "open" : "closed"}
+      aria-haspopup="menu"
+      aria-expanded={isOpen}
       className={classNames(
         "focus:bg-accent focus:text-accent-foreground data-[state=open]:bg-accent data-[state=open]:text-accent-foreground flex items-center rounded-sm px-2 py-1 text-sm font-medium outline-hidden select-none",
         className
@@ -162,11 +195,11 @@ function MenubarContent({
   sideOffset = 8,
   children,
   ...props
-}: React.ComponentProps<"div"> & {
+}: Readonly<React.ComponentProps<"div"> & {
   align?: "start" | "end" | "center";
   alignOffset?: number;
   sideOffset?: number;
-}) {
+}>) {
   const { openMenu, setOpenMenu, setActiveItem } = React.useContext(MenubarContext);
   const ref = React.useRef<HTMLDivElement>(null);
 
@@ -192,13 +225,19 @@ function MenubarContent({
 
   if (!openMenu) return null;
 
+  let alignmentClass = "left-1/2 -translate-x-1/2"
+  if (align === "start") alignmentClass = "left-0"
+  else if (align === "end") alignmentClass = "right-0"
+
   return (
     <div
       ref={ref}
       data-slot="menubar-content"
+      role="menu"
+      tabIndex={-1}
       className={classNames(
-        "bg-popover text-popover-foreground absolute z-50 min-w-[12rem] rounded-md border p-1 shadow-md transition-opacity duration-200",
-        align === "start" ? "left-0" : align === "end" ? "right-0" : "left-1/2 -translate-x-1/2",
+        "bg-popover text-popover-foreground absolute z-50 min-w-[12rem] rounded-md border p-1 shadow-md transition-opacity duration-200 focus:outline-none",
+        alignmentClass,
         className
       )}
       style={{ top: `calc(100% + ${sideOffset}px)`, transform: `translateX(${alignOffset}px)` }}
@@ -216,25 +255,34 @@ function MenubarItem({
   inset,
   variant = "default",
   onSelect,
+  onClick,
+  onKeyDown,
   children,
   ...props
-}: React.ComponentProps<"div"> & {
+}: Readonly<React.ComponentProps<"div"> & {
   inset?: boolean;
   variant?: "default" | "destructive";
   onSelect?: (e: Event) => void;
-}) {
+}>) {
   const { setOpenMenu, setActiveItem } = React.useContext(MenubarContext);
-  const ref = React.useRef<HTMLDivElement>(null);
 
-  const handleClick = (e: React.MouseEvent) => {
+  const handleAction = (e: React.MouseEvent | React.KeyboardEvent) => {
     onSelect?.(e as unknown as Event);
     setOpenMenu(null);
     setActiveItem(null);
+  }
+
+  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    onClick?.(e)
+    handleAction(e)
   };
+
+  const handleKbd = createHandleKbd(onKeyDown, () => handleAction({} as React.MouseEvent))
 
   return (
     <div
-      ref={ref}
+      role="menuitem"
+      tabIndex={0}
       data-slot="menubar-item"
       data-inset={inset}
       data-variant={variant}
@@ -244,6 +292,7 @@ function MenubarItem({
         className
       )}
       onClick={handleClick}
+      onKeyDown={handleKbd}
       {...props}
     >
       {children}
@@ -257,13 +306,14 @@ function MenubarCheckboxItem({
   children,
   checked,
   onCheckedChange,
+  onKeyDown,
   value,
   ...props
-}: React.ComponentProps<"div"> & {
+}: Readonly<React.ComponentProps<"div"> & {
   checked?: boolean;
   onCheckedChange?: (checked: boolean) => void;
   value: string;
-}) {
+}>) {
   const { toggleCheckbox } = React.useContext(MenubarContext);
   const isChecked = checked ?? false;
 
@@ -272,14 +322,20 @@ function MenubarCheckboxItem({
     onCheckedChange?.(!isChecked);
   };
 
+  const handleKbd = createHandleKbd(handleClick)
+
   return (
     <div
       data-slot="menubar-checkbox-item"
+      role="menuitemcheckbox"
+      aria-checked={isChecked}
+      tabIndex={0}
       className={classNames(
         "focus:bg-accent focus:text-accent-foreground relative flex cursor-default items-center gap-2 rounded-xs py-1.5 pr-2 pl-8 text-sm outline-hidden select-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
         className
       )}
       onClick={handleClick}
+      onKeyDown={handleKbd}
       {...props}
     >
       <span className="pointer-events-none absolute left-2 flex size-3.5 items-center justify-center">
@@ -296,8 +352,9 @@ function MenubarRadioItem({
   children,
   value,
   group,
+  onKeyDown,
   ...props
-}: React.ComponentProps<"div"> & { value: string; group: string }) {
+}: Readonly<React.ComponentProps<"div"> & { value: string; group: string }>) {
   const { radioGroups, setRadioValue } = React.useContext(MenubarContext);
   const isChecked = radioGroups[group] === value;
 
@@ -305,14 +362,20 @@ function MenubarRadioItem({
     setRadioValue(group, value);
   };
 
+  const handleKbd = createHandleKbd(handleClick)
+
   return (
     <div
       data-slot="menubar-radio-item"
+      role="menuitemradio"
+      aria-checked={isChecked}
+      tabIndex={0}
       className={classNames(
         "focus:bg-accent focus:text-accent-foreground relative flex cursor-default items-center gap-2 rounded-xs py-1.5 pr-2 pl-8 text-sm outline-hidden select-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
         className
       )}
       onClick={handleClick}
+      onKeyDown={handleKbd}
       {...props}
     >
       <span className="pointer-events-none absolute left-2 flex size-3.5 items-center justify-center">
@@ -328,7 +391,7 @@ function MenubarLabel({
   className,
   inset,
   ...props
-}: React.ComponentProps<"div"> & { inset?: boolean }) {
+}: Readonly<React.ComponentProps<"div"> & { inset?: boolean }>) {
   return (
     <div
       data-slot="menubar-label"
@@ -344,18 +407,18 @@ function MenubarLabel({
 }
 
 // Menubar separator component
-function MenubarSeparator({ className, ...props }: React.ComponentProps<"div">) {
+function MenubarSeparator({ className, ...props }: Readonly<React.ComponentProps<"hr">>) {
   return (
-    <div
+    <hr
       data-slot="menubar-separator"
-      className={classNames("bg-border -mx-1 my-1 h-px", className)}
+      className={classNames("bg-border -mx-1 my-1 h-px border-none", className)}
       {...props}
     />
   );
 }
 
 // Menubar shortcut component
-function MenubarShortcut({ className, ...props }: React.ComponentProps<"span">) {
+function MenubarShortcut({ className, ...props }: Readonly<React.ComponentProps<"span">>) {
   return (
     <span
       data-slot="menubar-shortcut"
@@ -371,7 +434,7 @@ function MenubarShortcut({ className, ...props }: React.ComponentProps<"span">) 
 // Menubar sub component
 function MenubarSub({
   children,
-}: { children: React.ReactNode }) {
+}: Readonly<{ children: React.ReactNode }>) {
   return <div data-slot="menubar-sub">{children}</div>;
 }
 
@@ -381,8 +444,9 @@ function MenubarSubTrigger({
   inset,
   children,
   value,
+  onKeyDown,
   ...props
-}: React.ComponentProps<"div"> & { inset?: boolean; value: string }) {
+}: Readonly<React.ComponentProps<"div"> & { inset?: boolean; value: string }>) {
   const { setOpenMenu, openMenu } = React.useContext(MenubarContext);
   const isOpen = openMenu === value;
 
@@ -390,9 +454,21 @@ function MenubarSubTrigger({
     setOpenMenu(isOpen ? null : value);
   };
 
+  const handleKbd = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    onKeyDown?.(e)
+    if (e.key === 'Enter' || e.key === ' ' || e.key === 'ArrowRight') {
+      e.preventDefault()
+      setOpenMenu(value)
+    }
+  }
+
   return (
     <div
       data-slot="menubar-sub-trigger"
+      role="menuitem"
+      aria-haspopup="menu"
+      aria-expanded={isOpen}
+      tabIndex={0}
       data-inset={inset}
       data-state={isOpen ? "open" : "closed"}
       className={classNames(
@@ -401,6 +477,7 @@ function MenubarSubTrigger({
         className
       )}
       onClick={handleClick}
+      onKeyDown={handleKbd}
       {...props}
     >
       {children}
@@ -410,20 +487,9 @@ function MenubarSubTrigger({
 }
 
 // Menubar sub content component
-function MenubarSubContent({ className, children, ...props }: React.ComponentProps<"div">) {
+function MenubarSubContent({ className, children, ...props }: Readonly<React.ComponentProps<"div">>) {
   const { openMenu } = React.useContext(MenubarContext);
   const ref = React.useRef<HTMLDivElement>(null);
-
-  // Close sub-menu on click outside
-  React.useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      if (ref.current && !ref.current.contains(e.target as Node)) {
-        // Do not close sub-menu immediately to allow interaction
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
 
   if (!openMenu) return null;
 
@@ -431,6 +497,7 @@ function MenubarSubContent({ className, children, ...props }: React.ComponentPro
     <div
       ref={ref}
       data-slot="menubar-sub-content"
+      role="menu"
       className={classNames(
         "bg-popover text-popover-foreground absolute z-50 min-w-[8rem] rounded-md border p-1 shadow-lg transition-opacity duration-200 left-full top-0",
         className

@@ -43,7 +43,7 @@ function ToggleGroup({
 }: ToggleGroupProps) {
   const isControlled = value !== undefined
   const [internal, setInternal] = React.useState<string | string[] | undefined>(defaultValue)
-  const current = (isControlled ? value : internal) as string | string[] | undefined
+  const current = isControlled ? value : internal
 
   const isItemOn = React.useCallback(
     (val: string) => {
@@ -55,11 +55,14 @@ function ToggleGroup({
 
   const toggleItem = (val: string) => {
     if (type === "multiple") {
-      const next = Array.isArray(current)
-        ? isItemOn(val)
+      let next: string[]
+      if (Array.isArray(current)) {
+        next = isItemOn(val)
           ? current.filter((v) => v !== val)
           : [...current, val]
-        : [val]
+      } else {
+        next = [val]
+      }
       if (!isControlled) setInternal(next)
       onValueChange?.(next)
     } else {
@@ -69,23 +72,25 @@ function ToggleGroup({
     }
   }
 
-  const ctx: ToggleGroupContextValue = { variant, size, type, isItemOn, toggleItem, disabled }
+  const ctx = React.useMemo<ToggleGroupContextValue>(
+    () => ({ variant, size, type, isItemOn, toggleItem, disabled }),
+    [variant, size, type, isItemOn, disabled]
+  )
 
   return (
-    <div
+    <fieldset
       data-slot="toggle-group"
       data-variant={variant}
       data-size={size}
-      role="group"
       aria-disabled={disabled || undefined}
       className={classNames(
-        "group/toggle-group flex w-fit items-center rounded-md data-[variant=outline]:shadow-xs",
+        "group/toggle-group flex w-fit items-center rounded-md border-none p-0 m-0 data-[variant=outline]:shadow-xs",
         className
       )}
-      {...props}
+      {...(props as React.HTMLAttributes<HTMLFieldSetElement>)}
     >
       <ToggleGroupContext.Provider value={ctx}>{children}</ToggleGroupContext.Provider>
-    </div>
+    </fieldset>
   )
 }
 

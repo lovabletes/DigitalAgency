@@ -10,7 +10,7 @@ const ToastProvider = ({ children }: { children?: React.ReactNode }) => (
   <div data-slot="toast-provider">{children}</div>
 )
 
-const ToastViewport = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+const ToastViewport = React.forwardRef<HTMLDivElement, Readonly<React.HTMLAttributes<HTMLDivElement>>>(
   ({ className, ...props }, ref) => (
     <div
       ref={ref}
@@ -45,24 +45,28 @@ type ToastPropsBase = React.HTMLAttributes<HTMLDivElement> & {
   onOpenChange?: (open: boolean) => void
 }
 
-const Toast = React.forwardRef<HTMLDivElement, ToastPropsBase>(
+const Toast = React.forwardRef<HTMLDivElement, Readonly<ToastPropsBase>>(
   ({ className, variant = "default", open, onOpenChange, ...props }, ref) => {
     const [internalOpen, setInternalOpen] = React.useState(true)
     const isControlled = typeof open === "boolean"
-    const isOpen = isControlled ? open! : internalOpen
-    const setOpen = (v: boolean) => {
+    const isOpen = isControlled ? !!open : internalOpen
+
+    const setOpen = React.useCallback((v: boolean) => {
       if (!isControlled) setInternalOpen(v)
       onOpenChange?.(v)
-    }
+    }, [isControlled, onOpenChange])
+
+    const ctxValue = React.useMemo(() => ({ close: () => setOpen(false) }), [setOpen])
+
     if (!isOpen) return null
+
     return (
-      <ToastItemContext.Provider value={{ close: () => setOpen(false) }}>
-        <div
-          ref={ref}
+      <ToastItemContext.Provider value={ctxValue}>
+        <output
+          ref={ref as React.Ref<HTMLOutputElement>}
           data-state={isOpen ? "open" : "closed"}
           className={classNames(toastVariants(variant), className)}
-          role="status"
-          {...props}
+          {...(props as React.HTMLAttributes<HTMLOutputElement>)}
         />
       </ToastItemContext.Provider>
     )
@@ -70,7 +74,7 @@ const Toast = React.forwardRef<HTMLDivElement, ToastPropsBase>(
 )
 Toast.displayName = "Toast"
 
-const ToastAction = React.forwardRef<HTMLButtonElement, React.ButtonHTMLAttributes<HTMLButtonElement>>(
+const ToastAction = React.forwardRef<HTMLButtonElement, Readonly<React.ButtonHTMLAttributes<HTMLButtonElement>>>(
   ({ className, ...props }, ref) => (
     <button
       ref={ref}
@@ -84,7 +88,7 @@ const ToastAction = React.forwardRef<HTMLButtonElement, React.ButtonHTMLAttribut
 )
 ToastAction.displayName = "ToastAction"
 
-const ToastClose = React.forwardRef<HTMLButtonElement, React.ButtonHTMLAttributes<HTMLButtonElement>>(
+const ToastClose = React.forwardRef<HTMLButtonElement, Readonly<React.ButtonHTMLAttributes<HTMLButtonElement>>>(
   ({ className, onClick, ...props }, ref) => {
     const ctx = React.useContext(ToastItemContext)
     return (
@@ -108,14 +112,14 @@ const ToastClose = React.forwardRef<HTMLButtonElement, React.ButtonHTMLAttribute
 )
 ToastClose.displayName = "ToastClose"
 
-const ToastTitle = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+const ToastTitle = React.forwardRef<HTMLDivElement, Readonly<React.HTMLAttributes<HTMLDivElement>>>(
   ({ className, ...props }, ref) => (
     <div ref={ref} className={classNames("text-sm font-semibold", className)} {...props} />
   )
 )
 ToastTitle.displayName = "ToastTitle"
 
-const ToastDescription = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+const ToastDescription = React.forwardRef<HTMLDivElement, Readonly<React.HTMLAttributes<HTMLDivElement>>>(
   ({ className, ...props }, ref) => (
     <div ref={ref} className={classNames("text-sm opacity-90", className)} {...props} />
   )

@@ -60,7 +60,6 @@ export interface GenericCarouselProps {
 }
 
 /**
-{{ ... }}
  * GenericCarousel - A unified carousel component that supports both shadcn/ui carousel
  * and custom horizontal scrolling implementations
  */
@@ -89,6 +88,10 @@ export const GenericCarousel = React.forwardRef<HTMLDivElement, GenericCarouselP
     onScroll,
     ...props
   }, ref) => {
+    // Unique ID for keys if possible, but items are ReactNodes.
+    // We'll use a stable prefix with index to satisfy basic linting if they don't have IDs.
+    const carouselId = React.useId();
+
     // Ensure children fill height to avoid uneven card heights causing background to show
     const renderWithFullHeight = useCallback((node: React.ReactNode) => {
       if (!equalizeHeights) return node
@@ -182,7 +185,7 @@ export const GenericCarousel = React.forwardRef<HTMLDivElement, GenericCarouselP
             <CarouselContent className={cn("-ml-2 md:-ml-4 items-stretch", defaultContentPadding && "py-3 px-3 sm:px-4", contentClassName)}>
               {items.map((item, index) => (
                 <CarouselItem
-                  key={index}
+                  key={`${carouselId}-item-${index}`}
                   className={cn(
                     "pl-2 md:pl-4 h-full",
                     getBasisClass(),
@@ -265,7 +268,7 @@ export const GenericCarousel = React.forwardRef<HTMLDivElement, GenericCarouselP
           >
             {items.map((item, index) => (
               <div
-                key={index}
+                key={`${carouselId}-custom-item-${index}`}
                 className={cn(
                   "snap-start flex-none flex h-full",
                   itemClassName

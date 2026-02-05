@@ -46,12 +46,12 @@ const useCountUp = (end: number, duration: number = 2500) => {
     return { count, elementRef };
 };
 
-export function StatsCounter({ stats }: StatsCounterProps) {
+export function StatsCounter({ stats }: Readonly<StatsCounterProps>) {
     // Create count-up hooks for each stat
-    const stat1Count = useCountUp(Number.parseInt(stats[0]?.val.replace(/\D/g, '') || '0'), 2500);
-    const stat2Count = useCountUp(Number.parseInt(stats[1]?.val.replace(/\D/g, '') || '0'), 2500);
-    const stat3Count = useCountUp(Number.parseInt(stats[2]?.val.replace(/\D/g, '') || '0'), 2500);
-    const stat4Count = useCountUp(Number.parseInt(stats[3]?.val.replace(/\D/g, '') || '0'), 2500);
+    const stat1Count = useCountUp(Number.parseInt(stats[0]?.val.replaceAll(/\D/g, '') || '0'), 2500);
+    const stat2Count = useCountUp(Number.parseInt(stats[1]?.val.replaceAll(/\D/g, '') || '0'), 2500);
+    const stat3Count = useCountUp(Number.parseInt(stats[2]?.val.replaceAll(/\D/g, '') || '0'), 2500);
+    const stat4Count = useCountUp(Number.parseInt(stats[3]?.val.replaceAll(/\D/g, '') || '0'), 2500);
     const statCounts = [stat1Count, stat2Count, stat3Count, stat4Count];
 
     return (
@@ -73,7 +73,7 @@ export function StatsCounter({ stats }: StatsCounterProps) {
                         )}
 
                         <span className="text-5xl md:text-6xl font-black bg-gradient-to-br from-white via-[#f7e7ce] to-[#d4af37] bg-clip-text text-transparent mb-3 tracking-tight drop-shadow-2xl scale-100 group-hover:scale-110 transition-transform duration-500">
-                            {statCounts[idx].count}{stat.val.replace(/\d/g, '')}
+                            {stat.val.includes('/') ? stat.val : `${statCounts[idx].count}${stat.val.replaceAll(/\d/g, '')}`}
                         </span>
                         <span className="text-xs font-bold text-accent/80 uppercase tracking-[0.25em] group-hover:text-accent transition-colors shadow-black drop-shadow-md">
                             {stat.label}

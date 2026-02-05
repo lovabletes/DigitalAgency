@@ -1,6 +1,8 @@
 "use client"
 
 import * as React from "react"
+import { createPortal } from "react-dom"
+import { classNames } from "@/utils/class-names"
 
 interface DrawerProps {
   children: React.ReactNode
@@ -32,7 +34,7 @@ function Drawer({
   open: controlledOpen,
   onOpenChange,
   direction = "bottom",
-}: DrawerProps) {
+}: Readonly<DrawerProps>) {
   const [uncontrolledOpen, setUncontrolledOpen] = React.useState(false)
 
   const isControlled = controlledOpen !== undefined
@@ -48,17 +50,99 @@ function Drawer({
     [isControlled, onOpenChange]
   )
 
-  // Close drawer on escape key
-  React.useEffect(() => {
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && isOpen) {
-        setIsOpen(false)
-      }
-    }
+  const contextValue = React.useMemo(() => ({
+    isOpen,
+    setIsOpen,
+    direction
+  }), [isOpen, setIsOpen, direction])
 
-    document.addEventListener("keydown", handleEscape)
-    return () => document.removeEventListener("keydown", handleEscape)
-  }, [isOpen, setIsOpen])
+  return (
+    <DrawerContext.Provider value={contextValue}>
+      {children}
+    </DrawerContext.Provider>
+  )
+}
+
+function DrawerTrigger({
+  children,
+  className,
+  onKeyDown,
+  ...props
+}: Readonly<React.ButtonHTMLAttributes<HTMLButtonElement>>) {
+  const { setIsOpen } = useDrawer()
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
+    onKeyDown?.(e)
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault()
+      setIsOpen(true)
+    }
+  }
+
+  return (
+    <button
+      type="button"
+      data-slot="drawer-trigger"
+      className={classNames("w-full text-left", className)}
+      onClick={() => setIsOpen(true)}
+      onKeyDown={handleKeyDown}
+      {...props}
+    >
+      {children}
+    </button>
+  )
+}
+
+function DrawerOverlay({
+  className,
+  onKeyDown,
+  ...props
+}: Readonly<React.ButtonHTMLAttributes<HTMLButtonElement>>) {
+  const { isOpen, setIsOpen } = useDrawer()
+
+  if (!isOpen) return null
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
+    onKeyDown?.(e)
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault()
+      setIsOpen(false)
+    }
+  }
+
+  return (
+    <button
+      type="button"
+      data-slot="drawer-overlay"
+      aria-label="Close drawer"
+      className={classNames(
+        "fixed inset-0 z-50 bg-black/50 animate-in fade-in-0 border-none",
+        className
+      )}
+      onClick={() => setIsOpen(false)}
+      onKeyDown={handleKeyDown}
+      {...props}
+    />
+  )
+}
+
+function DrawerContent({
+  className,
+  children,
+  ...props
+}: Readonly<React.HTMLAttributes<HTMLDialogElement>>) {
+  const { isOpen, setIsOpen, direction } = useDrawer()
+  const dialogRef = React.useRef<HTMLDialogElement>(null)
+
+  React.useEffect(() => {
+    const dialog = dialogRef.current
+    if (!dialog) return
+    if (isOpen) {
+      if (!dialog.open) dialog.showModal()
+    } else if (dialog.open) {
+      dialog.close()
+    }
+  }, [isOpen])
 
   // Prevent body scroll when drawer is open
   React.useEffect(() => {
@@ -72,62 +156,6 @@ function Drawer({
       document.body.style.overflow = "unset"
     }
   }, [isOpen])
-
-  return (
-    <DrawerContext.Provider value={{ isOpen, setIsOpen, direction }}>
-      {children}
-    </DrawerContext.Provider>
-  )
-}
-
-function DrawerTrigger({
-  children,
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLDivElement>) {
-  const { setIsOpen } = useDrawer()
-
-  return (
-    <div
-      data-slot="drawer-trigger"
-      className={className}
-      onClick={() => setIsOpen(true)}
-      {...props}
-    >
-      {children}
-    </div>
-  )
-}
-
-function DrawerOverlay({
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLDivElement>) {
-  const { isOpen, setIsOpen } = useDrawer()
-
-  if (!isOpen) return null
-
-  return (
-    <div
-      data-slot="drawer-overlay"
-      className={`
-        fixed inset-0 z-50 bg-black/50
-        animate-in fade-in-0
-        ${className || ""}
-      `}
-      onClick={() => setIsOpen(false)}
-      {...props}
-    />
-  )
-}
-
-function DrawerContent({
-  className,
-  children,
-  ...props
-}: React.HTMLAttributes<HTMLDivElement>) {
-  const { isOpen, direction } = useDrawer()
-  const contentRef = React.useRef<HTMLDivElement>(null)
 
   if (!isOpen) return null
 
@@ -145,38 +173,55 @@ function DrawerContent({
     left: "slide-in-from-left-2",
   }
 
-  return (
-    <>
-      <DrawerOverlay />
+  const content = (
+    <dialog
+      ref={dialogRef}
+      onClose={() => setIsOpen(false)}
+      className={classNames(
+        "fixed z-50 m-0 p-0 bg-transparent border-none w-full h-full max-w-none max-h-none block backdrop:bg-black/50 overflow-hidden",
+        className
+      )}
+      {...props}
+    >
+      <button
+        type="button"
+        className="absolute inset-0 h-full w-full bg-transparent border-none cursor-default"
+        onClick={() => setIsOpen(false)}
+        aria-label="Close drawer"
+      />
       <div
-        ref={contentRef}
-        data-slot="drawer-content"
-        className={`
-          fixed z-50 flex h-auto flex-col bg-white
-          ${directionClasses[direction]}
-          animate-in ${animationClasses[direction]}
-          ${className || ""}
-        `}
-        {...props}
+        className="relative flex-1 overflow-hidden flex flex-col pointer-events-none"
       >
-        {direction === "bottom" && (
-          <div className="bg-gray-200 mx-auto mt-4 h-2 w-[100px] shrink-0 rounded-full" />
-        )}
-        {children}
+        <div
+          className={classNames(
+            "mt-auto bg-white flex flex-col h-auto animate-in pointer-events-auto",
+            directionClasses[direction],
+            animationClasses[direction]
+          )}
+        >
+          {direction === "bottom" && (
+            <div className="bg-gray-200 mx-auto mt-4 h-2 w-[100px] shrink-0 rounded-full" />
+          )}
+          {children}
+        </div>
       </div>
-    </>
+    </dialog>
   )
+
+  if (typeof document === "undefined") return null
+  return createPortal(content, document.body)
 }
 
 function DrawerClose({
   children,
   className,
   ...props
-}: React.HTMLAttributes<HTMLButtonElement>) {
+}: Readonly<React.HTMLAttributes<HTMLButtonElement>>) {
   const { setIsOpen } = useDrawer()
 
   return (
     <button
+      type="button"
       data-slot="drawer-close"
       className={className}
       onClick={() => setIsOpen(false)}
@@ -190,7 +235,7 @@ function DrawerClose({
 function DrawerHeader({
   className,
   ...props
-}: React.HTMLAttributes<HTMLDivElement>) {
+}: Readonly<React.HTMLAttributes<HTMLDivElement>>) {
   const { direction } = useDrawer()
 
   return (
@@ -209,7 +254,7 @@ function DrawerHeader({
 function DrawerFooter({
   className,
   ...props
-}: React.HTMLAttributes<HTMLDivElement>) {
+}: Readonly<React.HTMLAttributes<HTMLDivElement>>) {
   return (
     <div
       data-slot="drawer-footer"
@@ -221,27 +266,33 @@ function DrawerFooter({
 
 function DrawerTitle({
   className,
+  children,
   ...props
-}: React.HTMLAttributes<HTMLHeadingElement>) {
+}: Readonly<React.HTMLAttributes<HTMLHeadingElement>>) {
   return (
     <h3
       data-slot="drawer-title"
       className={`font-semibold text-gray-900 ${className || ""}`}
       {...props}
-    />
+    >
+      {children}
+    </h3>
   )
 }
 
 function DrawerDescription({
   className,
+  children,
   ...props
-}: React.HTMLAttributes<HTMLParagraphElement>) {
+}: Readonly<React.HTMLAttributes<HTMLParagraphElement>>) {
   return (
     <p
       data-slot="drawer-description"
       className={`text-sm text-gray-600 ${className || ""}`}
       {...props}
-    />
+    >
+      {children}
+    </p>
   )
 }
 

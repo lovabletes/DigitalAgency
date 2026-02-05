@@ -17,7 +17,7 @@ export function ParallaxSection({
     speed = 0.3,
     minHeight = "min-h-screen",
     className = ""
-}: ParallaxSectionProps) {
+}: Readonly<ParallaxSectionProps>) {
     return (
         <section className={`relative ${minHeight} flex items-center justify-center overflow-hidden ${className}`}>
             {/* Parallax Background */}

@@ -16,7 +16,7 @@ export function ParallaxBackground({
     className = "",
     overlay = true,
     overlayColor = "from-[#0f1429]/90 via-[#1a1a3e]/80 to-[#0f1429]"
-}: ParallaxBackgroundProps) {
+}: Readonly<ParallaxBackgroundProps>) {
     const [offsetY, setOffsetY] = React.useState(0);
     const elementRef = React.useRef<HTMLDivElement>(null);
 
@@ -27,7 +27,6 @@ export function ParallaxBackground({
             const rect = elementRef.current.getBoundingClientRect();
             const scrolled = window.scrollY;
             const elementTop = rect.top + scrolled;
-            const elementHeight = rect.height;
             const viewportHeight = window.innerHeight;
 
             // Calculate parallax offset only when element is in view

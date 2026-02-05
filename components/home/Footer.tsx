@@ -60,7 +60,7 @@ export function Footer() {
                                 { icon: GithubIcon, label: 'Dribbble', href: '#' },
                             ].map((social, idx) => (
                                 <a
-                                    key={idx}
+                                    key={social.label}
                                     href={social.href}
                                     aria-label={social.label}
                                     className="h-11 w-11 rounded-xl border-2 border-accent/20 bg-accent/5 flex items-center justify-center hover:bg-accent hover:border-accent hover:-translate-y-1 transition-all duration-300 group"

@@ -8,7 +8,7 @@ interface LoadingSpinnerProps {
   className?: string
 }
 
-export function LoadingSpinner({ size = 'md', className = '' }: LoadingSpinnerProps) {
+export function LoadingSpinner({ size = 'md', className = '' }: Readonly<LoadingSpinnerProps>) {
   const sizeClasses = {
     sm: 'w-4 h-4',
     md: 'w-8 h-8',
@@ -17,9 +17,8 @@ export function LoadingSpinner({ size = 'md', className = '' }: LoadingSpinnerPr
 
   return (
     <div className={`flex items-center justify-center ${className}`}>
-      <div
-        className={`${sizeClasses[size]} border-2 border-primary/20 border-t-primary rounded-full animate-spin`}
-        role="status"
+      <output
+        className={`${sizeClasses[size]} border-2 border-primary/20 border-t-primary rounded-full animate-spin block`}
         aria-label="Loading"
       />
     </div>
@@ -36,7 +35,7 @@ export function LoadingFallback({
   height = 'h-24',
   className = '',
   children
-}: LoadingFallbackProps) {
+}: Readonly<LoadingFallbackProps>) {
   return (
     <div className={`${height} bg-muted/20 animate-pulse rounded-lg flex items-center justify-center ${className}`}>
       {children || <LoadingSpinner size="sm" />}
@@ -60,7 +59,7 @@ export function OptimizedImage({
   height,
   className = '',
   priority = false
-}: OptimizedImageProps) {
+}: Readonly<OptimizedImageProps>) {
   return (
     <Image
       src={src}

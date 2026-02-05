@@ -21,45 +21,59 @@ interface ProjectModalProps {
     onClose: () => void;
 }
 
-export function ProjectModal({ project, onClose }: ProjectModalProps) {
-    // Close on ESC key
+export function ProjectModal({ project, onClose }: Readonly<ProjectModalProps>) {
+    const dialogRef = React.useRef<HTMLDialogElement>(null);
+
+    // Sync dialog state with project prop
+    React.useEffect(() => {
+        const dialog = dialogRef.current;
+        if (!dialog) return;
+
+        if (project) {
+            dialog.showModal();
+            document.body.style.overflow = 'hidden';
+        } else {
+            dialog.close();
+            document.body.style.overflow = 'unset';
+        }
+    }, [project]);
+
+    // Close on ESC key (native behavior but just in case)
     React.useEffect(() => {
         const handleEsc = (e: KeyboardEvent) => {
             if (e.key === 'Escape') onClose();
         };
-        window.addEventListener('keydown', handleEsc);
-        return () => window.removeEventListener('keydown', handleEsc);
+        globalThis.addEventListener('keydown', handleEsc);
+        return () => globalThis.removeEventListener('keydown', handleEsc);
     }, [onClose]);
-
-    // Prevent scroll when modal is open
-    React.useEffect(() => {
-        if (project) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = 'unset';
-        }
-        return () => {
-            document.body.style.overflow = 'unset';
-        };
-    }, [project]);
 
     if (!project) return null;
 
     return (
-        <div
-            className="fixed inset-0 z-[200] bg-black/90 backdrop-blur-md flex items-center justify-center p-4 animate-in fade-in duration-300"
-            onClick={onClose}
+        <dialog
+            ref={dialogRef}
+            className="fixed inset-0 z-[200] flex items-center justify-center p-0 bg-transparent backdrop:bg-black/90 backdrop:backdrop-blur-md animate-in fade-in duration-300 w-full h-full border-none max-w-none max-h-none overflow-hidden"
+            onClose={onClose}
+            aria-labelledby="modal-title"
         >
+            {/* Backdrop Click Area (Native dialog handles backdrop clicks differently, but for consistency) */}
+            <button
+                className="absolute inset-0 w-full h-full bg-transparent cursor-default outline-none"
+                onClick={onClose}
+                aria-label="Close modal background"
+                type="button"
+            />
+
             {/* Modal Content */}
-            <div
-                className="relative w-full max-w-6xl bg-gradient-to-br from-[#1a1a3e] to-[#0f1429] rounded-3xl overflow-hidden shadow-2xl shadow-accent/20 animate-in zoom-in-95 duration-500 max-h-[90vh] overflow-y-auto"
-                onClick={(e) => e.stopPropagation()}
+            <article
+                className="relative w-full max-w-6xl bg-gradient-to-br from-[#1a1a3e] to-[#0f1429] rounded-3xl overflow-hidden shadow-2xl shadow-accent/20 animate-in zoom-in-95 duration-500 max-h-[90vh] overflow-y-auto m-4"
             >
                 {/* Close Button */}
                 <button
                     onClick={onClose}
                     className="absolute top-6 right-6 z-10 h-12 w-12 rounded-full bg-accent/10 hover:bg-accent border-2 border-accent/30 hover:border-accent flex items-center justify-center transition-all duration-300 group"
                     aria-label="Close modal"
+                    type="button"
                 >
                     <CloseIcon size={20} className="text-accent group-hover:text-[#1a1a3e] transition-colors" />
                 </button>
@@ -68,7 +82,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                 <div className="relative h-[400px] overflow-hidden">
                     <img
                         src={project.image}
-                        alt={project.title}
+                        alt=""
                         className="w-full h-full object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a3e] via-[#1a1a3e]/50 to-transparent" />
@@ -84,7 +98,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                 {/* Content */}
                 <div className="p-8 md:p-12">
                     {/* Title */}
-                    <h2 className="text-4xl md:text-6xl font-black text-white mb-4 tracking-tight">
+                    <h2 id="modal-title" className="text-4xl md:text-6xl font-black text-white mb-4 tracking-tight">
                         {project.title}
                     </h2>
 
@@ -115,8 +129,8 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                         <div className="mb-8">
                             <h3 className="text-sm font-black uppercase tracking-wider text-accent mb-4">Key Features</h3>
                             <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                                {project.features.map((feature, idx) => (
-                                    <li key={idx} className="flex items-start gap-3 text-[#f7e7ce]/80">
+                                {project.features.map((feature) => (
+                                    <li key={feature} className="flex items-start gap-3 text-[#f7e7ce]/80">
                                         <span className="text-accent text-xl">✓</span>
                                         <span className="font-medium">{feature}</span>
                                     </li>
@@ -149,7 +163,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                         )}
                     </div>
                 </div>
-            </div>
-        </div>
+            </article>
+        </dialog>
     );
 }

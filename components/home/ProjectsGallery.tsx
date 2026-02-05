@@ -20,7 +20,7 @@ interface ProjectsGalleryProps {
     projects: Project[];
 }
 
-export function ProjectsGallery({ projects }: ProjectsGalleryProps) {
+export function ProjectsGallery({ projects }: Readonly<ProjectsGalleryProps>) {
     const [selectedProject, setSelectedProject] = React.useState<Project | null>(null);
 
     return (
@@ -41,10 +41,10 @@ export function ProjectsGallery({ projects }: ProjectsGalleryProps) {
                     {/* Projects Grid */}
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {projects.map((project, idx) => (
-                            <div
+                            <button
                                 key={project.id}
                                 onClick={() => setSelectedProject(project)}
-                                className="group relative overflow-hidden rounded-2xl cursor-pointer animate-slide-up transition-all duration-500 hover:scale-[1.02] shadow-xl hover:shadow-2xl hover:shadow-accent/20"
+                                className="group relative overflow-hidden rounded-2xl cursor-pointer animate-slide-up transition-all duration-500 hover:scale-[1.02] shadow-xl hover:shadow-2xl hover:shadow-accent/20 outline-none focus-visible:ring-2 focus-visible:ring-accent text-left"
                                 style={{ animationDelay: `${idx * 100}ms` }}
                             >
                                 {/* Project Image */}
@@ -82,7 +82,7 @@ export function ProjectsGallery({ projects }: ProjectsGalleryProps) {
 
                                 {/* Border Animation */}
                                 <div className="absolute inset-0 border-2 border-transparent group-hover:border-accent/50 rounded-2xl transition-all duration-500" />
-                            </div>
+                            </button>
                         ))}
                     </div>
                 </div>

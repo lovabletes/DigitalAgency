@@ -6,9 +6,10 @@ import { classNames } from "@/utils/class-names"
 type TooltipProviderContext = { delayDuration: number }
 const TooltipCtx = React.createContext<TooltipProviderContext>({ delayDuration: 0 })
 
-function TooltipProvider({ delayDuration = 0, children }: { delayDuration?: number; children?: React.ReactNode }) {
+function TooltipProvider({ delayDuration = 0, children }: Readonly<{ delayDuration?: number; children?: React.ReactNode }>) {
+  const value = React.useMemo(() => ({ delayDuration }), [delayDuration])
   return (
-    <TooltipCtx.Provider value={{ delayDuration }}>
+    <TooltipCtx.Provider value={value}>
       <div data-slot="tooltip-provider">{children}</div>
     </TooltipCtx.Provider>
   )
@@ -21,16 +22,24 @@ type TooltipContextValue = {
 }
 const TooltipContext = React.createContext<TooltipContextValue | null>(null)
 
-function Tooltip({ children }: { children?: React.ReactNode }) {
+function Tooltip({ children }: Readonly<{ children?: React.ReactNode }>) {
   const { delayDuration } = React.useContext(TooltipCtx)
   const [open, setOpen] = React.useState(false)
-  const timer = React.useRef<number | null>(null)
-  const setWithDelay = (o: boolean) => {
-    if (timer.current) window.clearTimeout(timer.current)
-    timer.current = window.setTimeout(() => setOpen(o), o ? delayDuration : 0)
-  }
+  const timer = React.useRef<NodeJS.Timeout | null>(null)
+
+  const setWithDelay = React.useCallback((o: boolean) => {
+    if (timer.current) globalThis.clearTimeout(timer.current)
+    timer.current = globalThis.setTimeout(() => setOpen(o), o ? delayDuration : 0)
+  }, [delayDuration])
+
+  const contextValue = React.useMemo(() => ({
+    open,
+    setOpen: setWithDelay,
+    sideOffset: 0
+  }), [open, setWithDelay])
+
   return (
-    <TooltipContext.Provider value={{ open, setOpen: setWithDelay, sideOffset: 0 }}>
+    <TooltipContext.Provider value={contextValue}>
       <span data-slot="tooltip" className="relative inline-block">
         {children}
       </span>
@@ -39,7 +48,7 @@ function Tooltip({ children }: { children?: React.ReactNode }) {
 }
 
 type TriggerProps = React.HTMLAttributes<HTMLElement> & { asChild?: boolean }
-function TooltipTrigger({ asChild, onMouseEnter, onMouseLeave, onFocus, onBlur, ...props }: TriggerProps) {
+function TooltipTrigger({ asChild, onMouseEnter, onMouseLeave, onFocus, onBlur, ...props }: Readonly<TriggerProps>) {
   const ctx = React.useContext(TooltipContext)
   const handlers = {
     onMouseEnter: (e: React.MouseEvent<HTMLElement>) => {
@@ -66,7 +75,7 @@ function TooltipTrigger({ asChild, onMouseEnter, onMouseLeave, onFocus, onBlur, 
 }
 
 type ContentProps = React.HTMLAttributes<HTMLDivElement> & { sideOffset?: number }
-function TooltipContent({ className, sideOffset = 0, children, ...props }: ContentProps) {
+function TooltipContent({ className, sideOffset = 0, children, ...props }: Readonly<ContentProps>) {
   const ctx = React.useContext(TooltipContext)
   if (!ctx?.open) return null
   return (

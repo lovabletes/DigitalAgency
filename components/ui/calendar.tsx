@@ -30,7 +30,7 @@ function Calendar({
   onMonthChange,
   disabled,
   buttonVariant = "ghost",
-}: CalendarProps) {
+}: Readonly<CalendarProps>) {
   const [currentMonth, setCurrentMonth] = React.useState(
     new Date(month.getFullYear(), month.getMonth(), 1)
   )
@@ -75,7 +75,7 @@ function Calendar({
 
   // Generate calendar days
   const days: Date[] = []
-  
+
   // Add days from previous month (count computed implicitly via firstDayOfMonth)
 
   for (let i = firstDayOfMonth - 1; i >= 0; i--) {
@@ -101,31 +101,31 @@ function Calendar({
   }
 
   return (
-    <div 
+    <div
       className={`bg-white p-3 rounded-md border ${className || ""}`}
       data-slot="calendar"
     >
       <div className="flex items-center justify-between mb-4">
         <button
+          type="button"
           onClick={handlePreviousMonth}
-          className={`p-2 rounded-md hover:bg-gray-100 ${
-            buttonVariant === "ghost" ? "bg-transparent" : "border"
-          }`}
+          className={`p-2 rounded-md hover:bg-gray-100 ${buttonVariant === "ghost" ? "bg-transparent" : "border"
+            }`}
         >
           <svg className="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
         </button>
-        
+
         <div className="font-medium">
           {monthNames[currentMonth.getMonth()]} {currentMonth.getFullYear()}
         </div>
-        
+
         <button
+          type="button"
           onClick={handleNextMonth}
-          className={`p-2 rounded-md hover:bg-gray-100 ${
-            buttonVariant === "ghost" ? "bg-transparent" : "border"
-          }`}
+          className={`p-2 rounded-md hover:bg-gray-100 ${buttonVariant === "ghost" ? "bg-transparent" : "border"
+            }`}
         >
           <svg className="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -142,22 +142,22 @@ function Calendar({
       </div>
 
       <div className="grid grid-cols-7 gap-1">
-        {days.map((day, index) => {
+        {days.map((day) => {
           const isToday = day.toDateString() === today.toDateString()
-          const isSelected = selected && day.toDateString() === selected.toDateString()
+          const isSelected = selected?.toDateString() === day.toDateString()
           const isCurrentMonth = day.getMonth() === currentMonth.getMonth()
           const isDisabled = disabled ? disabled(day) : false
-          
+
           return (
             <CalendarDayButton
-              key={index}
+              key={day.toISOString()}
               day={day}
               isSelected={!!isSelected}
               isToday={isToday}
               isDisabled={isDisabled}
-              isOutside={!isCurrentMonth && !showOutsideDays}
+              isOutside={isCurrentMonth ? false : !showOutsideDays}
               onClick={() => handleDayClick(day)}
-              className={!isCurrentMonth ? "text-gray-400" : ""}
+              className={isCurrentMonth ? "" : "text-gray-400"}
             />
           )
         })}
@@ -174,13 +174,14 @@ function CalendarDayButton({
   isOutside,
   className,
   ...props
-}: DayButtonProps) {
+}: Readonly<DayButtonProps>) {
   if (isOutside) {
     return null
   }
 
   return (
     <button
+      type="button"
       className={`
         aspect-square w-full flex items-center justify-center rounded-full text-sm
         ${isToday ? "ring-1 ring-primary" : ""}

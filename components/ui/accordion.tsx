@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import {  ChevronDownIcon } from "@/components/icons/icons"
+import { ChevronDownIcon } from "@/components/icons/icons"
 
 // simple utility to join class names; replaces cn from @/lib/utils
 function cx(...parts: Array<string | undefined | false | null>) {
@@ -17,7 +17,7 @@ type AccordionProps = React.HTMLAttributes<HTMLDivElement> & {
   collapsible?: boolean
 }
 
-function Accordion({ className, ...props }: AccordionProps) {
+function Accordion({ className, ...props }: Readonly<AccordionProps>) {
   // Note: `multiple`, `type`, and `collapsible` are supported for API compatibility
   // but are intentionally NOT forwarded to the DOM to avoid React warnings.
   return <div data-slot="accordion" className={className} {...props} />
@@ -28,7 +28,7 @@ type AccordionItemProps = React.DetailsHTMLAttributes<HTMLDetailsElement> & {
   value?: string
 }
 
-function AccordionItem({ className, ...props }: AccordionItemProps) {
+function AccordionItem({ className, ...props }: Readonly<AccordionItemProps>) {
   return (
     <details data-slot="accordion-item" className={cx("border-b last:border-b-0 group", className)} {...props} />
   )
@@ -38,7 +38,7 @@ type AccordionTriggerProps = React.HTMLAttributes<HTMLElement> & {
   asChild?: boolean
 }
 
-function AccordionTrigger({ className, children, ...props }: AccordionTriggerProps) {
+function AccordionTrigger({ className, children, ...props }: Readonly<AccordionTriggerProps>) {
   return (
     <summary
       data-slot="accordion-trigger"
@@ -58,7 +58,7 @@ function AccordionTrigger({ className, children, ...props }: AccordionTriggerPro
 
 type AccordionContentProps = React.HTMLAttributes<HTMLDivElement>
 
-function AccordionContent({ className, children, ...props }: AccordionContentProps) {
+function AccordionContent({ className, children, ...props }: Readonly<AccordionContentProps>) {
   return (
     <div
       data-slot="accordion-content"

@@ -24,7 +24,7 @@ export function Select({
   name,
   placeholder = "Select an option",
   className,
-}: SelectProps) {
+}: Readonly<SelectProps>) {
   const [isOpen, setIsOpen] = React.useState(false)
   const [selectedValue, setSelectedValue] = React.useState(defaultValue ?? value ?? "")
   const selectRef = React.useRef<HTMLDivElement>(null)
@@ -109,6 +109,7 @@ export function Select({
       data-slot="select-content"
       className="z-dropdown absolute left-0 right-0 mt-1 min-w-[8rem] rounded-md border bg-popover text-popover-foreground shadow-md animate-in fade-in-80 max-h-60 overflow-y-auto"
       role="listbox"
+      tabIndex={-1}
     >
       <div className="p-1">
         {childrenArray.map((child, index) => {
@@ -178,7 +179,7 @@ export function SelectTrigger({
   placeholder = "Select an option",
   id,
   ...props
-}: SelectTriggerProps) {
+}: Readonly<SelectTriggerProps>) {
   // Inject selectedValue into SelectValue child if present
   const child =
     React.isValidElement(children) && children.type === SelectValue
@@ -200,6 +201,8 @@ export function SelectTrigger({
       )}
       onClick={onClick}
       type="button"
+      aria-expanded={isOpen}
+      aria-haspopup="listbox"
       {...props}
     >
       {child || (
@@ -222,22 +225,24 @@ interface SelectContentProps {
 }
 
 // Forward the ref so the parent can detect outside clicks in non-portal mode.
-export const SelectContent = React.forwardRef<HTMLDivElement, SelectContentProps>(
+export const SelectContent = React.forwardRef<HTMLDivElement, Readonly<SelectContentProps>>(
   ({ children, className, onSelect, selectedValue }, ref) => {
     const localRef = React.useRef<HTMLDivElement>(null)
 
     React.useEffect(() => {
       const el = localRef.current
       if (!el) return
-      const selected = el.querySelector('[data-selected="true"]') as HTMLElement | null
-      selected?.scrollIntoView({ block: "nearest" })
+      const selected = el.querySelector('[data-selected="true"]')
+      if (selected) selected.scrollIntoView({ block: "nearest" })
     }, [selectedValue])
 
     const setRef = (node: HTMLDivElement | null) => {
-      localRef.current = node
-      if (typeof ref === "function") ref(node)
-      else if (ref) (ref as React.MutableRefObject<HTMLDivElement | null>).current = node
-    }
+      localRef.current = node;
+      if (typeof ref === "function") ref(node);
+      else if (ref && typeof ref === "object") {
+        (ref as { current: HTMLDivElement | null }).current = node;
+      }
+    };
 
     const isSelectItem = (child: React.ReactNode): child is React.ReactElement<SelectItemProps> =>
       React.isValidElement(child) && child.type === SelectItem
@@ -251,6 +256,7 @@ export const SelectContent = React.forwardRef<HTMLDivElement, SelectContentProps
           className,
         )}
         role="listbox"
+        tabIndex={-1}
       >
         <div className="p-1">
           {React.Children.map(children, (child, index) => {
@@ -280,29 +286,38 @@ interface SelectItemProps {
   isSelected?: boolean
 }
 
-export function SelectItem({ children, className, value, disabled, onSelect, isSelected }: SelectItemProps) {
+export function SelectItem({ children, className, value, disabled, onSelect, isSelected }: Readonly<SelectItemProps>) {
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault()
+      if (!disabled) onSelect?.(value)
+    }
+  }
+
   return (
-    <div
+    <button
+      type="button"
       data-slot="select-item"
       data-selected={isSelected}
       data-value={value}
+      disabled={disabled}
       className={classNames(
-        "relative flex w-full cursor-default select-none items-center justify-between rounded-sm py-2 px-3 text-sm outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
+        "relative flex w-full cursor-default select-none items-center justify-between rounded-sm py-2 px-3 text-sm outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground disabled:pointer-events-none disabled:opacity-50",
         isSelected && "bg-accent text-accent-foreground font-medium",
-        disabled && "pointer-events-none opacity-50",
         className
       )}
       onClick={() => !disabled && onSelect?.(value)}
+      onKeyDown={handleKeyDown}
       role="option"
       aria-selected={!!isSelected}
     >
-      <span className="truncate flex-1">{children}</span>
+      <span className="truncate flex-1 text-left">{children}</span>
       {isSelected && (
         <span className="ml-2 flex h-4 w-4 items-center justify-center">
           <CheckIcon className="h-4 w-4" />
         </span>
       )}
-    </div>
+    </button>
   )
 }
 
@@ -321,7 +336,7 @@ export function SelectValue({
   selectedLabel,
   className,
   ...props
-}: SelectValueProps) {
+}: Readonly<SelectValueProps>) {
   return (
     <span data-slot="select-value" className={classNames("truncate", className)} {...props}>
       {selectedLabel || selectedValue || children || placeholder || null}

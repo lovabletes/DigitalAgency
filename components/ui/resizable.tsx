@@ -1,3 +1,5 @@
+"use client"
+
 import * as React from "react";
 import { GripVerticalIcon } from "@/components/icons/icons";
 import { classNames } from "@/utils/class-names";
@@ -25,36 +27,40 @@ function ResizablePanelGroup({
   direction = "horizontal",
   children,
   ...props
-}: React.ComponentProps<"div"> & {
+}: Readonly<React.ComponentProps<"div"> & {
   direction?: "horizontal" | "vertical";
-}) {
+}>) {
   const [panelSizes, setPanelSizes] = React.useState<number[]>([]);
   const [panelConstraints, setPanelConstraints] = React.useState<
     Record<string, { minSize?: number }>
   >({});
   const panelIds = React.useRef<string[]>([]);
 
-  const registerPanel = (
+  const registerPanel = React.useCallback((
     id: string,
     options: { defaultSize?: number; minSize?: number }
   ) => {
     if (!panelIds.current.includes(id)) {
       panelIds.current.push(id);
-      setPanelSizes((prev) => [...prev, options.defaultSize ?? 100 / panelIds.current.length]);
+      setPanelSizes((prev) => [...prev, options.defaultSize ?? 100]);
       setPanelConstraints((prev) => ({ ...prev, [id]: { minSize: options.minSize } }));
     }
-  };
+  }, []);
+
+  const handleSetPanelSizes = React.useCallback((sizes: number[]) => {
+    setPanelSizes(sizes)
+  }, [])
+
+  const contextValue = React.useMemo<ResizablePanelContextValue>(() => ({
+    direction,
+    panelSizes,
+    setPanelSizes: handleSetPanelSizes,
+    registerPanel,
+    panelConstraints,
+  }), [direction, panelSizes, handleSetPanelSizes, registerPanel, panelConstraints])
 
   return (
-    <ResizablePanelContext.Provider
-      value={{
-        direction,
-        panelSizes,
-        setPanelSizes,
-        registerPanel,
-        panelConstraints,
-      }}
-    >
+    <ResizablePanelContext.Provider value={contextValue}>
       <div
         data-slot="resizable-panel-group"
         data-panel-group-direction={direction}
@@ -77,10 +83,10 @@ function ResizablePanel({
   minSize,
   className,
   ...props
-}: React.ComponentProps<"div"> & {
+}: Readonly<React.ComponentProps<"div"> & {
   defaultSize?: number;
   minSize?: number;
-}) {
+}>) {
   const { direction, panelSizes, registerPanel } = React.useContext(ResizablePanelContext);
   const id = React.useId();
   const elRef = React.useRef<HTMLDivElement | null>(null);
@@ -122,10 +128,11 @@ function ResizablePanel({
 function ResizableHandle({
   withHandle,
   className,
+  onKeyDown,
   ...props
-}: React.ComponentProps<"div"> & {
+}: Readonly<React.ComponentProps<"div"> & {
   withHandle?: boolean;
-}) {
+}>) {
   const { direction, panelSizes, setPanelSizes, panelConstraints } =
     React.useContext(ResizablePanelContext);
   const ref = React.useRef<HTMLDivElement>(null);
@@ -142,16 +149,19 @@ function ResizableHandle({
     const groupRect = ref.current.parentElement?.getBoundingClientRect();
     if (!groupRect) return;
 
-    const index = Array.from(ref.current.parentElement?.children || []).indexOf(ref.current) - 1;
-    const prevSize = panelSizes[index] || 0;
-    const nextSize = panelSizes[index + 1] || 0;
+    const childrenArray = Array.from(ref.current.parentElement?.children || [])
+    const idx = childrenArray.indexOf(ref.current) - 1;
+    const prevSize = panelSizes[idx] || 0;
+    const nextSize = panelSizes[idx + 1] || 0;
 
     let delta: number;
     if ("touches" in e) {
+      const touch = e.touches[0];
+      if (!touch) return;
       delta =
         direction === "horizontal"
-          ? e.touches[0].clientX - groupRect.left
-          : e.touches[0].clientY - groupRect.top;
+          ? touch.clientX - groupRect.left
+          : touch.clientY - groupRect.top;
     } else {
       delta =
         direction === "horizontal" ? e.clientX - groupRect.left : e.clientY - groupRect.top;
@@ -160,51 +170,79 @@ function ResizableHandle({
     const totalSize = direction === "horizontal" ? groupRect.width : groupRect.height;
     const deltaPercent = (delta / totalSize) * 100;
 
-    const prevMinSize = panelConstraints[Object.keys(panelConstraints)[index]]?.minSize ?? 0;
-    const nextMinSize = panelConstraints[Object.keys(panelConstraints)[index + 1]]?.minSize ?? 0;
+    const panelKeys = Object.keys(panelConstraints)
+    const prevMinSize = panelConstraints[panelKeys[idx] || ""]?.minSize ?? 0;
+    const nextMinSize = panelConstraints[panelKeys[idx + 1] || ""]?.minSize ?? 0;
 
     const newPrevSize = Math.max(prevMinSize, prevSize + deltaPercent);
     const newNextSize = Math.max(nextMinSize, nextSize - deltaPercent);
 
     if (newPrevSize + newNextSize <= 100) {
       const newSizes = [...panelSizes];
-      newSizes[index] = newPrevSize;
-      newSizes[index + 1] = newNextSize;
+      newSizes[idx] = newPrevSize;
+      newSizes[idx + 1] = newNextSize;
       setPanelSizes(newSizes);
     }
   }, [isDragging, direction, panelSizes, panelConstraints, setPanelSizes]);
 
   const handleDragEnd = React.useCallback(() => {
     setIsDragging(false);
-  }, [setIsDragging]);
+  }, []);
 
   React.useEffect(() => {
     if (isDragging) {
-      window.addEventListener("mousemove", handleDrag);
-      window.addEventListener("touchmove", handleDrag);
-      window.addEventListener("mouseup", handleDragEnd);
-      window.addEventListener("touchend", handleDragEnd);
+      globalThis.addEventListener("mousemove", handleDrag);
+      globalThis.addEventListener("touchmove", handleDrag);
+      globalThis.addEventListener("mouseup", handleDragEnd);
+      globalThis.addEventListener("touchend", handleDragEnd);
       return () => {
-        window.removeEventListener("mousemove", handleDrag);
-        window.removeEventListener("touchmove", handleDrag);
-        window.removeEventListener("mouseup", handleDragEnd);
-        window.removeEventListener("touchend", handleDragEnd);
+        globalThis.removeEventListener("mousemove", handleDrag);
+        globalThis.removeEventListener("touchmove", handleDrag);
+        globalThis.removeEventListener("mouseup", handleDragEnd);
+        globalThis.removeEventListener("touchend", handleDragEnd);
       };
     }
   }, [isDragging, handleDrag, handleDragEnd]);
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    onKeyDown?.(e)
+    // Basic arrow key support for resizing
+    const index = Array.from(ref.current?.parentElement?.children || []).indexOf(ref.current!) - 1;
+    if (index < 0) return
+
+    let delta = 0
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') delta = -1
+    else if (e.key === 'ArrowRight' || e.key === 'ArrowDown') delta = 1
+
+    if (delta !== 0) {
+      e.preventDefault()
+      const newSizes = [...panelSizes]
+      newSizes[index] = (newSizes[index] || 0) + delta
+      newSizes[index + 1] = (newSizes[index + 1] || 0) - delta
+      setPanelSizes(newSizes)
+    }
+  }
 
   return (
     <div
       ref={ref}
       data-slot="resizable-handle"
+      role="slider"
+      aria-label="Resize handle"
+      aria-orientation={direction}
+      aria-valuenow={50}
+      aria-valuemin={0}
+      aria-valuemax={100}
+      tabIndex={0}
       className={classNames(
-        "bg-border focus-visible:ring-ring relative flex w-px items-center justify-center after:absolute after:inset-y-0 after:left-1/2 after:w-1 after:-translate-x-1/2 focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:outline-hidden",
+        "bg-border focus-visible:ring-ring relative flex w-px items-center justify-center after:absolute after:inset-y-0 after:left-1/2 after:w-4 after:-translate-x-1/2 focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:outline-hidden cursor-col-resize p-0",
         direction === "vertical" &&
-        "h-px w-full after:left-0 after:h-1 after:w-full after:translate-x-0 after:-translate-y-1/2",
+        "h-px w-full after:left-0 after:h-4 after:w-full after:translate-x-0 after:-translate-y-1/2 cursor-row-resize",
         className
       )}
       onMouseDown={handleDragStart}
       onTouchStart={handleDragStart}
+      onKeyDown={handleKeyDown}
       {...props}
     >
       {withHandle && (

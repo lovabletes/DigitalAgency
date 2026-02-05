@@ -8,7 +8,7 @@ function ScrollArea({
   className,
   children,
   ...props
-}: React.HTMLAttributes<HTMLDivElement>) {
+}: Readonly<React.HTMLAttributes<HTMLDivElement>>) {
   return (
     <div
       data-slot="scroll-area"

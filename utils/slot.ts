@@ -10,7 +10,7 @@ export const Slot = React.forwardRef<any, any>(({ children, ...props }, ref) => 
       ...props,
       ...(children.props as any),
       ref: ref || (children as any).ref,
-    } as any);
+    });
   }
   return children as React.ReactElement;
 });

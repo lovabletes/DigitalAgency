@@ -20,24 +20,34 @@ type AlertDialogProps = React.HTMLAttributes<HTMLDivElement> & {
   onOpenChange?: (open: boolean) => void
 }
 
-function AlertDialog({ children, open, defaultOpen, onOpenChange, ...rest }: AlertDialogProps) {
+function AlertDialog({ children, open, defaultOpen, onOpenChange, ...rest }: Readonly<AlertDialogProps>) {
   const isControlled = open !== undefined
   const [internal, setInternal] = React.useState<boolean>(!!defaultOpen)
   const isOpen = isControlled ? !!open : internal
-  const setOpen = (o: boolean) => {
+
+  const setOpen = React.useCallback((o: boolean) => {
     if (!isControlled) setInternal(o)
     onOpenChange?.(o)
-  }
+  }, [isControlled, onOpenChange])
+
   const titleId = React.useId()
   const descriptionId = React.useId()
+
+  const contextValue = React.useMemo(() => ({
+    open: isOpen,
+    setOpen,
+    titleId,
+    descriptionId
+  }), [isOpen, setOpen, titleId, descriptionId])
+
   return (
-    <AlertDialogContext.Provider value={{ open: isOpen, setOpen, titleId, descriptionId }}>
+    <AlertDialogContext.Provider value={contextValue}>
       <div data-slot="alert-dialog" {...rest}>{children}</div>
     </AlertDialogContext.Provider>
   )
 }
 
-function AlertDialogTrigger({ children, ...props }: React.ButtonHTMLAttributes<HTMLButtonElement>) {
+function AlertDialogTrigger({ children, ...props }: Readonly<React.ButtonHTMLAttributes<HTMLButtonElement>>) {
   const ctx = React.useContext(AlertDialogContext)
   return (
     <button
@@ -55,12 +65,12 @@ function AlertDialogTrigger({ children, ...props }: React.ButtonHTMLAttributes<H
   )
 }
 
-function AlertDialogPortal({ children }: { children?: React.ReactNode }) {
+function AlertDialogPortal({ children }: Readonly<{ children?: React.ReactNode }>) {
   if (typeof document === "undefined") return null
   return createPortal(<div data-slot="alert-dialog-portal">{children}</div>, document.body)
 }
 
-function AlertDialogOverlay({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
+function AlertDialogOverlay({ className, ...props }: Readonly<React.HTMLAttributes<HTMLDivElement>>) {
   return (
     <div
       data-slot="alert-dialog-overlay"
@@ -73,7 +83,7 @@ function AlertDialogOverlay({ className, ...props }: React.HTMLAttributes<HTMLDi
   )
 }
 
-function AlertDialogContent({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
+function AlertDialogContent({ className, ...props }: Readonly<React.HTMLAttributes<HTMLDivElement>>) {
   const ctx = React.useContext(AlertDialogContext)
   React.useEffect(() => {
     if (!ctx?.open) return
@@ -103,7 +113,7 @@ function AlertDialogContent({ className, ...props }: React.HTMLAttributes<HTMLDi
   )
 }
 
-function AlertDialogHeader({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
+function AlertDialogHeader({ className, ...props }: Readonly<React.HTMLAttributes<HTMLDivElement>>) {
   return (
     <div
       data-slot="alert-dialog-header"
@@ -113,7 +123,7 @@ function AlertDialogHeader({ className, ...props }: React.HTMLAttributes<HTMLDiv
   )
 }
 
-function AlertDialogFooter({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
+function AlertDialogFooter({ className, ...props }: Readonly<React.HTMLAttributes<HTMLDivElement>>) {
   return (
     <div
       data-slot="alert-dialog-footer"
@@ -126,7 +136,7 @@ function AlertDialogFooter({ className, ...props }: React.HTMLAttributes<HTMLDiv
   )
 }
 
-function AlertDialogTitle({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) {
+function AlertDialogTitle({ className, children, ...props }: Readonly<React.HTMLAttributes<HTMLHeadingElement>>) {
   const ctx = React.useContext(AlertDialogContext)
   return (
     <h2
@@ -134,11 +144,13 @@ function AlertDialogTitle({ className, ...props }: React.HTMLAttributes<HTMLHead
       data-slot="alert-dialog-title"
       className={classNames("text-lg font-semibold", className)}
       {...props}
-    />
+    >
+      {children}
+    </h2>
   )
 }
 
-function AlertDialogDescription({ className, ...props }: React.HTMLAttributes<HTMLParagraphElement>) {
+function AlertDialogDescription({ className, children, ...props }: Readonly<React.HTMLAttributes<HTMLParagraphElement>>) {
   const ctx = React.useContext(AlertDialogContext)
   return (
     <p
@@ -146,11 +158,13 @@ function AlertDialogDescription({ className, ...props }: React.HTMLAttributes<HT
       data-slot="alert-dialog-description"
       className={classNames("text-muted-foreground text-sm", className)}
       {...props}
-    />
+    >
+      {children}
+    </p>
   )
 }
 
-function AlertDialogAction({ className, ...props }: React.ButtonHTMLAttributes<HTMLButtonElement>) {
+function AlertDialogAction({ className, ...props }: Readonly<React.ButtonHTMLAttributes<HTMLButtonElement>>) {
   const ctx = React.useContext(AlertDialogContext)
   return (
     <button
@@ -166,7 +180,7 @@ function AlertDialogAction({ className, ...props }: React.ButtonHTMLAttributes<H
   )
 }
 
-function AlertDialogCancel({ className, ...props }: React.ButtonHTMLAttributes<HTMLButtonElement>) {
+function AlertDialogCancel({ className, ...props }: Readonly<React.ButtonHTMLAttributes<HTMLButtonElement>>) {
   const ctx = React.useContext(AlertDialogContext)
   return (
     <button
