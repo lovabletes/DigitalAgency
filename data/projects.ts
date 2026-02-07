@@ -1,17 +1,19 @@
 export const projects = [
     {
         id: "proj-1",
-        title: "Horizon E-Commerce",
-        cat: "Luxury Fashion",
-        color: "bg-blue-600",
-        image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&q=80"
+        title: "AYURVEDIC",
+        cat: "Healthcare",
+        color: "bg-emerald-600",
+        image: "/Ayur web.png",
+        liveUrl: "https://ayurveda-kvqa.onrender.com"
     },
     {
         id: "proj-2",
-        title: "Quantum Fitness",
-        cat: "AI Healthcare",
-        color: "bg-emerald-600",
-        image: "https://images.unsplash.com/photo-1576678927484-cc907957088c?w=800&q=80"
+        title: "Agro",
+        cat: "Agriculture",
+        color: "bg-green-600",
+        image: "/Tourweb.png",
+        liveUrl: "https://agro-2wvj.onrender.com"
     },
     {
         id: "proj-3",

@@ -1,0 +1,24 @@
+{
+    "projects": [
+        {
+            "name": "Digital Agency",
+            "services": [
+                "https://frontend-1lay.onrender.com",
+                "https://backend-wdlb.onrender.com",
+                "https://cms-3iy1.onrender.com"
+            ]
+        },
+        {
+            "name": "AYURVEDIC",
+            "services": [
+                "https://ayurveda-kvqa.onrender.com"
+            ]
+        },
+        {
+            "name": "Agro",
+            "services": [
+                "https://agro-2wvj.onrender.com"
+            ]
+        }
+    ]
+}

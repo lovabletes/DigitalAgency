@@ -43,7 +43,13 @@ export function ProjectsGallery({ projects }: Readonly<ProjectsGalleryProps>) {
                         {projects.map((project, idx) => (
                             <button
                                 key={project.id}
-                                onClick={() => setSelectedProject(project)}
+                                onClick={() => {
+                                    if (project.liveUrl) {
+                                        window.open(project.liveUrl, '_blank', 'noopener,noreferrer');
+                                    } else {
+                                        setSelectedProject(project);
+                                    }
+                                }}
                                 className="group relative overflow-hidden rounded-2xl cursor-pointer animate-slide-up transition-all duration-500 hover:scale-[1.02] shadow-xl hover:shadow-2xl hover:shadow-accent/20 outline-none focus-visible:ring-2 focus-visible:ring-accent text-left"
                                 style={{ animationDelay: `${idx * 100}ms` }}
                             >
@@ -75,7 +81,7 @@ export function ProjectsGallery({ projects }: Readonly<ProjectsGalleryProps>) {
                                     {/* Hover CTA */}
                                     <div className="overflow-hidden transition-all duration-300 max-h-0 group-hover:max-h-20 opacity-0 group-hover:opacity-100">
                                         <p className="text-sm text-white/80 font-medium mb-3 mt-2">
-                                            Click to view full details →
+                                            {project.liveUrl ? 'Click to visit website →' : 'Click to view full details →'}
                                         </p>
                                     </div>
                                 </div>
