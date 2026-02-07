@@ -16,6 +16,14 @@ export const projects = [
         liveUrl: "https://agro-2wvj.onrender.com"
     },
     {
+        id: "proj-new-1",
+        title: "CampusHub",
+        cat: "Education Tech",
+        color: "bg-blue-600",
+        image: "/CampusHub.png",
+        liveUrl: "https://campushub-website-prod.onrender.com/"
+    },
+    {
         id: "proj-3",
         title: "Zenith SaaS",
         cat: "Financial Tech",

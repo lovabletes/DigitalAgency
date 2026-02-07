@@ -54,40 +54,43 @@ export function ProjectsGallery({ projects }: Readonly<ProjectsGalleryProps>) {
                                 style={{ animationDelay: `${idx * 100}ms` }}
                             >
                                 {/* Project Image */}
-                                <div className="aspect-[4/3] overflow-hidden bg-accent/5">
+                                <div className="aspect-video overflow-hidden bg-neutral-100 relative">
                                     <img
                                         src={project.image}
                                         alt={project.title}
-                                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                        className="w-full h-full object-contain object-center transition-transform duration-700 filter brightness-95 group-hover:brightness-105 saturate-90 group-hover:saturate-100"
                                     />
+                                    {/* Glass sheen effect on hover */}
+                                    <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-20 transition-opacity duration-500" />
                                 </div>
 
-                                {/* Always visible gradient overlay */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/60 to-transparent" />
+                                {/* Refined gradient overlay - Better visibility */}
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-90 transition-opacity duration-300 group-hover:opacity-100" />
 
                                 {/* Category Badge - Top Right - Consistent Luxury Style */}
-                                <div className="absolute top-4 right-4 z-10">
+                                <div className="absolute top-4 right-4 z-10 transition-transform duration-300 group-hover:-translate-y-1">
                                     <span className="inline-block px-4 py-1.5 rounded-full bg-gradient-to-r from-accent/90 to-accent/70 backdrop-blur-md text-[#1a1a3e] font-bold text-xs uppercase tracking-wider shadow-lg border border-accent/30">
                                         {project.cat}
                                     </span>
                                 </div>
 
                                 {/* Content - Always Visible - Bottom */}
-                                <div className="absolute bottom-0 left-0 right-0 p-6 z-10">
-                                    <h3 className="text-2xl font-black text-white mb-2 tracking-tight leading-tight" style={{ textShadow: '0 2px 10px rgba(0,0,0,0.8)' }}>
+                                <div className="absolute bottom-0 left-0 right-0 p-6 z-10 translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+                                    <h3 className="text-2xl font-black text-white mb-1 tracking-tight leading-tight drop-shadow-lg">
                                         {project.title}
                                     </h3>
 
                                     {/* Hover CTA */}
-                                    <div className="overflow-hidden transition-all duration-300 max-h-0 group-hover:max-h-20 opacity-0 group-hover:opacity-100">
-                                        <p className="text-sm text-white/80 font-medium mb-3 mt-2">
-                                            {project.liveUrl ? 'Click to visit website →' : 'Click to view full details →'}
+                                    <div className="overflow-hidden transition-all duration-500 max-h-0 group-hover:max-h-20 opacity-0 group-hover:opacity-100">
+                                        <div className="h-0.5 w-12 bg-accent mb-3 mt-2" />
+                                        <p className="text-sm text-white/90 font-medium transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-75">
+                                            {project.liveUrl ? 'Visit Website →' : 'View Details →'}
                                         </p>
                                     </div>
                                 </div>
 
                                 {/* Border Animation */}
-                                <div className="absolute inset-0 border-2 border-transparent group-hover:border-accent/50 rounded-2xl transition-all duration-500" />
+                                <div className="absolute inset-0 border border-white/10 group-hover:border-accent/50 rounded-2xl transition-all duration-500 pointer-events-none" />
                             </button>
                         ))}
                     </div>

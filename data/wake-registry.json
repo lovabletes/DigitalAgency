@@ -19,6 +19,12 @@
             "services": [
                 "https://agro-2wvj.onrender.com"
             ]
+        },
+        {
+            "name": "CampusHub",
+            "services": [
+                "https://campushub-website-prod.onrender.com/"
+            ]
         }
     ]
 }
