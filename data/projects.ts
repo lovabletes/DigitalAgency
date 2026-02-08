@@ -16,6 +16,14 @@ export const projects = [
         liveUrl: "https://agro-2wvj.onrender.com"
     },
     {
+        id: "proj-mb",
+        title: "Maison Belle",
+        cat: "Cosmetic Brand",
+        color: "bg-pink-600",
+        image: "/Maison_Belle.png",
+        liveUrl: "https://maisonbelle.onrender.com/"
+    },
+    {
         id: "proj-new-1",
         title: "CampusHub",
         cat: "Education Tech",
