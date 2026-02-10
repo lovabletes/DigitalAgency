@@ -1,1 +1,1 @@
-export const brands = ["Vogue", "Forbes", "TechCrunch", "Bloomberg", "Wired", "Fortune", "Quartz"];
+export const brands = ["Bespoke Architecture", "Elite Engineering", "Artistic Integrity", "Digital Mastery", "Meticulous Craft", "Visionary Scale"];

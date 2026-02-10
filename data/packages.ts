@@ -44,14 +44,15 @@ export const packages = [
         featured: false,
         features: [
             "Unlimited Pages & Features",
-            "Custom Web + Mobile App",
-            "Dedicated Development Team",
-            "Cloud Infrastructure Setup",
-            "Advanced Security & Compliance",
-            "API & Third-Party Integrations",
-            "12 Months Premium Support",
-            "Monthly Performance Reports",
-            "Priority Feature Requests"
+            "Custom Web + Mobile + TV Apps",
+            "Dedicated Elite Development Team",
+            "Azure Cloud Infrastructure & Scaling",
+            "Monolith to Microservices Migration",
+            "AI & LLM Ranking Strategy (GEO)",
+            "API & System Interoperability",
+            "24/7 Priority Support & Maintenance",
+            "Monthly Technical Audit Reports",
+            "Executive Project Management"
         ],
         cta: "Discuss Enterprise"
     }

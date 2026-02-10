@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { ProjectModal } from "./ProjectModal";
 
 interface Project {
@@ -55,10 +56,14 @@ export function ProjectsGallery({ projects }: Readonly<ProjectsGalleryProps>) {
                             >
                                 {/* Project Image */}
                                 <div className="aspect-video overflow-hidden bg-neutral-100 relative">
-                                    <img
+                                    <Image
                                         src={project.image}
                                         alt={project.title}
-                                        className="w-full h-full object-contain object-center transition-transform duration-700 filter brightness-95 group-hover:brightness-105 saturate-90 group-hover:saturate-100"
+                                        fill
+                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                        quality={85}
+                                        className="object-contain object-center transition-transform duration-700 filter brightness-95 group-hover:brightness-105 saturate-90 group-hover:saturate-100"
+                                        loading="lazy"
                                     />
                                     {/* Glass sheen effect on hover */}
                                     <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-20 transition-opacity duration-500" />

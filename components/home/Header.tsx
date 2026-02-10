@@ -5,6 +5,7 @@ import { ChevronRightIcon, MenuIcon, CloseIcon } from "@/components/icons/icons"
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { classNames } from "@/utils/class-names";
+import Link from "next/link";
 
 interface NavLink {
     name: string;
@@ -35,7 +36,7 @@ export function Header({ navLinks }: Readonly<HeaderProps>) {
                 : "bg-gradient-to-r from-[#1a1a3e] via-[#1a1a3e] to-[#2a2a4e] dark:from-[#0f1429] dark:to-[#1a1a3e] shadow-lg"
         )}>
             <div className="container-custom flex h-16 items-center justify-between px-6">
-                <div className="flex items-center gap-2.5 group cursor-pointer">
+                <a href="/" className="flex items-center gap-2.5 group cursor-pointer">
                     <div className="relative h-10 w-10 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
                         <Image
                             src="/images/Logo.png"
@@ -49,7 +50,7 @@ export function Header({ navLinks }: Readonly<HeaderProps>) {
                     <span className="text-xl font-black tracking-tight text-white dark:text-[#f7e7ce]">
                         SiteCreation<span className="text-accent italic">.in</span>
                     </span>
-                </div>
+                </a>
 
                 {/* Desktop Nav */}
                 <nav className="hidden md:flex items-center gap-10">
@@ -62,9 +63,11 @@ export function Header({ navLinks }: Readonly<HeaderProps>) {
                             {link.name}
                         </a>
                     ))}
-                    <Button className="btn-lux-primary group">
-                        Get Started
-                        <ChevronRightIcon className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    <Button className="btn-lux-primary group" asChild>
+                        <Link href="/contact">
+                            Get Started
+                            <ChevronRightIcon className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                        </Link>
                     </Button>
                 </nav>
 
@@ -91,7 +94,9 @@ export function Header({ navLinks }: Readonly<HeaderProps>) {
                                 {link.name}
                             </a>
                         ))}
-                        <Button className="btn-lux-primary w-full py-8 text-xl">Get Started</Button>
+                        <Button className="btn-lux-primary w-full py-8 text-xl" asChild>
+                            <Link href="/contact" onClick={() => setIsMenuOpen(false)}>Get Started</Link>
+                        </Button>
                     </nav>
                 </div>
             )}

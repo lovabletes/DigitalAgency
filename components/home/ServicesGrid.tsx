@@ -11,6 +11,7 @@ interface Service {
     tags: string[];
     accent: string;
     icon: React.ReactNode;
+    link?: string;
 }
 
 interface ServicesGridProps {
@@ -42,12 +43,12 @@ export function ServicesGrid({ services }: Readonly<ServicesGridProps>) {
                     </p>
                 </div>
 
-                {/* Services Grid - Enhanced Cards with 3D Effects */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 perspective-1500">
+                {/* Services Grid - Compact One-Row Layout */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-3 perspective-1500">
                     {services.map((service, idx) => (
                         <div
                             key={service.id}
-                            className="group relative animate-slide-up"
+                            className="group relative animate-slide-up h-full"
                             style={{
                                 animationDelay: `${idx * 150}ms`,
                             }}
@@ -55,66 +56,64 @@ export function ServicesGrid({ services }: Readonly<ServicesGridProps>) {
                             {/* Card with gradient border effect */}
                             <div className="relative h-full">
                                 {/* Gradient Border Container */}
-                                <div className="absolute inset-0 bg-gradient-to-br from-accent/40 via-accent/20 to-transparent rounded-[2rem] opacity-0 group-hover:opacity-100 blur-sm transition-opacity duration-500" />
+                                <div className="absolute inset-0 bg-gradient-to-br from-accent/40 via-accent/20 to-transparent rounded-xl opacity-0 group-hover:opacity-100 blur-sm transition-opacity duration-500" />
 
                                 {/* Main Card with 3D Effect */}
                                 <div
                                     className={classNames(
-                                        "relative h-full bg-white dark:bg-[#1a1a3e]/60 backdrop-blur-xl rounded-[2rem] p-10 border-2 border-border/50 dark:border-white/10 group-hover:border-accent/30 shadow-xl card-3d-deep depth-layer-2 flex flex-col",
+                                        "relative h-full bg-white dark:bg-[#1a1a3e]/60 backdrop-blur-xl rounded-xl p-6 border border-border/50 dark:border-white/10 group-hover:border-accent/30 shadow-lg card-3d-deep depth-layer-2 flex flex-col",
                                     )}
                                 >
                                     {/* Animated Background Gradient */}
-                                    <div className={classNames("absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-[0.08] transition-opacity duration-700", service.accent)} />
+                                    <div className={classNames("absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-[0.08] transition-opacity duration-700 rounded-2xl", service.accent)} />
 
                                     {/* Number Watermark with 3D float */}
-                                    <div className="absolute top-4 right-6 text-[8rem] font-black text-foreground/[0.03] dark:text-white/[0.03] group-hover:text-accent/[0.12] transition-all duration-700 font-serif leading-none pointer-events-none select-none group-hover:scale-110 layer-3d-back">
+                                    <div className="absolute top-2 right-4 text-6xl font-black text-foreground/[0.08] dark:text-white/[0.05] group-hover:text-accent/[0.15] transition-all duration-700 font-serif leading-none pointer-events-none select-none layer-3d-back">
                                         {String(idx + 1).padStart(2, '0')}
                                     </div>
 
                                     <div className="relative z-10 layer-3d-front flex flex-col h-full">
-                                        {/* Icon with 3D tilt */}
+                                        {/* Icon - Smaller with fixed type casting */}
                                         <div
-                                            className="mb-8 inline-flex h-16 w-16 items-center justify-center rounded-xl bg-gradient-to-br from-accent/20 to-accent/10 text-accent border border-accent/30 shadow-lg shadow-accent/10 tilt-hover"
+                                            className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-accent/20 to-accent/10 text-accent border border-accent/30 shadow-lg shadow-accent/10 tilt-hover"
                                         >
-                                            {service.icon}
+                                            {React.cloneElement(service.icon as React.ReactElement<{ size?: number }>, { size: 24 })}
                                         </div>
 
-                                        {/* Title */}
-                                        <div className="min-h-[80px] flex flex-col justify-center">
-                                            <h3 className="text-2xl md:text-3xl font-black text-foreground dark:text-white mb-0 tracking-tight leading-tight group-hover:text-accent transition-colors duration-300">
-                                                {service.title}
-                                            </h3>
-                                        </div>
+                                        {/* Title - Compact */}
+                                        <h3 className="text-base font-black text-foreground dark:text-white mb-2 tracking-tight leading-tight group-hover:text-accent transition-colors duration-300 min-h-[40px] flex items-center">
+                                            {service.title}
+                                        </h3>
 
                                         {/* Decorative underline */}
-                                        <div className="w-16 h-1 bg-gradient-to-r from-accent to-accent/30 mb-6 group-hover:w-24 transition-all duration-500" />
+                                        <div className="w-8 h-0.5 bg-gradient-to-r from-accent to-accent/30 mb-4 group-hover:w-12 transition-all duration-500" />
 
-                                        {/* Description */}
-                                        <div className="min-h-[100px] mb-8">
-                                            <p className="text-base text-muted-foreground dark:text-[#f7e7ce]/70 leading-relaxed font-medium">
+                                        {/* Description - More compact with line clamp */}
+                                        <div className="mb-5 flex-grow">
+                                            <p className="text-[11px] text-muted-foreground dark:text-[#f7e7ce]/70 leading-relaxed font-medium line-clamp-4">
                                                 {service.desc}
                                             </p>
                                         </div>
 
-                                        {/* Feature Tags */}
-                                        <div className="flex flex-wrap gap-2.5 mb-10 flex-grow">
-                                            {service.tags.map((tag) => (
+                                        {/* Feature Tags - Minimalist */}
+                                        <div className="flex flex-wrap gap-1 mb-5">
+                                            {service.tags.slice(0, 2).map((tag) => (
                                                 <span
                                                     key={tag}
-                                                    className="px-3 py-1.5 rounded-lg bg-accent/5 dark:bg-accent/10 border border-accent/20 text-xs font-bold text-accent/80 tracking-wide uppercase group-hover:bg-accent/10 group-hover:border-accent/40 group-hover:text-accent dark:group-hover:text-accent transition-all duration-300 depth-layer-1"
+                                                    className="px-2 py-0.5 rounded bg-accent/5 dark:bg-accent/10 border border-accent/10 text-[9px] font-bold text-accent/80 tracking-wide uppercase"
                                                 >
                                                     {tag}
                                                 </span>
                                             ))}
                                         </div>
 
-                                        {/* CTA - Text Link with Arrow */}
+                                        {/* CTA - Compact */}
                                         <a
-                                            href="/"
-                                            className="inline-flex items-center gap-2 text-accent font-black text-xs uppercase tracking-[0.2em] group-hover:gap-4 transition-all duration-300"
+                                            href={service.link ?? "/"}
+                                            className="inline-flex items-center gap-1.5 text-accent font-black text-[9px] uppercase tracking-[0.15em] group-hover:gap-3 transition-all duration-300 mt-auto"
                                         >
-                                            <span className="relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-0.5 after:bg-accent group-hover:after:w-full after:transition-all after:duration-300">Explore Service</span>
-                                            <ChevronRightIcon size={16} className="group-hover:translate-x-1 transition-transform" />
+                                            <span className="relative after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-0.5 after:bg-accent group-hover:after:w-full after:transition-all after:duration-300">Explore</span>
+                                            <ChevronRightIcon size={10} className="group-hover:translate-x-1 transition-transform" />
                                         </a>
                                     </div>
                                 </div>

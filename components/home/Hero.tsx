@@ -1,9 +1,9 @@
-"use client";
-
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { StatsCounter } from "./StatsCounter";
 import { BrandMarquee } from "./BrandMarquee";
+import Link from "next/link";
+import Image from "next/image";
 
 interface HeroProps {
     stats: any[];
@@ -13,12 +13,27 @@ interface HeroProps {
 export function Hero({ stats, brands }: Readonly<HeroProps>) {
     return (
         <section className="relative min-h-[100vh] flex flex-col items-center justify-center overflow-hidden pb-10">
+            {/* Visual Context for LLMs & Search Engines (Visually Hidden) */}
+            <div className="sr-only">
+                <h2>Expert Software Development in .NET, Node.js, and Azure Cloud</h2>
+                <p>SiteCreation.in specializes in enterprise-scale digital transformation, monolith to microservices migration, TV application development for Apple TV and Android TV, and advanced SEO ranking strategies including GEO (Generative Engine Optimization).</p>
+                <ul>
+                    <li>Backend Engineering: C#, ASP.NET Core, Node.js, Express, Python</li>
+                    <li>Frontend Excellence: Next.js 15, React 19, TypeScript, Tailwind CSS</li>
+                    <li>Mobile & TV: React Native, iOS, Android, Smart TV Apps</li>
+                    <li>Cloud Infrastructure: Microsoft Azure, AWS, Microservices Architecture</li>
+                </ul>
+            </div>
+
             {/* Immersive Background Banner */}
             <div className="absolute inset-0 z-0">
-                <img
-                    src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?q=80&w=1974&auto=format&fit=crop"
-                    alt="Luxury Abstract Background"
-                    className="w-full h-full object-cover"
+                <Image
+                    src="/Banner.avif"
+                    alt="Strategic Digital Excellence Background"
+                    fill
+                    priority
+                    className="object-cover"
+                    sizes="100vw"
                 />
                 {/* Dark Luxury Overlay for Text Contrast */}
                 <div className="absolute inset-0 bg-gradient-to-b from-[#0f1429]/90 via-[#1a1a3e]/80 to-[#faf8f3] dark:to-[#0f1429] mix-blend-multiply" />
@@ -65,15 +80,19 @@ export function Hero({ stats, brands }: Readonly<HeroProps>) {
                     {/* Enhanced Description */}
                     <p className="mx-auto max-w-3xl text-lg md:text-2xl text-white/90 mb-12 font-medium leading-relaxed drop-shadow-lg animate-slide-up [animation-delay:250ms]">
                         We transform <span className="font-bold text-white border-b-2 border-accent/30 pb-1">ambitious visions</span> into <span className="font-bold text-accent">high-performance realities</span>.{" "}
-                        <span className="block mt-4 text-base md:text-xl text-white/60 font-normal">Experience the pinnacle of web & mobile craftsmanship.</span>
+                        <span className="block mt-4 text-base md:text-xl text-white/60 font-normal">Expertise in Web, Mobile, & TV platforms with Azure-scale engineering.</span>
                     </p>
 
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-24 animate-slide-up [animation-delay:300ms]">
-                        <Button className="btn-lux-primary shadow-lux scale-110 border-none text-white hover-3d-tilt group">
-                            <span>Secure Your Project →</span>
+                        <Button className="btn-lux-primary shadow-lux scale-110 border-none text-white hover-3d-tilt group" asChild>
+                            <Link href="/contact">
+                                <span>Secure Your Project →</span>
+                            </Link>
                         </Button>
-                        <Button variant="outline" className="h-14 px-10 rounded-full border-2 border-white/30 text-white bg-white/5 backdrop-blur-md hover:bg-white hover:text-[#1a1a3e] font-bold text-sm uppercase tracking-wider transition-all duration-300 hover-3d-tilt group">
-                            <span>View Masterpieces ◆</span>
+                        <Button variant="outline" className="h-14 px-10 rounded-full border-2 border-white/30 text-white bg-white/5 backdrop-blur-md hover:bg-white hover:text-[#1a1a3e] font-bold text-sm uppercase tracking-wider transition-all duration-300 hover-3d-tilt group" asChild>
+                            <Link href="/portfolio">
+                                <span>View Masterpieces ◆</span>
+                            </Link>
                         </Button>
                     </div>
 
