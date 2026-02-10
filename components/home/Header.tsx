@@ -40,7 +40,7 @@ export function Header({ navLinks }: Readonly<HeaderProps>) {
                     <div className="relative h-10 w-10 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
                         <Image
                             src="/images/Logo.png"
-                            alt="Logo"
+                            alt="SiteCreation.in - Elite Digital Agency Logo"
                             width={40}
                             height={40}
                             className="object-contain"

@@ -7,6 +7,9 @@ import { Footer } from "@/components/home/Footer";
 import { PageHero } from "@/components/ui/PageHero";
 import { Button } from "@/components/ui/button";
 import { CheckCircle2, AlertCircle } from "lucide-react";
+import { ServiceSchema } from "@/components/ui/ServiceSchema";
+
+
 
 export default function ContactPage() {
     const [status, setStatus] = React.useState<"idle" | "loading" | "success" | "error">("idle");
@@ -34,7 +37,8 @@ export default function ContactPage() {
                 setStatus("error");
                 setErrorMessage(data.message || "Something went wrong. Please try again.");
             }
-        } catch (err) {
+        } catch (err: unknown) {
+            console.error("Contact form error:", err);
             setStatus("error");
             setErrorMessage("Failed to send message. Please check your connection.");
         }
@@ -43,6 +47,12 @@ export default function ContactPage() {
     return (
         <div className="flex min-h-screen flex-col bg-background">
             <Header navLinks={navLinks} />
+
+            <ServiceSchema
+                name="Inquiry & Partnership"
+                description="Secure your digital legacy with a strategic partnership with SiteCreation.in."
+                url="/contact"
+            />
 
             <main className="flex-1 relative">
                 <PageHero

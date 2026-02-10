@@ -544,6 +544,22 @@ export const FacebookIcon: React.FC<IconProps & React.SVGProps<SVGSVGElement>> =
   </SvgIcon>
 );
 
+export const LinkedinIcon: React.FC<IconProps & React.SVGProps<SVGSVGElement>> = (p) => (
+  <SvgIcon {...p} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+    <rect x="2" y="9" width="4" height="12" />
+    <circle cx="4" cy="4" r="2" />
+  </SvgIcon>
+);
+
+export const InstagramIcon: React.FC<IconProps & React.SVGProps<SVGSVGElement>> = (p) => (
+  <SvgIcon {...p} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+  </SvgIcon>
+);
+
 export const AppleIcon: React.FC<IconProps & React.SVGProps<SVGSVGElement>> = (p) => (
   <SvgIcon {...p} viewBox="0 0 24 24" fill="currentColor">
     <path d="M18.7 8.5c-.2-2.5-1.1-4.5-2.6-5.8-1.3-1.1-2.9-1.7-4.5-1.7h-.1c-.4 0-.8.1-1.2.2-.3.1-.6.2-.9.3-.3.1-.6.2-.9.2-.4 0-.8-.1-1.2-.2-.4-.1-.8-.2-1.2-.2h-.1c-1.6 0-3.2.6-4.4 1.7C.9 5.3 0 7.8 0 10.6c0 2.1.4 4 1.3 5.6.9 1.6 2.1 2.8 3.6 3.6 1.2.6 2.4.9 3.7.9.4 0 .8-.1 1.2-.2.4-.1.8-.2 1.2-.2.4 0 .8.1 1.2.2.4.1.8.2 1.2.2 1.3 0 2.6-.3 3.7-.9 1.5-.8 2.7-2 3.6-3.6.9-1.6 1.3-3.5 1.3-5.6 0-.4 0-.8-.1-1.2-.1-.4-.1-.8-.2-1.2zM12 5.5c.5 0 1.1.2 1.6.5.5.3.9.8 1.1 1.4.2.6.2 1.2 0 1.8-.2.6-.6 1.1-1.1 1.4-.5.3-1.1.5-1.6.5s-1.1-.2-1.6-.5c-.5-.3-.9-.8-1.1-1.4-.2-.6-.2-1.2 0-1.8.2-.6.6-1.1 1.1-1.4.5-.3 1.1-.5 1.6-.5z" />
@@ -715,6 +731,8 @@ export const Icons = {
   GithubIcon,
   GoogleIcon,
   FacebookIcon,
+  LinkedinIcon,
+  InstagramIcon,
   // Requested domain
   AdmissionsIcon,
   DepartmentsIcon,
@@ -755,4 +773,4 @@ export const Icons = {
 
 
 
-export type { IconProps };
+export type { IconProps } from "./IconProps";

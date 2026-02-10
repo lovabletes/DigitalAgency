@@ -1,14 +1,28 @@
+import { Metadata } from "next";
 import { navLinks, projects } from "@/data";
 import { Header } from "@/components/home/Header";
 import { Footer } from "@/components/home/Footer";
 import { PageHero } from "@/components/ui/PageHero";
 import { CTABanner } from "@/components/home/CTABanner";
+import { ServiceSchema } from "@/components/ui/ServiceSchema";
 import Image from "next/image";
+
+export const metadata: Metadata = {
+    title: "Portfolio | Elite Digital Masterpieces by SiteCreation.in",
+    description: "Explore our curated showcase of high-performance web and mobile projects. SiteCreation.in delivers bespoke digital experiences for global and local Chandigarh brands.",
+    keywords: ["SiteCreation Portfolio", "Web Development Projects", "Luxury Digital Design Case Studies", "Chandigarh App Development"],
+};
 
 export default function PortfolioPage() {
     return (
         <div className="flex min-h-screen flex-col bg-background">
             <Header navLinks={navLinks} />
+
+            <ServiceSchema
+                name="Digital Portfolio"
+                description="Curated showcase of elite web and mobile engineering projects by SiteCreation.in."
+                url="/portfolio"
+            />
 
             <main className="flex-1 relative">
                 <PageHero

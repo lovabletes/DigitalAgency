@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Github, Twitter, Linkedin, Instagram } from "lucide-react";
+import { GithubIcon, XIcon, LinkedinIcon, InstagramIcon } from "@/components/icons/icons";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -98,10 +98,10 @@ export function Footer() {
                         {/* Social Icons */}
                         <div className="flex gap-3">
                             {[
-                                { icon: Github, label: 'GitHub', href: 'https://github.com/sitecreation' },
-                                { icon: Twitter, label: 'Twitter', href: 'https://twitter.com/sitecreation' },
-                                { icon: Linkedin, label: 'LinkedIn', href: 'https://linkedin.com/company/sitecreation' },
-                                { icon: Instagram, label: 'Instagram', href: 'https://instagram.com/sitecreation' },
+                                { icon: GithubIcon, label: 'GitHub', href: 'https://github.com/sitecreation' },
+                                { icon: XIcon, label: 'Twitter', href: 'https://twitter.com/sitecreation' },
+                                { icon: LinkedinIcon, label: 'LinkedIn', href: 'https://linkedin.com/company/sitecreation' },
+                                { icon: InstagramIcon, label: 'Instagram', href: 'https://instagram.com/sitecreation' },
                             ].map((social, idx) => (
                                 <a
                                     key={social.label}

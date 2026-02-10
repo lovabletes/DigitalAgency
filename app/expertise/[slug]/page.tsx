@@ -45,7 +45,7 @@ export default async function ExpertisePage({ params }: Readonly<PageProps>) {
                         },
                         "keywords": [topic.title, topic.category, ...topic.highlights].join(", "),
                         "articleSection": topic.category,
-                        "inLanguage": "en-US",
+                        "inLanguage": "en-IN",
                         "datePublished": "2026-02-09",
                         "dateModified": new Date().toISOString().split('T')[0],
                     })

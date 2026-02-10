@@ -15,12 +15,23 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "SiteCreation.in | Bespoke Web Design & Luxury Digital Solutions",
+    default: "SiteCreation.in | Elite Web Design & Digital Solutions in Chandigarh",
     template: "%s | SiteCreation.in"
   },
-  description: "Experience elite digital craftsmanship. SiteCreation.in architects high-performance, visually stunning web and mobile experiences for ambitious brands globally.",
-  keywords: ["Web Design", "Digital Agency", "Luxury Web Development", "Next.js Development", "Chandigarh Web Agency", "Bespoke Digital Solutions"],
-  authors: [{ name: "SiteCreation.in Team" }],
+  description: "Architecting elite digital legacies. SiteCreation.in is a premier digital agency in Chandigarh specializing in high-performance web development, mobile apps, and Generative Engine Optimization (GEO).",
+  keywords: [
+    "SiteCreation",
+    "SiteCreation.in",
+    "Web Design Chandigarh",
+    "Digital Agency India",
+    "Next.js Development Agency",
+    "Luxury Web Design",
+    "Enterprise Software Solutions",
+    "Mobile App Development Chandigarh",
+    "GEO Optimization",
+    "Search Mastery"
+  ],
+  authors: [{ name: "SiteCreation.in Team", url: "https://sitecreation.in" }],
   creator: "SiteCreation.in",
   publisher: "SiteCreation.in",
   formatDetection: {
@@ -33,31 +44,31 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "SiteCreation.in | Bespoke Web Design & Luxury Digital Solutions",
-    description: "Architecting the future of digital luxury. High-performance web and mobile experiences tailored for excellence.",
+    title: "SiteCreation.in | Elite Web Design & Digital Solutions in Chandigarh",
+    description: "Transform your vision into a high-performance digital legacy. Bespoke web and mobile engineering for global brands.",
     url: "https://sitecreation.in",
     siteName: "SiteCreation.in",
     images: [
       {
-        url: "/images/og-image.png",
+        url: "/Banner.avif",
         width: 1200,
         height: 630,
         alt: "SiteCreation.in - Luxury Digital Agency",
       },
     ],
-    locale: "en_US",
+    locale: "en_IN",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "SiteCreation.in | Luxury Digital Solutions",
-    description: "Transform your vision into a digital legacy. Elite web design and development.",
-    images: ["/images/og-image.png"],
+    description: "Architecting the future of digital luxury. Elite web design and development in Chandigarh.",
+    images: ["/Banner.avif"],
   },
   category: "Technology",
   verification: {
-    google: "google-site-verification-placeholder",
-    yandex: "yandex-verification-placeholder",
+    google: "",
+    yandex: "",
   },
   robots: {
     index: true,
@@ -78,7 +89,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en-IN">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

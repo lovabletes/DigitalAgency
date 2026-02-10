@@ -1,19 +1,33 @@
+import { Metadata } from "next";
 import { navLinks } from "@/data";
 import { Header } from "@/components/home/Header";
 import { Footer } from "@/components/home/Footer";
 import { PageHero } from "@/components/ui/PageHero";
 import { CTABanner } from "@/components/home/CTABanner";
+import { ServiceSchema } from "@/components/ui/ServiceSchema";
+
+export const metadata: Metadata = {
+    title: "About SiteCreation.in | Elite Digital Agency in Chandigarh",
+    description: "Learn about SiteCreation.in, a premier software development collective in Chandigarh. We architect high-performance .NET, Node.js, and Cloud solutions for global brands.",
+    keywords: ["SiteCreation Story", "Digital Agency Chandigarh", "Software Development Team India", "Elite Engineering Collective"],
+};
 
 export default function AboutPage() {
     return (
         <div className="flex min-h-screen flex-col bg-background">
             <Header navLinks={navLinks} />
 
+            <ServiceSchema
+                name="About SiteCreation.in"
+                description="Elite software engineering and digital craftsmanship collective based in Chandigarh, India."
+                url="/about"
+            />
+
             <main className="flex-1 relative">
                 <PageHero
                     title="Our"
                     subtitle="Legacy"
-                    description="Crafting digital excellence since inception. We are a team of visionaries, designers, and engineers dedicated to pushing the boundaries of what's possible in the digital realm."
+                    description="Architecting high-performance digital ecosystems since 2018. Based in Chandigarh, we empower global brands with elite engineering in .NET, Node.js, and Azure Cloud."
                 />
 
                 <section className="py-20 bg-background container-custom">

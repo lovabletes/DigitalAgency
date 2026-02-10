@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
             url,
             siteName: "SiteCreation.in",
             type: "article",
-            locale: "en_US",
+            locale: "en_IN",
             authors: ["SiteCreation.in Team"],
         },
         twitter: {
