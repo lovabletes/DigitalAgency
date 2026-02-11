@@ -91,6 +91,9 @@ export function Footer() {
                                 SiteCreation<span className="text-accent italic">.in</span>
                             </span>
                         </div>
+                        <p className="text-accent font-black uppercase tracking-widest text-[10px] mb-4">
+                            Best Web Designing Company in Chandigarh
+                        </p>
                         <p className="text-[#f7e7ce]/70 text-base leading-relaxed font-medium mb-8 max-w-sm">
                             Architecting premium digital experiences for the world's most ambitious brands. Uncompromising quality, elegant execution.
                         </p>
@@ -163,8 +166,9 @@ export function Footer() {
                             <ul className="space-y-4 text-[#f7e7ce]/70 font-medium">
                                 <li className="flex items-start gap-2">
                                     <span className="text-accent">📍</span>
-                                    <span>Chandigarh, India</span>
+                                    <span>Chandigarh • Mohali • Panchkula</span>
                                 </li>
+
                                 <li className="flex items-start gap-2">
                                     <span className="text-accent">📧</span>
                                     <a href="mailto:support@sitecreation.in" className="hover:text-white transition-colors">

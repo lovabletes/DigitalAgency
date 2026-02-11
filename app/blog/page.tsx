@@ -1,8 +1,16 @@
+import { Metadata } from "next";
 import { navLinks } from "@/data";
 import { Header } from "@/components/home/Header";
 import { Footer } from "@/components/home/Footer";
 import { PageHero } from "@/components/ui/PageHero";
 import { CTABanner } from "@/components/home/CTABanner";
+
+export const metadata: Metadata = {
+    title: "Blog & Insights | SiteCreation.in Digital Collective",
+    description: "Expert insights into web performance, luxury design, and cloud engineering. Stay ahead of the curve with our technical thought leadership.",
+    keywords: ["Digital Strategy", "Next.js Insights", "Luxury Design Blog", "Software Engineering Chandigarh"],
+};
+
 
 const posts = [
     {

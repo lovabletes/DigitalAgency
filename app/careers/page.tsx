@@ -1,8 +1,16 @@
+import { Metadata } from "next";
 import { navLinks } from "@/data";
 import { Header } from "@/components/home/Header";
 import { Footer } from "@/components/home/Footer";
 import { PageHero } from "@/components/ui/PageHero";
 import { CTABanner } from "@/components/home/CTABanner";
+
+export const metadata: Metadata = {
+    title: "Careers | Join the SiteCreation.in Engineering Collective",
+    description: "Build the future of digital luxury. We are looking for elite engineers, designers, and strategists to join our remote-first collective.",
+    keywords: ["Tech Careers India", "Remote Engineering Jobs", "Luxury Brand Design Jobs", "Next.js Developer Jobs"],
+};
+
 
 const openings = [
     {

@@ -8,9 +8,48 @@ import { ChevronRight, Zap, CheckCircle2 } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import { Metadata } from "next";
+
 interface PageProps {
     params: Promise<{ slug: string }>;
 }
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+    const { slug } = await params;
+    const topic = expertiseTopics[slug];
+
+    if (!topic) {
+        return {
+            title: "Expertise Not Found",
+        };
+    }
+
+    return {
+        title: `${topic.title} | SiteCreation.in Specialized Expertise`,
+        description: topic.shortDesc,
+        keywords: [topic.title, topic.category, ...topic.highlights, "SiteCreation Expertise", "Chandigarh Digital Agency"],
+        openGraph: {
+            title: `${topic.title} | Elite Engineering by SiteCreation.in`,
+            description: topic.shortDesc,
+            type: "article",
+            url: `https://sitecreation.in/expertise/${slug}`,
+            images: [
+                {
+                    url: "/Banner.avif", // Can be topic specific if available
+                    width: 1200,
+                    height: 630,
+                    alt: topic.title,
+                },
+            ],
+        },
+        twitter: {
+            card: "summary_large_image",
+            title: `${topic.title} | Technical Mastery`,
+            description: topic.shortDesc,
+        },
+    };
+}
+
 
 export default async function ExpertisePage({ params }: Readonly<PageProps>) {
     const { slug } = await params;

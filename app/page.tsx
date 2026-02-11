@@ -28,8 +28,8 @@ export default function LandingPage() {
     "@graph": [
       {
         "@type": "ProfessionalService",
-        "name": "SiteCreation.in",
-        "description": "Leading digital collective specializing in high-performance web development, mobile applications, and Generative Engine Optimization (GEO). We architect bespoke digital legacies using Next.js, React, and serverless technologies.",
+        "name": "SiteCreation.in | Best Web Design & Development Company in Chandigarh",
+        "description": "SiteCreation.in is Chandigarh's premier digital engineering collective. We specialize in luxury web design, high-performance Node.js & .NET development, and Generative Engine Optimization (GEO) for global brands and local businesses in Chandigarh, India.",
         "image": "https://sitecreation.in/images/Logo.png",
         "@id": "https://sitecreation.in",
         "url": "https://sitecreation.in",
@@ -39,13 +39,27 @@ export default function LandingPage() {
           "@type": "Person",
           "name": "Elite Engineering Team"
         },
-        "areaServed": ["IN", "US", "UK", "CA", "AU"],
-        "keywords": "Web Design, GEO Optimization, LLM Ranking, Bespoke Digital Solutions, High-Performance Engineering",
+        "areaServed": [
+          {
+            "@type": "City",
+            "name": "Chandigarh"
+          },
+          {
+            "@type": "City",
+            "name": "Mohali"
+          },
+          {
+            "@type": "City",
+            "name": "Panchkula"
+          },
+          "IN", "US", "UK"
+        ],
+        "keywords": "Web Design Chandigarh, Web Development Company Chandigarh, Digital Agency Chandigarh, Next.js Development, SEO Chandigarh, GEO Optimization",
         "address": {
           "@type": "PostalAddress",
-          "streetAddress": "Elite Business District",
+          "streetAddress": "Sector 17, Elite Business District",
           "addressLocality": "Chandigarh",
-          "postalCode": "160001",
+          "postalCode": "160017",
           "addressCountry": "IN"
         },
         "geo": {
@@ -55,37 +69,39 @@ export default function LandingPage() {
         },
         "openingHoursSpecification": {
           "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
           "opens": "09:00",
-          "closes": "18:00"
+          "closes": "20:00"
         },
         "sameAs": [
           "https://github.com/sitecreation",
           "https://twitter.com/sitecreation",
-          "https://linkedin.com/company/sitecreation"
+          "https://linkedin.com/company/sitecreation",
+          "https://instagram.com/sitecreation"
         ],
         "hasOfferCatalog": {
           "@type": "OfferCatalog",
-          "name": "Luxury Digital Services",
+          "name": "Chandigarh Digital Services",
           "itemListElement": [
             {
               "@type": "Service",
-              "name": "Enterprise Web Development",
-              "description": "High-load architectures using Node.js and .NET Core."
+              "name": "Custom Web Design in Chandigarh",
+              "description": "Bespoke, high-end website design tailored for luxury and enterprise brands."
             },
             {
               "@type": "Service",
-              "name": "Mobile & TV Ecosystems",
-              "description": "Cross-platform apps for iOS, Android, and Smart TV."
+              "name": "E-commerce Development Chandigarh",
+              "description": "Scalable online stores built with Next.js and secure payment gateways."
             },
             {
               "@type": "Service",
-              "name": "Generative Engine Optimization (GEO)",
-              "description": "Optimizing brand authority for AI search and LLM discovery."
+              "name": "SEO & GEO Optimization",
+              "description": "Ranking your brand on Google and AI search engines like ChatGPT."
             }
           ]
         }
       },
+
       {
         "@type": "BreadcrumbList",
         "itemListElement": [

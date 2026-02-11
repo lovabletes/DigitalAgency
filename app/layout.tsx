@@ -18,18 +18,27 @@ export const metadata: Metadata = {
     default: "SiteCreation.in | Elite Web Design & Digital Solutions in Chandigarh",
     template: "%s | SiteCreation.in"
   },
-  description: "Architecting elite digital legacies. SiteCreation.in is a premier digital agency in Chandigarh specializing in high-performance web development, mobile apps, and Generative Engine Optimization (GEO).",
+  description: "Architecting elite digital legacies. SiteCreation.in is a premier digital agency serving Chandigarh, Mohali, and Panchkula, specializing in high-performance web development, mobile apps, and Generative Engine Optimization (GEO).",
   keywords: [
     "SiteCreation",
     "SiteCreation.in",
     "Web Design Chandigarh",
-    "Digital Agency India",
-    "Next.js Development Agency",
+    "Website Designing Chandigarh",
+    "Best Web Development Company in Chandigarh",
+    "Digital Marketing Agency Chandigarh",
+    "Next.js Development Agency India",
     "Luxury Web Design",
     "Enterprise Software Solutions",
     "Mobile App Development Chandigarh",
+    "Web Design Mohali",
+    "Website Development Panchkula",
+    "Digital Marketing Tricity",
+    "Best Web Agency Mohali",
+    "Panchkula Web Designers",
+    "SEO Services Mohali",
     "GEO Optimization",
     "Search Mastery"
+
   ],
   authors: [{ name: "SiteCreation.in Team", url: "https://sitecreation.in" }],
   creator: "SiteCreation.in",
@@ -46,12 +55,18 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
-      { url: "/images/Logo.png", sizes: "32x32", type: "image/png" },
-      { url: "/images/Logo.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon.png", type: "image/png", sizes: "32x32" },
+      { url: "/favicon.png", type: "image/png", sizes: "16x16" },
     ],
+    shortcut: ["/favicon.png"],
     apple: [
-      { url: "/images/Logo.png", sizes: "180x180", type: "image/png" },
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
     ],
+  },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "SiteCreation",
   },
   openGraph: {
     title: "SiteCreation.in | Elite Web Design & Digital Solutions in Chandigarh",
@@ -77,8 +92,8 @@ export const metadata: Metadata = {
   },
   category: "Technology",
   verification: {
-    google: "",
-    yandex: "",
+    google: "G-3P14UK5hsFyLhSjFY0THujhYMhFAZSdo-ZmRR5LenPo", // Replace with actual Google Search Console verification code
+    yandex: "yandex-XXXXXXXXXX",
   },
   robots: {
     index: true,
@@ -98,14 +113,14 @@ const organizationSchema = {
   "@type": "Organization",
   "name": "SiteCreation.in",
   "url": "https://sitecreation.in",
-  "logo": "https://sitecreation.in/images/Logo.png",
+  "logo": "https://sitecreation.in/logo.png",
   "sameAs": [
     "https://www.linkedin.com/company/sitecreation",
     "https://twitter.com/sitecreation"
   ],
   "contactPoint": {
     "@type": "ContactPoint",
-    "telephone": "+91-XXXXXXXXXX",
+    "telephone": "+91-84375-32754",
     "contactType": "customer service"
   }
 };

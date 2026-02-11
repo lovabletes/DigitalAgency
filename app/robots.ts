@@ -6,6 +6,13 @@ export default function robots(): MetadataRoute.Robots {
             {
                 userAgent: '*',
                 allow: '/',
+                disallow: [
+                    '/api/',
+                    '/_next/',
+                    '/static/',
+                    '/admin/',
+                    '/*.json$',
+                ],
             },
             {
                 userAgent: ['GPTBot', 'ChatGPT-User', 'Claude-Web', 'ClaudeBot', 'PerplexityBot'],
@@ -15,3 +22,4 @@ export default function robots(): MetadataRoute.Robots {
         sitemap: 'https://sitecreation.in/sitemap.xml',
     };
 }
+
