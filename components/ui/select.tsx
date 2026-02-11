@@ -45,34 +45,24 @@ export function Select({
     return () => document.removeEventListener("mousedown", handleClickOutside)
   }, [])
 
-  const isSelectTrigger = (child: React.ReactNode): child is React.ReactElement<SelectTriggerProps> =>
-    React.isValidElement(child) && child.type === SelectTrigger
-  const isSelectContent = (child: React.ReactNode): child is React.ReactElement<SelectContentProps> =>
-    React.isValidElement(child) && child.type === SelectContent
-  const isSelectItem = (child: React.ReactNode): child is React.ReactElement<SelectItemProps> =>
-    React.isValidElement(child) && child.type === SelectItem
-
-  const childrenArray = React.Children.toArray(children)
-  const triggerChild = childrenArray.find(isSelectTrigger)
-  const contentChild = childrenArray.find(isSelectContent)
-
-  const resolveSelectedLabel = () => {
+  const collectItems = (nodes: React.ReactNode): React.ReactElement<SelectItemProps>[] => {
     const items: React.ReactElement<SelectItemProps>[] = []
-
-    const collectItems = (nodes: React.ReactNode) => {
-      React.Children.forEach(nodes, (child) => {
-        if (isSelectItem(child)) items.push(child)
+    const traverse = (n: React.ReactNode) => {
+      React.Children.forEach(n, (child) => {
+        if (React.isValidElement(child) && child.type === SelectItem) {
+          items.push(child as React.ReactElement<SelectItemProps>)
+        } else if (React.isValidElement(child) && (child.props as any).children) {
+          traverse((child.props as any).children)
+        }
       })
     }
-
-    if (contentChild) collectItems(contentChild.props.children)
-    else collectItems(children)
-
-    const match = items.find((item) => item.props.value === selectedValue)
-    return match?.props.children
+    traverse(nodes)
+    return items
   }
 
-  const selectedLabel = resolveSelectedLabel()
+  const items = collectItems(children)
+  const selectedItem = items.find((item) => item.props.value === selectedValue)
+  const selectedLabel = selectedItem?.props.children
 
   const handleSelect = (newValue: string) => {
     setSelectedValue(newValue)
@@ -80,82 +70,53 @@ export function Select({
     setIsOpen(false)
   }
 
-  const defaultTrigger = (
-    <button
-      data-slot="select-trigger"
-      data-size="default"
-      type="button"
-      disabled={disabled}
-      className={classNames(
-        "flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 text-left",
-        className,
-      )}
-      onClick={() => !disabled && setIsOpen((prev) => !prev)}
-      aria-expanded={isOpen}
-      aria-haspopup="listbox"
-    >
-      <span className="truncate text-foreground">
-        {selectedLabel || selectedValue || placeholder}
-      </span>
-      <ChevronDownIcon className={classNames(
-        "h-4 w-4 opacity-50 transition-transform duration-200",
-        isOpen && "rotate-180",
-      )} />
-    </button>
-  )
-
-  const defaultContent = (
-    <div
-      data-slot="select-content"
-      className="z-dropdown absolute left-0 right-0 mt-1 min-w-[8rem] rounded-md border bg-popover text-popover-foreground shadow-md animate-in fade-in-80 max-h-60 overflow-y-auto"
-      role="listbox"
-      tabIndex={-1}
-    >
-      <div className="p-1">
-        {childrenArray.map((child, index) => {
-          if (isSelectItem(child)) {
-            return React.cloneElement(child, {
-              key: child.key ?? index,
-              isSelected: child.props.value === selectedValue,
-              onSelect: handleSelect,
-            })
-          }
-          return null
-        })}
-      </div>
-    </div>
-  )
-
-  const renderedTrigger = triggerChild
-    ? React.cloneElement(triggerChild, {
-      onClick: () => !disabled && setIsOpen((prev) => !prev),
-      isOpen,
-      selectedValue,
-      selectedLabel,
-      disabled,
-      placeholder,
-    })
-    : defaultTrigger
-
-  const renderedContent = contentChild
-    ? React.cloneElement(contentChild, {
-      onSelect: handleSelect,
-      selectedValue,
-      className: classNames("absolute left-0 right-0 mt-1", contentChild.props.className),
-    })
-    : defaultContent
-
   return (
     <div ref={selectRef} className="relative w-full" data-slot="select">
-      {name ? <input type="hidden" name={name} value={selectedValue} /> : null}
-      {renderedTrigger}
-      {isOpen ? renderedContent : null}
+      {/* Hidden native select for accessibility compliance and form submission */}
+      <select
+        name={name}
+        value={selectedValue}
+        onChange={(e) => handleSelect(e.target.value)}
+        disabled={disabled}
+        tabIndex={-1}
+        className="sr-only"
+        aria-label={placeholder}
+      >
+        <option value="" disabled>{placeholder}</option>
+        {items.map((item) => (
+          <option key={item.props.value} value={item.props.value}>
+            {typeof item.props.children === 'string' ? item.props.children : item.props.value}
+          </option>
+        ))}
+      </select>
+
+      <div aria-hidden="true">
+        <SelectTrigger
+          onClick={() => !disabled && setIsOpen((prev) => !prev)}
+          isOpen={isOpen}
+          selectedValue={selectedValue}
+          selectedLabel={selectedLabel}
+          disabled={disabled}
+          placeholder={placeholder}
+          className={className}
+        >
+          {React.Children.toArray(children).find(
+            (child) => React.isValidElement(child) && child.type === SelectValue
+          )}
+        </SelectTrigger>
+
+        {isOpen && (
+          <SelectContent onSelect={handleSelect} selectedValue={selectedValue}>
+            {children}
+          </SelectContent>
+        )}
+      </div>
     </div>
   )
 }
 
 interface SelectTriggerProps {
-  children: React.ReactNode
+  children?: React.ReactNode
   className?: string
   size?: "sm" | "default"
   isOpen?: boolean
@@ -178,9 +139,7 @@ export function SelectTrigger({
   disabled,
   placeholder = "Select an option",
   id,
-  ...props
 }: Readonly<SelectTriggerProps>) {
-  // Inject selectedValue into SelectValue child if present
   const child =
     React.isValidElement(children) && children.type === SelectValue
       ? React.cloneElement(children as React.ReactElement<SelectValueProps>, {
@@ -201,9 +160,7 @@ export function SelectTrigger({
       )}
       onClick={onClick}
       type="button"
-      aria-expanded={isOpen}
-      aria-haspopup="listbox"
-      {...props}
+      tabIndex={-1}
     >
       {child || (
         <span className="truncate text-muted-foreground">
@@ -211,7 +168,10 @@ export function SelectTrigger({
         </span>
       )}
       <ChevronDownIcon
-        className={classNames("h-4 w-4 opacity-50 transition-transform duration-200", isOpen && "rotate-180")}
+        className={classNames(
+          "h-4 w-4 opacity-50 transition-transform duration-200",
+          isOpen && "rotate-180"
+        )}
       />
     </button>
   )
@@ -224,7 +184,6 @@ interface SelectContentProps {
   selectedValue?: string
 }
 
-// Forward the ref so the parent can detect outside clicks in non-portal mode.
 export const SelectContent = React.forwardRef<HTMLDivElement, Readonly<SelectContentProps>>(
   ({ children, className, onSelect, selectedValue }, ref) => {
     const localRef = React.useRef<HTMLDivElement>(null)
@@ -237,15 +196,10 @@ export const SelectContent = React.forwardRef<HTMLDivElement, Readonly<SelectCon
     }, [selectedValue])
 
     const setRef = (node: HTMLDivElement | null) => {
-      localRef.current = node;
-      if (typeof ref === "function") ref(node);
-      else if (ref && typeof ref === "object") {
-        (ref as { current: HTMLDivElement | null }).current = node;
-      }
-    };
-
-    const isSelectItem = (child: React.ReactNode): child is React.ReactElement<SelectItemProps> =>
-      React.isValidElement(child) && child.type === SelectItem
+      (localRef as any).current = node
+      if (typeof ref === "function") ref(node)
+      else if (ref) (ref as any).current = node
+    }
 
     return (
       <div
@@ -253,18 +207,16 @@ export const SelectContent = React.forwardRef<HTMLDivElement, Readonly<SelectCon
         ref={setRef}
         className={classNames(
           "z-dropdown absolute mt-1 w-full min-w-[8rem] overflow-hidden rounded-md border bg-popover text-popover-foreground shadow-md animate-in fade-in-80 max-h-60 overflow-y-auto",
-          className,
+          className
         )}
-        role="listbox"
-        tabIndex={-1}
       >
         <div className="p-1">
           {React.Children.map(children, (child, index) => {
-            if (isSelectItem(child)) {
-              return React.cloneElement(child, {
-                key: child.key ?? index,
+            if (React.isValidElement(child) && child.type === SelectItem) {
+              return React.cloneElement(child as React.ReactElement<SelectItemProps>, {
+                key: (child as any).key ?? index,
                 onSelect,
-                isSelected: child.props.value === selectedValue,
+                isSelected: (child as any).props.value === selectedValue,
               })
             }
             return child
@@ -272,7 +224,7 @@ export const SelectContent = React.forwardRef<HTMLDivElement, Readonly<SelectCon
         </div>
       </div>
     )
-  },
+  }
 )
 
 SelectContent.displayName = "SelectContent"
@@ -286,30 +238,27 @@ interface SelectItemProps {
   isSelected?: boolean
 }
 
-export function SelectItem({ children, className, value, disabled, onSelect, isSelected }: Readonly<SelectItemProps>) {
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault()
-      if (!disabled) onSelect?.(value)
-    }
-  }
-
+export function SelectItem({
+  children,
+  className,
+  value,
+  disabled,
+  onSelect,
+  isSelected,
+}: Readonly<SelectItemProps>) {
   return (
     <button
       type="button"
       data-slot="select-item"
       data-selected={isSelected}
       data-value={value}
-      disabled={disabled}
+      tabIndex={-1}
       className={classNames(
         "relative flex w-full cursor-default select-none items-center justify-between rounded-sm py-2 px-3 text-sm outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground disabled:pointer-events-none disabled:opacity-50",
         isSelected && "bg-accent text-accent-foreground font-medium",
         className
       )}
       onClick={() => !disabled && onSelect?.(value)}
-      onKeyDown={handleKeyDown}
-      role="option"
-      aria-selected={!!isSelected}
     >
       <span className="truncate flex-1 text-left">{children}</span>
       {isSelected && (

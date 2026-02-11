@@ -135,11 +135,11 @@ function ResizableHandle({
 }>) {
   const { direction, panelSizes, setPanelSizes, panelConstraints } =
     React.useContext(ResizablePanelContext);
-  const ref = React.useRef<HTMLDivElement>(null);
+  const ref = React.useRef<HTMLInputElement>(null);
   const [isDragging, setIsDragging] = React.useState(false);
 
   const handleDragStart = (e: React.MouseEvent | React.TouchEvent) => {
-    e.preventDefault();
+    if (e.type === 'mousedown') e.preventDefault();
     setIsDragging(true);
   };
 
@@ -149,10 +149,15 @@ function ResizableHandle({
     const groupRect = ref.current.parentElement?.getBoundingClientRect();
     if (!groupRect) return;
 
-    const childrenArray = Array.from(ref.current.parentElement?.children || [])
-    const idx = childrenArray.indexOf(ref.current) - 1;
-    const prevSize = panelSizes[idx] || 0;
-    const nextSize = panelSizes[idx + 1] || 0;
+    const container = ref.current.parentElement;
+    const group = container?.parentElement;
+    if (!group) return;
+    const groupChildren = Array.from(group.children);
+    const containerIdx = groupChildren.indexOf(container);
+    const panelIdx = containerIdx - 1;
+
+    const prevSize = panelSizes[panelIdx] || 0;
+    const nextSize = panelSizes[panelIdx + 1] || 0;
 
     let delta: number;
     if ("touches" in e) {
@@ -171,16 +176,16 @@ function ResizableHandle({
     const deltaPercent = (delta / totalSize) * 100;
 
     const panelKeys = Object.keys(panelConstraints)
-    const prevMinSize = panelConstraints[panelKeys[idx] || ""]?.minSize ?? 0;
-    const nextMinSize = panelConstraints[panelKeys[idx + 1] || ""]?.minSize ?? 0;
+    const prevMinSize = panelConstraints[panelKeys[panelIdx] || ""]?.minSize ?? 0;
+    const nextMinSize = panelConstraints[panelKeys[panelIdx + 1] || ""]?.minSize ?? 0;
 
     const newPrevSize = Math.max(prevMinSize, prevSize + deltaPercent);
     const newNextSize = Math.max(nextMinSize, nextSize - deltaPercent);
 
     if (newPrevSize + newNextSize <= 100) {
       const newSizes = [...panelSizes];
-      newSizes[idx] = newPrevSize;
-      newSizes[idx + 1] = newNextSize;
+      newSizes[panelIdx] = newPrevSize;
+      newSizes[panelIdx + 1] = newNextSize;
       setPanelSizes(newSizes);
     }
   }, [isDragging, direction, panelSizes, panelConstraints, setPanelSizes]);
@@ -204,10 +209,11 @@ function ResizableHandle({
     }
   }, [isDragging, handleDrag, handleDragEnd]);
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
-    onKeyDown?.(e)
-    // Basic arrow key support for resizing
-    const index = Array.from(ref.current?.parentElement?.children || []).indexOf(ref.current!) - 1;
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    // Need to cast to any to pass to div's onKeyDown if needed, or just handle it here
+    const container = ref.current?.parentElement;
+    const group = container?.parentElement;
+    const index = Array.from(group?.children || []).indexOf(container!) - 1;
     if (index < 0) return
 
     let delta = 0
@@ -225,31 +231,40 @@ function ResizableHandle({
 
   return (
     <div
-      ref={ref}
-      data-slot="resizable-handle"
-      role="slider"
-      aria-label="Resize handle"
-      aria-orientation={direction}
-      aria-valuenow={50}
-      aria-valuemin={0}
-      aria-valuemax={100}
-      tabIndex={0}
+      data-slot="resizable-handle-container"
       className={classNames(
-        "bg-border focus-visible:ring-ring relative flex w-px items-center justify-center after:absolute after:inset-y-0 after:left-1/2 after:w-4 after:-translate-x-1/2 focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:outline-hidden cursor-col-resize p-0",
-        direction === "vertical" &&
-        "h-px w-full after:left-0 after:h-4 after:w-full after:translate-x-0 after:-translate-y-1/2 cursor-row-resize",
+        "relative flex items-center justify-center",
+        direction === "horizontal" ? "w-px h-full cursor-col-resize" : "h-px w-full cursor-row-resize",
         className
       )}
-      onMouseDown={handleDragStart}
-      onTouchStart={handleDragStart}
-      onKeyDown={handleKeyDown}
-      {...props}
     >
-      {withHandle && (
-        <div className="bg-border z-10 flex h-4 w-3 items-center justify-center rounded-xs border">
-          <GripVerticalIcon className="size-2.5" />
-        </div>
-      )}
+      <input
+        ref={ref}
+        type="range"
+        min={0}
+        max={100}
+        value={50}
+        aria-label="Resize handle"
+        aria-orientation={direction}
+        className="absolute inset-0 z-10 opacity-0 cursor-inherit"
+        onMouseDown={handleDragStart}
+        onTouchStart={handleDragStart}
+        onKeyDown={handleKeyDown}
+        onChange={() => { }}
+      />
+      <div
+        aria-hidden="true"
+        className={classNames(
+          "bg-border pointer-events-none flex h-full w-full items-center justify-center after:absolute after:inset-y-0 after:left-1/2 after:w-4 after:-translate-x-1/2",
+          direction === "vertical" && "after:left-0 after:h-4 after:w-full after:translate-x-0 after:-translate-y-1/2"
+        )}
+      >
+        {withHandle && (
+          <div className="bg-border z-10 flex h-4 w-3 items-center justify-center rounded-xs border">
+            <GripVerticalIcon className="size-2.5" />
+          </div>
+        )}
+      </div>
     </div>
   );
 }
