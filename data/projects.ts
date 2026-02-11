@@ -4,7 +4,7 @@ export const projects = [
         title: "AYURVEDIC",
         cat: "Web Development",
         color: "bg-emerald-600",
-        image: "/Ayurved.avif",
+        images: ["/Ayurved.avif"],
         description: "A premium wellness platform for traditional healing.",
         liveUrl: "https://ayurveda-kvqa.onrender.com"
     },
@@ -13,7 +13,7 @@ export const projects = [
         title: "CampusHub",
         cat: "Mobile App",
         color: "bg-blue-600",
-        image: "/CampusHub.avif",
+        images: ["/CampusHub.avif"],
         description: "Modern educational ecosystem for students and faculty.",
         liveUrl: "https://campushub-website-prod.onrender.com/"
     },
@@ -22,7 +22,7 @@ export const projects = [
         title: "Maison Belle",
         cat: "E-Commerce",
         color: "bg-pink-600",
-        image: "/Maison_Belle.avif",
+        images: ["/Maison_Belle.avif"],
         description: "Luxury cosmetic brand experience.",
         liveUrl: "https://maisonbelle.onrender.com/"
     },
@@ -31,16 +31,26 @@ export const projects = [
         title: "TourWeb",
         cat: "Cloud Solution",
         color: "bg-green-600",
-        image: "/Tourweb.avif",
+        images: ["/Tourweb.avif"],
         description: "Immersive travel planning and booking engine.",
         liveUrl: "https://agro-2wvj.onrender.com"
     },
     {
-        id: "proj-3",
-        title: "Zenith SaaS",
-        cat: "Financial Tech",
-        color: "bg-indigo-600",
-        image: "/Ayurved.avif",
-        description: "Enterprise SaaS platform for financial analytics."
+        id: "proj-avni-yoga",
+        title: "Avni Yoga",
+        cat: "Wellness & Fitness",
+        color: "bg-orange-600",
+        images: ["/yog.avif", "/YogaHome.avif"],
+        description: "A comprehensive yoga platform designed for holistic wellness and mental clarity.",
+        liveUrl: "https://avniyoga.onrender.com"
+    },
+    {
+        id: "proj-pilates",
+        title: "Pilates",
+        cat: "Fitness & Strength",
+        color: "bg-rose-600",
+        images: ["/Pilates.avif"],
+        description: "Premium pilates studio platform focusing on core strength and flexibility.",
+        liveUrl: "https://avniyoga.onrender.com/home"
     }
 ];

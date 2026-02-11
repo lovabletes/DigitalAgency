@@ -31,6 +31,12 @@
             "services": [
                 "https://maisonbelle.onrender.com/"
             ]
+        },
+        {
+            "name": "Avni Yoga",
+            "services": [
+                "https://avniyoga.onrender.com"
+            ]
         }
     ]
 }

@@ -8,7 +8,7 @@ interface Project {
     title: string;
     cat: string;
     color: string;
-    image: string;
+    images: string[];
     description?: string;
     techStack?: string[];
     features?: string[];
@@ -81,7 +81,7 @@ export function ProjectModal({ project, onClose }: Readonly<ProjectModalProps>) 
                 {/* Hero Image */}
                 <div className="relative h-[400px] overflow-hidden">
                     <img
-                        src={project.image}
+                        src={project.images[0]}
                         alt=""
                         className="w-full h-full object-cover"
                     />
