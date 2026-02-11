@@ -43,6 +43,16 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/images/Logo.png", sizes: "32x32", type: "image/png" },
+      { url: "/images/Logo.png", sizes: "16x16", type: "image/png" },
+    ],
+    apple: [
+      { url: "/images/Logo.png", sizes: "180x180", type: "image/png" },
+    ],
+  },
   openGraph: {
     title: "SiteCreation.in | Elite Web Design & Digital Solutions in Chandigarh",
     description: "Transform your vision into a high-performance digital legacy. Bespoke web and mobile engineering for global brands.",
@@ -83,6 +93,23 @@ export const metadata: Metadata = {
   },
 };
 
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "SiteCreation.in",
+  "url": "https://sitecreation.in",
+  "logo": "https://sitecreation.in/images/Logo.png",
+  "sameAs": [
+    "https://www.linkedin.com/company/sitecreation",
+    "https://twitter.com/sitecreation"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+91-XXXXXXXXXX",
+    "contactType": "customer service"
+  }
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -93,6 +120,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
         <KeepAlive />
         {children}
       </body>
