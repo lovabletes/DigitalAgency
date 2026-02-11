@@ -1,4 +1,5 @@
-import { Metadata } from "next";
+"use client";
+
 import { navLinks, projects } from "@/data";
 import { Header } from "@/components/home/Header";
 import { Footer } from "@/components/home/Footer";
@@ -8,11 +9,6 @@ import { ServiceSchema } from "@/components/ui/ServiceSchema";
 import Image from "next/image";
 import React from "react";
 
-export const metadata: Metadata = {
-    title: "Portfolio | Elite Digital Masterpieces by SiteCreation.in",
-    description: "Explore our curated showcase of high-performance web and mobile projects. SiteCreation.in delivers bespoke digital experiences for global and local Chandigarh brands.",
-    keywords: ["SiteCreation Portfolio", "Web Development Projects", "Luxury Digital Design Case Studies", "Chandigarh App Development"],
-};
 
 function PortfolioCard({ project }: Readonly<{ project: any }>) {
     const [currentImageIndex, setCurrentImageIndex] = React.useState(0);
