@@ -48,7 +48,7 @@ function ProjectCard({ project, idx, onClick }: ProjectCardProps) {
         >
             {/* Project Image */}
             <div className="aspect-video overflow-hidden bg-neutral-100 relative">
-                {project.images.map((img, i) => (
+                {(project.images || []).filter(img => img && img.trim().length > 0).map((img, i) => (
                     <Image
                         key={img}
                         src={img}

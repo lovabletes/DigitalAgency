@@ -1,10 +1,37 @@
 "use client";
+// Force re-compilation to resolve stale HMR issues with lucide-react icons
+
 
 import React from "react";
-import { GithubIcon, XIcon, LinkedinIcon, InstagramIcon } from "@/components/icons/icons";
-import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
+
+// Inline icons to fix persistent lucide-react build error
+type IconProps = React.SVGProps<SVGSVGElement> & { size?: number | string };
+
+const GithubIcon = ({ size, width, height, ...props }: IconProps) => (
+    <svg width={size ?? width ?? 24} height={size ?? height ?? 24} viewBox="0 0 24 24" fill="currentColor" {...props}>
+        <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.48 2 2 6.58 2 12.26c0 4.52 2.87 8.35 6.84 9.7.5.1.68-.22.68-.49 0-.24-.01-.88-.01-1.73-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.1-1.5-1.1-1.5-.9-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.89 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.63-1.38-2.22-.26-4.55-1.14-4.55-5.09 0-1.12.39-2.04 1.03-2.76-.1-.26-.45-1.31.1-2.73 0 0 .85-.28 2.79 1.05a9.3 9.3 0 0 1 5.08 0c1.94-1.33 2.79-1.05 2.79-1.05.55 1.42.2 2.47.1 2.73.64.72 1.03 1.64 1.03 2.76 0 3.96-2.34 4.82-4.57 5.08.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.8 0 .27.18.6.69.49A10.06 10.06 0 0 0 22 12.26C22 6.58 17.52 2 12 2Z" />
+    </svg>
+);
+const XIcon = ({ size, width, height, ...props }: IconProps) => (
+    <svg width={size ?? width ?? 24} height={size ?? height ?? 24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" {...props}>
+        <path d="M18 6L6 18M6 6l12 12" />
+    </svg>
+);
+const LinkedinIcon = ({ size, width, height, ...props }: IconProps) => (
+    <svg width={size ?? width ?? 24} height={size ?? height ?? 24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+        <rect x="2" y="9" width="4" height="12" />
+        <circle cx="4" cy="4" r="2" />
+    </svg>
+);
+const InstagramIcon = ({ size, width, height, ...props }: IconProps) => (
+    <svg width={size ?? width ?? 24} height={size ?? height ?? 24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+    </svg>
+);
 
 function NewsletterForm() {
     const [email, setEmail] = React.useState("");
@@ -79,7 +106,7 @@ export function Footer() {
                     <div className="lg:col-span-2">
                         <div className="flex items-center gap-2.5 mb-8 group cursor-pointer">
                             <div className="relative h-12 w-12 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
-                                <Image
+                                <img
                                     src="/images/Logo.png"
                                     alt="Logo"
                                     width={48}
@@ -227,12 +254,12 @@ export function Footer() {
                                         return (
                                             <li key={item}>
                                                 {isLinked ? (
-                                                    <Link
+                                                    <a
                                                         href={`/expertise/${slug}`}
                                                         className="text-[11px] font-bold text-[#f7e7ce]/40 transition-all hover:text-accent hover:translate-x-1 inline-block"
                                                     >
                                                         {item}
-                                                    </Link>
+                                                    </a>
                                                 ) : (
                                                     <span className="text-[11px] font-bold text-[#f7e7ce]/20 cursor-default">
                                                         {item}

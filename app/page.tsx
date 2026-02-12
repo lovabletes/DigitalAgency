@@ -29,7 +29,8 @@ export default function LandingPage() {
       {
         "@type": "ProfessionalService",
         "name": "SiteCreation.in | Best Web Design & Development Company in Chandigarh",
-        "description": "SiteCreation.in is Chandigarh's premier digital engineering collective. We specialize in luxury web design, high-performance Node.js & .NET development, and Generative Engine Optimization (GEO) for global brands and local businesses in Chandigarh, India.",
+        "alternateName": "Site Creation",
+        "description": "Looking to create a website or build custom software? SiteCreation.in is Chandigarh's elite digital agency. We provide premium .NET solutions, websites in Node.js, mobile applications, and graphic designing services.",
         "image": "https://sitecreation.in/images/Logo.png",
         "@id": "https://sitecreation.in",
         "url": "https://sitecreation.in",
@@ -54,7 +55,7 @@ export default function LandingPage() {
           },
           "IN", "US", "UK"
         ],
-        "keywords": "Web Design Chandigarh, Web Development Company Chandigarh, Digital Agency Chandigarh, Next.js Development, SEO Chandigarh, GEO Optimization",
+        "keywords": "Site Creation, Web Design Chandigarh, Web Development Company Chandigarh, Digital Agency Chandigarh, Next.js Development, SEO Chandigarh, GEO Optimization, Mobile applications, Graphic designing, Poster making",
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "Sector 17, Elite Business District",

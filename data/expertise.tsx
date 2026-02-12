@@ -52,7 +52,7 @@ export const expertiseTopics: Record<string, ExpertiseTopic> = {
     // --- Core Tech ---
     "nodejs": {
         slug: "nodejs",
-        title: "Node.js Engineering",
+        title: "Node.js Solutions",
         category: "Core Tech",
         shortDesc: "Scalable, event-driven backend systems built for high-concurrency environments.",
         fullDesc: "We engineer robust, non-blocking I/O systems using Node.js. Our architectures are designed to handle thousands of concurrent connections with minimal overhead, making them ideal for real-time applications and microservices.",
@@ -73,7 +73,7 @@ export const expertiseTopics: Record<string, ExpertiseTopic> = {
     },
     "dotnet-9": {
         slug: "dotnet-9",
-        title: ".NET 9 Backend Excellence",
+        title: ".NET Solutions & Backend",
         category: "Core Tech",
         shortDesc: "High-concurrency backend systems built with the power of C# and .NET 9.",
         fullDesc: "We build mission-critical APIs and services using .NET 9, focusing on high-performance microservices and cloud-native applications. Our architecture handles millions of requests with minimal latency using ASP.NET Core and Entity Framework.",

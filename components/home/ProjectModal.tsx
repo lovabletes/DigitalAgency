@@ -78,13 +78,18 @@ export function ProjectModal({ project, onClose }: Readonly<ProjectModalProps>) 
                     <CloseIcon size={20} className="text-accent group-hover:text-[#1a1a3e] transition-colors" />
                 </button>
 
-                {/* Hero Image */}
-                <div className="relative h-[400px] overflow-hidden">
-                    <img
-                        src={project.images[0]}
-                        alt=""
-                        className="w-full h-full object-cover"
-                    />
+                <div className="relative h-[400px] overflow-hidden bg-neutral-900">
+                    {project.images && project.images[0] ? (
+                        <img
+                            src={project.images[0]}
+                            alt={project.title}
+                            className="w-full h-full object-cover"
+                        />
+                    ) : (
+                        <div className="w-full h-full flex items-center justify-center bg-accent/5">
+                            <span className="text-accent/20 font-black text-4xl uppercase tracking-tighter">SiteCreation</span>
+                        </div>
+                    )}
                     <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a3e] via-[#1a1a3e]/50 to-transparent" />
 
                     {/* Floating Badge */}

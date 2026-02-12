@@ -37,6 +37,12 @@
             "services": [
                 "https://avniyoga.onrender.com"
             ]
+        },
+        {
+            "name": "DevBhoomi Chamba",
+            "services": [
+                "https://devbhoomichamba.onrender.com"
+            ]
         }
     ]
 }

@@ -52,5 +52,14 @@ export const projects = [
         images: ["/Pilates.avif"],
         description: "Premium pilates studio platform focusing on core strength and flexibility.",
         liveUrl: "https://avniyoga.onrender.com/home"
+    },
+    {
+        id: "proj-chamba",
+        title: "DevBhoomi Chamba",
+        cat: "Tourism & Culture",
+        color: "bg-indigo-600",
+        images: ["/Chamba.avif"],
+        description: "A digital gateway to the cultural heritage and divine landscapes of Chamba.",
+        liveUrl: "https://devbhoomichamba.onrender.com"
     }
 ];

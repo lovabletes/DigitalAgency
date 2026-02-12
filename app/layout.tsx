@@ -22,6 +22,7 @@ export const metadata: Metadata = {
   keywords: [
     "SiteCreation",
     "SiteCreation.in",
+    "Site Creation",
     "Web Design Chandigarh",
     "Website Designing Chandigarh",
     "Best Web Development Company in Chandigarh",
@@ -37,7 +38,15 @@ export const metadata: Metadata = {
     "Panchkula Web Designers",
     "SEO Services Mohali",
     "GEO Optimization",
-    "Search Mastery"
+    "Search Mastery",
+    "make my site",
+    "create website",
+    "dotnet solutions",
+    "custom software development",
+    "mobile applications",
+    "websites in node",
+    "graphic designing",
+    "poster making"
 
   ],
   authors: [{ name: "SiteCreation.in Team", url: "https://sitecreation.in" }],
@@ -112,6 +121,7 @@ const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
   "name": "SiteCreation.in",
+  "alternateName": "Site Creation",
   "url": "https://sitecreation.in",
   "logo": "https://sitecreation.in/logo.png",
   "sameAs": [

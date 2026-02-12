@@ -51,11 +51,13 @@ export function ParallaxBackground({
                     transition: 'transform 0.1s ease-out',
                 }}
             >
-                <img
-                    src={imageUrl}
-                    alt="Background"
-                    className="w-full h-full object-cover"
-                />
+                {imageUrl && (
+                    <img
+                        src={imageUrl}
+                        alt="Background"
+                        className="w-full h-full object-cover"
+                    />
+                )}
             </div>
 
             {/* Optional Overlay */}

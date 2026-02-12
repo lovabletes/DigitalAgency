@@ -37,7 +37,13 @@ export function Testimonials({ testimonials }: Readonly<TestimonialsProps>) {
                                     "{t.quote}"
                                 </p>
                                 <div className="flex items-center gap-4">
-                                    <img src={t.image} alt={t.name} className="h-12 w-12 rounded-full object-cover border-2 border-accent" />
+                                    {t.image ? (
+                                        <img src={t.image} alt={t.name} className="h-12 w-12 rounded-full object-cover border-2 border-accent" />
+                                    ) : (
+                                        <div className="h-12 w-12 rounded-full bg-accent/20 flex items-center justify-center border-2 border-accent">
+                                            <span className="text-accent font-black text-xs">{t.name.charAt(0)}</span>
+                                        </div>
+                                    )}
                                     <div>
                                         <h4 className="text-sm font-black text-foreground uppercase tracking-wider">{t.name}</h4>
                                         <p className="text-xs font-bold text-muted-foreground">{t.role}</p>
