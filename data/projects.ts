@@ -33,7 +33,7 @@ export const projects = [
         color: "bg-green-600",
         images: ["/Tourweb.avif"],
         description: "Immersive travel planning and booking engine.",
-        liveUrl: "https://agro-2wvj.onrender.com"
+        liveUrl: "https://agrotourism-7brf.onrender.com"
     },
     {
         id: "proj-avni-yoga",
