@@ -21,12 +21,6 @@
             ]
         },
         {
-            "name": "CampusHub",
-            "services": [
-                "https://campushub-website-prod.onrender.com/"
-            ]
-        },
-        {
             "name": "Maison Belle",
             "services": [
                 "https://maisonbelle.onrender.com/"

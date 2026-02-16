@@ -48,18 +48,20 @@ function ProjectCard({ project, idx, onClick }: ProjectCardProps) {
         >
             {/* Project Image */}
             <div className="aspect-video overflow-hidden bg-neutral-100 relative">
-                {(project.images || []).filter(img => img && img.trim().length > 0).map((img, i) => (
-                    <Image
-                        key={img}
-                        src={img}
-                        alt={project.title}
-                        fill
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        quality={85}
-                        className={`object-cover object-center transition-opacity duration-1000 filter brightness-95 group-hover:brightness-105 saturate-90 group-hover:saturate-100 ${i === currentImageIndex ? "opacity-100" : "opacity-0"}`}
-                        loading="lazy"
-                    />
-                ))}
+                {(project.images || [])
+                    .filter(img => typeof img === 'string' && img.trim().length > 0)
+                    .map((img, i) => (
+                        <Image
+                            key={img}
+                            src={img}
+                            alt={project.title}
+                            fill
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                            quality={85}
+                            className={`object-cover object-center transition-opacity duration-1000 filter brightness-95 group-hover:brightness-105 saturate-90 group-hover:saturate-100 ${i === currentImageIndex ? "opacity-100" : "opacity-0"}`}
+                            loading="lazy"
+                        />
+                    ))}
                 {/* Glass sheen effect on hover */}
                 <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-20 transition-opacity duration-500" />
             </div>

@@ -79,7 +79,7 @@ export function ProjectModal({ project, onClose }: Readonly<ProjectModalProps>) 
                 </button>
 
                 <div className="relative h-[400px] overflow-hidden bg-neutral-900">
-                    {project.images && project.images[0] ? (
+                    {project.images && project.images[0] && project.images[0].trim().length > 0 ? (
                         <img
                             src={project.images[0]}
                             alt={project.title}

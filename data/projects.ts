@@ -8,15 +8,7 @@ export const projects = [
         description: "A premium wellness platform for traditional healing.",
         liveUrl: "https://ayurveda-kvqa.onrender.com"
     },
-    {
-        id: "proj-new-1",
-        title: "CampusHub",
-        cat: "Mobile App",
-        color: "bg-blue-600",
-        images: ["/CampusHub.avif"],
-        description: "Modern educational ecosystem for students and faculty.",
-        liveUrl: "https://campushub-website-prod.onrender.com/"
-    },
+
     {
         id: "proj-mb",
         title: "Maison Belle",
