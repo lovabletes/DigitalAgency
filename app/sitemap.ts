@@ -1,4 +1,5 @@
 import { MetadataRoute } from 'next';
+import { expertiseTopics } from '@/data/expertise';
 
 export default function sitemap(): MetadataRoute.Sitemap {
     const baseUrl = 'https://sitecreation.in';
@@ -6,12 +7,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // Static dates per route group — update these when content changes
     const homepageLastMod = new Date('2026-02-18');
     const serviceLastMod = new Date('2026-02-18');
-    const expertiseLastMod = new Date('2026-02-10');
+    const expertiseLastMod = new Date('2026-02-18');
     const legalLastMod = new Date('2026-01-01');
 
     // Main pages
     const mainRoutes = [
-        { url: '', priority: 1, changeFrequency: 'weekly' as const, lastModified: homepageLastMod },
+        { url: '/', priority: 1, changeFrequency: 'weekly' as const, lastModified: homepageLastMod },
         { url: '/about', priority: 0.8, changeFrequency: 'monthly' as const, lastModified: serviceLastMod },
         { url: '/portfolio', priority: 0.9, changeFrequency: 'weekly' as const, lastModified: serviceLastMod },
         { url: '/careers', priority: 0.7, changeFrequency: 'monthly' as const, lastModified: serviceLastMod },
@@ -33,15 +34,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
         lastModified: serviceLastMod,
     }));
 
-    // Expertise pages (high priority for SEO)
-    const expertiseRoutes = [
-        'nodejs', 'dotnet-9', 'nextjs-15', 'react-19',
-        'azure-cloud', 'microservices', 'docker', 'kubernetes',
-        'react-native', 'apple-tv', 'android-tv', 'smart-tv',
-        'geo', 'semantic-design', 'llm-optimization', 'search-mastery',
-        'vercel', 'azure-devops', 'gitlab-ci', 'headless-cms',
-        'event-driven', 'serverless', 'monolith-split', 'zero-trust'
-    ].map(slug => ({
+    // Expertise pages — dynamically generated from the actual data source.
+    // This ensures the sitemap ALWAYS matches the pages that actually exist,
+    // preventing "Submitted URL not found (404)" errors in Google Search Console.
+    const expertiseRoutes = Object.keys(expertiseTopics).map(slug => ({
         url: `/expertise/${slug}`,
         priority: 0.85,
         changeFrequency: 'monthly' as const,

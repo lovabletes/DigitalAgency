@@ -14,6 +14,15 @@ interface PageProps {
     params: Promise<{ slug: string }>;
 }
 
+/**
+ * Pre-render all expertise slugs at build time (SSG).
+ * This is critical for Google indexing — static pages are instantly crawlable
+ * without server-side rendering delays that cause "Pending" status in GSC.
+ */
+export function generateStaticParams() {
+    return Object.keys(expertiseTopics).map((slug) => ({ slug }));
+}
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
     const { slug } = await params;
     const topic = expertiseTopics[slug];
@@ -31,6 +40,16 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         alternates: {
             canonical: `/expertise/${slug}`,
         },
+        robots: {
+            index: true,
+            follow: true,
+            googleBot: {
+                index: true,
+                follow: true,
+                'max-snippet': -1,
+                'max-image-preview': 'large',
+            },
+        },
         openGraph: {
             title: `${topic.title} | Elite Engineering by SiteCreation.in`,
             description: topic.shortDesc,
@@ -38,7 +57,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
             url: `https://sitecreation.in/expertise/${slug}`,
             images: [
                 {
-                    url: "/Banner.avif", // Can be topic specific if available
+                    url: "/Banner.avif",
                     width: 1200,
                     height: 630,
                     alt: topic.title,
