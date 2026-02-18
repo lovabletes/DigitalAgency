@@ -7,10 +7,30 @@ import { CTABanner } from "@/components/home/CTABanner";
 
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { ServiceSchema } from "@/components/ui/ServiceSchema";
+import { WebPageSchema } from "@/components/ui/WebPageSchema";
 
 export const metadata: Metadata = {
     title: "Azure Cloud & Microservices Mastery | SiteCreation.in",
     description: "Architecting high-availability, secure cloud infrastructures on Microsoft Azure. Specialists in monolith to microservices migration.",
+    keywords: ["Azure Cloud Solutions Chandigarh", "Microservices Architecture India", "Cloud Infrastructure Agency", "DevOps Chandigarh", "Serverless Architecture", "Monolith to Microservices Migration"],
+    alternates: {
+        canonical: "/cloud-solutions",
+    },
+    openGraph: {
+        title: "Azure Cloud & Microservices Mastery | SiteCreation.in",
+        description: "High-availability, secure cloud infrastructures on Microsoft Azure. Specialists in monolith to microservices migration.",
+        url: "https://sitecreation.in/cloud-solutions",
+        siteName: "SiteCreation.in",
+        images: [{ url: "/images/cloud_solutions.avif", width: 1200, height: 630, alt: "Cloud Solutions by SiteCreation.in" }],
+        locale: "en_IN",
+        type: "website",
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "Azure Cloud & Microservices Mastery | SiteCreation.in",
+        description: "Enterprise-grade Azure cloud infrastructure and microservices architecture from Chandigarh's elite digital agency.",
+        images: ["/images/cloud_solutions.avif"],
+    },
 };
 
 export default function CloudSolutionsPage() {
@@ -22,6 +42,19 @@ export default function CloudSolutionsPage() {
                 name="Cloud & Infrastructure"
                 description="Mastering Azure ecosystems and orchestrating the transition from Monolith to Microservices."
                 url="/cloud-solutions"
+            />
+
+            <WebPageSchema
+                title="Azure Cloud & Microservices Mastery | SiteCreation.in"
+                description="Architecting high-availability, secure cloud infrastructures on Microsoft Azure. Specialists in monolith to microservices migration."
+                url="/cloud-solutions"
+                breadcrumbs={[{ name: "Services", url: "/#services" }, { name: "Cloud Solutions" }]}
+                faqs={[
+                    { question: "Does SiteCreation.in provide Azure cloud services in India?", answer: "Yes. We are Azure specialists offering cloud architecture, migration, DevOps pipelines, and managed infrastructure services. We serve clients across India and internationally from our Chandigarh base." },
+                    { question: "What is microservices architecture and do you offer it?", answer: "Microservices is an approach where an application is built as a collection of small, independent services. SiteCreation.in specializes in migrating monolithic applications to microservices on Azure, improving scalability and deployment speed." },
+                    { question: "How long does cloud migration take?", answer: "A typical monolith-to-microservices migration takes 3–6 months depending on application complexity. We provide a detailed migration roadmap and execute in phases to minimize downtime." },
+                    { question: "Do you offer ongoing cloud infrastructure management?", answer: "Yes. We offer managed cloud services including 24/7 monitoring, auto-scaling configuration, cost optimization, security patching, and incident response for Azure environments." }
+                ]}
             />
 
             <main className="flex-1 relative">

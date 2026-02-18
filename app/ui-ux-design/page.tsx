@@ -4,10 +4,32 @@ import { Header } from "@/components/home/Header";
 import { Footer } from "@/components/home/Footer";
 import { PageHero } from "@/components/ui/PageHero";
 import { CTABanner } from "@/components/home/CTABanner";
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
+import { ServiceSchema } from "@/components/ui/ServiceSchema";
+import { WebPageSchema } from "@/components/ui/WebPageSchema";
 
 export const metadata: Metadata = {
     title: "Elite UI/UX Design & Craftsmanship | SiteCreation.in",
     description: "Architecting immersive digital interfaces. We blend psychology with aesthetics to create intuitive, high-conversion design systems.",
+    keywords: ["UI UX Design Chandigarh", "UX Design Agency India", "Luxury Web Design", "Design Systems Agency", "High-Fidelity Prototyping", "Atomic Design Chandigarh"],
+    alternates: {
+        canonical: "/ui-ux-design",
+    },
+    openGraph: {
+        title: "Elite UI/UX Design & Craftsmanship | SiteCreation.in",
+        description: "Immersive digital interfaces that blend psychology with aesthetics to create intuitive, high-conversion design systems.",
+        url: "https://sitecreation.in/ui-ux-design",
+        siteName: "SiteCreation.in",
+        images: [{ url: "/images/ui_ux_design.avif", width: 1200, height: 630, alt: "UI/UX Design by SiteCreation.in" }],
+        locale: "en_IN",
+        type: "website",
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "Elite UI/UX Design & Craftsmanship | SiteCreation.in",
+        description: "Immersive interfaces blending luxury aesthetics with intuitive functionality from Chandigarh's elite design agency.",
+        images: ["/images/ui_ux_design.avif"],
+    },
 };
 
 export default function UiUxDesignPage() {
@@ -15,7 +37,29 @@ export default function UiUxDesignPage() {
         <div className="flex min-h-screen flex-col bg-background">
             <Header navLinks={navLinks} />
 
+            <ServiceSchema
+                name="UI/UX Design"
+                description="Immersive interfaces that blend luxury aesthetics with intuitive functionality and high-conversion design systems."
+                url="/ui-ux-design"
+            />
+
+            <WebPageSchema
+                title="Elite UI/UX Design & Craftsmanship | SiteCreation.in"
+                description="Architecting immersive digital interfaces. We blend psychology with aesthetics to create intuitive, high-conversion design systems."
+                url="/ui-ux-design"
+                breadcrumbs={[{ name: "Services", url: "/#services" }, { name: "UI/UX Design" }]}
+                faqs={[
+                    { question: "What is the difference between UI and UX design?", answer: "UI (User Interface) design focuses on the visual elements — colors, typography, and layout. UX (User Experience) design focuses on the overall feel and usability of the product. SiteCreation.in delivers both as an integrated discipline for maximum conversion and delight." },
+                    { question: "Does SiteCreation.in create design systems?", answer: "Yes. We build comprehensive atomic design systems including component libraries, style guides, and Figma design tokens that ensure brand consistency across all digital touchpoints." },
+                    { question: "What tools do you use for UI/UX design?", answer: "We use Figma for design and prototyping, FigJam for user journey mapping, and Framer for interactive prototypes. All deliverables are handed off in developer-ready Figma files." },
+                    { question: "How much does UI/UX design cost in Chandigarh?", answer: "UI/UX design projects at SiteCreation.in start from ₹30,000 for landing pages and scale to ₹3,00,000+ for full product design systems. We offer fixed-price packages based on scope." }
+                ]}
+            />
+
             <main className="flex-1 relative">
+                <div className="pt-24 pb-8 container-custom">
+                    <Breadcrumbs items={[{ label: "Services", href: "/#services" }, { label: "UI/UX Design" }]} />
+                </div>
                 <PageHero
                     title="UI/UX"
                     subtitle="Design"

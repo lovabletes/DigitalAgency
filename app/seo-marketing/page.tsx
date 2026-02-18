@@ -7,10 +7,30 @@ import { CTABanner } from "@/components/home/CTABanner";
 
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { ServiceSchema } from "@/components/ui/ServiceSchema";
+import { WebPageSchema } from "@/components/ui/WebPageSchema";
 
 export const metadata: Metadata = {
     title: "Mastering GEO & SEO Ranking | SiteCreation.in",
     description: "Drive elite organic traffic and maximize ROI with advanced SEO and Generative Engine Optimization (GEO). Rank in search and LLMs.",
+    keywords: ["SEO Services Chandigarh", "GEO Optimization India", "Generative Engine Optimization", "Digital Marketing Chandigarh", "Technical SEO Agency", "LLM SEO Strategy"],
+    alternates: {
+        canonical: "/seo-marketing",
+    },
+    openGraph: {
+        title: "Mastering GEO & SEO Ranking | SiteCreation.in",
+        description: "Drive elite organic traffic and maximize ROI with advanced SEO and Generative Engine Optimization (GEO). Rank in search and LLMs.",
+        url: "https://sitecreation.in/seo-marketing",
+        siteName: "SiteCreation.in",
+        images: [{ url: "/images/seo_marketing.avif", width: 1200, height: 630, alt: "SEO & GEO Marketing by SiteCreation.in" }],
+        locale: "en_IN",
+        type: "website",
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "Mastering GEO & SEO Ranking | SiteCreation.in",
+        description: "Advanced SEO and Generative Engine Optimization (GEO) to dominate AI and traditional search results.",
+        images: ["/images/seo_marketing.avif"],
+    },
 };
 
 export default function SeoMarketingPage() {
@@ -22,6 +42,19 @@ export default function SeoMarketingPage() {
                 name="SEO & Digital Ranking"
                 description="Strategic SEO ranking and Generative Engine Optimization (GEO) for modern search and AI discovery."
                 url="/seo-marketing"
+            />
+
+            <WebPageSchema
+                title="Mastering GEO & SEO Ranking | SiteCreation.in"
+                description="Drive elite organic traffic and maximize ROI with advanced SEO and Generative Engine Optimization (GEO). Rank in search and LLMs."
+                url="/seo-marketing"
+                breadcrumbs={[{ name: "Services", url: "/#services" }, { name: "SEO & Ranking" }]}
+                faqs={[
+                    { question: "What is Generative Engine Optimization (GEO) and why does it matter?", answer: "GEO is the practice of optimizing your website and content to be cited and recommended by AI-powered search engines like ChatGPT, Perplexity, and Google AI Overviews. SiteCreation.in is one of the first agencies in India offering dedicated GEO services." },
+                    { question: "How long does SEO take to show results in India?", answer: "SEO is a long-term investment. Most websites see measurable improvements in 3–6 months. Competitive keywords in markets like Chandigarh and Delhi typically take 6–12 months to reach page 1. We provide monthly progress reports." },
+                    { question: "Do you offer local SEO for Chandigarh businesses?", answer: "Yes. We specialize in local SEO for Chandigarh, Mohali, and Panchkula businesses including Google Business Profile optimization, local citations, and geo-targeted content strategies." },
+                    { question: "What is included in your SEO service package?", answer: "Our SEO packages include technical SEO audit, on-page optimization, content strategy, backlink building, Core Web Vitals optimization, schema markup, and monthly reporting. GEO optimization is available as an add-on." }
+                ]}
             />
 
             <main className="flex-1 relative">

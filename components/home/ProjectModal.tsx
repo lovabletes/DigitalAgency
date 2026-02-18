@@ -49,6 +49,8 @@ export function ProjectModal({ project, onClose }: Readonly<ProjectModalProps>) 
 
     if (!project) return null;
 
+    const coverImage = project.images?.[0]?.trim();
+
     return (
         <dialog
             ref={dialogRef}
@@ -79,9 +81,9 @@ export function ProjectModal({ project, onClose }: Readonly<ProjectModalProps>) 
                 </button>
 
                 <div className="relative h-[400px] overflow-hidden bg-neutral-900">
-                    {project.images && project.images[0] && project.images[0].trim().length > 0 ? (
+                    {coverImage ? (
                         <img
-                            src={project.images[0]}
+                            src={coverImage}
                             alt={project.title}
                             className="w-full h-full object-cover"
                         />

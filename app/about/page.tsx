@@ -5,11 +5,31 @@ import { Footer } from "@/components/home/Footer";
 import { PageHero } from "@/components/ui/PageHero";
 import { CTABanner } from "@/components/home/CTABanner";
 import { ServiceSchema } from "@/components/ui/ServiceSchema";
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
+import { WebPageSchema } from "@/components/ui/WebPageSchema";
 
 export const metadata: Metadata = {
     title: "About SiteCreation.in | Elite Digital Agency in Chandigarh",
     description: "Learn about SiteCreation.in, a premier software development collective in Chandigarh. We architect high-performance .NET, Node.js, and Cloud solutions for global brands.",
-    keywords: ["SiteCreation Story", "Digital Agency Chandigarh", "Software Development Team India", "Elite Engineering Collective"],
+    keywords: ["SiteCreation Story", "Digital Agency Chandigarh", "Software Development Team India", "Elite Engineering Collective", "About SiteCreation", "Chandigarh Tech Agency"],
+    alternates: {
+        canonical: "/about",
+    },
+    openGraph: {
+        title: "About SiteCreation.in | Elite Digital Agency in Chandigarh",
+        description: "Learn about SiteCreation.in, a premier software development collective in Chandigarh. We architect high-performance .NET, Node.js, and Cloud solutions for global brands.",
+        url: "https://sitecreation.in/about",
+        siteName: "SiteCreation.in",
+        images: [{ url: "/Banner.avif", width: 1200, height: 630, alt: "About SiteCreation.in" }],
+        locale: "en_IN",
+        type: "website",
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "About SiteCreation.in | Elite Digital Agency",
+        description: "Premier software development collective in Chandigarh. High-performance .NET, Node.js, and Cloud solutions for global brands.",
+        images: ["/Banner.avif"],
+    },
 };
 
 export default function AboutPage() {
@@ -23,7 +43,22 @@ export default function AboutPage() {
                 url="/about"
             />
 
+            <WebPageSchema
+                title="About SiteCreation.in | Elite Digital Agency in Chandigarh"
+                description="Learn about SiteCreation.in, a premier software development collective in Chandigarh. We architect high-performance .NET, Node.js, and Cloud solutions for global brands."
+                url="/about"
+                breadcrumbs={[{ name: "About" }]}
+                faqs={[
+                    { question: "Where is SiteCreation.in located?", answer: "SiteCreation.in is headquartered in Chandigarh, India, serving clients across Chandigarh, Mohali, Panchkula (the Tricity region), and globally across India, USA, and UK." },
+                    { question: "How many projects has SiteCreation.in delivered?", answer: "SiteCreation.in has delivered 100+ projects across web development, mobile apps, cloud infrastructure, and digital marketing since our founding. Our portfolio spans startups to enterprise brands." },
+                    { question: "What makes SiteCreation.in different from other agencies in Chandigarh?", answer: "We combine enterprise-grade engineering (Next.js 15, .NET Core, Azure) with luxury design craftsmanship. Unlike typical agencies, we focus on performance, Core Web Vitals, and long-term digital strategy rather than just aesthetics." }
+                ]}
+            />
+
             <main className="flex-1 relative">
+                <div className="pt-24 pb-8 container-custom">
+                    <Breadcrumbs items={[{ label: "About" }]} />
+                </div>
                 <PageHero
                     title="Our"
                     subtitle="Legacy"

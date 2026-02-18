@@ -7,10 +7,30 @@ import { CTABanner } from "@/components/home/CTABanner";
 
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { ServiceSchema } from "@/components/ui/ServiceSchema";
+import { WebPageSchema } from "@/components/ui/WebPageSchema";
 
 export const metadata: Metadata = {
     title: "Mobile & TV App Engineering | SiteCreation.in",
     description: "Architecting native mobile and smart TV masterpieces. iOS, Android, and TV solutions that blend intuitive UX with elite performance.",
+    keywords: ["Mobile App Development Chandigarh", "iOS App Development India", "Android App Development", "Smart TV App Development", "React Native Agency", "Apple TV App Development"],
+    alternates: {
+        canonical: "/mobile-apps",
+    },
+    openGraph: {
+        title: "Mobile & TV App Engineering | SiteCreation.in",
+        description: "Native mobile and smart TV masterpieces. iOS, Android, and TV solutions that blend intuitive UX with elite performance.",
+        url: "https://sitecreation.in/mobile-apps",
+        siteName: "SiteCreation.in",
+        images: [{ url: "/images/mobile-aps.avif", width: 1200, height: 630, alt: "Mobile App Development by SiteCreation.in" }],
+        locale: "en_IN",
+        type: "website",
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "Mobile & TV App Engineering | SiteCreation.in",
+        description: "Elite iOS, Android, and Smart TV app development from Chandigarh's premier digital agency.",
+        images: ["/images/mobile-aps.avif"],
+    },
 };
 
 export default function MobileAppsPage() {
@@ -22,6 +42,19 @@ export default function MobileAppsPage() {
                 name="Mobile & TV Apps"
                 description="Fluid experiences for iOS, Android, and Smart TV platforms (Apple TV, Android TV)."
                 url="/mobile-apps"
+            />
+
+            <WebPageSchema
+                title="Mobile & TV App Engineering | SiteCreation.in"
+                description="Architecting native mobile and smart TV masterpieces. iOS, Android, and TV solutions that blend intuitive UX with elite performance."
+                url="/mobile-apps"
+                breadcrumbs={[{ name: "Services", url: "/#services" }, { name: "Mobile Apps" }]}
+                faqs={[
+                    { question: "Does SiteCreation.in develop iOS and Android apps in Chandigarh?", answer: "Yes. We develop native iOS (Swift/SwiftUI), native Android (Kotlin), and cross-platform React Native apps from our Chandigarh studio. All apps are optimized for performance and App Store approval." },
+                    { question: "Can you build Smart TV apps like Apple TV and Android TV?", answer: "Yes. SiteCreation.in is one of the few agencies in India specializing in Apple TV (tvOS), Android TV, and Samsung Tizen app development. We have shipped multiple streaming and enterprise TV apps." },
+                    { question: "How much does mobile app development cost in India?", answer: "Mobile app development at SiteCreation.in starts from ₹80,000 for simple apps and scales to ₹8,00,000+ for complex platforms with backend APIs, real-time features, and multi-platform support." },
+                    { question: "Do you handle App Store and Google Play submission?", answer: "Yes. We handle the complete submission process including app store optimization (ASO), screenshots, descriptions, and compliance review for both Apple App Store and Google Play Store." }
+                ]}
             />
 
             <main className="flex-1 relative">

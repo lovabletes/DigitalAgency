@@ -3,14 +3,20 @@ import { MetadataRoute } from 'next';
 export default function sitemap(): MetadataRoute.Sitemap {
     const baseUrl = 'https://sitecreation.in';
 
+    // Static dates per route group — update these when content changes
+    const homepageLastMod = new Date('2026-02-18');
+    const serviceLastMod = new Date('2026-02-18');
+    const expertiseLastMod = new Date('2026-02-10');
+    const legalLastMod = new Date('2026-01-01');
+
     // Main pages
     const mainRoutes = [
-        { url: '', priority: 1, changeFrequency: 'weekly' as const },
-        { url: '/about', priority: 0.8, changeFrequency: 'monthly' as const },
-        { url: '/portfolio', priority: 0.9, changeFrequency: 'weekly' as const },
-        { url: '/careers', priority: 0.7, changeFrequency: 'monthly' as const },
-        { url: '/blog', priority: 0.8, changeFrequency: 'daily' as const },
-        { url: '/contact', priority: 0.9, changeFrequency: 'monthly' as const },
+        { url: '', priority: 1, changeFrequency: 'weekly' as const, lastModified: homepageLastMod },
+        { url: '/about', priority: 0.8, changeFrequency: 'monthly' as const, lastModified: serviceLastMod },
+        { url: '/portfolio', priority: 0.9, changeFrequency: 'weekly' as const, lastModified: serviceLastMod },
+        { url: '/careers', priority: 0.7, changeFrequency: 'monthly' as const, lastModified: serviceLastMod },
+        { url: '/blog', priority: 0.8, changeFrequency: 'daily' as const, lastModified: homepageLastMod },
+        { url: '/contact', priority: 0.9, changeFrequency: 'monthly' as const, lastModified: serviceLastMod },
     ];
 
     // Service pages
@@ -23,7 +29,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ].map(route => ({
         url: route,
         priority: 0.9,
-        changeFrequency: 'monthly' as const
+        changeFrequency: 'monthly' as const,
+        lastModified: serviceLastMod,
     }));
 
     // Expertise pages (high priority for SEO)
@@ -37,7 +44,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ].map(slug => ({
         url: `/expertise/${slug}`,
         priority: 0.85,
-        changeFrequency: 'monthly' as const
+        changeFrequency: 'monthly' as const,
+        lastModified: expertiseLastMod,
     }));
 
     // Legal pages
@@ -48,7 +56,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ].map(route => ({
         url: route,
         priority: 0.5,
-        changeFrequency: 'yearly' as const
+        changeFrequency: 'yearly' as const,
+        lastModified: legalLastMod,
     }));
 
     // Combine all routes
@@ -61,7 +70,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     return allRoutes.map((route) => ({
         url: `${baseUrl}${route.url}`,
-        lastModified: new Date(),
+        lastModified: route.lastModified,
         changeFrequency: route.changeFrequency,
         priority: route.priority,
     }));

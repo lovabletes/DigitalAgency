@@ -102,8 +102,8 @@ export const metadata: Metadata = {
   },
   category: "Technology",
   verification: {
-    google: "G-3P14UK5hsFyLhSjFY0THujhYMhFAZSdo-ZmRR5LenPo", // Replace with actual Google Search Console verification code
-    yandex: "yandex-XXXXXXXXXX",
+    // Add your Google Search Console verification token here when ready
+    // google: "your-google-verification-token",
   },
   robots: {
     index: true,

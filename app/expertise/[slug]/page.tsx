@@ -28,6 +28,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         title: `${topic.title} | SiteCreation.in Specialized Expertise`,
         description: topic.shortDesc,
         keywords: [topic.title, topic.category, ...topic.highlights, "SiteCreation Expertise", "Chandigarh Digital Agency"],
+        alternates: {
+            canonical: `/expertise/${slug}`,
+        },
         openGraph: {
             title: `${topic.title} | Elite Engineering by SiteCreation.in`,
             description: topic.shortDesc,
@@ -46,6 +49,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
             card: "summary_large_image",
             title: `${topic.title} | Technical Mastery`,
             description: topic.shortDesc,
+            images: ["/Banner.avif"],
         },
     };
 }
@@ -86,7 +90,7 @@ export default async function ExpertisePage({ params }: Readonly<PageProps>) {
                         "articleSection": topic.category,
                         "inLanguage": "en-IN",
                         "datePublished": "2026-02-09",
-                        "dateModified": new Date().toISOString().split('T')[0],
+                        "dateModified": "2026-02-18",
                     })
                 }}
             />

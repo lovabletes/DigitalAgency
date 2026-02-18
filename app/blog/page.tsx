@@ -8,7 +8,25 @@ import { CTABanner } from "@/components/home/CTABanner";
 export const metadata: Metadata = {
     title: "Blog & Insights | SiteCreation.in Digital Collective",
     description: "Expert insights into web performance, luxury design, and cloud engineering. Stay ahead of the curve with our technical thought leadership.",
-    keywords: ["Digital Strategy", "Next.js Insights", "Luxury Design Blog", "Software Engineering Chandigarh"],
+    keywords: ["Digital Strategy", "Next.js Insights", "Luxury Design Blog", "Software Engineering Chandigarh", "Web Development Blog India", "GEO SEO Insights"],
+    alternates: {
+        canonical: "/blog",
+    },
+    openGraph: {
+        title: "Blog & Insights | SiteCreation.in Digital Collective",
+        description: "Expert insights into web performance, luxury design, and cloud engineering. Technical thought leadership from Chandigarh's elite agency.",
+        url: "https://sitecreation.in/blog",
+        siteName: "SiteCreation.in",
+        images: [{ url: "/images/web_development.avif", width: 1200, height: 630, alt: "SiteCreation.in Blog & Insights" }],
+        locale: "en_IN",
+        type: "website",
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "Blog & Insights | SiteCreation.in",
+        description: "Expert insights into web performance, luxury design, and cloud engineering from Chandigarh's elite digital agency.",
+        images: ["/images/web_development.avif"],
+    },
 };
 
 

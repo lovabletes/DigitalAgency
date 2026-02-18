@@ -7,10 +7,30 @@ import { CTABanner } from "@/components/home/CTABanner";
 
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { ServiceSchema } from "@/components/ui/ServiceSchema";
+import { WebPageSchema } from "@/components/ui/WebPageSchema";
 
 export const metadata: Metadata = {
     title: "Elite .NET & Node.js Development | SiteCreation.in",
     description: "Architecting high-performance, scalable, and visually stunning web experiences. Specializing in Node.js, .NET Core, and luxury digital craftsmanship.",
+    keywords: ["Web Development Chandigarh", "Node.js Development India", ".NET Core Agency", "Next.js 15 Development", "Custom Web App Chandigarh", "Enterprise Web Solutions"],
+    alternates: {
+        canonical: "/web-development",
+    },
+    openGraph: {
+        title: "Elite .NET & Node.js Web Development | SiteCreation.in",
+        description: "Architecting high-performance, scalable, and visually stunning web experiences. Specializing in Node.js, .NET Core, and luxury digital craftsmanship.",
+        url: "https://sitecreation.in/web-development",
+        siteName: "SiteCreation.in",
+        images: [{ url: "/images/web_development.avif", width: 1200, height: 630, alt: "Web Development by SiteCreation.in" }],
+        locale: "en_IN",
+        type: "website",
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "Elite .NET & Node.js Development | SiteCreation.in",
+        description: "High-performance web experiences built with Node.js, .NET Core, and Next.js 15.",
+        images: ["/images/web_development.avif"],
+    },
 };
 
 export default function WebDevelopmentPage() {
@@ -22,6 +42,19 @@ export default function WebDevelopmentPage() {
                 name="Website Development"
                 description="Bespoke digital platforms architected with Node.js, .NET Core, and Next.js for enterprise-scale performance."
                 url="/web-development"
+            />
+
+            <WebPageSchema
+                title="Elite .NET & Node.js Development | SiteCreation.in"
+                description="Architecting high-performance, scalable, and visually stunning web experiences. Specializing in Node.js, .NET Core, and luxury digital craftsmanship."
+                url="/web-development"
+                breadcrumbs={[{ name: "Services", url: "/#services" }, { name: "Web Development" }]}
+                faqs={[
+                    { question: "What technologies does SiteCreation.in use for web development?", answer: "We specialize in Node.js, .NET Core, Next.js 15, and React 19 for building high-performance web applications. Our stack is chosen for enterprise scalability and sub-second load times." },
+                    { question: "How long does it take to build a website in Chandigarh with SiteCreation.in?", answer: "A standard business website takes 3–6 weeks. Complex enterprise platforms with custom integrations typically take 8–16 weeks. We provide detailed timelines during our discovery call." },
+                    { question: "Do you provide website maintenance after launch?", answer: "Yes. We offer ongoing maintenance packages including security updates, performance monitoring, content updates, and feature enhancements for all websites we build." },
+                    { question: "What is the cost of web development in Chandigarh?", answer: "Web development projects at SiteCreation.in start from ₹50,000 for business websites and scale to ₹5,00,000+ for enterprise platforms. We provide transparent, fixed-price quotes after understanding your requirements." }
+                ]}
             />
 
             <main className="flex-1 relative">

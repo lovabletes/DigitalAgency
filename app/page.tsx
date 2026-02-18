@@ -8,6 +8,7 @@ import {
   projects,
   brands
 } from "@/data";
+import type { Metadata } from "next";
 import {
   Header,
   Hero,
@@ -21,6 +22,12 @@ import {
   Footer,
   ScrollProgressBar
 } from "@/components/lazy";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "/",
+  },
+};
 
 export default function LandingPage() {
   const schemaMarkup = {

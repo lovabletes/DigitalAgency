@@ -8,7 +8,25 @@ import { CTABanner } from "@/components/home/CTABanner";
 export const metadata: Metadata = {
     title: "Careers | Join the SiteCreation.in Engineering Collective",
     description: "Build the future of digital luxury. We are looking for elite engineers, designers, and strategists to join our remote-first collective.",
-    keywords: ["Tech Careers India", "Remote Engineering Jobs", "Luxury Brand Design Jobs", "Next.js Developer Jobs"],
+    keywords: ["Tech Careers India", "Remote Engineering Jobs", "Luxury Brand Design Jobs", "Next.js Developer Jobs", "Software Engineer Jobs Chandigarh", "Remote Tech Jobs India"],
+    alternates: {
+        canonical: "/careers",
+    },
+    openGraph: {
+        title: "Careers | Join the SiteCreation.in Engineering Collective",
+        description: "Build the future of digital luxury. Elite engineers, designers, and strategists wanted for our remote-first collective.",
+        url: "https://sitecreation.in/careers",
+        siteName: "SiteCreation.in",
+        images: [{ url: "/Banner.avif", width: 1200, height: 630, alt: "Careers at SiteCreation.in" }],
+        locale: "en_IN",
+        type: "website",
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "Careers at SiteCreation.in | Join Our Elite Collective",
+        description: "Elite engineering and design roles at Chandigarh's premier digital agency. Remote-first culture.",
+        images: ["/Banner.avif"],
+    },
 };
 
 
