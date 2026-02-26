@@ -6,3 +6,4 @@ export * from "./services";
 export * from "./packages";
 export * from "./projects";
 export * from "./brands";
+export * from "./blog";

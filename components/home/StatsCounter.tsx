@@ -48,10 +48,10 @@ const useCountUp = (end: number, duration: number = 2500) => {
 
 export function StatsCounter({ stats }: Readonly<StatsCounterProps>) {
     // Create count-up hooks for each stat
-    const stat1Count = useCountUp(Number.parseInt(stats[0]?.val.replaceAll(/\D/g, '') || '0'), 2500);
-    const stat2Count = useCountUp(Number.parseInt(stats[1]?.val.replaceAll(/\D/g, '') || '0'), 2500);
-    const stat3Count = useCountUp(Number.parseInt(stats[2]?.val.replaceAll(/\D/g, '') || '0'), 2500);
-    const stat4Count = useCountUp(Number.parseInt(stats[3]?.val.replaceAll(/\D/g, '') || '0'), 2500);
+    const stat1Count = useCountUp(Number.parseInt(stats[0]?.val.replaceAll(/\D/g, '') || '0'), 1500);
+    const stat2Count = useCountUp(Number.parseInt(stats[1]?.val.replaceAll(/\D/g, '') || '0'), 1500);
+    const stat3Count = useCountUp(Number.parseInt(stats[2]?.val.replaceAll(/\D/g, '') || '0'), 1500);
+    const stat4Count = useCountUp(Number.parseInt(stats[3]?.val.replaceAll(/\D/g, '') || '0'), 1500);
     const statCounts = [stat1Count, stat2Count, stat3Count, stat4Count];
 
     return (

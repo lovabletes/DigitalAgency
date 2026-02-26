@@ -119,7 +119,7 @@ export function FaqSection() {
                     <div className="absolute top-0 right-0 w-64 h-64 bg-accent/10 rounded-full blur-3xl -mr-32 -mt-32 group-hover:bg-accent/20 transition-colors duration-700" />
                     <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
                         <div className="text-center md:text-left">
-                            <h4 className="text-2xl md:text-3xl font-black text-foreground mb-2">Still have questions?</h4>
+                            <h3 className="text-2xl md:text-3xl font-black text-foreground mb-2">Still have questions?</h3>
                             <p className="text-muted-foreground font-medium">Our elite strategy team is ready to architect your vision.</p>
                         </div>
                         <button className="btn-lux-primary px-10 py-5 text-base shadow-lux group-hover:scale-105 transition-transform duration-300">

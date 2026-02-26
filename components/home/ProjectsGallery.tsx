@@ -43,7 +43,8 @@ function ProjectCard({ project, idx, onClick }: ProjectCardProps) {
     return (
         <button
             onClick={onClick}
-            className="group relative overflow-hidden rounded-2xl cursor-pointer animate-slide-up transition-all duration-500 hover:scale-[1.02] shadow-xl hover:shadow-2xl hover:shadow-accent/20 outline-none focus-visible:ring-2 focus-visible:ring-accent text-left h-full"
+            aria-label={`View details for project: ${project.title}`}
+            className="group relative overflow-hidden rounded-2xl cursor-pointer animate-slide-up transition-[transform,box-shadow] duration-500 hover:scale-[1.02] shadow-xl hover:shadow-2xl hover:shadow-accent/20 outline-none focus-visible:ring-2 focus-visible:ring-accent text-left h-full"
             style={{ animationDelay: `${idx * 100}ms` }}
         >
             {/* Project Image */}
@@ -83,7 +84,7 @@ function ProjectCard({ project, idx, onClick }: ProjectCardProps) {
                 </h3>
 
                 {/* Hover CTA */}
-                <div className="overflow-hidden transition-all duration-500 max-h-0 group-hover:max-h-20 opacity-0 group-hover:opacity-100">
+                <div className="overflow-hidden transition-[max-height,opacity] duration-500 max-h-0 group-hover:max-h-20 opacity-0 group-hover:opacity-100">
                     <div className="h-0.5 w-12 bg-accent mb-3 mt-2" />
                     <p className="text-sm text-white/90 font-medium transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-75">
                         {project.liveUrl ? 'Visit Website →' : 'View Details →'}
@@ -137,7 +138,7 @@ export function ProjectsGallery({ projects }: Readonly<ProjectsGalleryProps>) {
 
             {/* Project Modal */}
             <ProjectModal
-                project={selectedProject as any}
+                project={selectedProject as Project}
                 onClose={() => setSelectedProject(null)}
             />
         </>

@@ -42,12 +42,12 @@ export function CTABanner() {
                             </h2>
 
                             <p className="text-xl md:text-2xl text-white/70 font-medium mb-14 leading-relaxed max-w-3xl">
-                                Join the vanguard of digital innovation. Partner with SiteCreation.in to architect
-                                <span className="text-white border-b-2 border-accent/40 pb-1 ml-2">uncompromising digital legacies</span>.
+                                Join the vanguard of digital innovation. Partner with SiteCreation.in to architect{" "}
+                                <span className="text-white border-b-2 border-accent/40 pb-1">uncompromising digital legacies</span>.
                             </p>
 
                             <div className="flex flex-col sm:flex-row items-center justify-center gap-8">
-                                <Button className="btn-lux-primary px-12 py-8 text-lg rounded-full shadow-lux group/btn" asChild>
+                                <Button className="btn-lux-primary px-12 py-8 text-lg rounded-full shadow-lux group/btn" aria-label="Consult with our Elite Team" asChild>
                                     <Link href="/contact" className="flex items-center gap-3">
                                         <span>Consult Elite Team</span>
                                         <Zap size={20} className="group-hover/btn:animate-pulse" />

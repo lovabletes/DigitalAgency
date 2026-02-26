@@ -2,6 +2,7 @@
 
 import React from "react";
 import { Star, Quote } from "lucide-react";
+import Image from "next/image";
 
 interface Testimonial {
     quote: string;
@@ -34,18 +35,24 @@ export function Testimonials({ testimonials }: Readonly<TestimonialsProps>) {
                                     {["star-1", "star-2", "star-3", "star-4", "star-5"].map((key) => <Star key={key} size={16} fill="currentColor" />)}
                                 </div>
                                 <p className="text-lg text-foreground/80 italic font-medium mb-8 leading-relaxed">
-                                    "{t.quote}"
+                                    &quot;{t.quote}&quot;
                                 </p>
                                 <div className="flex items-center gap-4">
                                     {t.image ? (
-                                        <img src={t.image} alt={t.name} className="h-12 w-12 rounded-full object-cover border-2 border-accent" />
+                                        <Image
+                                            src={t.image}
+                                            alt={t.name}
+                                            width={48}
+                                            height={48}
+                                            className="h-12 w-12 rounded-full object-cover border-2 border-accent"
+                                        />
                                     ) : (
                                         <div className="h-12 w-12 rounded-full bg-accent/20 flex items-center justify-center border-2 border-accent">
                                             <span className="text-accent font-black text-xs">{t.name.charAt(0)}</span>
                                         </div>
                                     )}
                                     <div>
-                                        <h4 className="text-sm font-black text-foreground uppercase tracking-wider">{t.name}</h4>
+                                        <h3 className="text-sm font-black text-foreground uppercase tracking-wider">{t.name}</h3>
                                         <p className="text-xs font-bold text-muted-foreground">{t.role}</p>
                                     </div>
                                 </div>

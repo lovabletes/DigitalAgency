@@ -43,7 +43,7 @@ export function Pricing({ packages }: Readonly<PricingProps>) {
                         <div
                             key={pkg.id}
                             className={classNames(
-                                "relative glass-card p-10 rounded-[2rem] animate-slide-up group transform-style-3d flex flex-col h-full transition-all duration-500",
+                                "relative glass-card p-10 rounded-[2rem] animate-slide-up group transform-style-3d flex flex-col h-full transition-[transform,box-shadow,background-color,border-color] duration-500",
                                 pkg.featured
                                     ? "bg-gradient-to-br from-accent/10 to-accent/5 border-2 border-accent shadow-2xl shadow-accent/20 card-3d-deep z-20 ring-4 ring-accent/20"
                                     : "border border-border/30 card-3d z-10"
@@ -89,6 +89,7 @@ export function Pricing({ packages }: Readonly<PricingProps>) {
 
                             {/* CTA Button with 3D press effect */}
                             <Button
+                                aria-label={`Choose ${pkg.name} package`}
                                 className={classNames(
                                     "w-full py-6 text-base font-black uppercase tracking-wider transition-all duration-300 transform-style-3d",
                                     pkg.featured
@@ -107,7 +108,7 @@ export function Pricing({ packages }: Readonly<PricingProps>) {
                     <p className="text-muted-foreground font-medium mb-6">
                         Need a custom solution? <span className="text-accent font-black">Let's discuss your vision.</span>
                     </p>
-                    <Button variant="outline" className="btn-lux-outline px-10 py-6">
+                    <Button variant="outline" className="btn-lux-outline px-10 py-6" aria-label="Schedule a Custom Consultation">
                         Schedule Consultation
                     </Button>
                 </div>

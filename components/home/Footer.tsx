@@ -4,6 +4,7 @@
 
 import React from "react";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 // Inline icons to fix persistent lucide-react build error
 type IconProps = React.SVGProps<SVGSVGElement> & { size?: number | string };
@@ -59,7 +60,9 @@ function NewsletterForm() {
 
     return (
         <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4 max-w-2xl mx-auto">
+            <label htmlFor="newsletter-email" className="sr-only">Email Address</label>
             <input
+                id="newsletter-email"
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -106,9 +109,9 @@ export function Footer() {
                     <div className="lg:col-span-2">
                         <div className="flex items-center gap-2.5 mb-8 group cursor-pointer">
                             <div className="relative h-12 w-12 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
-                                <img
+                                <Image
                                     src="/images/Logo.png"
-                                    alt="Logo"
+                                    alt="SiteCreation.in Logo"
                                     width={48}
                                     height={48}
                                     className="object-contain"
@@ -122,7 +125,7 @@ export function Footer() {
                             Best Web Designing Company in Chandigarh
                         </p>
                         <p className="text-[#f7e7ce]/70 text-base leading-relaxed font-medium mb-8 max-w-sm">
-                            Architecting premium digital experiences for the world's most ambitious brands. Uncompromising quality, elegant execution.
+                            Architecting premium digital experiences for the world&apos;s most ambitious brands. Uncompromising quality, elegant execution.
                         </p>
 
                         {/* Social Icons */}
@@ -132,7 +135,7 @@ export function Footer() {
                                 { icon: XIcon, label: 'Twitter', href: 'https://twitter.com/sitecreation' },
                                 { icon: LinkedinIcon, label: 'LinkedIn', href: 'https://linkedin.com/company/sitecreation' },
                                 { icon: InstagramIcon, label: 'Instagram', href: 'https://instagram.com/sitecreation' },
-                            ].map((social, idx) => (
+                            ].map((social) => (
                                 <a
                                     key={social.label}
                                     href={social.href}
@@ -149,7 +152,7 @@ export function Footer() {
                     <div className="lg:col-span-3 grid grid-cols-2 md:grid-cols-3 gap-12">
                         {/* Services Column */}
                         <div>
-                            <h4 className="text-sm font-black uppercase tracking-wider text-accent mb-6">Services</h4>
+                            <h3 className="text-sm font-black uppercase tracking-wider text-accent mb-6">Services</h3>
                             <ul className="space-y-4">
                                 {[
                                     { name: 'Web Development', href: '/web-development' },
@@ -169,7 +172,7 @@ export function Footer() {
 
                         {/* Company Column */}
                         <div>
-                            <h4 className="text-sm font-black uppercase tracking-wider text-accent mb-6">Company</h4>
+                            <h3 className="text-sm font-black uppercase tracking-wider text-accent mb-6">Company</h3>
                             <ul className="space-y-4">
                                 {[
                                     { name: 'About Us', href: '/about' },
@@ -187,30 +190,25 @@ export function Footer() {
                             </ul>
                         </div>
 
-                        {/* Contact Column */}
-                        <div className="col-span-2 md:col-span-1">
-                            <h4 className="text-sm font-black uppercase tracking-wider text-accent mb-6">Reach Us</h4>
-                            <ul className="space-y-4 text-[#f7e7ce]/70 font-medium">
-                                <li className="flex items-start gap-2">
-                                    <span className="text-accent">📍</span>
-                                    <span>Chandigarh • Mohali • Panchkula</span>
+                        {/* Reach Us Column */}
+                        <div>
+                            <h3 className="text-sm font-black uppercase tracking-wider text-accent mb-6">Reach Us</h3>
+                            <ul className="space-y-6">
+                                <li>
+                                    <p className="text-[11px] font-bold text-[#f7e7ce]/40 uppercase tracking-widest mb-2">Location</p>
+                                    <p className="text-white/80 font-medium text-sm leading-relaxed">
+                                        Phase 8B, Industrial Area,<br />
+                                        Sector 74, Mohali, PB
+                                    </p>
                                 </li>
-
-                                <li className="flex items-start gap-2">
-                                    <span className="text-accent">📧</span>
-                                    <a href="mailto:support@sitecreation.in" className="hover:text-white transition-colors">
-                                        support@sitecreation.in
-                                    </a>
+                                <li>
+                                    <p className="text-[11px] font-bold text-[#f7e7ce]/40 uppercase tracking-widest mb-2">Contact</p>
+                                    <a href="mailto:hello@sitecreation.in" className="text-white/80 hover:text-accent font-medium text-sm block">hello@sitecreation.in</a>
+                                    <a href="tel:+919876543210" className="text-white/80 hover:text-accent font-medium text-sm block mt-1">+91 98765 43210</a>
                                 </li>
-                                <li className="flex items-start gap-2">
-                                    <span className="text-accent">📞</span>
-                                    <a href="tel:+918437532754" className="hover:text-white transition-colors">
-                                        +91 8437532754
-                                    </a>
-                                </li>
-                                <li className="flex items-start gap-2">
+                                <li className="flex items-center gap-2 text-[#f7e7ce]/60">
                                     <span className="text-accent">🕐</span>
-                                    <span>Mon-Fri / 9AM-6PM IST</span>
+                                    <span className="text-sm font-medium">Mon-Fri / 9AM-6PM IST</span>
                                 </li>
                             </ul>
                         </div>
@@ -277,7 +275,7 @@ export function Footer() {
                 {/* Bottom Bar */}
                 <div className="py-8 border-t-2 border-accent/10 flex flex-col md:flex-row justify-between items-center gap-6">
                     <p className="text-sm font-bold text-[#f7e7ce]/40 uppercase tracking-widest">
-                        © 2026 SiteCreation.in — Crafted with Excellence
+                        © {new Date().getFullYear()} SiteCreation.in — Crafted with Excellence
                     </p>
                     <div className="flex gap-8">
                         <a href="/privacy" className="text-xs font-black text-[#f7e7ce]/40 hover:text-accent uppercase tracking-[0.2em] transition-colors">

@@ -12,7 +12,7 @@ import { WebPageSchema } from "@/components/ui/WebPageSchema";
 export const metadata: Metadata = {
     title: "Elite .NET & Node.js Development | SiteCreation.in",
     description: "Architecting high-performance, scalable, and visually stunning web experiences. Specializing in Node.js, .NET Core, and luxury digital craftsmanship.",
-    keywords: ["Web Development Chandigarh", "Node.js Development India", ".NET Core Agency", "Next.js 15 Development", "Custom Web App Chandigarh", "Enterprise Web Solutions"],
+    keywords: ["Site Creation", "sitescreation", "makemysite", "Web Development Chandigarh", "Node.js Development India", ".NET Core Agency", "Next.js 15 Development", "Custom Web App Chandigarh", "Enterprise Web Solutions"],
     alternates: {
         canonical: "/web-development",
     },
@@ -45,12 +45,12 @@ export default function WebDevelopmentPage() {
             />
 
             <WebPageSchema
-                title="Elite .NET & Node.js Development | SiteCreation.in"
-                description="Architecting high-performance, scalable, and visually stunning web experiences. Specializing in Node.js, .NET Core, and luxury digital craftsmanship."
+                title="Elite .NET & Node.js Development | Site Creation | SiteCreation.in"
+                description="Architecting high-performance, scalable, and visually stunning web experiences. SiteCreation.in (Site Creation) specializes in Node.js, .NET Core, and luxury digital craftsmanship."
                 url="/web-development"
                 breadcrumbs={[{ name: "Services", url: "/#services" }, { name: "Web Development" }]}
                 faqs={[
-                    { question: "What technologies does SiteCreation.in use for web development?", answer: "We specialize in Node.js, .NET Core, Next.js 15, and React 19 for building high-performance web applications. Our stack is chosen for enterprise scalability and sub-second load times." },
+                    { question: "What technologies does SiteCreation.in use for web development?", answer: "We (Site Creation) specialize in Node.js, .NET Core, Next.js 15, and React 19 for building high-performance web applications. Our stack is chosen for enterprise scalability and sub-second load times." },
                     { question: "How long does it take to build a website in Chandigarh with SiteCreation.in?", answer: "A standard business website takes 3–6 weeks. Complex enterprise platforms with custom integrations typically take 8–16 weeks. We provide detailed timelines during our discovery call." },
                     { question: "Do you provide website maintenance after launch?", answer: "Yes. We offer ongoing maintenance packages including security updates, performance monitoring, content updates, and feature enhancements for all websites we build." },
                     { question: "What is the cost of web development in Chandigarh?", answer: "Web development projects at SiteCreation.in start from ₹50,000 for business websites and scale to ₹5,00,000+ for enterprise platforms. We provide transparent, fixed-price quotes after understanding your requirements." }

@@ -16,14 +16,23 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "SiteCreation.in | Elite Web Design & Digital Solutions in Chandigarh",
+    default: "Site Creation | SiteCreation.in | Elite Web Design in Chandigarh",
     template: "%s | SiteCreation.in"
   },
-  description: "Architecting elite digital legacies. SiteCreation.in is a premier digital agency serving Chandigarh, Mohali, and Panchkula, specializing in high-performance web development, mobile apps, and Generative Engine Optimization (GEO).",
+  description: "Architecting elite digital legacies. SiteCreation.in (Site Creation) is a premier digital agency serving Chandigarh, Mohali, and Panchkula, specializing in high-performance web development, mobile apps, and Generative Engine Optimization (GEO).",
   keywords: [
     "SiteCreation",
     "SiteCreation.in",
     "Site Creation",
+    "sitescreation",
+    "sitecreations",
+    "sites creation",
+    "makemysite",
+    "makemysite.in",
+    "make my site",
+    "website maker chandigarh",
+    "professional site builder",
+    "start my project chandigarh",
     "Web Design Chandigarh",
     "Website Designing Chandigarh",
     "Best Web Development Company in Chandigarh",
@@ -40,7 +49,6 @@ export const metadata: Metadata = {
     "SEO Services Mohali",
     "GEO Optimization",
     "Search Mastery",
-    "make my site",
     "create website",
     "dotnet solutions",
     "custom software development",
@@ -122,7 +130,7 @@ const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
   "name": "SiteCreation.in",
-  "alternateName": "Site Creation",
+  "alternateName": ["Site Creation", "Site Creations", "sitescreation", "sitecreations", "makemysite", "makemysite.in"],
   "url": "https://sitecreation.in",
   "logo": "https://sitecreation.in/logo.png",
   "sameAs": [
@@ -143,14 +151,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en-IN">
+      <head>
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-DXCZF3VKS6"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
-        <Script id="google-analytics" strategy="afterInteractive">
+        <Script id="google-analytics" strategy="lazyOnload">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}

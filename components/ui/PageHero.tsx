@@ -1,6 +1,6 @@
-import React from "react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import Image from "next/image";
 
 interface PageHeroProps {
     title: string;
@@ -13,11 +13,15 @@ export function PageHero({ title, subtitle, description, image = "/Banner.avif" 
     return (
         <section className="relative min-h-[60vh] flex flex-col items-center justify-center overflow-hidden pb-10 pt-32">
             {/* Immersive Background Banner */}
-            <div className="absolute inset-0 z-0">
-                <img
+            <div className="absolute inset-0 z-0 text-white">
+                <Image
                     src={image}
-                    alt="Luxury Abstract Background"
-                    className="w-full h-full object-cover"
+                    alt={`${title} - Strategic Background`}
+                    fill
+                    priority
+                    fetchPriority="high"
+                    className="object-cover"
+                    sizes="100vw"
                 />
                 {/* Dark Luxury Overlay for Text Contrast */}
                 <div className="absolute inset-0 bg-gradient-to-b from-[#0f1429]/90 via-[#1a1a3e]/80 to-[#faf8f3] dark:to-[#0f1429] mix-blend-multiply" />
@@ -62,7 +66,7 @@ export function PageHero({ title, subtitle, description, image = "/Banner.avif" 
                     </p>
 
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-12 animate-slide-up [animation-delay:300ms]">
-                        <Button className="btn-lux-primary shadow-lux scale-110 border-none text-white hover-3d-tilt group" asChild>
+                        <Button className="btn-lux-primary shadow-lux scale-110 border-none text-white hover-3d-tilt group" aria-label={`Get Started with ${title}`} asChild>
                             <Link href="/contact">
                                 <span>Get Started →</span>
                             </Link>

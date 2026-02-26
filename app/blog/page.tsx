@@ -1,9 +1,10 @@
 import { Metadata } from "next";
-import { navLinks } from "@/data";
+import { navLinks, blogPosts } from "@/data";
 import { Header } from "@/components/home/Header";
 import { Footer } from "@/components/home/Footer";
 import { PageHero } from "@/components/ui/PageHero";
 import { CTABanner } from "@/components/home/CTABanner";
+import Link from "next/link";
 
 export const metadata: Metadata = {
     title: "Blog & Insights | SiteCreation.in Digital Collective",
@@ -30,29 +31,7 @@ export const metadata: Metadata = {
 };
 
 
-const posts = [
-    {
-        title: "The Evolution of Digital Luxury",
-        excerpt: "Exploring why premium brands are shifting towards minimal yet highly immersive web architectures in 2026.",
-        date: "Feb 05, 2026",
-        category: "Design",
-        image: "/images/ui_ux_design.avif"
-    },
-    {
-        title: "Scaling with Next.js 16",
-        excerpt: "A deep dive into the latest performance optimizations and server component patterns for high-traffic applications.",
-        date: "Jan 28, 2026",
-        category: "Technology",
-        image: "/images/web_develop.avif"
-    },
-    {
-        title: "The Art of User Psychology",
-        excerpt: "How subtle animations and micro-interactions can significantly increase conversion rates for luxury products.",
-        date: "Jan 15, 2026",
-        category: "UX Research",
-        image: "/images/web_dev.avif"
-    }
-];
+// Static posts moved to @/data/blog.ts
 
 export default function BlogPage() {
     return (
@@ -69,8 +48,8 @@ export default function BlogPage() {
 
                 <section className="py-24 bg-background container-custom">
                     <div className="grid lg:grid-cols-3 gap-10">
-                        {posts.map((post) => (
-                            <div key={post.title} className="group cursor-pointer">
+                        {blogPosts.map((post) => (
+                            <Link key={post.slug} href={`/blog/${post.slug}`} className="group cursor-pointer">
                                 <div className="aspect-[16/9] rounded-3xl overflow-hidden mb-8 border border-border/50 shadow-lg group-hover:shadow-accent/5 transition-all duration-500">
                                     <img
                                         src={post.image}
@@ -89,11 +68,11 @@ export default function BlogPage() {
                                     <p className="text-muted-foreground font-medium leading-relaxed line-clamp-2">
                                         {post.excerpt}
                                     </p>
-                                    <button className="text-foreground font-black uppercase tracking-widest text-xs flex items-center gap-2 group/btn">
+                                    <div className="text-foreground font-black uppercase tracking-widest text-xs flex items-center gap-2 group/btn">
                                         Read Insight <span className="group-hover/btn:translate-x-1 transition-transform">→</span>
-                                    </button>
+                                    </div>
                                 </div>
-                            </div>
+                            </Link>
                         ))}
                     </div>
                 </section>

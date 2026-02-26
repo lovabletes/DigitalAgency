@@ -1,0 +1,174 @@
+import React from "react";
+import { blogPosts } from "@/data/blog";
+import { Header } from "@/components/home/Header";
+import { Footer } from "@/components/home/Footer";
+import { navLinks } from "@/data";
+import { ScrollProgressBar } from "@/components/home/ScrollProgressBar";
+import { CTABanner } from "@/components/home/CTABanner";
+import { ChevronRight, Calendar, User, Tag } from "lucide-react";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { Metadata } from "next";
+
+interface PageProps {
+    params: Promise<{ slug: string }>;
+}
+
+export function generateStaticParams() {
+    return blogPosts.map((post) => ({ slug: post.slug }));
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+    const { slug } = await params;
+    const post = blogPosts.find((p) => p.slug === slug);
+
+    if (!post) return { title: "Post Not Found" };
+
+    return {
+        title: `${post.title} | SiteCreation.in Insights`,
+        description: post.excerpt,
+        keywords: [post.title, post.category, ...post.keywords, "SiteCreation Blog", "Chandigarh Digital Insights"],
+        alternates: {
+            canonical: `/blog/${slug}`,
+        },
+        openGraph: {
+            title: post.title,
+            description: post.excerpt,
+            type: "article",
+            url: `https://sitecreation.in/blog/${slug}`,
+            images: [{ url: post.image, width: 1200, height: 630, alt: post.title }],
+        },
+    };
+}
+
+const ContentRenderer = ({ para }: { para: string }) => {
+    if (para.startsWith('# ')) {
+        return <h1 className="text-4xl font-black text-foreground mt-12 mb-6">{para.replaceAll("# ", "")}</h1>;
+    }
+    if (para.startsWith('## ')) {
+        return <h2 className="text-3xl font-black text-foreground mt-10 mb-5">{para.replaceAll("## ", "")}</h2>;
+    }
+    if (para.startsWith('### ')) {
+        return <h3 className="text-2xl font-black text-foreground mt-8 mb-4">{para.replaceAll("### ", "")}</h3>;
+    }
+    if (para.includes('**')) {
+        return <p dangerouslySetInnerHTML={{ __html: para.replaceAll(/\*\*(.*?)\*\*/g, '<strong class="text-foreground">$1</strong>') }} />;
+    }
+    return <p>{para}</p>;
+};
+
+export default async function BlogPostPage({ params }: Readonly<PageProps>) {
+    const { slug } = await params;
+    const post = blogPosts.find((p) => p.slug === slug);
+
+    if (!post) notFound();
+
+    return (
+        <div className="flex min-h-screen flex-col bg-background">
+            {/* Structured Data for SEO */}
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "BlogPosting",
+                        "headline": post.title,
+                        "description": post.excerpt,
+                        "image": `https://sitecreation.in${post.image}`,
+                        "author": {
+                            "@type": "Person",
+                            "name": post.author
+                        },
+                        "publisher": {
+                            "@type": "Organization",
+                            "name": "SiteCreation.in",
+                            "logo": "https://sitecreation.in/images/Logo.png"
+                        },
+                        "datePublished": post.date,
+                        "keywords": post.keywords.join(", ")
+                    })
+                }}
+            />
+
+            <ScrollProgressBar />
+            <Header navLinks={navLinks} />
+
+            <main className="flex-1">
+                {/* Breadcrumbs */}
+                <div className="bg-secondary/20 border-b border-border/50">
+                    <div className="container-custom px-6 py-4">
+                        <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-sm">
+                            <Link href="/" className="text-muted-foreground hover:text-accent transition-colors font-medium">Home</Link>
+                            <ChevronRight size={16} className="text-muted-foreground" />
+                            <Link href="/blog" className="text-muted-foreground hover:text-accent transition-colors font-medium">Blog</Link>
+                            <ChevronRight size={16} className="text-muted-foreground" />
+                            <span className="text-foreground font-bold line-clamp-1">{post.title}</span>
+                        </nav>
+                    </div>
+                </div>
+
+                {/* Article Header */}
+                <article className="py-24">
+                    <div className="container-custom px-6">
+                        <div className="max-w-4xl mx-auto space-y-8">
+                            <div className="flex flex-wrap items-center gap-6 text-sm">
+                                <span className="text-accent font-black uppercase tracking-widest py-1 px-4 border border-accent/20 rounded-full bg-accent/5">
+                                    {post.category}
+                                </span>
+                                <div className="flex items-center gap-2 text-muted-foreground font-bold uppercase tracking-wider">
+                                    <Calendar size={14} className="text-accent" />
+                                    {post.date}
+                                </div>
+                                <div className="flex items-center gap-2 text-muted-foreground font-bold uppercase tracking-wider">
+                                    <User size={14} className="text-accent" />
+                                    {post.author}
+                                </div>
+                            </div>
+
+                            <h1 className="text-4xl md:text-6xl font-black text-foreground tracking-tighter leading-tight">
+                                {post.title}
+                            </h1>
+
+                            <p className="text-xl md:text-2xl text-muted-foreground font-medium italic border-l-4 border-accent pl-8 py-2">
+                                {post.excerpt}
+                            </p>
+
+                            <div className="aspect-[21/9] rounded-[3rem] overflow-hidden border border-border/50 shadow-lux my-12 relative group">
+                                <img
+                                    src={post.image}
+                                    alt={post.title}
+                                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent" />
+                            </div>
+
+                            <div className="prose prose-invert prose-lux max-w-none">
+                                <div className="space-y-8 text-lg leading-relaxed text-muted-foreground font-medium">
+                                    {post.content.split('\n\n').filter(p => p.trim()).map((para) => (
+                                        <div key={para.substring(0, 50)}>
+                                            <ContentRenderer para={para} />
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+
+                            {/* Tags */}
+                            <div className="pt-12 mt-12 border-t border-border/50 flex flex-wrap gap-4">
+                                {post.keywords.map(tag => (
+                                    <div key={tag} className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-muted-foreground bg-secondary/30 px-4 py-2 rounded-xl border border-border/50">
+                                        <Tag size={12} className="text-accent" />
+                                        {tag}
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <CTABanner />
+            </main>
+
+            <Footer />
+        </div>
+    );
+}

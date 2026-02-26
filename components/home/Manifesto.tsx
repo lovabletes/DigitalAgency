@@ -17,7 +17,7 @@ export function Manifesto() {
 
                         <div className="space-y-6 text-lg text-white/70 font-medium leading-relaxed max-w-2xl">
                             <p>
-                                At SiteCreation.in, we don't just build websites; we architect high-performance digital ecosystems. In an era where <span className="text-white font-bold">Generative AI</span> and <span className="text-white font-bold">LLMs</span> define how brands are discovered, our engineering philosophy prioritizes <span className="text-accent italic">Semantic Clarity</span> and <span className="text-accent italic">Technical Authority</span>.
+                                At SiteCreation.in, we don&apos;t just build websites; we architect high-performance digital ecosystems. In an era where <span className="text-white font-bold">Generative AI</span> and <span className="text-white font-bold">LLMs</span> define how brands are discovered, our engineering philosophy prioritizes <span className="text-accent italic">Semantic Clarity</span> and <span className="text-accent italic">Technical Authority</span>.
                             </p>
                             <p>
                                 Our approach blends <span className="text-white font-bold">Headsless Architecture</span> with <span className="text-white font-bold">Composable Commerce</span> principles, ensuring your brand is not only visible to human users but also authoritative for AI agents and search crawlers.
@@ -26,11 +26,11 @@ export function Manifesto() {
 
                         <div className="grid grid-cols-2 gap-8 pt-8 border-t border-white/10 w-full max-w-md">
                             <div>
-                                <h4 className="text-accent font-black text-2xl mb-2">99.9%</h4>
+                                <h3 className="text-accent font-black text-2xl mb-2">99.9%</h3>
                                 <p className="text-white/50 text-xs uppercase tracking-widest font-black">Uptime Infrastructure</p>
                             </div>
                             <div>
-                                <h4 className="text-accent font-black text-2xl mb-2">&lt;1s</h4>
+                                <h3 className="text-accent font-black text-2xl mb-2">&lt;1s</h3>
                                 <p className="text-white/50 text-xs uppercase tracking-widest font-black">Average Latency</p>
                             </div>
                         </div>

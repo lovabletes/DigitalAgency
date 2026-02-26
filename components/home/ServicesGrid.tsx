@@ -110,6 +110,7 @@ export function ServicesGrid({ services }: Readonly<ServicesGridProps>) {
                                         {/* CTA - Compact */}
                                         <a
                                             href={service.link ?? "/"}
+                                            aria-label={`Explore ${service.title} service`}
                                             className="inline-flex items-center gap-1.5 text-accent font-black text-[9px] uppercase tracking-[0.15em] group-hover:gap-3 transition-all duration-300 mt-auto"
                                         >
                                             <span className="relative after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-0.5 after:bg-accent group-hover:after:w-full after:transition-all after:duration-300">Explore</span>

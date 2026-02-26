@@ -21,22 +21,38 @@ export function Header({ navLinks }: Readonly<HeaderProps>) {
     const [isScrolled, setIsScrolled] = React.useState(false);
 
     React.useEffect(() => {
-        const handleScroll = () => {
-            setIsScrolled(window.scrollY > 50);
+        let lastScrollY = window.scrollY;
+        let ticking = false;
+
+        const updateScroll = () => {
+            const currentScrollY = globalThis.scrollY;
+            if (Math.abs(currentScrollY - lastScrollY) > 5) { // Small threshold
+                setIsScrolled(currentScrollY > 50);
+                lastScrollY = currentScrollY;
+            }
+            ticking = false;
         };
-        window.addEventListener('scroll', handleScroll);
+
+        const handleScroll = () => {
+            if (!ticking) {
+                window.requestAnimationFrame(updateScroll);
+                ticking = true;
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
     return (
         <header className={classNames(
-            "sticky top-0 z-50 w-full border-b border-accent/30 backdrop-blur-xl transition-all duration-500",
+            "sticky top-0 z-50 w-full border-b border-accent/30 backdrop-blur-xl transition-[background-color,border-color,box-shadow,transform] duration-500",
             isScrolled
                 ? "bg-[#1a1a3e]/95 dark:bg-[#0f1429]/95 shadow-2xl shadow-accent/10"
                 : "bg-gradient-to-r from-[#1a1a3e] via-[#1a1a3e] to-[#2a2a4e] dark:from-[#0f1429] dark:to-[#1a1a3e] shadow-lg"
         )}>
             <div className="container-custom flex h-16 items-center justify-between px-6">
-                <a href="/" className="flex items-center gap-2.5 group cursor-pointer">
+                <Link href="/" className="flex items-center gap-2.5 group cursor-pointer">
                     <div className="relative h-10 w-10 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
                         <Image
                             src="/images/Logo.png"
@@ -50,7 +66,7 @@ export function Header({ navLinks }: Readonly<HeaderProps>) {
                     <span className="text-xl font-black tracking-tight text-white dark:text-[#f7e7ce]">
                         SiteCreation<span className="text-accent italic">.in</span>
                     </span>
-                </a>
+                </Link>
 
                 {/* Desktop Nav */}
                 <nav className="hidden md:flex items-center gap-10">
@@ -75,6 +91,7 @@ export function Header({ navLinks }: Readonly<HeaderProps>) {
                 <button
                     className="flex h-10 w-10 items-center justify-center rounded-xl border border-accent/30 bg-accent/10 md:hidden"
                     onClick={() => setIsMenuOpen(!isMenuOpen)}
+                    aria-label={isMenuOpen ? "Close menu" : "Open menu"}
                 >
                     {isMenuOpen ? <CloseIcon size={20} className="text-accent" /> : <MenuIcon size={20} className="text-accent" />}
                 </button>

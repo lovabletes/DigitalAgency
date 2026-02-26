@@ -8,7 +8,7 @@ interface BrandMarqueeProps {
 
 export function BrandMarquee({ brands }: Readonly<BrandMarqueeProps>) {
     return (
-        <div className="mt-20 -mb-10 overflow-hidden relative w-screen -ml-[calc(50vw-50%)]">
+        <div className="mt-20 -mb-10 overflow-hidden relative w-screen -ml-[calc(50vw-50%)] min-h-[120px]">
             <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#0f1429] to-transparent z-10" />
             <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[#0f1429] to-transparent z-10" />
             <div className="flex animate-marquee whitespace-nowrap py-10">

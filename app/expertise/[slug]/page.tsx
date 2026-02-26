@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return {
         title: `${topic.title} | SiteCreation.in Specialized Expertise`,
         description: topic.shortDesc,
-        keywords: [topic.title, topic.category, ...topic.highlights, "SiteCreation Expertise", "Chandigarh Digital Agency"],
+        keywords: [topic.title, topic.category, ...topic.highlights, "Site Creation", "sitescreation", "sitecreations", "makemysite", "SiteCreation Expertise", "Chandigarh Digital Agency"],
         alternates: {
             canonical: `/expertise/${slug}`,
         },
@@ -100,6 +100,7 @@ export default async function ExpertisePage({ params }: Readonly<PageProps>) {
                         "publisher": {
                             "@type": "Organization",
                             "name": "SiteCreation.in",
+                            "alternateName": ["Site Creation", "sitescreation", "makemysite"],
                             "logo": {
                                 "@type": "ImageObject",
                                 "url": "https://sitecreation.in/images/Logo.png"
