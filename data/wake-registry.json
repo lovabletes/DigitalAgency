@@ -37,6 +37,18 @@
             "services": [
                 "https://devbhoomichamba.onrender.com"
             ]
+        },
+        {
+            "name": "Aurelis Cosmetics",
+            "services": [
+                "https://aureliscosmetics.onrender.com"
+            ]
+        },
+        {
+            "name": "Meridian Clothes Store",
+            "services": [
+                "https://meridianlinestore.onrender.com"
+            ]
         }
     ]
 }

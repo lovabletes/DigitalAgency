@@ -53,5 +53,23 @@ export const projects = [
         images: ["/Chamba.avif"],
         description: "A digital gateway to the cultural heritage and divine landscapes of Chamba.",
         liveUrl: "https://devbhoomichamba.onrender.com"
+    },
+    {
+        id: "proj-aurelis",
+        title: "Aurelis Cosmetics",
+        cat: "Beauty & Wellness",
+        color: "bg-amber-600",
+        images: ["/Aurelis Cream Brand.png"],
+        description: "A sophisticated skincare and cosmetic brand experience.",
+        liveUrl: "https://aureliscosmetics.onrender.com"
+    },
+    {
+        id: "proj-meridian",
+        title: "Meridian Clothes Store",
+        cat: "Fashion E-Commerce",
+        color: "bg-blue-600",
+        images: ["/Meridian clothes store.png"],
+        description: "A modern clothing platform with a curated fashion collection.",
+        liveUrl: "https://meridianlinestore.onrender.com"
     }
 ];
