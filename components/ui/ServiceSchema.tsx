@@ -1,3 +1,10 @@
+interface Review {
+    author: string;
+    datePublished: string;
+    reviewBody: string;
+    reviewRating: number;
+}
+
 interface ServiceSchemaProps {
     name: string;
     description: string;
@@ -7,6 +14,7 @@ interface ServiceSchemaProps {
     priceRange?: string;
     /** ISO 8601 date string e.g. "2026-02-18" */
     dateModified?: string;
+    reviews?: Review[];
 }
 
 export function ServiceSchema({
@@ -16,8 +24,9 @@ export function ServiceSchema({
     url,
     priceRange = "₹₹₹",
     dateModified = "2026-02-18",
+    reviews = []
 }: Readonly<ServiceSchemaProps>) {
-    const schema = {
+    const schema: any = {
         "@context": "https://schema.org",
         "@type": "Service",
         "name": name,
@@ -53,7 +62,7 @@ export function ServiceSchema({
             "aggregateRating": {
                 "@type": "AggregateRating",
                 "ratingValue": "4.9",
-                "reviewCount": "47",
+                "reviewCount": reviews.length > 0 ? reviews.length.toString() : "47",
                 "bestRating": "5",
                 "worstRating": "1"
             },
@@ -83,6 +92,24 @@ export function ServiceSchema({
             ]
         }
     };
+
+    if (reviews.length > 0) {
+        schema.review = reviews.map(r => ({
+            "@type": "Review",
+            "author": {
+                "@type": "Person",
+                "name": r.author
+            },
+            "datePublished": r.datePublished,
+            "reviewBody": r.reviewBody,
+            "reviewRating": {
+                "@type": "Rating",
+                "ratingValue": r.reviewRating.toString(),
+                "bestRating": "5",
+                "worstRating": "1"
+            }
+        }));
+    }
 
     return (
         <script

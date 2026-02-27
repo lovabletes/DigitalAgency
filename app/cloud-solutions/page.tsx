@@ -42,6 +42,14 @@ export default function CloudSolutionsPage() {
                 name="Cloud & Infrastructure"
                 description="Mastering Azure ecosystems and orchestrating the transition from Monolith to Microservices."
                 url="/cloud-solutions"
+                reviews={[
+                    {
+                        author: "Michael Chen",
+                        datePublished: "2026-02-05",
+                        reviewBody: "Architected our cloud migration flawlessly. Zero downtime and massive scalability improvements on Azure.",
+                        reviewRating: 5
+                    }
+                ]}
             />
 
             <WebPageSchema

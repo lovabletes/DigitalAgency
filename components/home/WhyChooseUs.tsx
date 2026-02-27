@@ -14,7 +14,7 @@ interface WhyChooseUsProps {
 
 export function WhyChooseUs({ features }: Readonly<WhyChooseUsProps>) {
     return (
-        <div className="bg-[#1a1a3e] rounded-[3rem] p-12 md:p-20 relative overflow-hidden shadow-lux group mt-32">
+        <section id="expertise" className="bg-[#1a1a3e] rounded-[3rem] p-12 md:p-20 relative overflow-hidden shadow-lux group mt-32">
             <div className="absolute inset-0 bg-gradient-to-br from-[#1a1a3e] to-[#0f1429] z-0" />
             <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-accent/10 rounded-full blur-[100px] animate-pulse-slow" />
 
@@ -41,6 +41,6 @@ export function WhyChooseUs({ features }: Readonly<WhyChooseUsProps>) {
                     ))}
                 </div>
             </div>
-        </div>
+        </section>
     );
 }

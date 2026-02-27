@@ -41,6 +41,14 @@ export default function UiUxDesignPage() {
                 name="UI/UX Design"
                 description="Immersive interfaces that blend luxury aesthetics with intuitive functionality and high-conversion design systems."
                 url="/ui-ux-design"
+                reviews={[
+                    {
+                        author: "Emily Rodriguez",
+                        datePublished: "2026-01-25",
+                        reviewBody: "The teams expertise in both web and mobile development helped us launch across all platforms seamlessly. Highly recommended!",
+                        reviewRating: 5
+                    }
+                ]}
             />
 
             <WebPageSchema

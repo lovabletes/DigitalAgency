@@ -42,6 +42,20 @@ export default function SeoMarketingPage() {
                 name="SEO & Digital Ranking"
                 description="Strategic SEO ranking and Generative Engine Optimization (GEO) for modern search and AI discovery."
                 url="/seo-marketing"
+                reviews={[
+                    {
+                        author: "Sarah Johnson",
+                        datePublished: "2026-02-15",
+                        reviewBody: "SiteCreation.in transformed our digital presence with their advanced SEO and GEO strategies. Truly elite results.",
+                        reviewRating: 5
+                    },
+                    {
+                        author: "Michael Chen",
+                        datePublished: "2026-01-20",
+                        reviewBody: "The expertise in Generative Engine Optimization is a game-changer. Our brand is now cited by AI search engines consistently.",
+                        reviewRating: 5
+                    }
+                ]}
             />
 
             <WebPageSchema

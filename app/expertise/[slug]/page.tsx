@@ -4,6 +4,7 @@ import { Header } from "@/components/home/Header";
 import { Footer } from "@/components/home/Footer";
 import { navLinks } from "@/data";
 import { ScrollProgressBar } from "@/components/home/ScrollProgressBar";
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { ChevronRight, Zap, CheckCircle2 } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -122,17 +123,7 @@ export default async function ExpertisePage({ params }: Readonly<PageProps>) {
                 {/* Breadcrumb Navigation */}
                 <div className="bg-secondary/20 border-b border-border/50">
                     <div className="container-custom px-6 py-4">
-                        <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-sm">
-                            <Link href="/" className="text-muted-foreground hover:text-accent transition-colors font-medium">
-                                Home
-                            </Link>
-                            <ChevronRight size={16} className="text-muted-foreground" />
-                            <Link href="/#expertise" className="text-muted-foreground hover:text-accent transition-colors font-medium">
-                                Expertise
-                            </Link>
-                            <ChevronRight size={16} className="text-muted-foreground" />
-                            <span className="text-foreground font-bold">{topic.title}</span>
-                        </nav>
+                        <Breadcrumbs items={[{ label: "Expertise", href: "/#expertise" }, { label: topic.title }]} />
                     </div>
                 </div>
 

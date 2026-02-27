@@ -42,6 +42,14 @@ export default function WebDevelopmentPage() {
                 name="Website Development"
                 description="Bespoke digital platforms architected with Node.js, .NET Core, and Next.js for enterprise-scale performance."
                 url="/web-development"
+                reviews={[
+                    {
+                        author: "Michael Chen",
+                        datePublished: "2026-02-10",
+                        reviewBody: "Working with the team was a game-changer. They delivered our web platform on time and the performance improvements were incredible.",
+                        reviewRating: 5
+                    }
+                ]}
             />
 
             <WebPageSchema

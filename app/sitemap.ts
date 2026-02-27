@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next';
 import { expertiseTopics } from '@/data/expertise';
+import { blogPosts } from '@/data/blog';
 
 export default function sitemap(): MetadataRoute.Sitemap {
     const baseUrl = 'https://sitecreation.in';
@@ -35,13 +36,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }));
 
     // Expertise pages — dynamically generated from the actual data source.
-    // This ensures the sitemap ALWAYS matches the pages that actually exist,
-    // preventing "Submitted URL not found (404)" errors in Google Search Console.
     const expertiseRoutes = Object.keys(expertiseTopics).map(slug => ({
         url: `/expertise/${slug}`,
         priority: 0.85,
         changeFrequency: 'monthly' as const,
         lastModified: expertiseLastMod,
+    }));
+
+    // Blog pages — ensures new articles are indexed immediately.
+    const blogRoutes = blogPosts.map(post => ({
+        url: `/blog/${post.slug}`,
+        priority: 0.8,
+        changeFrequency: 'monthly' as const,
+        lastModified: new Date(post.date),
     }));
 
     // Legal pages
@@ -61,6 +68,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         ...mainRoutes,
         ...serviceRoutes,
         ...expertiseRoutes,
+        ...blogRoutes,
         ...legalRoutes
     ];
 

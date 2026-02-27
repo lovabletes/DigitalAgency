@@ -9,6 +9,8 @@ import { ChevronRight, Calendar, User, Tag } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
+import { WebPageSchema } from "@/components/ui/WebPageSchema";
 
 interface PageProps {
     params: Promise<{ slug: string }>;
@@ -90,6 +92,14 @@ export default async function BlogPostPage({ params }: Readonly<PageProps>) {
                 }}
             />
 
+            <WebPageSchema
+                title={`${post.title} | SiteCreation.in Insights`}
+                description={post.excerpt}
+                url={`/blog/${slug}`}
+                datePublished={post.date}
+                breadcrumbs={[{ name: "Blog", url: "/blog" }, { name: post.title }]}
+            />
+
             <ScrollProgressBar />
             <Header navLinks={navLinks} />
 
@@ -97,13 +107,7 @@ export default async function BlogPostPage({ params }: Readonly<PageProps>) {
                 {/* Breadcrumbs */}
                 <div className="bg-secondary/20 border-b border-border/50">
                     <div className="container-custom px-6 py-4">
-                        <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-sm">
-                            <Link href="/" className="text-muted-foreground hover:text-accent transition-colors font-medium">Home</Link>
-                            <ChevronRight size={16} className="text-muted-foreground" />
-                            <Link href="/blog" className="text-muted-foreground hover:text-accent transition-colors font-medium">Blog</Link>
-                            <ChevronRight size={16} className="text-muted-foreground" />
-                            <span className="text-foreground font-bold line-clamp-1">{post.title}</span>
-                        </nav>
+                        <Breadcrumbs items={[{ label: "Blog", href: "/blog" }, { label: post.title }]} />
                     </div>
                 </div>
 

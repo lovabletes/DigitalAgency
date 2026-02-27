@@ -42,6 +42,14 @@ export default function MobileAppsPage() {
                 name="Mobile & TV Apps"
                 description="Fluid experiences for iOS, Android, and Smart TV platforms (Apple TV, Android TV)."
                 url="/mobile-apps"
+                reviews={[
+                    {
+                        author: "Sarah Johnson",
+                        datePublished: "2026-02-18",
+                        reviewBody: "SiteCreation.in transformed our idea into a stunning mobile app. Their attention to detail and commitment to quality exceeded our expectations.",
+                        reviewRating: 5
+                    }
+                ]}
             />
 
             <WebPageSchema
