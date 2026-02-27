@@ -290,6 +290,51 @@ export function Footer() {
                     </div>
                 </div>
             </div>
+            {/* SiteNavigationElement Schema for Services and Company */}
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@graph": [
+                            {
+                                "@context": "https://schema.org",
+                                "@type": "ItemList",
+                                "name": "Our Services",
+                                "itemListElement": [
+                                    { name: 'Web Development', href: '/web-development' },
+                                    { name: 'Mobile Apps', href: '/mobile-apps' },
+                                    { name: 'UI/UX Design', href: '/ui-ux-design' },
+                                    { name: 'Cloud Solutions', href: '/cloud-solutions' },
+                                    { name: 'SEO & Marketing', href: '/seo-marketing' }
+                                ].map((item, index) => ({
+                                    "@type": "SiteNavigationElement",
+                                    "position": index + 1,
+                                    "name": item.name,
+                                    "url": `https://sitecreation.in${item.href}`
+                                }))
+                            },
+                            {
+                                "@context": "https://schema.org",
+                                "@type": "ItemList",
+                                "name": "Company Links",
+                                "itemListElement": [
+                                    { name: 'About Us', href: '/about' },
+                                    { name: 'Portfolio', href: '/portfolio' },
+                                    { name: 'Careers', href: '/careers' },
+                                    { name: 'Blog', href: '/blog' },
+                                    { name: 'Privacy Policy', href: '/privacy' }
+                                ].map((item, index) => ({
+                                    "@type": "SiteNavigationElement",
+                                    "position": index + 1,
+                                    "name": item.name,
+                                    "url": `https://sitecreation.in${item.href}`
+                                }))
+                            }
+                        ]
+                    })
+                }}
+            />
         </footer>
     );
 }

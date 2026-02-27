@@ -60,7 +60,9 @@ export default function UiUxDesignPage() {
                     { question: "What is the difference between UI and UX design?", answer: "UI (User Interface) design focuses on the visual elements — colors, typography, and layout. UX (User Experience) design focuses on the overall feel and usability of the product. SiteCreation.in (Site Creation) delivers both as an integrated discipline for maximum conversion and delight." },
                     { question: "Does SiteCreation.in create design systems?", answer: "Yes. We build comprehensive atomic design systems including component libraries, style guides, and Figma design tokens that ensure brand consistency across all digital touchpoints." },
                     { question: "What tools do you use for UI/UX design?", answer: "We use Figma for design and prototyping, FigJam for user journey mapping, and Framer for interactive prototypes. All deliverables are handed off in developer-ready Figma files." },
-                    { question: "How much does UI/UX design cost in Chandigarh?", answer: "UI/UX design projects at SiteCreation.in start from ₹30,000 for landing pages and scale to ₹3,00,000+ for full product design systems. We offer fixed-price packages based on scope." }
+                    { question: "How much does UI/UX design cost in Chandigarh?", answer: "UI/UX design projects at SiteCreation.in start from ₹30,000 for landing pages and scale to ₹3,00,000+ for full product design systems. We offer fixed-price packages based on scope." },
+                    { question: "Do you design with accessibility (A11y) in mind?", answer: "Absolutely. All our designs meet WCAG 2.2 AA standards at a minimum. We prioritize high contrast, keyboard navigation, and semantic structure to ensure your digital product is inclusive for all users." },
+                    { question: "How does premium UI/UX design impact ROI for businesses?", answer: "Luxury aesthetics build immediate trust. By combining psychology-driven UX with high-end visuals, we reduce bounce rates and increase user retention, directly impacting your bottom-line growth." }
                 ]}
             />
 

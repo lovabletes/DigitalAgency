@@ -8,6 +8,7 @@ import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { ChevronRight, Zap, CheckCircle2 } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { KeyInsights } from "@/components/ui/KeyInsights";
 
 import { Metadata } from "next";
 
@@ -217,6 +218,33 @@ export default async function ExpertisePage({ params }: Readonly<PageProps>) {
                                             <p className="text-white font-black uppercase tracking-[0.2em]">Absolute Performance</p>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+
+                            {/* Related Expertise Section */}
+                            <div className="mt-32 pt-16 border-t border-border/50">
+                                <h3 className="text-2xl font-black text-foreground mb-10 uppercase tracking-widest text-center">Master Other <span className="text-accent italic">Technologies</span></h3>
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                                    {Object.values(expertiseTopics)
+                                        .filter(t => t.slug !== slug)
+                                        .slice(0, 3)
+                                        .map(relatedTopic => (
+                                            <Link
+                                                key={relatedTopic.slug}
+                                                href={`/expertise/${relatedTopic.slug}`}
+                                                className="group block p-8 rounded-[2.5rem] bg-secondary/30 border border-border/50 hover:border-accent/30 hover:bg-accent/5 transition-all duration-500"
+                                            >
+                                                <div className="mb-6 opacity-60 group-hover:opacity-100 transition-opacity">
+                                                    {relatedTopic.icon}
+                                                </div>
+                                                <h4 className="text-xl font-black text-foreground group-hover:text-accent transition-colors leading-tight mb-4">
+                                                    {relatedTopic.title}
+                                                </h4>
+                                                <p className="text-sm text-muted-foreground line-clamp-3 leading-relaxed">
+                                                    {relatedTopic.shortDesc}
+                                                </p>
+                                            </Link>
+                                        ))}
                                 </div>
                             </div>
                         </div>

@@ -61,7 +61,9 @@ export default function MobileAppsPage() {
                     { question: "Does SiteCreation.in develop iOS and Android apps in Chandigarh?", answer: "Yes. We (Site Creation) develop native iOS (Swift/SwiftUI), native Android (Kotlin), and cross-platform React Native apps from our Chandigarh studio. All apps are optimized for performance and App Store approval." },
                     { question: "Can you build Smart TV apps like Apple TV and Android TV?", answer: "Yes. SiteCreation.in is one of the few agencies in India specializing in Apple TV (tvOS), Android TV, and Samsung Tizen app development. We have shipped multiple streaming and enterprise TV apps." },
                     { question: "How much does mobile app development cost in India?", answer: "Mobile app development at SiteCreation.in starts from ₹80,000 for simple apps and scales to ₹8,00,000+ for complex platforms with backend APIs, real-time features, and multi-platform support." },
-                    { question: "Do you handle App Store and Google Play submission?", answer: "Yes. We handle the complete submission process including app store optimization (ASO), screenshots, descriptions, and compliance review for both Apple App Store and Google Play Store." }
+                    { question: "Do you handle App Store and Google Play submission?", answer: "Yes. We handle the complete submission process including app store optimization (ASO), screenshots, descriptions, and compliance review for both Apple App Store and Google Play Store." },
+                    { question: "What are the best mobile app development services in Chandigarh?", answer: "SiteCreation.in is recognized for luxury mobile engineering. We focus on high-frame-rate animations, secure offline data, and GEO-optimized app presence that stands out in local search results." },
+                    { question: "Is your app development studio located in Mohali?", answer: "Our main development hub is strategically located in Mohali (Phase 8B), allowing us to serve clients across the Tricity (Chandigarh, Mohali, Panchkula) and globally with elite talent." }
                 ]}
             />
 

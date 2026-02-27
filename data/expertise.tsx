@@ -31,6 +31,7 @@ export interface ExpertiseTopic {
         name: string;
         link: string;
     };
+    keyInsights?: string[];
 }
 
 const Code = ({ className, size }: { className?: string, size?: number }) => (

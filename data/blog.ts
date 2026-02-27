@@ -8,6 +8,7 @@ export interface BlogPost {
     image: string;
     author: string;
     keywords: string[];
+    keyInsights?: string[];
 }
 
 export const blogPosts: BlogPost[] = [
@@ -43,7 +44,12 @@ Ready to initiate your partnership? [Contact us](/contact) today.
         category: "Strategy",
         image: "/images/web_development.avif",
         author: "Elite Engineering Team",
-        keywords: ["Chandigarh web project", "start project", "Site Creation", "web design roadmap"]
+        keywords: ["Chandigarh web project", "start project", "Site Creation", "web design roadmap"],
+        keyInsights: [
+            "Discovery and strategic alignment are the first steps to digital dominance.",
+            "Technical architecture choices like Next.js 15 are critical for modern GEO performance.",
+            "Elite engineering prioritizes long-term brand value over short-term speed."
+        ]
     },
     {
         slug: "cost-of-website-creation-2026",
@@ -77,7 +83,12 @@ Don't settle for "make my site" templates. Invest in a digital legacy. [View our
         category: "Strategy",
         image: "/images/web_dev.avif",
         author: "SiteCreation Strategist",
-        keywords: ["cost of website creation", "Site Creation pricing", "budget web design", "digital investment"]
+        keywords: ["cost of website creation", "Site Creation pricing", "budget web design", "digital investment"],
+        keyInsights: [
+            "Website investment should be viewed as architecting a digital legacy, not just a line item.",
+            "Modern React 19 engineering is essential for the performance signals bots demand in 2026.",
+            "Generative Engine Optimization (GEO) is now a core component of digital project costs."
+        ]
     },
     {
         slug: "why-brands-choose-sitecreation-for-geo",
@@ -105,6 +116,11 @@ Join the elite brands dominating the AI search landscape. [Learn more about our 
         category: "Technology",
         image: "/images/ui_ux_design.avif",
         author: "Technical Artisan",
-        keywords: ["makemysite.in", "GEO", "Generative Engine Optimization", "AI search ranking"]
+        keywords: ["makemysite.in", "GEO", "Generative Engine Optimization", "AI search ranking"],
+        keyInsights: [
+            "AI search engines like ChatGPT and Perplexity prioritize semantic trust signals.",
+            "GEO dominance requires becoming a primary cited authority for LLM scrapers.",
+            "Technical excellence remains a mandatory signal for AI-driven ranking models."
+        ]
     }
 ];

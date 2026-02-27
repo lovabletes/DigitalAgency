@@ -35,13 +35,13 @@ export function Header({ navLinks }: Readonly<HeaderProps>) {
 
         const handleScroll = () => {
             if (!ticking) {
-                window.requestAnimationFrame(updateScroll);
+                globalThis.requestAnimationFrame(updateScroll);
                 ticking = true;
             }
         };
 
-        window.addEventListener('scroll', handleScroll, { passive: true });
-        return () => window.removeEventListener('scroll', handleScroll);
+        globalThis.addEventListener('scroll', handleScroll, { passive: true });
+        return () => globalThis.removeEventListener('scroll', handleScroll);
     }, []);
 
     return (
@@ -117,6 +117,22 @@ export function Header({ navLinks }: Readonly<HeaderProps>) {
                     </nav>
                 </div>
             )}
+            {/* SiteNavigationElement Schema */}
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "ItemList",
+                        "itemListElement": navLinks.map((link, index) => ({
+                            "@type": "SiteNavigationElement",
+                            "position": index + 1,
+                            "name": link.name,
+                            "url": `https://sitecreation.in${link.href}`
+                        }))
+                    })
+                }}
+            />
         </header>
     );
 }

@@ -34,53 +34,44 @@ export default function LandingPage() {
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "ProfessionalService",
-        "name": "Site Creation | SiteCreation.in | Best Web Design & Development Company in Chandigarh",
-        "alternateName": ["Site Creation", "sitescreation", "sitecreations", "makemysite", "makemysite.in"],
-        "description": "Looking to make my site or build custom software? SiteCreation.in (Site Creation) is Chandigarh's elite digital agency. We provide premium .NET solutions, websites in Node.js, mobile applications, and graphic designing services.",
-        "image": "https://sitecreation.in/images/Logo.png",
-        "@id": "https://sitecreation.in",
+        "@type": "LocalBusiness",
+        "@id": "https://sitecreation.in/#localbusiness",
+        "name": "SiteCreation.in | Best Web Designing Company in Chandigarh",
+        "alternateName": ["Site Creation", "Site Creations", "sitescreation", "sitecreations", "makemysite", "makemysite.in"],
+        "description": "Elite digital agency in Chandigarh specializing in luxury web design, high-performance software development, and GEO optimization. Trusted by brands in Chandigarh, Mohali, and Panchkula since 2018.",
         "url": "https://sitecreation.in",
-        "telephone": "+918437532754",
+        "logo": "https://sitecreation.in/images/Logo.png",
+        "image": "https://sitecreation.in/Banner.avif",
+        "telephone": "+91-84375-32754",
+        "email": "hello@sitecreation.in",
         "priceRange": "$$$",
-        "founder": {
-          "@type": "Person",
-          "name": "Elite Engineering Team"
-        },
-        "areaServed": [
-          {
-            "@type": "City",
-            "name": "Chandigarh"
-          },
-          {
-            "@type": "City",
-            "name": "Mohali"
-          },
-          {
-            "@type": "City",
-            "name": "Panchkula"
-          },
-          "IN", "US", "UK"
-        ],
-        "keywords": "Site Creation, sitescreation, sitecreations, makemysite, makemysite.in, website maker chandigarh, professional site builder, start my project chandigarh, Web Design Chandigarh, Web Development Company Chandigarh, Digital Agency Chandigarh, Next.js Development, SEO Chandigarh, GEO Optimization, Mobile applications, Graphic designing, Poster making",
         "address": {
           "@type": "PostalAddress",
-          "streetAddress": "Sector 17, Elite Business District",
-          "addressLocality": "Chandigarh",
-          "postalCode": "160017",
+          "streetAddress": "Phase 8B, Industrial Area, Sector 74",
+          "addressLocality": "Mohali",
+          "addressRegion": "Punjab",
+          "postalCode": "160071",
           "addressCountry": "IN"
         },
         "geo": {
           "@type": "GeoCoordinates",
-          "latitude": 30.7333,
-          "longitude": 76.7794
+          "latitude": 30.7046,
+          "longitude": 76.7179
         },
-        "openingHoursSpecification": {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-          "opens": "09:00",
-          "closes": "20:00"
-        },
+        "areaServed": [
+          { "@type": "City", "name": "Chandigarh" },
+          { "@type": "City", "name": "Mohali" },
+          { "@type": "City", "name": "Panchkula" },
+          { "@type": "Country", "name": "India" }
+        ],
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": "09:00",
+            "closes": "18:00"
+          }
+        ],
         "sameAs": [
           "https://github.com/sitecreation",
           "https://twitter.com/sitecreation",
@@ -89,22 +80,22 @@ export default function LandingPage() {
         ],
         "hasOfferCatalog": {
           "@type": "OfferCatalog",
-          "name": "Chandigarh Digital Services",
+          "name": "Elite Digital Services",
           "itemListElement": [
             {
               "@type": "Service",
-              "name": "Custom Web Design in Chandigarh",
-              "description": "Bespoke, high-end website design tailored for luxury and enterprise brands."
+              "name": "High-Performance Web Development",
+              "description": "Bespoke Next.js and Node.js architectures for global brands."
             },
             {
               "@type": "Service",
-              "name": "E-commerce Development Chandigarh",
-              "description": "Scalable online stores built with Next.js and secure payment gateways."
+              "name": "Luxury UI/UX Design",
+              "description": "Crafting premium digital aesthetics that convert."
             },
             {
               "@type": "Service",
-              "name": "SEO & GEO Optimization",
-              "description": "Ranking your brand on Google and AI search engines like ChatGPT."
+              "name": "Generative Engine Optimization (GEO)",
+              "description": "Ranking strategy for the AI-first search era (ChatGPT, Perplexity)."
             }
           ]
         }

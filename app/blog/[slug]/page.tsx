@@ -5,11 +5,13 @@ import { Footer } from "@/components/home/Footer";
 import { navLinks } from "@/data";
 import { ScrollProgressBar } from "@/components/home/ScrollProgressBar";
 import { CTABanner } from "@/components/home/CTABanner";
-import {  Calendar, User, Tag } from "lucide-react";
+import { Calendar, User, Tag } from "lucide-react";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
+import Link from "next/link";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { WebPageSchema } from "@/components/ui/WebPageSchema";
+import { KeyInsights } from "@/components/ui/KeyInsights";
 
 interface PageProps {
     params: Promise<{ slug: string }>;
@@ -145,6 +147,11 @@ export default async function BlogPostPage({ params }: Readonly<PageProps>) {
                                 <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent" />
                             </div>
 
+                            {/* GEO Optimized Key Insights */}
+                            {post.keyInsights && (
+                                <KeyInsights insights={post.keyInsights} />
+                            )}
+
                             <div className="prose prose-invert prose-lux max-w-none">
                                 <div className="space-y-8 text-lg leading-relaxed text-muted-foreground font-medium">
                                     {post.content.split('\n\n').filter(p => p.trim()).map((para) => (
@@ -164,6 +171,28 @@ export default async function BlogPostPage({ params }: Readonly<PageProps>) {
                                     </div>
                                 ))}
                             </div>
+
+                            {/* Related Content Section */}
+                            <div className="mt-24 pt-12 border-t border-border/50">
+                                <h3 className="text-2xl font-black text-foreground mb-8 uppercase tracking-wider">Related Insights</h3>
+                                <div className="grid md:grid-cols-2 gap-8">
+                                    {blogPosts.filter(p => p.slug !== slug).slice(0, 2).map(relatedPost => (
+                                        <Link
+                                            key={relatedPost.slug}
+                                            href={`/blog/${relatedPost.slug}`}
+                                            className="group block p-6 rounded-3xl bg-secondary/20 border border-border/50 hover:border-accent/30 transition-all duration-500"
+                                        >
+                                            <span className="text-xs font-black text-accent uppercase tracking-widest block mb-2">{relatedPost.category}</span>
+                                            <h4 className="text-lg font-black text-foreground group-hover:text-accent transition-colors leading-tight mb-2">
+                                                {relatedPost.title}
+                                            </h4>
+                                            <p className="text-sm text-muted-foreground line-clamp-2">
+                                                {relatedPost.excerpt}
+                                            </p>
+                                        </Link>
+                                    ))}
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </article>
@@ -172,6 +201,6 @@ export default async function BlogPostPage({ params }: Readonly<PageProps>) {
             </main>
 
             <Footer />
-        </div>
+        </div >
     );
 }
