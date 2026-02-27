@@ -5,6 +5,8 @@ import { Header } from "@/components/home/Header";
 import { Footer } from "@/components/home/Footer";
 import { navLinks } from "@/data";
 import { ScrollProgressBar } from "@/components/home/ScrollProgressBar";
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
+import { WebPageSchema } from "@/components/ui/WebPageSchema";
 
 export default function CookiePolicy() {
     return (
@@ -12,7 +14,17 @@ export default function CookiePolicy() {
             <ScrollProgressBar />
             <Header navLinks={navLinks} />
 
-            <main className="flex-1 pt-32 pb-20">
+            <WebPageSchema
+                title="Cookie Policy | SiteCreation.in"
+                description="Cookie policy by SiteCreation.in. Learn how we use cookies for operation, authentication and security."
+                url="/cookies"
+                breadcrumbs={[{ name: "Cookie Policy" }]}
+            />
+
+            <main className="flex-1 pt-24 pb-20">
+                <div className="container-custom px-6 pb-8">
+                    <Breadcrumbs items={[{ label: "Cookie Policy" }]} />
+                </div>
                 <div className="container-custom px-6">
                     <div className="max-w-4xl mx-auto">
                         <span className="text-xs font-black uppercase tracking-[0.4em] text-accent mb-4 block">Legal Documentation</span>
@@ -36,15 +48,13 @@ export default function CookiePolicy() {
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
                                     <div className="p-6 rounded-2xl bg-secondary/30 border border-border/50">
                                         <h3 className="font-bold text-foreground mb-3 flex items-center gap-2">
-                                            <span className="h-2 w-2 bg-accent rounded-full" />
-                                            Essential Cookies
+                                            <span className="h-2 w-2 bg-accent rounded-full" /> Essential Cookies
                                         </h3>
                                         <p className="text-sm text-muted-foreground">Necessary for the operation of our premium digital platform, including authentication and security.</p>
                                     </div>
                                     <div className="p-6 rounded-2xl bg-secondary/30 border border-border/50">
                                         <h3 className="font-bold text-foreground mb-3 flex items-center gap-2">
-                                            <span className="h-2 w-2 bg-accent rounded-full shadow-[0_0_10px_rgba(212,175,55,0.5)]" />
-                                            Performance Cookies
+                                            <span className="h-2 w-2 bg-accent rounded-full shadow-[0_0_10px_rgba(212,175,55,0.5)]" /> Performance Cookies
                                         </h3>
                                         <p className="text-sm text-muted-foreground">To analyze how users navigate our site and monitor technical performance.</p>
                                     </div>

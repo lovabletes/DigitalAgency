@@ -8,6 +8,8 @@ import { PageHero } from "@/components/ui/PageHero";
 import { Button } from "@/components/ui/button";
 import { CheckCircle2, AlertCircle } from "lucide-react";
 import { ServiceSchema } from "@/components/ui/ServiceSchema";
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
+import { WebPageSchema } from "@/components/ui/WebPageSchema";
 
 
 
@@ -54,7 +56,22 @@ export default function ContactPage() {
                 url="/contact"
             />
 
+            <WebPageSchema
+                title="Contact SiteCreation.in | Start Your Project in Chandigarh"
+                description="Get in touch with SiteCreation.in, elite digital agency in Chandigarh. Start your journey with high-performance web development and cloud engineering today."
+                url="/contact"
+                breadcrumbs={[{ name: "Contact" }]}
+                faqs={[
+                    { question: "How quickly do you respond to inquiries?", answer: "Our team typically responds to all inquiries within 24 hours. For urgent project discussions, booking a strategy call via our calendar is the fastest way to connect." },
+                    { question: "Do you offer free consultations?", answer: "Yes, we provide initial 15-minute consultations to understand your vision and determine how our elite engineering collective can best assist your brand." },
+                    { question: "Where is your office located?", answer: "We are based in the heart of Chandigarh, India, though we operate as a remote-first collective serving clients globally." }
+                ]}
+            />
+
             <main className="flex-1 relative">
+                <div className="pt-24 pb-8 container-custom">
+                    <Breadcrumbs items={[{ label: "Contact" }]} />
+                </div>
                 <PageHero
                     title="Let's Start Your"
                     subtitle="Journey"

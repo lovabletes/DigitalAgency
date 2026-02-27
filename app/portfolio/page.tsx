@@ -6,6 +6,8 @@ import { Footer } from "@/components/home/Footer";
 import { PageHero } from "@/components/ui/PageHero";
 import { CTABanner } from "@/components/home/CTABanner";
 import { ServiceSchema } from "@/components/ui/ServiceSchema";
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
+import { WebPageSchema } from "@/components/ui/WebPageSchema";
 import Image from "next/image";
 import React from "react";
 
@@ -69,7 +71,22 @@ export default function PortfolioPage() {
                 url="/portfolio"
             />
 
+            <WebPageSchema
+                title="Portfolio | Elite Digital Masterpieces by SiteCreation.in"
+                description="Explore our curated showcase of high-performance web and mobile projects. SiteCreation.in delivers bespoke digital experiences for global and local Chandigarh brands."
+                url="/portfolio"
+                breadcrumbs={[{ name: "Portfolio" }]}
+                faqs={[
+                    { question: "What industries do you work with?", answer: "SiteCreation.in works with a diverse range of industries including FinTech, E-commerce, Real Estate, Healthcare, and Luxury Lifestyle brands. We specialize in tailoring digital solutions to the unique needs of each sector." },
+                    { question: "Do you offer post-launch support?", answer: "Yes, every project we deliver includes 30-90 days of hyper-care support. We also provide long-term maintenance and scaling partnership options to ensure your digital masterpiece remains high-performing." },
+                    { question: "Can you handle enterprise-level migrations?", answer: "Absolutely. Our engineering collective has extensive experience in migrating legacy systems to modern architectures (Next.js, .NET 9, Cloud) without data loss or significant downtime." }
+                ]}
+            />
+
             <main className="flex-1 relative">
+                <div className="pt-24 pb-8 container-custom">
+                    <Breadcrumbs items={[{ label: "Portfolio" }]} />
+                </div>
                 <PageHero
                     title="Featured"
                     subtitle="Masterpieces"

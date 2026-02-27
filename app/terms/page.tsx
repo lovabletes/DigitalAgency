@@ -5,6 +5,8 @@ import { Header } from "@/components/home/Header";
 import { Footer } from "@/components/home/Footer";
 import { navLinks } from "@/data";
 import { ScrollProgressBar } from "@/components/home/ScrollProgressBar";
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
+import { WebPageSchema } from "@/components/ui/WebPageSchema";
 
 export default function TermsOfService() {
     return (
@@ -12,7 +14,17 @@ export default function TermsOfService() {
             <ScrollProgressBar />
             <Header navLinks={navLinks} />
 
-            <main className="flex-1 pt-32 pb-20">
+            <WebPageSchema
+                title="Terms of Service | SiteCreation.in"
+                description="Terms of service by SiteCreation.in. Our branding, code architectures, and design patterns follow professional standards."
+                url="/terms"
+                breadcrumbs={[{ name: "Terms of Service" }]}
+            />
+
+            <main className="flex-1 pt-24 pb-20">
+                <div className="container-custom px-6 pb-8">
+                    <Breadcrumbs items={[{ label: "Terms of Service" }]} />
+                </div>
                 <div className="container-custom px-6">
                     <div className="max-w-4xl mx-auto">
                         <span className="text-xs font-black uppercase tracking-[0.4em] text-accent mb-4 block">Legal Documentation</span>
