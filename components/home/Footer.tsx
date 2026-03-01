@@ -5,6 +5,7 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import { siteConfig } from "@/data/site";
 
 // Inline icons to fix persistent lucide-react build error
 type IconProps = React.SVGProps<SVGSVGElement> & { size?: number | string };
@@ -131,10 +132,10 @@ export function Footer() {
                         {/* Social Icons */}
                         <div className="flex gap-3">
                             {[
-                                { icon: GithubIcon, label: 'GitHub', href: 'https://github.com/sitecreation' },
-                                { icon: XIcon, label: 'Twitter', href: 'https://twitter.com/sitecreation' },
-                                { icon: LinkedinIcon, label: 'LinkedIn', href: 'https://linkedin.com/company/sitecreation' },
-                                { icon: InstagramIcon, label: 'Instagram', href: 'https://instagram.com/sitecreation' },
+                                { icon: GithubIcon, label: 'GitHub', href: siteConfig.socials.github },
+                                { icon: XIcon, label: 'Twitter', href: siteConfig.socials.twitter },
+                                { icon: LinkedinIcon, label: 'LinkedIn', href: siteConfig.socials.linkedin },
+                                { icon: InstagramIcon, label: 'Instagram', href: siteConfig.socials.instagram },
                             ].map((social) => (
                                 <a
                                     key={social.label}
@@ -196,15 +197,14 @@ export function Footer() {
                             <ul className="space-y-6">
                                 <li>
                                     <p className="text-[11px] font-bold text-[#f7e7ce]/40 uppercase tracking-widest mb-2">Location</p>
-                                    <p className="text-white/80 font-medium text-sm leading-relaxed">
-                                        Phase 8B, Industrial Area,<br />
-                                        Sector 74, Mohali, PB
+                                    <p className="text-white/80 font-medium text-sm leading-relaxed whitespace-pre-line">
+                                        {siteConfig.address.display}
                                     </p>
                                 </li>
                                 <li>
                                     <p className="text-[11px] font-bold text-[#f7e7ce]/40 uppercase tracking-widest mb-2">Contact</p>
-                                    <a href="mailto:hello@sitecreation.in" className="text-white/80 hover:text-accent font-medium text-sm block">hello@sitecreation.in</a>
-                                    <a href="tel:+919876543210" className="text-white/80 hover:text-accent font-medium text-sm block mt-1">+91 98765 43210</a>
+                                    <a href={`mailto:${siteConfig.contact.email}`} className="text-white/80 hover:text-accent font-medium text-sm block">{siteConfig.contact.email}</a>
+                                    <a href={`tel:${siteConfig.contact.phone.replaceAll(" ", "")}`} className="text-white/80 hover:text-accent font-medium text-sm block mt-1">{siteConfig.contact.phone}</a>
                                 </li>
                                 <li className="flex items-center gap-2 text-[#f7e7ce]/60">
                                     <span className="text-accent">🕐</span>

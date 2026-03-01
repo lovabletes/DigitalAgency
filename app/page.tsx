@@ -23,6 +23,8 @@ import {
   ScrollProgressBar
 } from "@/components/lazy";
 
+import { siteConfig } from "@/data/site";
+
 export const metadata: Metadata = {
   alternates: {
     canonical: "/",
@@ -36,27 +38,27 @@ export default function LandingPage() {
       {
         "@type": "LocalBusiness",
         "@id": "https://sitecreation.in/#localbusiness",
-        "name": "SiteCreation.in | Best Web Designing Company in Chandigarh",
-        "alternateName": ["Site Creation", "Site Creations", "sitescreation", "sitecreations", "makemysite", "makemysite.in"],
+        "name": `${siteConfig.name} | Best Web Designing Company in Chandigarh`,
+        "alternateName": siteConfig.alternateName,
         "description": "Elite digital agency in Chandigarh specializing in luxury web design, high-performance software development, and GEO optimization. Trusted by brands in Chandigarh, Mohali, and Panchkula since 2018.",
-        "url": "https://sitecreation.in",
-        "logo": "https://sitecreation.in/images/Logo.png",
-        "image": "https://sitecreation.in/Banner.avif",
-        "telephone": "+91-84375-32754",
-        "email": "hello@sitecreation.in",
+        "url": siteConfig.url,
+        "logo": siteConfig.logo,
+        "image": `${siteConfig.url}/Banner.avif`,
+        "telephone": siteConfig.contact.phoneSchema,
+        "email": siteConfig.contact.email,
         "priceRange": "$$$",
         "address": {
           "@type": "PostalAddress",
-          "streetAddress": "Phase 8B, Industrial Area, Sector 74",
-          "addressLocality": "Mohali",
-          "addressRegion": "Punjab",
-          "postalCode": "160071",
-          "addressCountry": "IN"
+          "streetAddress": siteConfig.address.street,
+          "addressLocality": siteConfig.address.city,
+          "addressRegion": siteConfig.address.state,
+          "postalCode": siteConfig.address.postalCode,
+          "addressCountry": siteConfig.address.country
         },
         "geo": {
           "@type": "GeoCoordinates",
-          "latitude": 30.7046,
-          "longitude": 76.7179
+          "latitude": siteConfig.geoCoordinates.latitude,
+          "longitude": siteConfig.geoCoordinates.longitude
         },
         "areaServed": [
           { "@type": "City", "name": "Chandigarh" },
@@ -73,10 +75,10 @@ export default function LandingPage() {
           }
         ],
         "sameAs": [
-          "https://github.com/sitecreation",
-          "https://twitter.com/sitecreation",
-          "https://linkedin.com/company/sitecreation",
-          "https://instagram.com/sitecreation"
+          siteConfig.socials.github,
+          siteConfig.socials.twitter,
+          siteConfig.socials.linkedin,
+          siteConfig.socials.instagram
         ],
         "hasOfferCatalog": {
           "@type": "OfferCatalog",

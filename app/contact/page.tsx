@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { navLinks } from "@/data";
+import { navLinks, siteConfig } from "@/data";
 import { Header } from "@/components/home/Header";
 import { Footer } from "@/components/home/Footer";
 import { PageHero } from "@/components/ui/PageHero";
@@ -97,14 +97,14 @@ export default function ContactPage() {
                                     <h4 className="text-sm font-black uppercase tracking-wider text-accent">Office</h4>
                                     <p className="text-foreground font-semibold leading-relaxed">
                                         Chandigarh, India<br />
-                                        Elite Business District
+                                        {siteConfig.address.display}
                                     </p>
                                 </div>
                                 <div className="space-y-4">
                                     <h4 className="text-sm font-black uppercase tracking-wider text-accent">Inquiries</h4>
                                     <p className="text-foreground font-semibold">
-                                        support@sitecreation.in<br />
-                                        +91 8437532754
+                                        {siteConfig.contact.supportEmail}<br />
+                                        {siteConfig.contact.phone}
                                     </p>
                                 </div>
                             </div>

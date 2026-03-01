@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import KeepAlive from "@/components/KeepAlive";
 import Script from "next/script";
+import { siteConfig } from "@/data/site";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -129,17 +130,17 @@ export const metadata: Metadata = {
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  "name": "SiteCreation.in",
-  "alternateName": ["Site Creation", "Site Creations", "sitescreation", "sitecreations", "makemysite", "makemysite.in"],
-  "url": "https://sitecreation.in",
-  "logo": "https://sitecreation.in/logo.png",
+  "name": siteConfig.name,
+  "alternateName": siteConfig.alternateName,
+  "url": siteConfig.url,
+  "logo": siteConfig.logo,
   "sameAs": [
-    "https://www.linkedin.com/company/sitecreation",
-    "https://twitter.com/sitecreation"
+    siteConfig.socials.linkedin,
+    siteConfig.socials.twitter
   ],
   "contactPoint": {
     "@type": "ContactPoint",
-    "telephone": "+91-84375-32754",
+    "telephone": siteConfig.contact.phoneSchema,
     "contactType": "customer service"
   }
 };

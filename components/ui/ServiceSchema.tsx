@@ -1,3 +1,5 @@
+import { siteConfig } from "@/data/site";
+
 interface Review {
     author: string;
     datePublished: string;
@@ -20,7 +22,7 @@ interface ServiceSchemaProps {
 export function ServiceSchema({
     name,
     description,
-    providerName = "SiteCreation.in",
+    providerName = siteConfig.name,
     url,
     priceRange = "₹₹₹",
     dateModified = "2026-02-18",
@@ -31,27 +33,27 @@ export function ServiceSchema({
         "@type": "Service",
         "name": name,
         "description": description,
-        "url": `https://sitecreation.in${url}`,
+        "url": `${siteConfig.url}${url}`,
         "dateModified": dateModified,
         "provider": {
             "@type": "LocalBusiness",
             "name": providerName,
-            "url": "https://sitecreation.in",
-            "telephone": "+91-84375-32754",
+            "url": siteConfig.url,
+            "telephone": siteConfig.contact.phoneSchema,
             "priceRange": priceRange,
-            "image": "https://sitecreation.in/images/Logo.png",
+            "image": siteConfig.logo,
             "address": {
                 "@type": "PostalAddress",
-                "streetAddress": "Sector 17, Elite Business District",
-                "addressLocality": "Chandigarh",
-                "addressRegion": "Chandigarh",
-                "postalCode": "160017",
-                "addressCountry": "IN"
+                "streetAddress": siteConfig.address.street,
+                "addressLocality": siteConfig.address.city,
+                "addressRegion": siteConfig.address.state,
+                "postalCode": siteConfig.address.postalCode,
+                "addressCountry": siteConfig.address.country
             },
             "geo": {
                 "@type": "GeoCoordinates",
-                "latitude": 30.7333,
-                "longitude": 76.7794
+                "latitude": siteConfig.geoCoordinates.latitude,
+                "longitude": siteConfig.geoCoordinates.longitude
             },
             "areaServed": [
                 { "@type": "City", "name": "Chandigarh" },
@@ -67,10 +69,10 @@ export function ServiceSchema({
                 "worstRating": "1"
             },
             "sameAs": [
-                "https://www.linkedin.com/company/sitecreation",
-                "https://twitter.com/sitecreation",
-                "https://github.com/sitecreation",
-                "https://instagram.com/sitecreation"
+                siteConfig.socials.linkedin,
+                siteConfig.socials.twitter,
+                siteConfig.socials.github,
+                siteConfig.socials.instagram
             ]
         },
         "areaServed": [
