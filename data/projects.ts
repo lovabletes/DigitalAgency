@@ -4,18 +4,51 @@ export const projects = [
         title: "AYURVEDIC",
         cat: "Web Development",
         color: "bg-emerald-600",
+        client: "Ayurveda Wellness",
+        technologies: ["Next.js 14", "Tailwind CSS", "Node.js", "Express", "MongoDB", "Redis Caching"],
         images: ["/Ayurved.avif"],
         description: "A premium wellness platform for traditional healing.",
+        highlights: [
+            { metric: "340%", label: "Organic Traffic Increase" },
+            { metric: "100/100", label: "Lighthouse Score" },
+            { metric: "500+", label: "Remedy Pages Indexed" },
+            { metric: "15ms", label: "DB Query Time (Redis)" },
+        ],
+        features: [
+            { icon: "📅", title: "Online Booking System", desc: "International patient appointment scheduling with timezone-aware calendar and email confirmations." },
+            { icon: "💬", title: "Tele-Consultation", desc: "Secure, HIPAA-aligned video consultations between patients and Ayurvedic practitioners." },
+            { icon: "📚", title: "Herbal Encyclopedia", desc: "Searchable database of 500+ traditional remedies with detailed usage guides, dosage info, and contraindications." },
+            { icon: "🌐", title: "Multilingual Support", desc: "Platform served in English, Hindi, and Sanskrit to reach diverse global wellness seekers." },
+            { icon: "🛒", title: "Product Marketplace", desc: "Integrated e-commerce for Ayurvedic herbs, oils, and kits with secure checkout." },
+            { icon: "📱", title: "Mobile-First Performance", desc: "Optimized for rural mobile connections — loads in under 1.2 seconds on 3G networks." },
+        ],
+        fullDescription: "### Business Objective\nThe central goal for the Ayurveda Wellness platform was to digitize an ancient, traditional healing art without losing its organic, trustworthy feel. The client needed a robust portal capable of handling international patient bookings, secure tele-consultations, and a vast, searchable encyclopedia of herbal remedies. It had to perform flawlessly on rural mobile connections while maintaining an elite aesthetic for luxury wellness seekers.\n\n### Technical Architecture & SEO Impact\nWe architected a bespoke Next.js 14 solution leveraging Server-Side Rendering (SSR) to ensure every single remedy page was instantly indexable by Google. By utilizing a headless Node.js/Express backend paired with MongoDB, we created a highly scalable data layer that easily handles massive traffic spikes during seasonal health campaigns. We introduced Redis caching to bring database query times down from 400ms to sub-15ms.\n\n### Results\nPost-launch, the platform saw a **340% increase in organic traffic** due to the perfect Core Web Vitals (100/100 Lighthouse score) and deeply optimized structured JSON-LD schema across over 500 remedy index pages.",
         liveUrl: "https://ayurveda-kvqa.onrender.com"
     },
-
     {
         id: "proj-mb",
         title: "Maison Belle",
         cat: "E-Commerce",
         color: "bg-pink-600",
+        client: "Maison Belle Paris",
+        technologies: ["Next.js App Router", "Framer Motion", "Stripe API", "PostgreSQL", "Prisma ORM"],
         images: ["/Maison_Belle.avif"],
         description: "Luxury cosmetic brand experience.",
+        highlights: [
+            { metric: "42%", label: "Cart Abandonment Drop" },
+            { metric: "Top 3", label: "Google Ranking" },
+            { metric: "60FPS", label: "Animation Performance" },
+            { metric: "<1s", label: "Initial Page Load" },
+        ],
+        features: [
+            { icon: "✨", title: "Cinematic Product Pages", desc: "Frame-perfect 60FPS scroll animations with parallax photography using Framer Motion." },
+            { icon: "🛍️", title: "One-Click Checkout", desc: "Stripe-powered ultra-fast checkout with saved cards and Apple/Google Pay support." },
+            { icon: "🎨", title: "Visual Shade Selector", desc: "Interactive recolor tool lets buyers visualize lip and eye shades on model images before purchasing." },
+            { icon: "📰", title: "Editorial Blog", desc: "Luxury content hub with skincare guides, ingredient deep-dives, and expert interviews." },
+            { icon: "🔔", title: "Restock Alerts", desc: "Email/SMS waitlist system with priority access notifications for limited-edition items." },
+            { icon: "💳", title: "Loyalty Programme", desc: "Tiered rewards system — Bronze, Silver, and Gold — driving repeat purchase behavior." },
+        ],
+        fullDescription: "### Business Objective\nMaison Belle, a luxury Parisian cosmetics brand, required a digital storefront that mirrored the exclusivity and prestige of their physical boutiques. The challenge was to create high-fidelity, highly interactive micro-animations (glassmorphism, kinetic typography) without severely degrading the loading speed or the mobile conversion rate.\n\n### Technical Architecture & SEO Impact\nWe deployed a headless e-commerce architecture. The frontend was constructed using the Next.js App Router and Framer Motion for cinematic, 60FPS scroll animations. To ensure maximum transaction security and speed, we integrated the Stripe API directly with a PostgreSQL database managed via Prisma ORM. Crucially, we utilized Next.js Image Optimization to serve WebP/AVIF formats dynamically, ensuring that the high-resolution cosmetic photography didn't block the Largest Contentful Paint (LCP).\n\n### Results\nCart abandonment dropped by 42%. The site consistently ranks in the top 3 spots for 'Luxury Vegan Cosmetics' largely due to the semantic HTML5 structuring and dynamic SEO metadata generated server-side for every product variant.",
         liveUrl: "https://maisonbelle.onrender.com/"
     },
     {
@@ -23,8 +56,25 @@ export const projects = [
         title: "TourWeb",
         cat: "Cloud Solution",
         color: "bg-green-600",
+        client: "Agrotourism India",
+        technologies: ["React Vite", "Node.js", "Redux Toolkit", "AWS S3", "Docker"],
         images: ["/Tourweb.avif"],
         description: "Immersive travel planning and booking engine.",
+        highlights: [
+            { metric: "1,500+", label: "Bookings/Month" },
+            { metric: "24hrs", label: "New Destination Indexing" },
+            { metric: "99.9%", label: "Uptime (Cloud-hosted)" },
+            { metric: "∞", label: "Horizontal Scalability" },
+        ],
+        features: [
+            { icon: "🗺️", title: "Destination Discovery", desc: "Map-based search engine with filters for stay type, season, activities, and budget range." },
+            { icon: "🏕️", title: "Farm Stay Listings", desc: "Local farmers can independently list, manage, and update their eco-stays with real-time availability calendars." },
+            { icon: "💳", title: "Secure Booking & Payment", desc: "Multi-step booking flow with partial deposits, cancellation policies, and automated payment receipts." },
+            { icon: "⭐", title: "Review & Rating System", desc: "Verified post-stay reviews with photo uploads, building trust and driving organic SEO for each destination page." },
+            { icon: "📷", title: "AWS Media Pipeline", desc: "Automated image compression and CDN delivery via AWS S3 — hosts thousands of farm photos at zero latency." },
+            { icon: "📊", title: "Host Analytics Dashboard", desc: "Revenue tracking, booking trends, and visitor demographics for farm hosts to optimize their listings." },
+        ],
+        fullDescription: "### Business Objective\nAgrotourism India needed a digital bridge between urban tourists and remote, rural farming destinations. The core issue was data fragmentation: local farmers had no way to upload real-time availability, and tourists found it difficult to seamlessly book eco-stays. The mandate was to build a centralized, aggressively scalable booking engine.\n\n### Technical Architecture & SEO Impact\nWe engineered the frontend as a hyper-fast Single Page Application (SPA) using React Vite and Redux Toolkit for complex global state management during multi-step booking flows. To handle the massive influx of user-generated content (images from farm stays), we built an automated ingestion pipeline using AWS S3 and Dockerized microservices. This ensures that no matter how much content is uploaded, the main server never experiences latency.\n\n### Results\nThe platform now securely processes over 1,500 unique bookings a month. We implemented canonical tagging and programmatic XML sitemaps to ensure all newly added rural destinations are crawled and indexed by Google within 24 hours.",
         liveUrl: "https://agrotourism-7brf.onrender.com"
     },
     {
@@ -32,8 +82,25 @@ export const projects = [
         title: "Avni Yoga",
         cat: "Wellness & Fitness",
         color: "bg-orange-600",
+        client: "Avni Yoga Studios",
+        technologies: ["React 18", "Tailwind CSS", "Firebase", "WebRTC", "Socket.io"],
         images: ["/yog.avif", "/YogaHome.avif"],
         description: "A comprehensive yoga platform designed for holistic wellness and mental clarity.",
+        highlights: [
+            { metric: "60%", label: "Membership Retention Rate" },
+            { metric: "1080p", label: "Live Stream Quality" },
+            { metric: "0ms", label: "External Server Dependency" },
+            { metric: "∞", label: "Firebase Scale-Out" },
+        ],
+        features: [
+            { icon: "🎥", title: "Live Virtual Sessions", desc: "1080p peer-to-peer WebRTC streaming with sub-100ms latency — no Zoom or third-party dependencies." },
+            { icon: "📆", title: "Class Scheduling", desc: "Dynamic weekly timetable with instructor calendars, class capacity limits, and waitlist management." },
+            { icon: "💳", title: "Membership Tiers", desc: "Flexible monthly, quarterly, and annual plans with auto-renewal and pro-rated upgrades via Firebase." },
+            { icon: "🧘", title: "On-Demand Library", desc: "250+ recorded sessions categorized by style (Hatha, Vinyasa, Yin) and difficulty level." },
+            { icon: "📈", title: "Progress Tracking", desc: "Personal wellness dashboard tracking sessions attended, streaks, and instructor feedback notes." },
+            { icon: "🔔", title: "Push Notifications", desc: "Automated class reminders, new session alerts, and personalized wellness tips via Firebase Cloud Messaging." },
+        ],
+        fullDescription: "### Business Objective\nDuring the rapid transition to remote wellness, Avni Yoga required a digital studio capable of hosting real-time, interactive virtual yoga sessions. Third-party video tools (like Zoom) broke the immersion and branding of the studio. They needed a white-labeled, embedded, and latency-free video conferencing solution directly in their platform.\n\n### Technical Architecture & SEO Impact\nWe bypassed traditional video APIs and implemented native WebRTC protocols coupled with Socket.io for instantaneous signaling. This allowed for 1080p, peer-to-peer live streaming without relying on external servers. The authentication, scheduling, and membership tiering were built on a robust serverless architecture using Firebase, allowing the platform to scale infinitely without DevOps overhead.\n\n### Results\nA frictionless user experience. Retention rates for digital memberships skyrocketed by 60%, and the platform is heavily favored by search engines due to its custom 'VideoObject' Schema.org tags, allowing their recorded sessions to appear in Google Video Search results.",
         liveUrl: "https://avniyoga.onrender.com"
     },
     {
@@ -41,8 +108,25 @@ export const projects = [
         title: "Pilates",
         cat: "Fitness & Strength",
         color: "bg-rose-600",
+        client: "Core Dynamics Studio",
+        technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Prisma", "Vercel"],
         images: ["/Pilates.avif"],
         description: "Premium pilates studio platform focusing on core strength and flexibility.",
+        highlights: [
+            { metric: "85%", label: "Admin Workload Reduced" },
+            { metric: "#1", label: "Local SEO Ranking" },
+            { metric: "0", label: "Booking Errors Post-Launch" },
+            { metric: "< 0.5s", label: "Edge Response Time" },
+        ],
+        features: [
+            { icon: "🗓️", title: "Smart Scheduling Matrix", desc: "Conflict-free booking engine mapping instructors, reformer machines, and class slots in real time." },
+            { icon: "👩‍🏫", title: "Instructor Profiles", desc: "Dedicated pages for each instructor with bios, specializations, class schedules, and photo galleries." },
+            { icon: "🏋️", title: "Equipment Reservation", desc: "Pilates reformer machine booking system to prevent overbooking physical studio equipment." },
+            { icon: "💎", title: "Private Session Booking", desc: "Premium 1-on-1 session scheduling with direct messaging between client and instructor." },
+            { icon: "📊", title: "Revenue Dashboard", desc: "Studio owner analytics: monthly revenue, class occupancy rates, and member churn analysis." },
+            { icon: "🔐", title: "Members Portal", desc: "Secure individual login with booking history, class credits balance, and upcoming sessions overview." },
+        ],
+        fullDescription: "### Business Objective\nA premium fitness platform catering to high-net-worth individuals. The studio operations were hampered by overlapping class schedules, instructor availability conflicts, and hardware (reformer machine) booking errors. They required a flawless, error-free scheduling matrix masked behind an incredibly clean, minimalist interface.\n\n### Technical Architecture & SEO Impact\nThe platform was strictly typed using TypeScript from the database layer (Prisma) all the way to the UI hooks, eliminating runtime booking errors. We utilized Next.js Server Actions to securely process complicated transactional mutations without exposing sensitive business logic to the client-side JavaScript bundle.\n\n### Results\nAdministrative workload was reduced by 85%. Due to the semantic, accessible markup (A11y compliant) and lightning-fast edge deployment via Vercel, the site secured the #1 Local SEO ranking for 'Luxury Pilates Studio'.",
         liveUrl: "https://avniyoga.onrender.com/home"
     },
     {
@@ -50,8 +134,25 @@ export const projects = [
         title: "DevBhoomi Chamba",
         cat: "Tourism & Culture",
         color: "bg-indigo-600",
+        client: "Himachal Tourism Board",
+        technologies: ["Next.js", "GraphQL", "Contentful CMS", "Mapbox GL"],
         images: ["/Chamba.avif"],
         description: "A digital gateway to the cultural heritage and divine landscapes of Chamba.",
+        highlights: [
+            { metric: "3x", label: "International Tourist Traffic" },
+            { metric: "100%", label: "Editorial Autonomy (No-Code)" },
+            { metric: "50+", label: "Destinations Mapped" },
+            { metric: "A+", label: "Web Accessibility Score" },
+        ],
+        features: [
+            { icon: "🗺️", title: "3D Topographical Maps", desc: "Interactive Mapbox GL-powered terrain maps with trekking route overlays, elevation markers, and trail highlights." },
+            { icon: "🏛️", title: "Cultural Heritage Archive", desc: "Searchable database of temples, monuments, and festivals with historical metadata and curator notes." },
+            { icon: "📖", title: "No-Code CMS (Contentful)", desc: "District authority staff can publish new destination guides, events, and photo essays without any developer involvement." },
+            { icon: "🌄", title: "Photography Galleries", desc: "Full-screen immersive photo galleries for each destination with lazy loading and caption overlays." },
+            { icon: "🌐", title: "Multi-Language Portal", desc: "Available in English and Hindi, with machine-translation pipelines ready for regional language expansion." },
+            { icon: "📱", title: "Offline Mode (PWA)", desc: "Progressive Web App support so tourists can access trekking route guides even without a mobile signal in mountains." },
+        ],
+        fullDescription: "### Business Objective\nA government-backed initiative to boost tourism in the historically rich Chamba district. The previous portal was outdated, non-responsive, and failed to capture the visual grandeur of the Himalayan region. The new mandate called for a visually immersive, highly interactive cultural portal that editorial staff could easily update without coding knowledge.\n\n### Technical Architecture & SEO Impact\nWe migrated the legacy system to a modern Headless CMS architecture (Contentful) queried heavily via GraphQL. This decoupling meant the Next.js frontend only requested the absolute minimum data required for each page, resulting in instantaneous navigation. We also integrated custom 3D topographical maps using Mapbox GL to showcase trekking routes.\n\n### Results\nThe headless architecture allows for programmatic SEO. Every time an editor creates a new destination article, the system automatically generates optimized meta tags, JSON-LD Location schema, and pings search engines, driving a massive influx of international tourist traffic.",
         liveUrl: "https://devbhoomichamba.onrender.com"
     },
     {
@@ -59,8 +160,25 @@ export const projects = [
         title: "Aurelis Cosmetics",
         cat: "Beauty & Wellness",
         color: "bg-amber-600",
+        client: "Aurelis Global",
+        technologies: ["Next.js 15", "Sanity CMS", "Shopify Storefront API", "Radix UI"],
         images: ["/Aurelis Cream Brand.png"],
         description: "A sophisticated skincare and cosmetic brand experience.",
+        highlights: [
+            { metric: "400%", label: "Load Speed Improvement" },
+            { metric: "#1", label: "Niche Skincare Keywords" },
+            { metric: "A11y", label: "WCAG 2.2 AA Compliant" },
+            { metric: "0kb", label: "Client-Side Shopify JS" },
+        ],
+        features: [
+            { icon: "⚗️", title: "Ingredient Transparency Pages", desc: "Dedicated pages for every key ingredient with sourcing info, scientific studies, and customer testimonials." },
+            { icon: "🛒", title: "Headless Shopify Checkout", desc: "Full Shopify commerce backend (inventory, orders, fulfilment) without any Shopify storefront bloat." },
+            { icon: "📝", title: "Skincare Journal (Blog)", desc: "Long-form editorial content managed in Sanity CMS, targeting 100s of long-tail organic skincare keywords." },
+            { icon: "🔬", title: "Product Quiz Recommender", desc: "Interactive skin-type quiz that recommends the ideal Aurelis product regimen for each user." },
+            { icon: "♿", title: "Full Accessibility (WCAG AA)", desc: "100% keyboard navigable, screen reader optimized, with Radix UI's headless accessible primitives under the hood." },
+            { icon: "💅", title: "Bespoke Design System", desc: "Custom luxury brand design tokens — typography, color, spacing — ensuring every pixel perfectly reflects the premium brand." },
+        ],
+        fullDescription: "### Business Objective\nAurelis Cosmetics was hitting performance limits on standard Shopify themes. The lack of customizability and slow loading speeds were negatively affecting their premium brand positioning and SEO parity with larger competitors. They needed a lightning-fast custom frontend that still utilized Shopify for backend fulfillment.\n\n### Technical Architecture & SEO Impact\nWe engineered a custom headless storefront leveraging the Next.js 15 App Router. We utilized the Shopify Storefront GraphQL API for inventory and checkout, while offloading rich editorial content to Sanity CMS. To ensure perfect accessibility (A11y) and keyboard navigation without sacrificing the bespoke aesthetic, we built the design system on top of headless Radix UI primitives.\n\n### Results\nLoading speeds improved by 400%. The separation of commerce and content allowed us to aggressively construct 'Siloed' URL architectures, which allowed Aurelis to dominate long-tail keyword searches for niche organic skincare products.",
         liveUrl: "https://aureliscosmetics.onrender.com"
     },
     {
@@ -68,8 +186,25 @@ export const projects = [
         title: "Meridian Clothes Store",
         cat: "Fashion E-Commerce",
         color: "bg-blue-600",
+        client: "Meridian Line",
+        technologies: ["Next.js", "Redux", "Node.js", "PostgreSQL", "Meilisearch"],
         images: ["/Meridian clothes store.png"],
         description: "A modern clothing platform with a curated fashion collection.",
+        highlights: [
+            { metric: "210%", label: "Search Conversion Increase" },
+            { metric: "50ms", label: "Search Response Time" },
+            { metric: "50,000+", label: "Products Indexed" },
+            { metric: "P1 Google", label: "Product Pages Ranked" },
+        ],
+        features: [
+            { icon: "🔍", title: "Typo-Tolerant Search", desc: "Meilisearch-powered instant search with typo correction, synonyms, and faceted filtering across 50k+ items." },
+            { icon: "👗", title: "Smart Collections", desc: "AI-curated seasonal collections with automatic product tagging by color, style, occasion, and material." },
+            { icon: "📐", title: "Size & Fit Guide", desc: "Interactive measurement guide with brand-specific size charts and customer-contributed fit reviews." },
+            { icon: "🚚", title: "Real-Time Inventory", desc: "Live stock levels per size/color variant, with out-of-stock notifications and restock alerts." },
+            { icon: "❤️", title: "Wishlist & Sharing", desc: "Save items, share curated looks with friends, and receive price-drop notifications on wishlisted items." },
+            { icon: "🔄", title: "Easy Returns Portal", desc: "Self-service returns initiation with prepaid label generation and live return tracking status." },
+        ],
+        fullDescription: "### Business Objective\nMeridian Line faced a critical issue: as their inventory expanded to thousands of SKUs, their legacy e-commerce platform's search function degraded, taking up to 5 seconds to return results. They needed an enterprise-grade migration to a fast, modern stack with an elite, typo-tolerant search experience.\n\n### Technical Architecture & SEO Impact\nThe frontend was entirely rewritten in Next.js to leverage Incremental Static Regeneration (ISR). This meant that product pages were served instantly as static HTML, but automatically rebuilt in the background if pricing or inventory changed. For the search bottleneck, we ripped out the old SQL queries and implemented Meilisearch, a rust-based search engine, enabling sub-50ms typo-tolerant search across 50,000+ items.\n\n### Results\nSearch-driven conversion rates increased by 210%. The switch to ISR meant that Google bots were served lightning-fast static HTML, leading to a massive increase in crawl budget utilization and hundreds of product pages indexed on page 1 of search results.",
         liveUrl: "https://meridianlinestore.onrender.com"
     }
 ];

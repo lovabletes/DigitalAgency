@@ -10,16 +10,30 @@ import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { WebPageSchema } from "@/components/ui/WebPageSchema";
 import Image from "next/image";
 import React from "react";
+import Link from "next/link";
 
 
-function PortfolioCard({ project }: Readonly<{ project: any }>) {
+interface ProjectData {
+    id: string;
+    title: string;
+    cat: string;
+    color: string;
+    client?: string;
+    technologies?: string[];
+    images?: string[];
+    description: string;
+    fullDescription?: string;
+    liveUrl?: string;
+}
+
+function PortfolioCard({ project }: Readonly<{ project: ProjectData }>) {
     const [currentImageIndex, setCurrentImageIndex] = React.useState(0);
 
     React.useEffect(() => {
         if (!project.images || project.images.length <= 1) return;
 
         const interval = setInterval(() => {
-            setCurrentImageIndex((prev) => (prev + 1) % project.images.length);
+            setCurrentImageIndex((prev) => (prev + 1) % project.images!.length);
         }, 3000 + Math.random() * 1000); // Randomized stagger
 
         return () => clearInterval(interval);
@@ -46,15 +60,13 @@ function PortfolioCard({ project }: Readonly<{ project: any }>) {
                 <p className="text-white/70 font-medium mb-6 opacity-0 group-hover:opacity-100 transition-opacity delay-100 line-clamp-2">
                     {project.description}
                 </p>
-                <a
-                    href={project.liveUrl || "#"}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                <Link
+                    href={`/portfolio/${project.id}`}
                     className="inline-flex items-center gap-2 text-white font-black uppercase tracking-wider text-sm group/link"
                 >
                     Explore Project{" "}
                     <span className="group-hover/link:translate-x-1 transition-transform">→</span>
-                </a>
+                </Link>
             </div>
         </div>
     );
@@ -84,7 +96,7 @@ export default function PortfolioPage() {
             />
 
             <main className="flex-1 relative">
-                <div className="pt-24 pb-8 container-custom">
+                <div className="py-4 container-custom">
                     <Breadcrumbs items={[{ label: "Portfolio" }]} />
                 </div>
                 <PageHero

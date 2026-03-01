@@ -12,7 +12,7 @@ interface BreadcrumbsProps {
 
 export function Breadcrumbs({ items }: Readonly<BreadcrumbsProps>) {
     return (
-        <nav aria-label="Breadcrumb" className="mb-8">
+        <nav aria-label="Breadcrumb">
             <ol className="flex items-center space-x-2 text-xs font-black uppercase tracking-[0.2em]">
                 <li>
                     <Link href="/" className="text-muted-foreground hover:text-accent transition-colors">

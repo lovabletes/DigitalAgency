@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import { ProjectModal } from "./ProjectModal";
+import { useRouter } from "next/navigation";
 
 interface Project {
     id: string;
@@ -12,7 +12,7 @@ interface Project {
     images: string[];
     description?: string;
     techStack?: string[];
-    features?: string[];
+    features?: { icon: string; title: string; desc: string }[] | string[];
     liveUrl?: string;
     githubUrl?: string;
 }
@@ -87,7 +87,7 @@ function ProjectCard({ project, idx, onClick }: ProjectCardProps) {
                 <div className="overflow-hidden transition-[max-height,opacity] duration-500 max-h-0 group-hover:max-h-20 opacity-0 group-hover:opacity-100">
                     <div className="h-0.5 w-12 bg-accent mb-3 mt-2" />
                     <p className="text-sm text-white/90 font-medium transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-75">
-                        {project.liveUrl ? 'Visit Website →' : 'View Details →'}
+                        View Case Study →
                     </p>
                 </div>
             </div>
@@ -99,48 +99,34 @@ function ProjectCard({ project, idx, onClick }: ProjectCardProps) {
 }
 
 export function ProjectsGallery({ projects }: Readonly<ProjectsGalleryProps>) {
-    const [selectedProject, setSelectedProject] = React.useState<Project | null>(null);
+    const router = useRouter();
 
     return (
-        <>
-            <section id="work" className="section-padding relative bg-gradient-to-b from-white via-[#f7e7ce]/20 to-white dark:from-[#0f1429] dark:via-[#1a1a3e]/30 dark:to-[#0f1429]">
-                <div className="container-custom">
-                    {/* Section Header */}
-                    <div className="text-center mb-20">
-                        <span className="text-xs font-black uppercase tracking-[0.2em] text-accent mb-4 block">Portfolio Showcase</span>
-                        <h2 className="text-3xl md:text-5xl font-black text-foreground tracking-tight mb-6">
-                            Featured <span className="text-accent italic">Masterpieces</span>
-                        </h2>
-                        <p className="text-lg text-muted-foreground font-medium leading-relaxed max-w-2xl mx-auto">
-                            A curated selection of our most impactful digital creations. Click any project to explore in detail.
-                        </p>
-                    </div>
-
-                    {/* Projects Grid */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {projects.map((project, idx) => (
-                            <ProjectCard
-                                key={project.id}
-                                project={project}
-                                idx={idx}
-                                onClick={() => {
-                                    if (project.liveUrl) {
-                                        window.open(project.liveUrl, '_blank', 'noopener,noreferrer');
-                                    } else {
-                                        setSelectedProject(project);
-                                    }
-                                }}
-                            />
-                        ))}
-                    </div>
+        <section id="work" className="section-padding relative bg-gradient-to-b from-white via-[#f7e7ce]/20 to-white dark:from-[#0f1429] dark:via-[#1a1a3e]/30 dark:to-[#0f1429]">
+            <div className="container-custom">
+                {/* Section Header */}
+                <div className="text-center mb-20">
+                    <span className="text-xs font-black uppercase tracking-[0.2em] text-accent mb-4 block">Portfolio Showcase</span>
+                    <h2 className="text-3xl md:text-5xl font-black text-foreground tracking-tight mb-6">
+                        Featured <span className="text-accent italic">Masterpieces</span>
+                    </h2>
+                    <p className="text-lg text-muted-foreground font-medium leading-relaxed max-w-2xl mx-auto">
+                        A curated selection of our most impactful digital creations. Click any project to explore in detail.
+                    </p>
                 </div>
-            </section>
 
-            {/* Project Modal */}
-            <ProjectModal
-                project={selectedProject as Project}
-                onClose={() => setSelectedProject(null)}
-            />
-        </>
+                {/* Projects Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {projects.map((project, idx) => (
+                        <ProjectCard
+                            key={project.id}
+                            project={project}
+                            idx={idx}
+                            onClick={() => router.push(`/portfolio/${project.id}`)}
+                        />
+                    ))}
+                </div>
+            </div>
+        </section>
     );
 }

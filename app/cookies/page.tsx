@@ -21,8 +21,8 @@ export default function CookiePolicy() {
                 breadcrumbs={[{ name: "Cookie Policy" }]}
             />
 
-            <main className="flex-1 pt-24 pb-20">
-                <div className="container-custom px-6 pb-8">
+            <main className="flex-1 pt-8 pb-20">
+                <div className="container-custom px-6 pb-4">
                     <Breadcrumbs items={[{ label: "Cookie Policy" }]} />
                 </div>
                 <div className="container-custom px-6">

@@ -66,7 +66,7 @@ export default function CloudSolutionsPage() {
             />
 
             <main className="flex-1 relative">
-                <div className="pt-24 pb-8 container-custom">
+                <div className="py-4 container-custom">
                     <Breadcrumbs items={[{ label: "Services", href: "/#services" }, { label: "Cloud Solutions" }]} />
                 </div>
                 <PageHero

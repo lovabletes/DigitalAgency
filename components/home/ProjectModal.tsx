@@ -11,7 +11,7 @@ interface Project {
     images: string[];
     description?: string;
     techStack?: string[];
-    features?: string[];
+    features?: { icon: string; title: string; desc: string }[] | string[];
     liveUrl?: string;
     githubUrl?: string;
 }
@@ -136,12 +136,22 @@ export function ProjectModal({ project, onClose }: Readonly<ProjectModalProps>) 
                         <div className="mb-8">
                             <h3 className="text-sm font-black uppercase tracking-wider text-accent mb-4">Key Features</h3>
                             <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                                {project.features.map((feature) => (
-                                    <li key={feature} className="flex items-start gap-3 text-[#f7e7ce]/80">
-                                        <span className="text-accent text-xl">✓</span>
-                                        <span className="font-medium">{feature}</span>
-                                    </li>
-                                ))}
+                                {project.features.map((feature, idx) => {
+                                    if (typeof feature === 'string') {
+                                        return (
+                                            <li key={feature} className="flex items-start gap-3 text-[#f7e7ce]/80">
+                                                <span className="text-accent text-xl">✓</span>
+                                                <span className="font-medium">{feature}</span>
+                                            </li>
+                                        );
+                                    }
+                                    return (
+                                        <li key={idx} className="flex items-start gap-3 text-[#f7e7ce]/80">
+                                            <span className="text-xl">{feature.icon}</span>
+                                            <span className="font-medium">{feature.title}</span>
+                                        </li>
+                                    );
+                                })}
                             </ul>
                         </div>
                     )}

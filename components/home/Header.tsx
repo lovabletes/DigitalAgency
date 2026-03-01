@@ -51,9 +51,9 @@ export function Header({ navLinks }: Readonly<HeaderProps>) {
                 ? "bg-[#1a1a3e]/95 dark:bg-[#0f1429]/95 shadow-2xl shadow-accent/10"
                 : "bg-gradient-to-r from-[#1a1a3e] via-[#1a1a3e] to-[#2a2a4e] dark:from-[#0f1429] dark:to-[#1a1a3e] shadow-lg"
         )}>
-            <div className="container-custom flex h-16 items-center justify-between px-6">
-                <Link href="/" className="flex items-center gap-2.5 group cursor-pointer">
-                    <div className="relative h-10 w-10 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+            <div className="container-custom flex h-16 items-center justify-between px-4 sm:px-6">
+                <Link href="/" className="flex items-center gap-2 sm:gap-2.5 shrink-0 group cursor-pointer">
+                    <div className="relative h-8 w-8 sm:h-10 sm:w-10 shrink-0 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
                         <Image
                             src="/images/Logo.png"
                             alt="SiteCreation.in - Elite Digital Agency Logo"
@@ -63,7 +63,7 @@ export function Header({ navLinks }: Readonly<HeaderProps>) {
                             priority
                         />
                     </div>
-                    <span className="text-xl font-black tracking-tight text-white dark:text-[#f7e7ce]">
+                    <span className="text-lg sm:text-xl font-black tracking-tight text-white dark:text-[#f7e7ce] truncate">
                         SiteCreation<span className="text-accent italic">.in</span>
                     </span>
                 </Link>

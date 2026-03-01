@@ -222,7 +222,7 @@ export default async function ExpertisePage({ params }: Readonly<PageProps>) {
                             </div>
 
                             {/* Related Expertise Section */}
-                            <div className="mt-32 pt-16 border-t border-border/50">
+                            <div className="mt-32 pt-16 border-t border-border/50 lg:col-span-12">
                                 <h3 className="text-2xl font-black text-foreground mb-10 uppercase tracking-widest text-center">Master Other <span className="text-accent italic">Technologies</span></h3>
                                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                                     {Object.values(expertiseTopics)
