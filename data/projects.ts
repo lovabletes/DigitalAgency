@@ -206,5 +206,31 @@ export const projects = [
         ],
         fullDescription: "### Business Objective\nMeridian Line faced a critical issue: as their inventory expanded to thousands of SKUs, their legacy e-commerce platform's search function degraded, taking up to 5 seconds to return results. They needed an enterprise-grade migration to a fast, modern stack with an elite, typo-tolerant search experience.\n\n### Technical Architecture & SEO Impact\nThe frontend was entirely rewritten in Next.js to leverage Incremental Static Regeneration (ISR). This meant that product pages were served instantly as static HTML, but automatically rebuilt in the background if pricing or inventory changed. For the search bottleneck, we ripped out the old SQL queries and implemented Meilisearch, a rust-based search engine, enabling sub-50ms typo-tolerant search across 50,000+ items.\n\n### Results\nSearch-driven conversion rates increased by 210%. The switch to ISR meant that Google bots were served lightning-fast static HTML, leading to a massive increase in crawl budget utilization and hundreds of product pages indexed on page 1 of search results.",
         liveUrl: "https://meridianlinestore.onrender.com"
+    },
+    {
+        id: "proj-inviteera",
+        title: "InviteEra",
+        cat: "Event Management",
+        color: "bg-accent",
+        client: "InviteEra",
+        technologies: ["Next.js", "Tailwind CSS", "Vercel"],
+        images: ["/InviteEra.png"],
+        description: "Create Beautiful Invitations in Minutes. Design stunning invitations and manage RSVPs in one place.",
+        highlights: [
+            { metric: "100%", label: "Customizable Templates" },
+            { metric: "Instant", label: "RSVP Tracking" },
+            { metric: "Zero", label: "Coding Required" },
+            { metric: "24/7", label: "Event Management" },
+        ],
+        features: [
+            { icon: "✨", title: "Beautiful Templates", desc: "Choose from a wide variety of stunning, customizable invitation templates for any occasion." },
+            { icon: "📅", title: "Event Calendar", desc: "Keep track of all your upcoming events with an integrated, easy-to-use calendar." },
+            { icon: "👥", title: "Guest Management", desc: "Effortlessly manage your guest list, track RSVPs, and send updates in real-time." },
+            { icon: "📱", title: "Send in Seconds", desc: "Share your invitations instantly via email, SMS, or social media links." },
+            { icon: "🔔", title: "Smart Reminders", desc: "Automated reminders ensure your guests never forget an important date or RSVP deadline." },
+            { icon: "🎨", title: "Easy to Use", desc: "Intuitive design tools allow anyone to create professional-looking invitations without design experience." },
+        ],
+        fullDescription: "### Business Objective\nInviteEra aims to simplify the event planning process by providing an intuitive platform for creating beautiful online invitations and managing RSVPs. The goal was to build a user-friendly interface that requires zero technical skills while delivering professional, high-quality designs for any occasion.\n\n### Technical Architecture & SEO Impact\nThe platform is built using modern web technologies to ensure lightning-fast performance and seamless user experience across all devices. By leveraging responsive design principles and optimized asset delivery, InviteEra provides instant load times and smooth interactions, crucial for keeping users engaged during the invitation creation process.\n\n### Results\nInviteEra successfully empowers users to handle everything their dream event needs in one place, from sending invitations in seconds to comprehensive guest management and smart reminders.",
+        liveUrl: "https://invitation-frontend-five.vercel.app/"
     }
 ];

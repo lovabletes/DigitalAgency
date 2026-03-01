@@ -42,11 +42,24 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return {
         title: `${project.title} - ${project.cat} Case Study | SiteCreation.in`,
         description: project.description,
+        alternates: {
+            canonical: `/portfolio/${project.id}`,
+        },
         openGraph: {
-            title: `${project.title} - Digital Masterpiece by SiteCreation.in`,
-            description: project.fullDescription,
-            images: [{ url: project.images[0], width: 1200, height: 630, alt: project.title }],
-        }
+            title: `${project.title} - ${project.cat} Case Study by SiteCreation.in Chandigarh`,
+            description: project.description,
+            url: `https://sitecreation.in/portfolio/${project.id}`,
+            siteName: "SiteCreation.in",
+            images: [{ url: project.images[0], width: 1200, height: 630, alt: `${project.title} - SiteCreation.in` }],
+            locale: "en_IN",
+            type: "article",
+        },
+        twitter: {
+            card: "summary_large_image",
+            title: `${project.title} Case Study | SiteCreation.in`,
+            description: project.description,
+            images: [project.images[0]],
+        },
     };
 }
 

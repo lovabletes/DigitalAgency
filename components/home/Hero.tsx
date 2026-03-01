@@ -69,12 +69,12 @@ export function Hero({ stats, brands }: Readonly<HeroProps>) {
 
                     <h1 className="relative text-5xl md:text-7xl lg:text-8xl font-black tracking-tight mb-6 leading-tight drop-shadow-2xl animate-slide-up [animation-delay:150ms]">
                         <span className="text-white">
-                            Crafting <span className="text-accent italic">Luxury</span>
+                            Chandigarh<span className="text-accent italic">'s Elite</span>
                         </span>
                         {" "}
                         <br className="md:hidden" />
                         <span className="block bg-gradient-to-r from-white via-white to-white/90 bg-clip-text text-transparent">
-                            Legacies
+                            Web Agency
                         </span>
                     </h1>
 
@@ -93,8 +93,12 @@ export function Hero({ stats, brands }: Readonly<HeroProps>) {
 
                     {/* Enhanced Description */}
                     <p className="mx-auto max-w-3xl text-lg md:text-2xl text-white/90 mb-12 font-medium leading-relaxed drop-shadow-lg animate-slide-up [animation-delay:250ms]">
-                        We transform <span className="font-bold text-white border-b-2 border-accent/30 pb-1">ambitious visions</span> into <span className="font-bold text-accent">high-performance realities</span>.{" "}
-                        <span className="block mt-4 text-base md:text-xl text-white/60 font-normal">Expertise in Web, Mobile, & TV platforms with Azure-scale engineering.</span>
+                        Chandigarh&apos;s most trusted web development agency. We transform{" "}
+                        <span className="font-bold text-white border-b-2 border-accent/30 pb-1">ambitious visions</span> into{" "}
+                        <span className="font-bold text-accent">high-performance digital realities</span>.
+                        <span className="block mt-4 text-base md:text-xl text-white/60 font-normal">
+                            Serving Chandigarh, Mohali &amp; Panchkula — Web, Mobile &amp; Enterprise Engineering.
+                        </span>
                     </p>
 
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-24 animate-slide-up [animation-delay:300ms]">
