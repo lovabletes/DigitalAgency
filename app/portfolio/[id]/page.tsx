@@ -9,6 +9,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Metadata } from "next";
 import { CTABanner } from "@/components/home/CTABanner";
+import { JsonLd } from "@/components/seo/JsonLd";
 
 const ExternalLinkIcon = () => (
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 3h6v6" /><path d="M10 14 21 3" /><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" /></svg>
@@ -72,22 +73,19 @@ export default async function ProjectCaseStudyPage({ params }: Readonly<PageProp
     return (
         <div className="flex min-h-screen flex-col bg-background">
             {/* Structured Schema for Portfolio Item */}
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{
-                    __html: JSON.stringify({
-                        "@context": "https://schema.org",
-                        "@type": "CreativeWork",
-                        "name": project.title,
-                        "description": project.fullDescription,
-                        "url": `${siteConfig.url}/portfolio/${project.id}`,
-                        "creator": {
-                            "@type": "Organization",
-                            "name": siteConfig.name
-                        },
-                        "keywords": project.technologies.join(", "),
-                        "image": `${siteConfig.url}${project.images[0]}`
-                    })
+            <JsonLd
+                data={{
+                    "@context": "https://schema.org",
+                    "@type": "CreativeWork",
+                    "name": project.title,
+                    "description": project.fullDescription,
+                    "url": `${siteConfig.url}/portfolio/${project.id}`,
+                    "creator": {
+                        "@type": "Organization",
+                        "name": siteConfig.name
+                    },
+                    "keywords": project.technologies.join(", "),
+                    "image": `${siteConfig.url}${project.images[0]}`
                 }}
             />
 

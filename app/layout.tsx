@@ -8,11 +8,13 @@ import { siteConfig } from "@/data/site";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: 'swap',
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
@@ -21,44 +23,6 @@ export const metadata: Metadata = {
     template: "%s | SiteCreation.in"
   },
   description: "Architecting elite digital legacies. SiteCreation.in (Site Creation) is a premier digital agency serving Chandigarh, Mohali, and Panchkula, specializing in high-performance web development, mobile apps, and Generative Engine Optimization (GEO).",
-  keywords: [
-    "SiteCreation",
-    "SiteCreation.in",
-    "Site Creation",
-    "sitescreation",
-    "sitecreations",
-    "sites creation",
-    "makemysite",
-    "makemysite.in",
-    "make my site",
-    "website maker chandigarh",
-    "professional site builder",
-    "start my project chandigarh",
-    "Web Design Chandigarh",
-    "Website Designing Chandigarh",
-    "Best Web Development Company in Chandigarh",
-    "Digital Marketing Agency Chandigarh",
-    "Next.js Development Agency India",
-    "Luxury Web Design",
-    "Enterprise Software Solutions",
-    "Mobile App Development Chandigarh",
-    "Web Design Mohali",
-    "Website Development Panchkula",
-    "Digital Marketing Tricity",
-    "Best Web Agency Mohali",
-    "Panchkula Web Designers",
-    "SEO Services Mohali",
-    "GEO Optimization",
-    "Search Mastery",
-    "create website",
-    "dotnet solutions",
-    "custom software development",
-    "mobile applications",
-    "websites in node",
-    "graphic designing",
-    "poster making"
-
-  ],
   authors: [{ name: "SiteCreation.in Team", url: "https://sitecreation.in" }],
   creator: "SiteCreation.in",
   publisher: "SiteCreation.in",

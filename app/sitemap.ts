@@ -1,81 +1,53 @@
 import { MetadataRoute } from 'next';
+import { projects } from '@/data/projects';
+import { siteConfig } from '@/data/site';
 import { expertiseTopics } from '@/data/expertise';
+
 import { blogPosts } from '@/data/blog';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-    const baseUrl = 'https://sitecreation.in';
+    const baseUrl = siteConfig.url;
 
-    // Static dates per route group — update these when content changes
-    const homepageLastMod = new Date('2026-02-18');
-    const serviceLastMod = new Date('2026-02-18');
-    const expertiseLastMod = new Date('2026-02-18');
-    const legalLastMod = new Date('2026-01-01');
-
-    // Main pages
-    const mainRoutes = [
-        { url: '/', priority: 1, changeFrequency: 'weekly' as const, lastModified: homepageLastMod },
-        { url: '/about', priority: 0.8, changeFrequency: 'monthly' as const, lastModified: serviceLastMod },
-        { url: '/portfolio', priority: 0.9, changeFrequency: 'weekly' as const, lastModified: serviceLastMod },
-        { url: '/careers', priority: 0.7, changeFrequency: 'monthly' as const, lastModified: serviceLastMod },
-        { url: '/blog', priority: 0.8, changeFrequency: 'daily' as const, lastModified: homepageLastMod },
-        { url: '/contact', priority: 0.9, changeFrequency: 'monthly' as const, lastModified: serviceLastMod },
-    ];
-
-    // Service pages
-    const serviceRoutes = [
+    const staticRoutes = [
+        '',
+        '/portfolio',
+        '/expertise',
+        '/about',
+        '/contact',
+        '/careers',
+        '/blog',
+        '/ui-ux-design',
         '/web-development',
         '/mobile-apps',
-        '/ui-ux-design',
-        '/cloud-solutions',
         '/seo-marketing',
-    ].map(route => ({
-        url: route,
-        priority: 0.9,
-        changeFrequency: 'monthly' as const,
-        lastModified: serviceLastMod,
+        '/cloud-solutions'
+    ].map((route) => ({
+        url: `${baseUrl}${route}`,
+        lastModified: new Date(),
+        changeFrequency: 'weekly' as const,
+        priority: route === '' ? 1 : 0.8,
     }));
 
-    // Expertise pages — dynamically generated from the actual data source.
-    const expertiseRoutes = Object.keys(expertiseTopics).map(slug => ({
-        url: `/expertise/${slug}`,
-        priority: 0.85,
+    const projectRoutes = projects.map((project) => ({
+        url: `${baseUrl}/portfolio/${project.id}`,
+        lastModified: new Date(),
         changeFrequency: 'monthly' as const,
-        lastModified: expertiseLastMod,
+        priority: 0.6,
     }));
 
-    // Blog pages — ensures new articles are indexed immediately.
-    const blogRoutes = blogPosts.map(post => ({
-        url: `/blog/${post.slug}`,
-        priority: 0.8,
+    const expertiseRoutes = Object.keys(expertiseTopics).map((slug) => ({
+        url: `${baseUrl}/expertise/${slug}`,
+        lastModified: new Date(),
         changeFrequency: 'monthly' as const,
+        priority: 0.7,
+    }));
+
+    const blogRoutes = blogPosts.map((post) => ({
+        url: `${baseUrl}/blog/${post.slug}`,
         lastModified: new Date(post.date),
+        changeFrequency: 'weekly' as const,
+        priority: 0.7,
     }));
 
-    // Legal pages
-    const legalRoutes = [
-        '/privacy',
-        '/terms',
-        '/cookies'
-    ].map(route => ({
-        url: route,
-        priority: 0.5,
-        changeFrequency: 'yearly' as const,
-        lastModified: legalLastMod,
-    }));
-
-    // Combine all routes
-    const allRoutes = [
-        ...mainRoutes,
-        ...serviceRoutes,
-        ...expertiseRoutes,
-        ...blogRoutes,
-        ...legalRoutes
-    ];
-
-    return allRoutes.map((route) => ({
-        url: `${baseUrl}${route.url}`,
-        lastModified: route.lastModified,
-        changeFrequency: route.changeFrequency,
-        priority: route.priority,
-    }));
+    return [...staticRoutes, ...projectRoutes, ...expertiseRoutes, ...blogRoutes];
 }

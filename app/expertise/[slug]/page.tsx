@@ -8,8 +8,7 @@ import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { ChevronRight, Zap, CheckCircle2 } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { KeyInsights } from "@/components/ui/KeyInsights";
-
+import { JsonLd } from "@/components/seo/JsonLd";
 import { Metadata } from "next";
 
 interface PageProps {
@@ -87,33 +86,30 @@ export default async function ExpertisePage({ params }: Readonly<PageProps>) {
     return (
         <div className="flex min-h-screen flex-col bg-background">
             {/* Structured Data for SEO */}
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{
-                    __html: JSON.stringify({
-                        "@context": "https://schema.org",
-                        "@type": "TechArticle",
-                        "headline": topic.title,
-                        "description": topic.fullDesc,
-                        "author": {
-                            "@type": "Organization",
-                            "name": "SiteCreation.in"
-                        },
-                        "publisher": {
-                            "@type": "Organization",
-                            "name": "SiteCreation.in",
-                            "alternateName": ["Site Creation", "sitescreation", "makemysite"],
-                            "logo": {
-                                "@type": "ImageObject",
-                                "url": "https://sitecreation.in/images/Logo.png"
-                            }
-                        },
-                        "keywords": [topic.title, topic.category, ...topic.highlights].join(", "),
-                        "articleSection": topic.category,
-                        "inLanguage": "en-IN",
-                        "datePublished": "2026-02-09",
-                        "dateModified": "2026-02-18",
-                    })
+            <JsonLd
+                data={{
+                    "@context": "https://schema.org",
+                    "@type": "TechArticle",
+                    "headline": topic.title,
+                    "description": topic.fullDesc,
+                    "author": {
+                        "@type": "Organization",
+                        "name": "SiteCreation.in"
+                    },
+                    "publisher": {
+                        "@type": "Organization",
+                        "name": "SiteCreation.in",
+                        "alternateName": ["Site Creation", "sitescreation", "makemysite"],
+                        "logo": {
+                            "@type": "ImageObject",
+                            "url": "https://sitecreation.in/images/Logo.png"
+                        }
+                    },
+                    "keywords": [topic.title, topic.category, ...topic.highlights].join(", "),
+                    "articleSection": topic.category,
+                    "inLanguage": "en-IN",
+                    "datePublished": "2026-02-09",
+                    "dateModified": "2026-02-18",
                 }}
             />
 

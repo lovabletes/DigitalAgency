@@ -1,25 +1,13 @@
 import { MetadataRoute } from 'next';
+import { siteConfig } from '@/data/site';
 
 export default function robots(): MetadataRoute.Robots {
     return {
-        rules: [
-            {
-                userAgent: '*',
-                allow: '/',
-                disallow: [
-                    '/api/',
-                    '/_next/',
-                    '/static/',
-                    '/admin/',
-                    '/*.json$',
-                ],
-            },
-            {
-                userAgent: ['GPTBot', 'ChatGPT-User', 'Claude-Web', 'ClaudeBot', 'PerplexityBot'],
-                allow: '/',
-            }
-        ],
-        sitemap: 'https://sitecreation.in/sitemap.xml',
+        rules: {
+            userAgent: '*',
+            allow: '/',
+            disallow: ['/api/', '/admin/'],
+        },
+        sitemap: `${siteConfig.url}/sitemap.xml`,
     };
 }
-

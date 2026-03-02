@@ -12,6 +12,8 @@ import Link from "next/link";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { WebPageSchema } from "@/components/ui/WebPageSchema";
 import { KeyInsights } from "@/components/ui/KeyInsights";
+import { ArticleJsonLd } from "@/components/seo/JsonLd";
+import Image from "next/image";
 
 interface PageProps {
     params: Promise<{ slug: string }>;
@@ -69,28 +71,12 @@ export default async function BlogPostPage({ params }: Readonly<PageProps>) {
     return (
         <div className="flex min-h-screen flex-col bg-background">
             {/* Structured Data for SEO */}
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{
-                    __html: JSON.stringify({
-                        "@context": "https://schema.org",
-                        "@type": "BlogPosting",
-                        "headline": post.title,
-                        "description": post.excerpt,
-                        "image": `https://sitecreation.in${post.image}`,
-                        "author": {
-                            "@type": "Person",
-                            "name": post.author
-                        },
-                        "publisher": {
-                            "@type": "Organization",
-                            "name": "SiteCreation.in",
-                            "logo": "https://sitecreation.in/images/Logo.png"
-                        },
-                        "datePublished": post.date,
-                        "keywords": post.keywords.join(", ")
-                    })
-                }}
+            <ArticleJsonLd
+                headline={post.title}
+                description={post.excerpt}
+                image={`https://sitecreation.in${post.image}`}
+                datePublished={post.date}
+                authorName={post.author}
             />
 
             <WebPageSchema
@@ -139,10 +125,12 @@ export default async function BlogPostPage({ params }: Readonly<PageProps>) {
                             </p>
 
                             <div className="aspect-[21/9] rounded-[3rem] overflow-hidden border border-border/50 shadow-lux my-12 relative group">
-                                <img
+                                <Image
                                     src={post.image}
                                     alt={post.title}
-                                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                                    fill
+                                    priority
+                                    className="object-cover transition-transform duration-1000 group-hover:scale-105"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent" />
                             </div>
