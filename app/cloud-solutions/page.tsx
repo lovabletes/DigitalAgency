@@ -10,15 +10,15 @@ import { ServiceSchema } from "@/components/ui/ServiceSchema";
 import { WebPageSchema } from "@/components/ui/WebPageSchema";
 
 export const metadata: Metadata = {
-    title: "Azure Cloud & Microservices Mastery | SiteCreation.in",
-    description: "Architecting high-availability, secure cloud infrastructures on Microsoft Azure. Specialists in monolith to microservices migration.",
-    keywords: ["Azure Cloud Solutions Chandigarh", "Microservices Architecture India", "Cloud Infrastructure Agency", "DevOps Chandigarh", "Serverless Architecture", "Monolith to Microservices Migration"],
+    title: "Cloud Solutions & DevOps Services in Chandigarh | Azure Experts | SiteCreation.in",
+    description: "Cloud hosting, Azure setup & DevOps services in Chandigarh. SiteCreation.in helps businesses migrate to cloud, set up CI/CD pipelines & reduce infrastructure costs. Free consultation.",
+    keywords: ["cloud solutions Chandigarh", "Azure services India", "DevOps agency Chandigarh", "cloud migration India", "AWS Azure setup Chandigarh", "serverless development India", "cloud consulting company India"],
     alternates: {
         canonical: "/cloud-solutions",
     },
     openGraph: {
-        title: "Azure Cloud & Microservices Mastery | SiteCreation.in",
-        description: "High-availability, secure cloud infrastructures on Microsoft Azure. Specialists in monolith to microservices migration.",
+        title: "Cloud Solutions & DevOps in Chandigarh | SiteCreation.in",
+        description: "Azure, AWS & DevOps services in Chandigarh. Cloud migration, CI/CD pipelines & infrastructure setup for businesses across India.",
         url: "https://sitecreation.in/cloud-solutions",
         siteName: "SiteCreation.in",
         images: [{ url: "/images/cloud_solutions.avif", width: 1200, height: 630, alt: "Cloud Solutions by SiteCreation.in" }],
@@ -27,8 +27,8 @@ export const metadata: Metadata = {
     },
     twitter: {
         card: "summary_large_image",
-        title: "Azure Cloud & Microservices Mastery | SiteCreation.in",
-        description: "Enterprise-grade Azure cloud infrastructure and microservices architecture from Chandigarh's elite digital agency.",
+        title: "Cloud Solutions & DevOps in Chandigarh | SiteCreation.in",
+        description: "Azure & DevOps services in Chandigarh. Cloud migration & CI/CD pipelines for Indian businesses.",
         images: ["/images/cloud_solutions.avif"],
     },
 };

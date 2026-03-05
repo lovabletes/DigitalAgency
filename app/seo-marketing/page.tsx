@@ -10,25 +10,25 @@ import { ServiceSchema } from "@/components/ui/ServiceSchema";
 import { WebPageSchema } from "@/components/ui/WebPageSchema";
 
 export const metadata: Metadata = {
-    title: "Mastering GEO & SEO Ranking | SiteCreation.in",
-    description: "Drive elite organic traffic and maximize ROI with advanced SEO and Generative Engine Optimization (GEO). Rank in search and LLMs.",
-    keywords: ["SEO Services Chandigarh", "GEO Optimization India", "Generative Engine Optimization", "Digital Marketing Chandigarh", "Technical SEO Agency", "LLM SEO Strategy"],
+    title: "SEO Services in Chandigarh | Digital Marketing Agency India | SiteCreation.in",
+    description: "Affordable SEO services in Chandigarh & Mohali. SiteCreation.in helps businesses rank on Google with technical SEO, content strategy & AI search optimization (GEO). Get a free audit.",
+    keywords: ["SEO services Chandigarh", "digital marketing agency Chandigarh", "SEO company India", "Google ranking services Mohali", "technical SEO India", "local SEO Chandigarh", "affordable SEO services India"],
     alternates: {
         canonical: "/seo-marketing",
     },
     openGraph: {
-        title: "Mastering GEO & SEO Ranking | SiteCreation.in",
-        description: "Drive elite organic traffic and maximize ROI with advanced SEO and Generative Engine Optimization (GEO). Rank in search and LLMs.",
+        title: "SEO Services in Chandigarh | Digital Marketing Agency | SiteCreation.in",
+        description: "Affordable SEO & digital marketing in Chandigarh. Rank higher on Google with technical SEO, content strategy & AI search optimization.",
         url: "https://sitecreation.in/seo-marketing",
         siteName: "SiteCreation.in",
-        images: [{ url: "/images/seo_marketing.avif", width: 1200, height: 630, alt: "SEO & GEO Marketing by SiteCreation.in" }],
+        images: [{ url: "/images/seo_marketing.avif", width: 1200, height: 630, alt: "SEO & Digital Marketing by SiteCreation.in" }],
         locale: "en_IN",
         type: "website",
     },
     twitter: {
         card: "summary_large_image",
-        title: "Mastering GEO & SEO Ranking | SiteCreation.in",
-        description: "Advanced SEO and Generative Engine Optimization (GEO) to dominate AI and traditional search results.",
+        title: "SEO Services in Chandigarh | SiteCreation.in",
+        description: "Rank on Google with our SEO & digital marketing services in Chandigarh. Free SEO audit available.",
         images: ["/images/seo_marketing.avif"],
     },
 };

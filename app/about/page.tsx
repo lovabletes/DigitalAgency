@@ -9,15 +9,15 @@ import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { WebPageSchema } from "@/components/ui/WebPageSchema";
 
 export const metadata: Metadata = {
-    title: "About SiteCreation.in | Elite Digital Agency in Chandigarh",
-    description: "Learn about SiteCreation.in, a premier software development collective in Chandigarh. We architect high-performance .NET, Node.js, and Cloud solutions for global brands.",
-    keywords: ["SiteCreation Story", "Digital Agency Chandigarh", "Software Development Team India", "Elite Engineering Collective", "About SiteCreation", "Chandigarh Tech Agency"],
+    title: "About Us | Web Design & Development Agency Chandigarh | SiteCreation.in",
+    description: "SiteCreation.in is a web design and development agency based in Chandigarh, India. We help businesses build fast websites, mobile apps, and grow online. Learn our story.",
+    keywords: ["web design agency Chandigarh", "about SiteCreation", "IT company Chandigarh", "software development company India", "digital agency Mohali", "web developer team Chandigarh"],
     alternates: {
         canonical: "/about",
     },
     openGraph: {
-        title: "About SiteCreation.in | Elite Digital Agency in Chandigarh",
-        description: "Learn about SiteCreation.in, a premier software development collective in Chandigarh. We architect high-performance .NET, Node.js, and Cloud solutions for global brands.",
+        title: "About SiteCreation.in | Web Design & Development Agency in Chandigarh",
+        description: "Web design and development agency in Chandigarh helping businesses build fast websites, mobile apps & grow online.",
         url: "https://sitecreation.in/about",
         siteName: "SiteCreation.in",
         images: [{ url: "/Banner.avif", width: 1200, height: 630, alt: "About SiteCreation.in" }],

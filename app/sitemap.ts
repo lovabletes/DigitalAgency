@@ -9,35 +9,35 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const baseUrl = siteConfig.url;
 
     const staticRoutes = [
-        '',
-        '/portfolio',
-        '/expertise',
-        '/about',
-        '/contact',
-        '/careers',
-        '/blog',
-        '/ui-ux-design',
-        '/web-development',
-        '/mobile-apps',
-        '/seo-marketing',
-        '/cloud-solutions'
-    ].map((route) => ({
+        { path: '', date: '2025-01-01' },
+        { path: '/portfolio', date: '2025-01-01' },
+        { path: '/expertise', date: '2025-01-01' },
+        { path: '/about', date: '2025-01-01' },
+        { path: '/contact', date: '2025-01-01' },
+        { path: '/careers', date: '2025-03-01' },
+        { path: '/blog', date: '2025-03-01' },
+        { path: '/ui-ux-design', date: '2025-01-01' },
+        { path: '/web-development', date: '2025-01-01' },
+        { path: '/mobile-apps', date: '2025-01-01' },
+        { path: '/seo-marketing', date: '2025-01-01' },
+        { path: '/cloud-solutions', date: '2025-01-01' },
+    ].map(({ path: route, date }) => ({
         url: `${baseUrl}${route}`,
-        lastModified: new Date(),
+        lastModified: new Date(date),
         changeFrequency: 'weekly' as const,
         priority: route === '' ? 1 : 0.8,
     }));
 
     const projectRoutes = projects.map((project) => ({
         url: `${baseUrl}/portfolio/${project.id}`,
-        lastModified: new Date(),
+        lastModified: new Date('2025-01-01'),
         changeFrequency: 'monthly' as const,
         priority: 0.6,
     }));
 
     const expertiseRoutes = Object.keys(expertiseTopics).map((slug) => ({
         url: `${baseUrl}/expertise/${slug}`,
-        lastModified: new Date(),
+        lastModified: new Date('2025-01-01'),
         changeFrequency: 'monthly' as const,
         priority: 0.7,
     }));

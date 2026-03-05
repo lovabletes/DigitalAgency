@@ -9,15 +9,15 @@ import { ServiceSchema } from "@/components/ui/ServiceSchema";
 import { WebPageSchema } from "@/components/ui/WebPageSchema";
 
 export const metadata: Metadata = {
-    title: "Elite UI/UX Design & Craftsmanship | SiteCreation.in",
-    description: "Architecting immersive digital interfaces. We blend psychology with aesthetics to create intuitive, high-conversion design systems.",
-    keywords: ["Site Creation", "sitescreation", "makemysite", "UI UX Design Chandigarh", "UX Design Agency India", "Luxury Web Design", "Design Systems Agency", "High-Fidelity Prototyping", "Atomic Design Chandigarh"],
+    title: "UI UX Design Agency in Chandigarh | Website Design Services India | SiteCreation.in",
+    description: "Best UI/UX design agency in Chandigarh. We design user-friendly websites and apps with high-conversion interfaces for startups and businesses across India. Free consultation.",
+    keywords: ["UI UX design agency Chandigarh", "website design company India", "UX designer Chandigarh", "app UI design India", "web design services Mohali", "hire UI designer India", "SiteCreation website design"],
     alternates: {
         canonical: "/ui-ux-design",
     },
     openGraph: {
-        title: "Elite UI/UX Design & Craftsmanship | SiteCreation.in",
-        description: "Immersive digital interfaces that blend psychology with aesthetics to create intuitive, high-conversion design systems.",
+        title: "UI UX Design Agency in Chandigarh | SiteCreation.in",
+        description: "Top-rated UI/UX design agency in Chandigarh. User-friendly websites & apps with high-conversion interfaces for businesses across India.",
         url: "https://sitecreation.in/ui-ux-design",
         siteName: "SiteCreation.in",
         images: [{ url: "/images/ui_ux_design.avif", width: 1200, height: 630, alt: "UI/UX Design by SiteCreation.in" }],
@@ -26,8 +26,8 @@ export const metadata: Metadata = {
     },
     twitter: {
         card: "summary_large_image",
-        title: "Elite UI/UX Design & Craftsmanship | SiteCreation.in",
-        description: "Immersive interfaces blending luxury aesthetics with intuitive functionality from Chandigarh's elite design agency.",
+        title: "UI UX Design Agency in Chandigarh | SiteCreation.in",
+        description: "Top UI/UX design agency in Chandigarh. User-friendly websites & app interfaces for Indian businesses.",
         images: ["/images/ui_ux_design.avif"],
     },
 };

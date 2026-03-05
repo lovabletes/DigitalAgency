@@ -19,10 +19,10 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Site Creation | SiteCreation.in | Elite Web Design in Chandigarh",
+    default: "Web Design Company in Chandigarh | SiteCreation.in | Website Development Agency India",
     template: "%s | SiteCreation.in"
   },
-  description: "Architecting elite digital legacies. SiteCreation.in (Site Creation) is a premier digital agency serving Chandigarh, Mohali, and Panchkula, specializing in high-performance web development, mobile apps, and Generative Engine Optimization (GEO).",
+  description: "SiteCreation.in is a top-rated web design and development company in Chandigarh, Mohali & Panchkula. We build high-performance websites, mobile apps, and SEO strategies for businesses across India. Get a free consultation today.",
   authors: [{ name: "SiteCreation.in Team", url: "https://sitecreation.in" }],
   creator: "SiteCreation.in",
   publisher: "SiteCreation.in",
@@ -52,8 +52,8 @@ export const metadata: Metadata = {
     title: "SiteCreation",
   },
   openGraph: {
-    title: "SiteCreation.in | Elite Web Design & Digital Solutions in Chandigarh",
-    description: "Transform your vision into a high-performance digital legacy. Bespoke web and mobile engineering for global brands.",
+    title: "Web Design Company in Chandigarh | SiteCreation.in",
+    description: "Top-rated web design & development company in Chandigarh. We build fast websites, mobile apps & run SEO for businesses across India. Free consultation available.",
     url: "https://sitecreation.in",
     siteName: "SiteCreation.in",
     images: [
@@ -69,8 +69,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "SiteCreation.in | Luxury Digital Solutions",
-    description: "Architecting the future of digital luxury. Elite web design and development in Chandigarh.",
+    title: "Web Design Company in Chandigarh | SiteCreation.in",
+    description: "Top-rated web design & development company in Chandigarh, India. Fast websites, mobile apps & SEO. Free consultation.",
     images: ["/Banner.avif"],
   },
   category: "Technology",

@@ -10,15 +10,15 @@ import { ServiceSchema } from "@/components/ui/ServiceSchema";
 import { WebPageSchema } from "@/components/ui/WebPageSchema";
 
 export const metadata: Metadata = {
-    title: "Elite .NET & Node.js Development | SiteCreation.in",
-    description: "Architecting high-performance, scalable, and visually stunning web experiences. Specializing in Node.js, .NET Core, and luxury digital craftsmanship.",
-    keywords: ["Site Creation", "sitescreation", "makemysite", "Web Development Chandigarh", "Node.js Development India", ".NET Core Agency", "Next.js 15 Development", "Custom Web App Chandigarh", "Enterprise Web Solutions"],
+    title: "Web Development Company in Chandigarh | Node.js & Next.js Experts | SiteCreation.in",
+    description: "Looking for a web development company in Chandigarh? SiteCreation.in builds fast, scalable websites using Node.js, Next.js & .NET Core for businesses across India. Get a free quote.",
+    keywords: ["web development company Chandigarh", "website development agency India", "Node.js development Chandigarh", "Next.js developer India", "custom web app development", "hire web developer Chandigarh", "SiteCreation", "sitecreation.in"],
     alternates: {
         canonical: "/web-development",
     },
     openGraph: {
-        title: "Elite .NET & Node.js Web Development | SiteCreation.in",
-        description: "Architecting high-performance, scalable, and visually stunning web experiences. Specializing in Node.js, .NET Core, and luxury digital craftsmanship.",
+        title: "Web Development Company in Chandigarh | SiteCreation.in",
+        description: "Fast, scalable websites built with Node.js, Next.js & .NET Core. Top-rated web development agency in Chandigarh, India. Free consultation available.",
         url: "https://sitecreation.in/web-development",
         siteName: "SiteCreation.in",
         images: [{ url: "/images/web_development.avif", width: 1200, height: 630, alt: "Web Development by SiteCreation.in" }],

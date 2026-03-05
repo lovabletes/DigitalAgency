@@ -10,15 +10,15 @@ import { ServiceSchema } from "@/components/ui/ServiceSchema";
 import { WebPageSchema } from "@/components/ui/WebPageSchema";
 
 export const metadata: Metadata = {
-    title: "Mobile & TV App Engineering | SiteCreation.in",
-    description: "Architecting native mobile and smart TV masterpieces. iOS, Android, and TV solutions that blend intuitive UX with elite performance.",
-    keywords: ["Site Creation", "sitescreation", "makemysite", "Mobile App Development Chandigarh", "iOS App Development India", "Android App Development", "Smart TV App Development", "React Native Agency", "Apple TV App Development"],
+    title: "Mobile App Development Company in Chandigarh | iOS & Android Apps | SiteCreation.in",
+    description: "Top mobile app development company in Chandigarh. We build iOS, Android & React Native apps for startups and enterprises across India. Affordable pricing. Free consultation.",
+    keywords: ["mobile app development Chandigarh", "iOS app development India", "Android app development Chandigarh", "React Native developers India", "hire app developer Chandigarh", "app development company Mohali"],
     alternates: {
         canonical: "/mobile-apps",
     },
     openGraph: {
-        title: "Mobile & TV App Engineering | SiteCreation.in",
-        description: "Native mobile and smart TV masterpieces. iOS, Android, and TV solutions that blend intuitive UX with elite performance.",
+        title: "Mobile App Development Company in Chandigarh | SiteCreation.in",
+        description: "Build iOS & Android apps with top mobile app developers in Chandigarh. Startups & enterprises served across India.",
         url: "https://sitecreation.in/mobile-apps",
         siteName: "SiteCreation.in",
         images: [{ url: "/images/mobile-aps.avif", width: 1200, height: 630, alt: "Mobile App Development by SiteCreation.in" }],
@@ -27,8 +27,8 @@ export const metadata: Metadata = {
     },
     twitter: {
         card: "summary_large_image",
-        title: "Mobile & TV App Engineering | SiteCreation.in",
-        description: "Elite iOS, Android, and Smart TV app development from Chandigarh's premier digital agency.",
+        title: "Mobile App Development in Chandigarh | SiteCreation.in",
+        description: "iOS & Android app development company in Chandigarh. Startups & enterprises across India.",
         images: ["/images/mobile-aps.avif"],
     },
 };
