@@ -17,6 +17,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const title = `${topic.title} | SiteCreation.in`;
     const description = topic.fullDesc;
     const url = `https://sitecreation.in/expertise/${slug}`;
+    const ogImage = `https://sitecreation.in/images/service_placeholder.avif`;
 
     return {
         title,
@@ -37,14 +38,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
             type: "article",
             locale: "en_IN",
             authors: ["SiteCreation.in Team"],
+            images: [{ url: ogImage, width: 1200, height: 630, alt: title }],
         },
         twitter: {
             card: "summary_large_image",
             title,
             description,
-        },
-        alternates: {
-            canonical: url,
+            images: [ogImage],
         },
     };
 }

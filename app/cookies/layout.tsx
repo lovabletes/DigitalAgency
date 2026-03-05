@@ -23,8 +23,8 @@ export const metadata: Metadata = {
         images: ["/Banner.avif"],
     },
     robots: {
-        index: true,
-        follow: false,
+        index: false,
+        follow: true,
     },
 };
 

@@ -32,9 +32,6 @@ export const metadata: Metadata = {
     telephone: false,
   },
   metadataBase: new URL("https://sitecreation.in"),
-  alternates: {
-    canonical: "/",
-  },
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },

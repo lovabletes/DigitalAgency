@@ -28,6 +28,18 @@ const nextConfig = {
         optimizePackageImports: ['lucide-react'],
     },
 
+    // Redirect www to non-www for canonical domain consolidation
+    async redirects() {
+        return [
+            {
+                source: '/:path*',
+                has: [{ type: 'host', value: 'www.sitecreation.in' }],
+                destination: 'https://sitecreation.in/:path*',
+                permanent: true,
+            },
+        ];
+    },
+
     // Headers for security and caching
     async headers() {
         return [
