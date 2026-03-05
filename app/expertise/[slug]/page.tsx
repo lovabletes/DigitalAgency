@@ -1,5 +1,6 @@
 import React from "react";
 import { expertiseTopics } from "@/data/expertise";
+import { siteConfig } from "@/data/site";
 import { Header } from "@/components/home/Header";
 import { Footer } from "@/components/home/Footer";
 import { navLinks } from "@/data";
@@ -35,9 +36,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     }
 
     return {
-        title: `${topic.title} | SiteCreation.in Specialized Expertise`,
-        description: topic.shortDesc,
-        keywords: [topic.title, topic.category, ...topic.highlights, "Site Creation", "sitescreation", "sitecreations", "makemysite", "SiteCreation Expertise", "Chandigarh Digital Agency"],
+        title: `${topic.title} Services in ${siteConfig.address.city} | SiteCreation.in`,
+        description: `${topic.shortDesc} SiteCreation.in offers ${topic.title} services for businesses in ${siteConfig.address.city}, ${siteConfig.address.state}, and across India.`,
+        keywords: [topic.title, `${topic.title} ${siteConfig.address.city}`, `${topic.title} Chandigarh`, `${topic.title} India`, topic.category, ...topic.highlights, "SiteCreation", `web agency ${siteConfig.address.city}`, "web agency Chandigarh", "software development India"],
         alternates: {
             canonical: `/expertise/${slug}`,
         },
