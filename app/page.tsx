@@ -20,7 +20,8 @@ import {
   Testimonials,
   FaqSection,
   Footer,
-  ScrollProgressBar
+  ScrollProgressBar,
+  AIShowcase
 } from "@/components/lazy";
 
 import { siteConfig } from "@/data/site";
@@ -151,6 +152,8 @@ export default function LandingPage() {
         <ServicesGrid services={services} />
 
         <WhyChooseUs features={features} />
+
+        <AIShowcase />
 
         <ProjectsGallery projects={projects} />
 

@@ -20,6 +20,10 @@ export const WhyChooseUs = dynamic(() => import('./home/WhyChooseUs').then(mod =
     loading: () => <div className="min-h-[500px] animate-pulse bg-secondary/20" />
 });
 
+export const AIShowcase = dynamic(() => import('./home/AIShowcase').then(mod => ({ default: mod.AIShowcase })), {
+    loading: () => <div className="min-h-[600px] animate-pulse bg-secondary/20" />
+});
+
 export const ProjectsGallery = dynamic(() => import('./home/ProjectsGallery').then(mod => ({ default: mod.ProjectsGallery })), {
     loading: () => <div className="min-h-[600px] animate-pulse bg-secondary/20" />
 });
