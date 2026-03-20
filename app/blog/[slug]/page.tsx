@@ -65,6 +65,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 const ContentRenderer = ({ para }: { para: string }) => {
+    // 1. Headers
     if (para.startsWith('# ')) {
         return <h1 className="text-4xl font-black text-foreground mt-12 mb-6">{para.replaceAll("# ", "")}</h1>;
     }
@@ -74,10 +75,81 @@ const ContentRenderer = ({ para }: { para: string }) => {
     if (para.startsWith('### ')) {
         return <h3 className="text-2xl font-black text-foreground mt-8 mb-4">{para.replaceAll("### ", "")}</h3>;
     }
-    if (para.includes('**')) {
-        return <p dangerouslySetInnerHTML={{ __html: para.replaceAll(/\*\*(.*?)\*\*/g, '<strong class="text-foreground">$1</strong>') }} />;
+
+    // 2. Tables (Starts with |)
+    if (para.startsWith('|')) {
+        const rows = para.split('\n').filter(r => r.trim());
+        const tableRows = rows.map((row) => row.split('|').map(c => c.trim()).filter((c, i, a) => i > 0 && i < a.length - 1));
+        
+        // Find separators row (| :--- |) to remove
+        const contentRows = tableRows.filter(r => !r.every(c => c.includes('---') || c.includes(':')));
+        
+        if (contentRows.length > 0) {
+            const header = contentRows[0];
+            const body = contentRows.slice(1);
+            return (
+                <div className="overflow-x-auto my-8 border border-border/50 rounded-2xl bg-secondary/10">
+                    <table className="w-full text-left border-collapse">
+                        <thead className="bg-secondary/30">
+                            <tr>
+                                {header.map((cell, i) => <th key={i} className="p-4 text-foreground font-black uppercase text-sm border-b border-border/50">{cell}</th>)}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {body.map((row, index) => (
+                                <tr key={index} className="border-b border-border/30 last:border-0 hover:bg-secondary/5 transition-colors">
+                                    {row.map((cell, i) => <td key={i} className="p-4 text-foreground/90 font-semibold text-sm">{cell}</td>)}
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            );
+        }
     }
-    return <p>{para}</p>;
+
+    // 3. Bullet Lists (Starts with *)
+    if (para.startsWith('* ') || para.includes('\n* ')) {
+        const items = para.split('\n').filter(i => i.trim());
+        return (
+            <ul className="space-y-3 my-6 list-disc list-inside">
+                {items.map((item, i) => {
+                    const cleanItem = item.replace(/^\*\s+/, "");
+                    const formatted = cleanItem
+                        .replaceAll(/\*\*(.*?)\*\*/g, '<strong class="text-foreground">$1</strong>')
+                        .replaceAll(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" class="text-accent font-bold hover:underline">$1</a>');
+                    return <li key={i} className="text-muted-foreground font-medium" dangerouslySetInnerHTML={{ __html: formatted }} />
+                })}
+            </ul>
+        );
+    }
+
+    // 4. Action/Quote Blocks
+    if (para.startsWith('> ')) {
+        return (
+            <div className="border-l-4 border-accent pl-6 py-3 my-6 italic text-foreground font-medium bg-accent/5 rounded-r-xl">
+                {para.replaceAll("> ", "")}
+            </div>
+        );
+    }
+
+    // 5. Dividers (Starts with ---)
+    if (para.trim() === '---') {
+        return <hr className="border-border/50 my-8" />;
+    }
+
+    // 6. Default: Handle Links and Bolds together
+    let html = para;
+    // Replace Bold: **text**
+    html = html.replaceAll(/\*\*(.*?)\*\*/g, '<strong class="text-foreground">$1</strong>');
+    // Replace Links: [text](url)
+    html = html.replaceAll(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" class="inline-flex items-center gap-1 text-accent hover:text-accent/80 font-black underline decoration-accent/30 underline-offset-4 hover:decoration-accent transition-all">$1</a>');
+
+    if (html !== para) {
+        return <p dangerouslySetInnerHTML={{ __html: html }} className="text-muted-foreground font-medium" />;
+    }
+
+    return <p className="text-muted-foreground font-medium">{para}</p>;
 };
 
 export default async function BlogPostPage({ params }: Readonly<PageProps>) {
@@ -95,6 +167,7 @@ export default async function BlogPostPage({ params }: Readonly<PageProps>) {
                 image={`https://sitecreation.in${post.image}`}
                 datePublished={post.date}
                 authorName={post.author}
+                authorUrl={post.authorProfile}
             />
 
             <WebPageSchema
@@ -119,7 +192,7 @@ export default async function BlogPostPage({ params }: Readonly<PageProps>) {
                 {/* Article Header */}
                 <article className="py-24">
                     <div className="container-custom px-6">
-                        <div className="max-w-4xl mx-auto space-y-8">
+                        <div className="space-y-8">
                             <div className="flex flex-wrap items-center gap-6 text-sm">
                                 <span className="text-accent font-black uppercase tracking-widest py-1 px-4 border border-accent/20 rounded-full bg-accent/5">
                                     {post.category}
@@ -130,7 +203,13 @@ export default async function BlogPostPage({ params }: Readonly<PageProps>) {
                                 </div>
                                 <div className="flex items-center gap-2 text-muted-foreground font-bold uppercase tracking-wider">
                                     <User size={14} className="text-accent" />
-                                    {post.author}
+                                    {post.authorProfile ? (
+                                        <a href={post.authorProfile} target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors underline decoration-accent/30 underline-offset-4">
+                                            {post.author}
+                                        </a>
+                                    ) : (
+                                        post.author
+                                    )}
                                 </div>
                             </div>
 
@@ -160,8 +239,8 @@ export default async function BlogPostPage({ params }: Readonly<PageProps>) {
 
                             <div className="prose prose-invert prose-lux max-w-none">
                                 <div className="space-y-8 text-lg leading-relaxed text-muted-foreground font-medium">
-                                    {post.content.split('\n\n').filter(p => p.trim()).map((para) => (
-                                        <div key={para.substring(0, 50)}>
+                                    {post.content.split('\n\n').filter(p => p.trim()).map((para, index) => (
+                                        <div key={`${para.substring(0, 30)}-${index}`}>
                                             <ContentRenderer para={para} />
                                         </div>
                                     ))}

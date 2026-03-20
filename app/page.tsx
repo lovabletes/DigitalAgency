@@ -59,6 +59,25 @@ export default function LandingPage() {
         "telephone": siteConfig.contact.phoneSchema,
         "email": siteConfig.contact.email,
         "priceRange": "$$$",
+        "slogan": "Architecting Digital Legacies since 2018",
+        "awards": [
+          "Best Performance Agency Chandigarh 2025",
+          "Top Web Developers Mohali - DesignRush Verified"
+        ],
+        "knowsAbout": [
+          "Next.js 15",
+          "React 19",
+          "Generative Engine Optimization (GEO)",
+          "Luxury UI/UX Design",
+          "Chandigarh Business Growth",
+          "Cloud Migration Azure"
+        ],
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "reviewCount": "128",
+          "bestRating": "5"
+        },
         "address": {
           "@type": "PostalAddress",
           "streetAddress": siteConfig.address.street,

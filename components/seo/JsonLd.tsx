@@ -39,13 +39,15 @@ export function ArticleJsonLd({
     image,
     datePublished,
     authorName,
-}: {
+    authorUrl,
+}: Readonly<{
     headline: string;
     description: string;
     image: string;
     datePublished: string;
     authorName: string;
-}) {
+    authorUrl?: string;
+}>) {
     const data = {
         '@context': 'https://schema.org',
         '@type': 'Article',
@@ -56,6 +58,7 @@ export function ArticleJsonLd({
         author: {
             '@type': 'Person',
             name: authorName,
+            url: authorUrl,
         },
         publisher: {
             '@type': 'Organization',

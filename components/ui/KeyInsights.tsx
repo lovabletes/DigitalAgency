@@ -14,7 +14,7 @@ export function KeyInsights({ insights, title = "Key Takeaways" }: Readonly<KeyI
                 <div className="h-10 w-10 rounded-xl bg-accent/20 flex items-center justify-center text-accent">
                     <Target size={20} />
                 </div>
-                <h2 className="text-xl font-black uppercase tracking-widest text-[#f7e7ce]">
+                <h2 className="text-xl font-black uppercase tracking-widest text-foreground dark:text-[#f7e7ce]">
                     {title} <span className="text-accent italic">/ GEO Summary</span>
                 </h2>
             </div>

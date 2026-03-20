@@ -7,6 +7,7 @@ export interface BlogPost {
     category: "Strategy" | "Technology" | "Design" | "UX Research";
     image: string;
     author: string;
+    authorProfile?: string;
     keywords: string[];
     keyInsights?: string[];
 }
@@ -46,6 +47,7 @@ Ready to initiate your partnership? [Contact us](/contact) today.
         category: "Strategy",
         image: "/images/web_development.avif",
         author: "Elite Engineering Team",
+        authorProfile: "https://www.linkedin.com/company/sitecreation",
         keywords: ["Chandigarh web project", "start project", "Site Creation", "web design roadmap"],
         keyInsights: [
             "Discovery and strategic alignment are the first steps to digital dominance.",
@@ -85,6 +87,7 @@ Don't settle for "make my site" templates. Invest in a digital legacy. [View our
         category: "Strategy",
         image: "/images/web_dev.avif",
         author: "SiteCreation Strategist",
+        authorProfile: "https://www.linkedin.com/in/nitin-rajpoot",
         keywords: ["cost of website creation", "Site Creation pricing", "budget web design", "digital investment"],
         keyInsights: [
             "Website investment should be viewed as architecting a digital legacy, not just a line item.",
@@ -118,6 +121,7 @@ Join the elite brands dominating the AI search landscape. [Learn more about our 
         category: "Technology",
         image: "/images/ui_ux_design.avif",
         author: "Technical Artisan",
+        authorProfile: "https://www.linkedin.com/in/nitin-rajpoot",
         keywords: ["makemysite.in", "GEO", "Generative Engine Optimization", "AI search ranking"],
         keyInsights: [
             "AI search engines like ChatGPT and Perplexity prioritize semantic trust signals.",
@@ -179,6 +183,7 @@ We're based in **Chandigarh** and have built apps for healthcare, e-commerce, re
         category: "Technology",
         image: "/images/mobile-aps.avif",
         author: "SiteCreation Engineering Team",
+        authorProfile: "https://www.linkedin.com/company/sitecreation",
         keywords: ["mobile app development cost India", "app development price India 2026", "React Native cost India", "iOS Android app price Chandigarh", "hire app developer India"],
         keyInsights: [
             "React Native reduces mobile app development cost by 40–60% vs native development.",
@@ -188,69 +193,138 @@ We're based in **Chandigarh** and have built apps for healthcare, e-commerce, re
     },
     {
         slug: "how-to-build-tv-app-android-tv-apple-tv",
-        title: "How to Build a TV App for Android TV and Apple TV (tvOS) in 2026",
-        excerpt: "A practical guide to building Smart TV apps — Android TV, Apple TV, and Samsung Tizen — covering technology choices, costs, and timelines.",
+        title: "How to Build a TV App for Android TV and Apple TV (tvOS) in 2026: Elite Playbook",
+        excerpt: "A comprehensive guide to building Smart TV apps — Android TV, Apple TV, and Samsung Tizen — covering tech stacks, 10-foot UI design, DRM, and costing.",
         content: `
-# How to Build a TV App for Android TV and Apple TV in 2026
+# How to Build a TV App for Android TV & Apple TV in 2026: Elite OTT Strategy
 
-Building a **TV app** (also called a Smart TV app or streaming app) is a growing demand from content platforms, meditation apps, fitness brands, and OTT providers. At **SiteCreation.in**, we specialize in TV app development for Android TV, tvOS (Apple TV), and Samsung Tizen.
+The demand for **Smart TV apps** has exploded. From standard OTT streaming platforms to wellness, wellness meditation, and live sports broadcasting, brands are realizing that the biggest screen in the house is where high-value engagement happens.
 
-## What Platforms Should You Target?
+At **SiteCreation.in**, we architect immersive **10-foot UI experiences** for Android TV, tvOS (Apple TV), and HTML5-based environments (Tizen/webOS). 
 
-| Platform | OS | Market Share |
-|---|---|---|
-| Android TV / Google TV | Android | ~50% of smart TVs globally |
-| Apple TV | tvOS | Premium audience, high income bracket |
-| Samsung Tizen | Tizen OS | ~30% of global smart TVs |
-| LG webOS | webOS | ~15% of smart TVs |
+Here is our elite playbook for building a top-tier TV application in 2026.
 
-**Recommendation**: Start with **Android TV** for the widest reach, then add **Apple TV** for premium users.
+---
 
-## Technology Options for TV App Development
+## 1. Growth: What Platforms Should You Support?
 
-### 1. React Native for TV
-- Works on Android TV and Apple TV from a single codebase
-- Shares code with your existing mobile app
-- Best choice for content-heavy apps with navigation-first UI
+To dominate the living room, you must know where your audience is.
 
-### 2. Native Android TV (Kotlin / Leanback)
-- Full access to TV-specific APIs
-- Works on Android TV, Google TV, Fire TV
-- Best for gaming, live streaming, or interactive apps
+| Platform | Operating System | Global Market Share | India Market Share | Best For |
+| :--- | :--- | :--- | :--- | :--- |
+| **Android TV / Google TV** | Android | ~50% | ~60% | Broadest Reach, Fire TV |
+| **Apple TV** | tvOS | ~15% | ~5% | Premium tier, High-income |
+| **Samsung Smart TV** | Tizen OS | ~22% | ~20% | Global scale, HTML5 |
+| **LG Smart TV** | webOS | ~12% | ~12% | Premium displays, HTML5 |
 
-### 3. tvOS (Swift / SwiftUI)
-- Required for Apple TV App Store
-- Best performance on tvOS
-- Required if you want to use Apple's Siri remote features
+> **Elite Recommendation**: Start with a Unified codebase for **Android TV + Apple TV**, then rapidly expand to Tizen/webOS using a unified API layer.
 
-## Key Differences: TV App vs Mobile App
+---
 
-1. **Navigation is D-pad driven** — no touch, only remote control
-2. **Content must be designed for 10-foot UI** (viewed from across the room)
-3. **Video playback performance** is critical — build with ExoPlayer (Android) or AVPlayer (tvOS)
-4. **App Store review** is stricter, especially for tvOS
+## 2. Technology Stack choices for 2026
 
-## Estimated Cost of TV App Development in India
+### 🚀 A. React Native for TV (Unified King)
 
-- **Simple streaming app** (Android TV): ₹1,50,000 – ₹3,00,000
-- **Cross-platform (Android TV + Apple TV)**: ₹3,00,000 – ₹6,00,000
-- **Full OTT platform** (TV + mobile + backend): ₹10,00,000+
+**Verdict**: Best for 90% of streaming apps.
 
-## SiteCreation.in TV App Work
+**Why**: Shares 80%+ code with your existing mobile app. Handles layout and navigation elegantly.
 
-We have built TV apps for fitness, yoga, and education platforms on both Android TV and tvOS. Our React Native TV framework approach allows us to ship simultaneously on Android TV and Apple TV.
+**Sub-systems**: Uses **ExoPlayer** (Android) and **AVPlayer** (iOS) natively beneath the hood.
 
-[Talk to us about your TV app project](/contact)
+### 🛠️ B. Native Development (Kotlin & Swift)
+
+**Verdict**: Best for rich graphics or gaming on TV.
+
+**Android TV**: Kotlin + **Jetpack Compose for TV** (modern standard replacing Leanback).
+
+**Apple TV**: Swift + **SwiftUI for tvOS**. Required if you want full integrations with Apple’s Siri Remote.
+
+### 🌐 C. Lightning.js / HTML5 (The TV Web Kings)
+
+**Verdict**: Essential for Samsung Tizen and LG webOS.
+
+**Why**: These TVs run on web runtimes. **LightningJS** is a specialized framework with a Canvas2D rendering core designed specifically to achieve 60 FPS on low-power TV processors.
+
+---
+
+## 3. The 10-Foot UI: Designing for the Remote Control
+
+Designing for TV is completely different from mobile. There are no taps, pinches, or swipes.
+
+*   **Focus State Management**: Every element must have a visible, beautiful "Focused" state (glow, scale, or color change) so the user knows where the D-Pad cursor is.
+
+*   **Safe Zones (Overscan)**: TVs have different edges. Interactive elements must stay within the **10% safe zone margin** to prevent items leaking off-screen.
+
+*   **Typography & Contrast**: Use large font sizes (minimum 24px equivalent) and high contrast. Text sits across the room from the viewer.
+
+*   **Dead Navigation Ends**: Ensure there are no traps where a user presses "Down" or "Right" and the focus is lost.
+
+---
+
+## 4. Video Infrastructure: The Engine of Success
+
+A beautiful UI fails if the video buffers. In 2026, building a scalable architecture requires:
+
+1.  **Adaptive Bitrate Streaming (ABR)**: Supporting **HLS** (Apple) and **DASH** (Android/Web) is mandatory so video adjusts smoothly from 4K down to 480p based on internet speed.
+
+2.  **DRM (Digital Rights Management)**: If you handle premium content, you must integrate **Widevine** (Android/Chrome), **FairPlay** (Apple), and **PlayReady** (Microsoft/Tizen).
+
+3.  **Low Latency CDN Setup**: Integrating CDNs with server-side ad insertion (SSAI) to maximize buffer speeds.
+
+---
+
+## 5. Monetization Models for 2026
+
+How will your OTT or TV app generate revenue?
+
+*   **AVOD (Ad-supported)**: Free content monetized via ads (requires VAST/VMAP protocols).
+
+*   **SVOD (Subscription)**: In-app subscriptions (stricter Google/Apple review).
+
+*   **TVOD (Transactional)**: Rent-to-watch or Pay-per-view.
+
+*   **SSAI (Server-Side Ad Insertion)**: Stitching ads directly into the video stream to bypass ad-blockers on Smart TVs.
+
+---
+
+## 6. Estimated Cost Framework (India vs Global)
+
+| App Tier | Standard features | Est. Cost (INR) | Timeline |
+| :--- | :--- | :--- | :--- |
+| **Basic OTT App** | Free videos, Search, Categories (Any 1 TV platform) | ₹2,50,000 – ₹4,50,000 | 6-8 Weeks |
+| **Cross-Platform TV** | React Native (Android TV + tvOS), User Profiles, Sync | ₹6,00000 – ₹10,00,000 | 10-14 Weeks |
+| **Elite OTT Ecosystem** | Mobile and TV Apps, Custom CMS Backend, DRM, SSAI, Analytics | ₹15,00,000 – ₹30,00,000+ | 4-6 Months |
+
+---
+
+## Frequently Asked Questions (FAQ)
+
+**Q: Can we convert our existing Android mobile app to Android TV?**
+*A: No. You can share logic (APIs, view models), but the layouts and navigation handlers (D-pad focus) are unique to TV views and must be architected from scratch.*
+
+**Q: Does Site Creation handle the App Store publishing for TV?**
+*A: Yes. tvOS and Android TV have strict guidelines regarding remote handling and video fallback procedures. We provide end-to-end guidance for submission.*
+
+---
+
+## Partner with Sitecreation.in for Next-Gen TV Apps
+
+We don't build template apps. We architect **Elite Smart TV solutions** that stream beautifully, scale globally, and look stunning on 85-inch 4K panels. 
+
+Whether you are launching a **fitness network**, a **corporate training portal**, or a **full-scale OTT aggregator**, let’s define your architecture.
+
+👉 [Get an OTT & TV App Consultation](/contact)
         `,
         date: "Mar 3, 2026",
         category: "Technology",
-        image: "/images/service_placeholder.avif",
+        image: "/images/tv-app-development.png",
         author: "SiteCreation Mobile Team",
-        keywords: ["build Android TV app India", "Apple TV app development", "tvOS app India", "smart TV app development Chandigarh", "React Native TV app", "OTT app development India"],
+        authorProfile: "https://www.linkedin.com/company/sitecreation",
+        keywords: ["build Android TV app India", "Apple TV app development", "tvOS app India", "smart TV app development Chandigarh", "React Native TV app", "OTT app development India", "LightningJS TV app", "DRM video streaming", "Jetpack Compose TV"],
         keyInsights: [
-            "React Native for TV allows a single codebase to target both Android TV and Apple TV.",
-            "TV apps require D-pad navigation design — not the same as mobile UI.",
-            "Starting with Android TV gives you access to the largest smart TV market globally."
+            "React Native for TV is the elite choice for single-codebase builds targeting Android TV and Apple TV.",
+            "TV UX requires strict 10-foot UI standards, overscan safe zones, and absolute focus-state management.",
+            "Scalable OTT platforms require proper DRM (Widevine/FairPlay) and Adaptive Bitrate Streaming (HLS/DASH)."
         ]
     },
     {
@@ -335,22 +409,23 @@ We handle full Azure infrastructure setup, deployment pipelines, and ongoing man
 
 [Get an Azure deployment consultation](/contact)
         `,
-    date: "Mar 4, 2026",
-    category: "Technology",
-    image: "/images/cloud_solutions.avif",
-    author: "SiteCreation Cloud Team",
-    keywords: ["deploy Next.js on Azure", "Azure deployment India", "Azure App Service Next.js", "Azure Static Web Apps", "cloud deployment Chandigarh", "Azure for Indian startups"],
-    keyInsights: [
-        "Azure has data centers in Pune and Chennai, making it ideal for Indian data residency requirements.",
-        "Azure Static Web Apps offers a free tier that handles most Next.js projects without cost.",
-        "Microsoft for Startups provides up to $150,000 in free Azure credits for eligible companies."
-    ]
+        date: "Mar 4, 2026",
+        category: "Technology",
+        image: "/images/cloud_solutions.avif",
+        author: "SiteCreation Cloud Team",
+        authorProfile: "https://www.linkedin.com/company/sitecreation",
+        keywords: ["deploy Next.js on Azure", "Azure deployment India", "Azure App Service Next.js", "Azure Static Web Apps", "cloud deployment Chandigarh", "Azure for Indian startups"],
+        keyInsights: [
+            "Azure has data centers in Pune and Chennai, making it ideal for Indian data residency requirements.",
+            "Azure Static Web Apps offers a free tier that handles most Next.js projects without cost.",
+            "Microsoft for Startups provides up to $150,000 in free Azure credits for eligible companies."
+        ]
     },
-{
-    slug: "what-is-geo-generative-engine-optimization-2026",
+    {
+        slug: "what-is-geo-generative-engine-optimization-2026",
         title: "What is GEO (Generative Engine Optimization)? How to Rank in ChatGPT, Gemini & AI Search",
-            excerpt: "GEO is the new SEO. Learn how to optimize your website to be cited by AI tools like ChatGPT, Google Gemini, Perplexity, and Claude.",
-                content: `
+        excerpt: "GEO is the new SEO. Learn how to optimize your website to be cited by AI tools like ChatGPT, Google Gemini, Perplexity, and Claude.",
+        content: `
 # What is GEO (Generative Engine Optimization) in 2026?
 
 **Generative Engine Optimization (GEO)** is the practice of optimizing your website and content so that AI-powered search engines — like **ChatGPT**, **Google Gemini**, **Perplexity AI**, and **Claude** — cite your website as a trusted authority when answering user queries.
@@ -411,15 +486,70 @@ We were among the first agencies in India to offer GEO as a dedicated service. O
 
 [Learn more about our GEO & SEO services](/seo-marketing)
         `,
-                    date: "Mar 5, 2026",
-                        category: "Strategy",
-                            image: "/images/seo_marketing.avif",
-                                author: "SiteCreation SEO Team",
-                                    keywords: ["GEO generative engine optimization", "rank in ChatGPT", "rank in Google Gemini", "AI SEO India", "GEO services Chandigarh", "how to rank in AI search 2026", "Perplexity SEO"],
-                                        keyInsights: [
-                                            "GEO (Generative Engine Optimization) helps your brand get cited in AI-generated answers from ChatGPT, Gemini & Perplexity.",
-                                            "Structured Schema.org data and E-E-A-T signals are the two most important GEO ranking factors.",
-                                            "AI search engines cite 1–2 authoritative sources per answer — GEO is about becoming that source."
-                                        ]
-}
+        date: "Mar 5, 2026",
+        category: "Strategy",
+        image: "/images/seo_marketing.avif",
+        author: "SiteCreation SEO Team",
+        authorProfile: "https://www.linkedin.com/in/nitin-rajpoot",
+        keywords: ["GEO generative engine optimization", "rank in ChatGPT", "rank in Google Gemini", "AI SEO India", "GEO services Chandigarh", "how to rank in AI search 2026", "Perplexity SEO"],
+        keyInsights: [
+            "GEO (Generative Engine Optimization) helps your brand get cited in AI-generated answers from ChatGPT, Gemini & Perplexity.",
+            "Structured Schema.org data and E-E-A-T signals are the two most important GEO ranking factors.",
+            "AI search engines cite 1–2 authoritative sources per answer — GEO is about becoming that source."
+        ]
+    },
+    {
+        slug: "best-web-design-agencies-chandigarh-2026-comparison",
+        title: "Best Web Design & Development Agencies in Chandigarh: 2026 Comparison",
+        excerpt: "An unbiased look at the top digital agencies in the Tricity (Chandigarh, Mohali, Panchkula) based on performance, design, and SEO expertise.",
+        content: `
+# Best Web Design & Development Agencies in Chandigarh: 2026 Comparison
+
+Choosing the "best" agency in Chandigarh depends on whether you're looking for a quick brochure site or an elite, high-performance platform. Based on recent shifts in AI-driven search and modern tech stacks, here is our 2026 breakdown of the top players in the region.
+
+## The Top Contenders in Chandigarh/Mohali
+
+| Agency | Best For | Typical Tech Stack | Vibe |
+| :--- | :--- | :--- | :--- |
+| **BootesNull** | Enterprise Scale | .NET, PHP, Java | Large-scale Outsourcing |
+| **webdew** | HubSpot & Marketing | HubSpot, WordPress | Marketing-centric |
+| **SEO Tech Experts** | Local SEO | WordPress, PHP | Value-driven |
+| **SiteCreation.in** | **Elite Performance & Luxury** | **Next.js 15, React 19** | **Specialized & Premium** |
+
+## Why the Tech Stack Matters in 2026
+In the era of **Generative Engine Optimization (GEO)**, a simple WordPress site often fails to provide the semantic signals AI models like ChatGPT and Perplexity demand. 
+
+### 1. The Enterprise Giants (BootesNull, Seasia)
+These agencies are powerhouses for large-scale migrations and legacy systems. If you need 50+ developers on a single .NET project, these are your go-to options in Chandigarh.
+
+### 2. The Marketing Specialists (webdew, Ink Web Solutions)
+Agencies like webdew excel at integrating websites with CRM and marketing automation. They are ideal for B2B brands that live and breathe HubSpot.
+
+### 3. The Performance Boutique: SiteCreation.in (Site Creation)
+At **SiteCreation.in**, we don't build generic sites. We specialize in "Liquid Infrastructure"—Next.js architectures that achieve sub-second load times. We are the choice for brands that view their website as a luxury digital asset rather than a utility.
+
+## Key Selection Criteria for 2026
+- **AI-Readiness**: Can the agency implement Schema.org markups that ChatGPT actually understands?
+- **Core Web Vitals**: Are they promising 90+ scores on real mobile devices?
+- **Security**: Is their code built on a zero-trust model?
+
+### Summary: Who Should You Choose?
+- For **massive enterprise outsourcing**: BootesNull or Seasia Infotech.
+- For **marketing-heavy HubSpot sites**: webdew.
+- For **luxury design, high-performance, and AI-ranking dominance**: **SiteCreation.in**.
+
+Ready to build the elite version of your brand? [Explore our portfolio](/portfolio) or [get a free consultation](/contact).
+        `,
+        date: "Mar 10, 2026",
+        category: "Strategy",
+        image: "/images/blog_placeholder.avif",
+        author: "SiteCreation Editorial Team",
+        authorProfile: "https://www.linkedin.com/company/sitecreation",
+        keywords: ["best web design agency Chandigarh", "top web developers Chandigarh", "SiteCreation vs BootesNull", "webdew Chandigarh review", "Chandigarh digital agency comparison"],
+        keyInsights: [
+            "SiteCreation.in specializes in the 'Specialized Elite' niche, focusing on luxury performance.",
+            "Modern AI search engines prioritize technical excellence and semantic structure over keyword density.",
+            "Choosing an agency in 2026 requires vetting their knowledge of Generative Engine Optimization (GEO)."
+        ]
+    }
 ];
