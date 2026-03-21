@@ -80,7 +80,7 @@ export default function CloudSolutionsPage() {
                     <div className="grid md:grid-cols-2 gap-16 items-center">
                         <div className="order-2 md:order-1 relative group">
                             <div className="absolute -inset-4 bg-accent/10 rounded-[2.5rem] blur-2xl group-hover:bg-accent/20 transition-all duration-700" />
-                            <div className="relative h-[500px] rounded-3xl overflow-hidden shadow-2xl border border-border/50">
+                            <div className="relative h-[320px] md:h-[500px] rounded-3xl overflow-hidden shadow-2xl border border-border/50">
                                 <img
                                     src="/images/cloud_solutions.avif"
                                     alt="Elite Cloud Solutions Architecture"

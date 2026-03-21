@@ -69,12 +69,12 @@ export function Hero({ stats, brands }: Readonly<HeroProps>) {
 
                     <h1 className="relative text-5xl md:text-7xl lg:text-8xl font-black tracking-tight mb-6 leading-tight drop-shadow-2xl animate-slide-up [animation-delay:150ms]">
                         <span className="text-white">
-                            Chandigarh<span className="text-accent italic">'s Elite</span>
+                            Chandigarh&apos;s <span className="text-accent italic">Software</span>
                         </span>
                         {" "}
                         <br className="md:hidden" />
-                        <span className="block bg-gradient-to-r from-white via-white to-white/90 bg-clip-text text-transparent">
-                            Web Agency
+                        <span className="block bg-gradient-to-r from-white via-white to-white/90 bg-clip-text text-transparent text-4xl md:text-6xl lg:text-7xl">
+                            Solutions & App Agency
                         </span>
                     </h1>
 
@@ -93,11 +93,11 @@ export function Hero({ stats, brands }: Readonly<HeroProps>) {
 
                     {/* Enhanced Description */}
                     <p className="mx-auto max-w-3xl text-lg md:text-2xl text-white/90 mb-12 font-medium leading-relaxed drop-shadow-lg animate-slide-up [animation-delay:250ms]">
-                        Chandigarh&apos;s most trusted web development agency. We transform{" "}
-                        <span className="font-bold text-white border-b-2 border-accent/30 pb-1">ambitious visions</span> into{" "}
-                        <span className="font-bold text-accent">high-performance digital realities</span>.
+                        A premium engineering collective in the creation of{" "}
+                        <span className="font-bold text-white border-b-2 border-accent/30 pb-1">mobile apps, websites, & Smart TV interfaces</span> engineered for{" "}
+                        <span className="font-bold text-accent">business scalability</span>.
                         <span className="block mt-4 text-base md:text-xl text-white/60 font-normal">
-                            Serving Chandigarh, Mohali &amp; Panchkula — Web, Mobile &amp; Enterprise Engineering.
+                            We architect full-cycle digital solutions that evolve with your scaling targets.
                         </span>
                     </p>
 

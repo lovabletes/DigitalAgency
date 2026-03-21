@@ -12,7 +12,7 @@ interface ServiceSchemaProps {
     description: string;
     providerName?: string;
     url: string;
-    /** Price range e.g. "₹50,000 - ₹5,00,000" */
+    /** Price range e.g. "$1,000 - $10,000" */
     priceRange?: string;
     /** ISO 8601 date string e.g. "2026-02-18" */
     dateModified?: string;
@@ -24,7 +24,7 @@ export function ServiceSchema({
     description,
     providerName = siteConfig.name,
     url,
-    priceRange = "₹₹₹",
+    priceRange = "$$$",
     dateModified = "2026-02-18",
     reviews = []
 }: Readonly<ServiceSchemaProps>) {

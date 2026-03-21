@@ -17,9 +17,9 @@ export function CTABanner() {
                     <div className="absolute -inset-1 bg-gradient-to-r from-accent via-accent/50 to-accent rounded-[3rem] blur-xl opacity-20 group-hover:opacity-40 transition-opacity duration-700" />
 
                     {/* Main Immersive Card */}
-                    <div className="relative rounded-[3rem] p-12 md:p-24 overflow-hidden shadow-2xl bg-gradient-to-br from-[#1a1a3e] via-[#0f1429] to-[#1a1a3e] border border-white/10 dark:border-accent/20">
+                    <div className="relative rounded-[3rem] py-8 md:py-12 px-8 md:px-16 overflow-hidden shadow-2xl bg-gradient-to-br from-[#1a1a3e] via-[#0f1429] to-[#1a1a3e] border border-white/10 dark:border-accent/20">
                         {/* 3D Grid Overlay */}
-                        <div className="absolute inset-0 opacity-10 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
+                        <div className="absolute inset-x-0 top-0 h-1/2 opacity-10 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
 
                         {/* Dynamic Light Beam */}
                         <div className="absolute -top-24 -left-24 w-96 h-96 bg-accent/20 rounded-full blur-[100px] animate-pulse-slow" />
@@ -27,21 +27,21 @@ export function CTABanner() {
 
                         <div className="relative z-10 flex flex-col items-center text-center max-w-4xl mx-auto">
                             {/* Floating Icons Duo */}
-                            <div className="flex gap-4 mb-10 animate-bounce" style={{ animationDuration: '3s' }}>
-                                <div className="h-16 w-16 rounded-2xl bg-accent/10 border border-accent/30 flex items-center justify-center text-accent shadow-lg shadow-accent/20 rotate-12">
-                                    <Sparkles size={32} />
+                            <div className="flex gap-4 mb-4 animate-bounce" style={{ animationDuration: '3s' }}>
+                                <div className="h-14 w-14 rounded-2xl bg-accent/10 border border-accent/30 flex items-center justify-center text-accent shadow-lg shadow-accent/20 rotate-12">
+                                    <Sparkles size={28} />
                                 </div>
-                                <div className="h-16 w-16 rounded-2xl bg-white/5 border border-white/20 flex items-center justify-center text-white shadow-lg -rotate-12 mt-4">
-                                    <ShieldCheck size={32} />
+                                <div className="h-14 w-14 rounded-2xl bg-white/5 border border-white/20 flex items-center justify-center text-white shadow-lg -rotate-12 mt-4">
+                                    <ShieldCheck size={28} />
                                 </div>
                             </div>
 
-                            <h2 className="text-4xl md:text-7xl font-black text-white tracking-tight mb-10 leading-[1.1] drop-shadow-2xl">
+                            <h2 className="text-4xl md:text-6xl font-bold text-white tracking-tight mb-4 leading-[1.1] drop-shadow-2xl">
                                 Elevate Your Brand To <br />
-                                <span className="text-shimmer italic">The Elite Level</span>
+                                <span className="text-shimmer italic font-medium">The Elite Level</span>
                             </h2>
 
-                            <p className="text-xl md:text-2xl text-white/70 font-medium mb-14 leading-relaxed max-w-3xl">
+                            <p className="text-sm md:text-lg text-white/70 font-medium mb-6 leading-relaxed max-w-2xl">
                                 Join the vanguard of digital innovation. Partner with SiteCreation.in to architect{" "}
                                 <span className="text-white border-b-2 border-accent/40 pb-1">uncompromising digital legacies</span>.
                             </p>

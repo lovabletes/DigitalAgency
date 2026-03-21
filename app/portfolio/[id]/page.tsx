@@ -291,7 +291,7 @@ export default async function ProjectCaseStudyPage({ params }: Readonly<PageProp
 
                             {/* Tech Stack Metadata */}
                             <div className="lg:col-span-4">
-                                <div className="p-10 rounded-[2.5rem] bg-gradient-to-br from-[#1a1a3e] via-[#0f1429] to-[#1a1a3e] border border-white/10 shadow-xl overflow-hidden relative">
+                                <div className="p-6 md:p-10 rounded-[2.5rem] bg-gradient-to-br from-[#1a1a3e] via-[#0f1429] to-[#1a1a3e] border border-white/10 shadow-xl overflow-hidden relative">
                                     <div className="absolute inset-0 opacity-10 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:16px_16px]" />
 
                                     <div className="relative z-10">

@@ -51,32 +51,7 @@ export const projects = [
         fullDescription: "### Business Objective\nMaison Belle, a luxury Parisian cosmetics brand, required a digital storefront that mirrored the exclusivity and prestige of their physical boutiques. The challenge was to create high-fidelity, highly interactive micro-animations (glassmorphism, kinetic typography) without severely degrading the loading speed or the mobile conversion rate.\n\n### Technical Architecture & SEO Impact\nWe deployed a headless e-commerce architecture. The frontend was constructed using the Next.js App Router and Framer Motion for cinematic, 60FPS scroll animations. To ensure maximum transaction security and speed, we integrated the Stripe API directly with a PostgreSQL database managed via Prisma ORM. Crucially, we utilized Next.js Image Optimization to serve WebP/AVIF formats dynamically, ensuring that the high-resolution cosmetic photography didn't block the Largest Contentful Paint (LCP).\n\n### Results\nCart abandonment dropped by 42%. The site consistently ranks in the top 3 spots for 'Luxury Vegan Cosmetics' largely due to the semantic HTML5 structuring and dynamic SEO metadata generated server-side for every product variant.",
         liveUrl: "https://maisonbelle.onrender.com/"
     },
-    {
-        id: "proj-2",
-        title: "TourWeb",
-        cat: "Cloud Solution",
-        color: "bg-green-600",
-        client: "Agrotourism India",
-        technologies: ["React Vite", "Node.js", "Redux Toolkit", "AWS S3", "Docker"],
-        images: ["/Tourweb.avif"],
-        description: "Immersive travel planning and booking engine.",
-        highlights: [
-            { metric: "1,500+", label: "Bookings/Month" },
-            { metric: "24hrs", label: "New Destination Indexing" },
-            { metric: "99.9%", label: "Uptime (Cloud-hosted)" },
-            { metric: "∞", label: "Horizontal Scalability" },
-        ],
-        features: [
-            { icon: "🗺️", title: "Destination Discovery", desc: "Map-based search engine with filters for stay type, season, activities, and budget range." },
-            { icon: "🏕️", title: "Farm Stay Listings", desc: "Local farmers can independently list, manage, and update their eco-stays with real-time availability calendars." },
-            { icon: "💳", title: "Secure Booking & Payment", desc: "Multi-step booking flow with partial deposits, cancellation policies, and automated payment receipts." },
-            { icon: "⭐", title: "Review & Rating System", desc: "Verified post-stay reviews with photo uploads, building trust and driving organic SEO for each destination page." },
-            { icon: "📷", title: "AWS Media Pipeline", desc: "Automated image compression and CDN delivery via AWS S3 — hosts thousands of farm photos at zero latency." },
-            { icon: "📊", title: "Host Analytics Dashboard", desc: "Revenue tracking, booking trends, and visitor demographics for farm hosts to optimize their listings." },
-        ],
-        fullDescription: "### Business Objective\nAgrotourism India needed a digital bridge between urban tourists and remote, rural farming destinations. The core issue was data fragmentation: local farmers had no way to upload real-time availability, and tourists found it difficult to seamlessly book eco-stays. The mandate was to build a centralized, aggressively scalable booking engine.\n\n### Technical Architecture & SEO Impact\nWe engineered the frontend as a hyper-fast Single Page Application (SPA) using React Vite and Redux Toolkit for complex global state management during multi-step booking flows. To handle the massive influx of user-generated content (images from farm stays), we built an automated ingestion pipeline using AWS S3 and Dockerized microservices. This ensures that no matter how much content is uploaded, the main server never experiences latency.\n\n### Results\nThe platform now securely processes over 1,500 unique bookings a month. We implemented canonical tagging and programmatic XML sitemaps to ensure all newly added rural destinations are crawled and indexed by Google within 24 hours.",
-        liveUrl: "https://agrotourism-7brf.onrender.com"
-    },
+
     {
         id: "proj-avni-yoga",
         title: "Avni Yoga",
@@ -103,58 +78,8 @@ export const projects = [
         fullDescription: "### Business Objective\nDuring the rapid transition to remote wellness, Avni Yoga required a digital studio capable of hosting real-time, interactive virtual yoga sessions. Third-party video tools (like Zoom) broke the immersion and branding of the studio. They needed a white-labeled, embedded, and latency-free video conferencing solution directly in their platform.\n\n### Technical Architecture & SEO Impact\nWe bypassed traditional video APIs and implemented native WebRTC protocols coupled with Socket.io for instantaneous signaling. This allowed for 1080p, peer-to-peer live streaming without relying on external servers. The authentication, scheduling, and membership tiering were built on a robust serverless architecture using Firebase, allowing the platform to scale infinitely without DevOps overhead.\n\n### Results\nA frictionless user experience. Retention rates for digital memberships skyrocketed by 60%, and the platform is heavily favored by search engines due to its custom 'VideoObject' Schema.org tags, allowing their recorded sessions to appear in Google Video Search results.",
         liveUrl: "https://avniyoga.onrender.com"
     },
-    {
-        id: "proj-pilates",
-        title: "Pilates",
-        cat: "Fitness & Strength",
-        color: "bg-rose-600",
-        client: "Core Dynamics Studio",
-        technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Prisma", "Vercel"],
-        images: ["/Pilates.avif"],
-        description: "Premium pilates studio platform focusing on core strength and flexibility.",
-        highlights: [
-            { metric: "85%", label: "Admin Workload Reduced" },
-            { metric: "#1", label: "Local SEO Ranking" },
-            { metric: "0", label: "Booking Errors Post-Launch" },
-            { metric: "< 0.5s", label: "Edge Response Time" },
-        ],
-        features: [
-            { icon: "🗓️", title: "Smart Scheduling Matrix", desc: "Conflict-free booking engine mapping instructors, reformer machines, and class slots in real time." },
-            { icon: "👩‍🏫", title: "Instructor Profiles", desc: "Dedicated pages for each instructor with bios, specializations, class schedules, and photo galleries." },
-            { icon: "🏋️", title: "Equipment Reservation", desc: "Pilates reformer machine booking system to prevent overbooking physical studio equipment." },
-            { icon: "💎", title: "Private Session Booking", desc: "Premium 1-on-1 session scheduling with direct messaging between client and instructor." },
-            { icon: "📊", title: "Revenue Dashboard", desc: "Studio owner analytics: monthly revenue, class occupancy rates, and member churn analysis." },
-            { icon: "🔐", title: "Members Portal", desc: "Secure individual login with booking history, class credits balance, and upcoming sessions overview." },
-        ],
-        fullDescription: "### Business Objective\nA premium fitness platform catering to high-net-worth individuals. The studio operations were hampered by overlapping class schedules, instructor availability conflicts, and hardware (reformer machine) booking errors. They required a flawless, error-free scheduling matrix masked behind an incredibly clean, minimalist interface.\n\n### Technical Architecture & SEO Impact\nThe platform was strictly typed using TypeScript from the database layer (Prisma) all the way to the UI hooks, eliminating runtime booking errors. We utilized Next.js Server Actions to securely process complicated transactional mutations without exposing sensitive business logic to the client-side JavaScript bundle.\n\n### Results\nAdministrative workload was reduced by 85%. Due to the semantic, accessible markup (A11y compliant) and lightning-fast edge deployment via Vercel, the site secured the #1 Local SEO ranking for 'Luxury Pilates Studio'.",
-        liveUrl: "https://avniyoga.onrender.com/home"
-    },
-    {
-        id: "proj-chamba",
-        title: "DevBhoomi Chamba",
-        cat: "Tourism & Culture",
-        color: "bg-indigo-600",
-        client: "Himachal Tourism Board",
-        technologies: ["Next.js", "GraphQL", "Contentful CMS", "Mapbox GL"],
-        images: ["/Chamba.avif"],
-        description: "A digital gateway to the cultural heritage and divine landscapes of Chamba.",
-        highlights: [
-            { metric: "3x", label: "International Tourist Traffic" },
-            { metric: "100%", label: "Editorial Autonomy (No-Code)" },
-            { metric: "50+", label: "Destinations Mapped" },
-            { metric: "A+", label: "Web Accessibility Score" },
-        ],
-        features: [
-            { icon: "🗺️", title: "3D Topographical Maps", desc: "Interactive Mapbox GL-powered terrain maps with trekking route overlays, elevation markers, and trail highlights." },
-            { icon: "🏛️", title: "Cultural Heritage Archive", desc: "Searchable database of temples, monuments, and festivals with historical metadata and curator notes." },
-            { icon: "📖", title: "No-Code CMS (Contentful)", desc: "District authority staff can publish new destination guides, events, and photo essays without any developer involvement." },
-            { icon: "🌄", title: "Photography Galleries", desc: "Full-screen immersive photo galleries for each destination with lazy loading and caption overlays." },
-            { icon: "🌐", title: "Multi-Language Portal", desc: "Available in English and Hindi, with machine-translation pipelines ready for regional language expansion." },
-            { icon: "📱", title: "Offline Mode (PWA)", desc: "Progressive Web App support so tourists can access trekking route guides even without a mobile signal in mountains." },
-        ],
-        fullDescription: "### Business Objective\nA government-backed initiative to boost tourism in the historically rich Chamba district. The previous portal was outdated, non-responsive, and failed to capture the visual grandeur of the Himalayan region. The new mandate called for a visually immersive, highly interactive cultural portal that editorial staff could easily update without coding knowledge.\n\n### Technical Architecture & SEO Impact\nWe migrated the legacy system to a modern Headless CMS architecture (Contentful) queried heavily via GraphQL. This decoupling meant the Next.js frontend only requested the absolute minimum data required for each page, resulting in instantaneous navigation. We also integrated custom 3D topographical maps using Mapbox GL to showcase trekking routes.\n\n### Results\nThe headless architecture allows for programmatic SEO. Every time an editor creates a new destination article, the system automatically generates optimized meta tags, JSON-LD Location schema, and pings search engines, driving a massive influx of international tourist traffic.",
-        liveUrl: "https://devbhoomichamba.onrender.com"
-    },
+
+
     {
         id: "proj-aurelis",
         title: "Aurelis Cosmetics",

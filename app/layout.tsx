@@ -19,10 +19,10 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Web Design Company in Chandigarh | SiteCreation.in | Website Development Agency India",
+    default: "Software Solutions Agency | Mobile, Web & TV Apps | SiteCreation.in",
     template: "%s | SiteCreation.in"
   },
-  description: "SiteCreation.in is a top-rated web design and development company in Chandigarh, Mohali & Panchkula. We build high-performance websites, mobile apps, and SEO strategies for businesses across India. Get a free consultation today.",
+  description: "SiteCreation.in is a premium software engineering agency building high-performance mobile apps, websites, and Smart TV interfaces for enterprises globally.",
   authors: [{ name: "SiteCreation.in Team", url: "https://sitecreation.in" }],
   creator: "SiteCreation.in",
   publisher: "SiteCreation.in",
@@ -49,8 +49,8 @@ export const metadata: Metadata = {
     title: "SiteCreation",
   },
   openGraph: {
-    title: "Web Design Company in Chandigarh | SiteCreation.in",
-    description: "Top-rated web design & development company in Chandigarh. We build fast websites, mobile apps & run SEO for businesses across India. Free consultation available.",
+    title: "Software Solutions Agency | Mobile, Web & TV Apps | SiteCreation.in",
+    description: "Premium digital agency architecting high-performance mobile apps, websites & Smart TV apps for enterprises globally.",
     url: "https://sitecreation.in",
     siteName: "SiteCreation.in",
     images: [
@@ -66,8 +66,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Web Design Company in Chandigarh | SiteCreation.in",
-    description: "Top-rated web design & development company in Chandigarh, India. Fast websites, mobile apps & SEO. Free consultation.",
+    title: "Software Solutions Agency | Mobile, Web & TV Apps | SiteCreation.in",
+    description: "Premium global digital agency focused on elite software engineering for apps and platforms.",
     images: ["/Banner.avif"],
   },
   category: "Technology",

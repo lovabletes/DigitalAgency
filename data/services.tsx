@@ -46,9 +46,9 @@ export const services = [
     },
     {
         id: "ser-5",
-        title: "Creative & Graphic Design",
-        desc: "From logo design to poster making and complete brand identity. We craft visual narratives that captivate and convert.",
-        tags: ["Graphic Design", "Poster Making", "Branding"],
+        title: "Creative & Reels Production",
+        desc: "Instagram/TikTok Reels, video production, detailed logo design, poster making, and complete brand identity setups. We craft viral visuals and cinematic content strategies.",
+        tags: ["Reels & Video", "Logo Design", "Branding"],
         accent: "from-pink-500/20",
         icon: <StarIcon size={40} />,
         link: "/ui-ux-design"

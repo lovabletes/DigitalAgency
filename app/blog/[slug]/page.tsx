@@ -92,13 +92,13 @@ const ContentRenderer = ({ para }: { para: string }) => {
                     <table className="w-full text-left border-collapse">
                         <thead className="bg-secondary/30">
                             <tr>
-                                {header.map((cell, i) => <th key={i} className="p-4 text-foreground font-black uppercase text-sm border-b border-border/50">{cell}</th>)}
+                                {header.map((cell) => <th key={cell} className="p-4 text-foreground font-black uppercase text-sm border-b border-border/50">{cell}</th>)}
                             </tr>
                         </thead>
                         <tbody>
-                            {body.map((row, index) => (
-                                <tr key={index} className="border-b border-border/30 last:border-0 hover:bg-secondary/5 transition-colors">
-                                    {row.map((cell, i) => <td key={i} className="p-4 text-foreground/90 font-semibold text-sm">{cell}</td>)}
+                            {body.map((row) => (
+                                <tr key={row[0]} className="border-b border-border/30 last:border-0 hover:bg-secondary/5 transition-colors">
+                                    {row.map((cell, i) => <td key={`${row[0]}-${header[i]}`} className="p-4 text-foreground/90 font-semibold text-sm">{cell}</td>)}
                                 </tr>
                             ))}
                         </tbody>
@@ -108,17 +108,17 @@ const ContentRenderer = ({ para }: { para: string }) => {
         }
     }
 
-    // 3. Bullet Lists (Starts with *)
-    if (para.startsWith('* ') || para.includes('\n* ')) {
+    // 3. Bullet Lists (Starts with * or -)
+    if (para.startsWith('* ') || para.includes('\n* ') || para.startsWith('- ') || para.includes('\n- ')) {
         const items = para.split('\n').filter(i => i.trim());
         return (
             <ul className="space-y-3 my-6 list-disc list-inside">
-                {items.map((item, i) => {
-                    const cleanItem = item.replace(/^\*\s+/, "");
+                {items.map((item) => {
+                    const cleanItem = item.replace(/^[\*\-]\s+/, "");
                     const formatted = cleanItem
                         .replaceAll(/\*\*(.*?)\*\*/g, '<strong class="text-foreground">$1</strong>')
                         .replaceAll(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" class="text-accent font-bold hover:underline">$1</a>');
-                    return <li key={i} className="text-muted-foreground font-medium" dangerouslySetInnerHTML={{ __html: formatted }} />
+                    return <li key={cleanItem.substring(0, 30)} className="text-muted-foreground font-medium" dangerouslySetInnerHTML={{ __html: formatted }} />
                 })}
             </ul>
         );

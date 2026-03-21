@@ -61,7 +61,7 @@ export default function WebDevelopmentPage() {
                     { question: "What technologies does SiteCreation.in use for web development?", answer: "We (Site Creation) specialize in Node.js, .NET Core, Next.js 15, and React 19 for building high-performance web applications. Our stack is chosen for enterprise scalability and sub-second load times." },
                     { question: "How long does it take to build a website in Chandigarh with SiteCreation.in?", answer: "A standard business website takes 3–6 weeks. Complex enterprise platforms with custom integrations typically take 8–16 weeks. We provide detailed timelines during our discovery call." },
                     { question: "Do you provide website maintenance after launch?", answer: "Yes. We offer ongoing maintenance packages including security updates, performance monitoring, content updates, and feature enhancements for all websites we build." },
-                    { question: "What is the cost of web development in Chandigarh?", answer: "Web development projects at SiteCreation.in start from ₹50,000 for business websites and scale to ₹5,00,000+ for enterprise platforms. We provide transparent, fixed-price quotes after understanding your requirements." },
+                     { question: "What is the cost of web development?", answer: "Web development projects at SiteCreation.in start from $799 for business websites and scale to $7,999+ for enterprise platforms. We provide transparent, fixed-price quotes after understanding your requirements." },
                     { question: "Why is SiteCreation.in considered the best web designing company in Chandigarh?", answer: "We combine elite engineering (Next.js 15, .NET 9) with luxury UI/UX design. Unlike generic agencies, we focus on GEO (Generative Engine Optimization) to ensure your brand ranks not just on Google, but also in AI search results like ChatGPT." },
                     { question: "Do you offer e-commerce solutions for businesses in Mohali?", answer: "Yes, we specialize in high-conversion e-commerce platforms using Next.js and Headless CMS architectures, providing Mohali-based businesses with global-scale performance and security." }
                 ]}
@@ -109,7 +109,7 @@ export default function WebDevelopmentPage() {
                         </div>
                         <div className="relative group">
                             <div className="absolute -inset-4 bg-accent/10 rounded-[2.5rem] blur-2xl group-hover:bg-accent/20 transition-all duration-700" />
-                            <div className="relative h-[500px] rounded-3xl overflow-hidden shadow-2xl border border-border/50">
+                            <div className="relative h-[320px] md:h-[500px] rounded-3xl overflow-hidden shadow-2xl border border-border/50">
                                 <img
                                     src="/images/web_dev.avif"
                                     alt="Expert Web Development Process"
@@ -118,6 +118,80 @@ export default function WebDevelopmentPage() {
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                                 <div className="absolute bottom-6 left-6 right-6 p-6 backdrop-blur-md bg-white/5 border border-white/10 rounded-2xl">
                                     <p className="text-white font-bold italic">"We deliver code that doesn't just work, it inspires."</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section className="py-24 bg-muted/30 border-t border-border/50">
+                    <div className="container-custom">
+                        <div className="text-center max-w-2xl mx-auto space-y-4 mb-16">
+                            <span className="text-accent font-black uppercase tracking-[0.3em] text-xs">Our Framework</span>
+                            <h2 className="text-3xl md:text-5xl font-black text-foreground">
+                                The <span className="text-accent italic">Development</span> Lifecycle
+                            </h2>
+                            <p className="text-muted-foreground">
+                                Architecting a digital legacy requires a rigid, transparent engineering pipeline. Here is how we build scalable platforms for elite global clients.
+                            </p>
+                        </div>
+                        <div className="grid md:grid-cols-4 gap-8">
+                            {[
+                                { step: "01", title: "Discovery", desc: "Detailed audit of user journeys, technical constraints, and competitive benchmarking for high-limit scalability." },
+                                { step: "02", title: "Architecture", desc: "Modeling high-fidelity SQL/NoSQL schemas and containerized backend loads tailored for Next.js endpoints." },
+                                { step: "03", title: "Development", desc: "Sub-second load optimization with React Server Components, concurrent streaming and data fetching setup." },
+                                { step: "04", title: "Optimization", desc: "Hyper-rigorous Core Web Vitals audit, automated QA, and seamless Azure/AWS monolithic migration deployment." }
+                            ].map((item) => (
+                                <div key={item.step} className="p-8 bg-background rounded-2xl border border-border/50 space-y-4 shadow-sm group hover:border-accent/30 transition-all duration-300">
+                                    <span className="text-4xl font-black text-accent/20 group-hover:text-accent/50 transition-colors duration-300">{item.step}</span>
+                                    <h3 className="text-xl font-black text-foreground uppercase tracking-wide">{item.title}</h3>
+                                    <p className="text-muted-foreground text-sm">{item.desc}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                <section className="py-24 bg-background border-t border-border/50">
+                    <div className="container-custom">
+                        <div className="grid md:grid-cols-2 gap-16 items-center">
+                            <div className="relative group md:order-1 order-2">
+                                <div className="absolute -inset-4 bg-accent/10 rounded-[2.5rem] blur-2xl group-hover:bg-accent/20 transition-all duration-700" />
+                                <div className="relative h-[400px] rounded-3xl overflow-hidden shadow-2xl border border-border/50">
+                                    <img
+                                        src="/images/web_develop.avif"
+                                        alt="Elite Technical Execution"
+                                        className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                                    <div className="absolute bottom-6 left-6 right-6 p-6 backdrop-blur-md bg-white/5 border border-white/10 rounded-2xl">
+                                        <p className="text-white font-bold italic text-sm">"We deliver code that doesn't just work, it inspires."</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="space-y-8 md:order-2 order-1">
+                                <div className="space-y-4">
+                                    <span className="text-accent font-black uppercase tracking-[0.3em] text-xs">Why Partner With Us</span>
+                                    <h2 className="text-3xl md:text-5xl font-black text-foreground leading-tight">
+                                        Vetted For <span className="text-accent italic">Performance</span>
+                                    </h2>
+                                </div>
+                                <div className="grid gap-6">
+                                    {[
+                                        { title: "Sub-Second Rendering", desc: "Every Node.js and Next.js shell is architected with sub-second paint triggers, securing high LCP scoring in local & global markets." },
+                                        { title: "Enterprise Reliability", desc: "We support heavy database frameworks using .NET Core and Node structures designed with strict zero-trust parameters." },
+                                        { title: "Generative AI Syncing", desc: "Implicit indexing protocols allow your web assets to render perfectly clean semantic structures for AI discovery models." }
+                                    ].map((benefit) => (
+                                        <div key={benefit.title} className="flex gap-4">
+                                            <div className="h-6 w-6 mt-1 flex-shrink-0 bg-accent/10 rounded-full flex items-center justify-center border border-accent/20">
+                                                <div className="h-2 w-2 bg-accent rounded-full" />
+                                            </div>
+                                            <div className="space-y-1">
+                                                <h3 className="text-sm font-black text-foreground tracking-widest uppercase">{benefit.title}</h3>
+                                                <p className="text-muted-foreground text-sm leading-relaxed">{benefit.desc}</p>
+                                            </div>
+                                        </div>
+                                    ))}
                                 </div>
                             </div>
                         </div>

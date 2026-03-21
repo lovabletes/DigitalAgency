@@ -115,7 +115,7 @@ export default function SeoMarketingPage() {
                         </div>
                         <div className="relative group">
                             <div className="absolute -inset-4 bg-accent/10 rounded-[2.5rem] blur-2xl group-hover:bg-accent/20 transition-all duration-700" />
-                            <div className="relative h-[500px] rounded-3xl overflow-hidden shadow-2xl border border-border/50">
+                            <div className="relative h-[320px] md:h-[500px] rounded-3xl overflow-hidden shadow-2xl border border-border/50">
                                 <img
                                     src="/images/seo_marketing.avif"
                                     alt="Expert Digital Marketing Analysis"
@@ -133,6 +133,93 @@ export default function SeoMarketingPage() {
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* Advanced Strategy: Generative Engine Optimization (GEO) */}
+                <section className="py-24 bg-muted/30 dark:bg-white/[0.01] border-t border-border/40 relative">
+                    <div className="container-custom">
+                        <div className="text-center max-w-2xl mx-auto mb-16">
+                            <span className="text-accent font-black uppercase tracking-[0.3em] text-xs block mb-4">Search Evolution</span>
+                            <h3 className="text-3xl md:text-5xl font-black text-foreground mb-4 tracking-tight leading-tight">
+                                Generative <span className="text-accent italic">Optimization</span>
+                            </h3>
+                            <p className="text-muted-foreground text-base md:text-lg font-medium leading-relaxed">
+                                Standard SEO gets you on Google. **GEO (Generative Engine Optimization)** ensures ChatGPT, Perplexity, and Apple Intelligence cite your brand as the definitive authority.
+                            </p>
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                            {[
+                                {
+                                    title: "Semantic Graph Wiring",
+                                    desc: "We inject robust JSON-LD structured data linking your services and products. Ensuring AI training datasets understand your brand's authority without ambiguity.",
+                                    icon: "🕸️"
+                                },
+                                {
+                                    title: "Citation Benchmarking",
+                                    desc: "Placing your brand narrative on highly trusted knowledge bases that Large Language Models use as primary sources for recommendation retrieval lists.",
+                                    icon: "🎖️"
+                                },
+                                {
+                                    title: "Core Speed Indexing",
+                                    desc: "We optimize Core Web Vitals pushing server paint specs off. Fully efficient payloads ensuring Google crawlers rank rendering paths faster than static platforms.",
+                                    icon: "⚡"
+                                }
+                            ].map((item) => (
+                                <div key={item.title} className="p-8 bg-background rounded-3xl border border-border/50 shadow-sm space-y-4 hover:border-accent/40 hover:shadow-md transition-all duration-300 group">
+                                    <div className="text-3xl bg-accent/10 w-12 h-12 flex items-center justify-center rounded-xl group-hover:bg-accent/20 transition-colors">
+                                        {item.icon}
+                                    </div>
+                                    <h4 className="text-lg font-black text-foreground tracking-tight group-hover:text-accent transition-colors">{item.title}</h4>
+                                    <p className="text-muted-foreground text-sm leading-relaxed">{item.desc}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                {/* FAQ Section: Visual SEO help */}
+                <section className="py-24 bg-background border-t border-border/50">
+                    <div className="container-custom">
+                        <div className="grid md:grid-cols-3 gap-12 items-start">
+                            <div className="space-y-4">
+                                <span className="text-accent font-black uppercase tracking-[0.3em] text-xs">Knowledge Base</span>
+                                <h3 className="text-3xl md:text-4xl font-black text-foreground tracking-tight">
+                                    Search <span className="text-accent italic">FAQ</span>
+                                </h3>
+                                <p className="text-muted-foreground text-sm leading-relaxed">
+                                    Everything you need to understand regarding modern organic scaling strategies making brands citation-ready.
+                                </p>
+                            </div>
+
+                            <div className="md:col-span-2 space-y-4">
+                                {[
+                                    {
+                                        question: "How long until we see measurable ranking growth?",
+                                        answer: "Technical foundations often yield results in 4–8 weeks while high-competition keywords typical plateau heights take 4-6 months to mature safely."
+                                    },
+                                    {
+                                        question: "Does technically optimized code influence ranking?",
+                                        answer: "Absolutely. Google optimizes crawl budgets for lighter platforms utilizing stable cumulative layout shift specs that Next.js automatically maintains correctly."
+                                    },
+                                    {
+                                        question: "What is the difference between On-Page and Off-Page SEO?",
+                                        answer: "On-page focuses on contents structure tagging metadata while off-page builds citation links raising authority streams independently nodes setup."
+                                    }
+                                ].map((faq, idx) => (
+                                    <div key={idx} className="p-6 bg-muted/20 dark:bg-white/[0.01] rounded-2xl border border-border/30 hover:border-accent/30 transition-all duration-300">
+                                        <h4 className="text-base font-bold text-foreground mb-2 flex items-center gap-2">
+                                            <div className="h-1.5 w-1.5 rounded-full bg-accent" />
+                                            {faq.question}
+                                        </h4>
+                                        <p className="text-xs text-muted-foreground ml-3.5 leading-relaxed">
+                                            {faq.answer}
+                                        </p>
+                                    </div>
+                                ))}
                             </div>
                         </div>
                     </div>

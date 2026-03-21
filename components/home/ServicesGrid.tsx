@@ -43,32 +43,39 @@ export function ServicesGrid({ services }: Readonly<ServicesGridProps>) {
                     </p>
                 </div>
 
-                {/* Services Grid - Compact One-Row Layout */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-3 perspective-1500">
+                {/* Services Bento Grid - Premium Visual Hierarchy */}
+                <div className="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 gap-6 perspective-1500">
                     {services.map((service, idx) => (
                         <div
                             key={service.id}
-                            className="group relative animate-slide-up h-full"
+                            className={classNames(
+                                "group relative animate-slide-up flex flex-col",
+                                idx === 0 ? "md:col-span-3 lg:col-span-7 h-[360px]" : "",
+                                idx === 1 ? "md:col-span-3 lg:col-span-5 h-[360px]" : "",
+                                idx === 2 ? "md:col-span-2 lg:col-span-4 h-[320px]" : "",
+                                idx === 3 ? "md:col-span-2 lg:col-span-4 h-[320px]" : "",
+                                idx === 4 ? "md:col-span-2 lg:col-span-4 h-[320px]" : ""
+                            )}
                             style={{
                                 animationDelay: `${idx * 150}ms`,
                             }}
                         >
                             {/* Card with gradient border effect */}
-                            <div className="relative h-full">
-                                {/* Gradient Border Container */}
-                                <div className="absolute inset-0 bg-gradient-to-br from-accent/40 via-accent/20 to-transparent rounded-xl opacity-0 group-hover:opacity-100 blur-sm transition-opacity duration-500" />
+                            <div className="relative h-full flex flex-col">
+                                {/* Ambient Hover Glow behind card */}
+                                <div className="absolute -inset-1 bg-gradient-to-r from-accent/0 via-accent/0 to-purple-500/0 group-hover:from-accent/30 group-hover:via-accent/20 group-hover:to-purple-500/10 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700 pointer-events-none" />
 
                                 {/* Main Card with 3D Effect */}
                                 <div
                                     className={classNames(
-                                        "relative h-full bg-white dark:bg-[#1a1a3e]/60 backdrop-blur-xl rounded-xl p-6 border border-border/50 dark:border-white/10 group-hover:border-accent/30 shadow-lg card-3d-deep depth-layer-2 flex flex-col",
+                                        "relative flex-1 bg-white dark:bg-[#1a1a3e]/40 backdrop-blur-xl rounded-2xl p-8 border border-border/50 dark:border-white/[0.06] group-hover:border-accent/40 shadow-[0_5px_40px_-15px_rgba(0,0,0,0.05)] dark:shadow-[0_20px_50px_-20px_rgba(0,0,0,0.5)] card-3d-deep depth-layer-2 flex flex-col transition-all duration-500 hover:-translate-y-1",
                                     )}
                                 >
                                     {/* Animated Background Gradient */}
-                                    <div className={classNames("absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-[0.08] transition-opacity duration-700 rounded-2xl", service.accent)} />
+                                    <div className={classNames("absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-[0.03] transition-opacity duration-700 rounded-2xl", service.accent)} />
 
                                     {/* Number Watermark with 3D float */}
-                                    <div className="absolute top-2 right-4 text-6xl font-black text-foreground/[0.08] dark:text-white/[0.05] group-hover:text-accent/[0.15] transition-all duration-700 font-serif leading-none pointer-events-none select-none layer-3d-back">
+                                    <div className="absolute top-4 right-6 text-7xl font-black text-foreground/[0.04] dark:text-white/[0.03] group-hover:text-accent/[0.1] transition-all duration-700 font-serif leading-none pointer-events-none select-none layer-3d-back">
                                         {String(idx + 1).padStart(2, '0')}
                                     </div>
 
@@ -88,9 +95,12 @@ export function ServicesGrid({ services }: Readonly<ServicesGridProps>) {
                                         {/* Decorative underline */}
                                         <div className="w-8 h-0.5 bg-gradient-to-r from-accent to-accent/30 mb-4 group-hover:w-12 transition-all duration-500" />
 
-                                        {/* Description - More compact with line clamp */}
+                                        {/* Description - Resizable based on Bento placement */}
                                         <div className="mb-5 flex-grow">
-                                            <p className="text-[11px] text-muted-foreground dark:text-[#f7e7ce]/70 leading-relaxed font-medium line-clamp-4">
+                                            <p className={classNames(
+                                                "text-muted-foreground dark:text-[#f7e7ce]/70 leading-relaxed font-medium transition-all duration-300",
+                                                idx <= 1 ? "text-xs md:text-sm" : "text-[11px]"
+                                            )}>
                                                 {service.desc}
                                             </p>
                                         </div>

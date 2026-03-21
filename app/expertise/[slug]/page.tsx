@@ -195,7 +195,7 @@ export default async function ExpertisePage({ params }: Readonly<PageProps>) {
 
                             {/* Tech Stack Side */}
                             <div className="lg:col-span-5">
-                                <div className="relative p-10 md:p-12 rounded-[3rem] bg-gradient-to-br from-[#1a1a3e] via-[#0f1429] to-[#1a1a3e] border border-white/10 shadow-2xl overflow-hidden group">
+                                <div className="relative p-6 md:p-12 rounded-[3rem] bg-gradient-to-br from-[#1a1a3e] via-[#0f1429] to-[#1a1a3e] border border-white/10 shadow-2xl overflow-hidden group">
                                     {/* Grid Overlay */}
                                     <div className="absolute inset-0 opacity-10 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
 

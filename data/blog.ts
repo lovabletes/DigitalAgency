@@ -143,18 +143,18 @@ One of the most common questions we get at **SiteCreation.in** is: *"How much do
 ### 1. Simple Information / Brochure App
 - **Platforms**: Android or iOS (single platform)
 - **Features**: Static pages, contact form, push notifications
-- **Estimated Cost (India)**: ₹50,000 – ₹1,50,000
+- **Estimated Cost**: $799 – $1,999
 - **Timeline**: 4–6 weeks
 
 ### 2. E-Commerce / Business App
 - **Platforms**: Android + iOS (React Native)
 - **Features**: User login, product catalog, cart, payment gateway
-- **Estimated Cost (India)**: ₹2,00,000 – ₹5,00,000
+- **Estimated Cost**: $2,499 – $5,999
 - **Timeline**: 8–16 weeks
 
 ### 3. On-Demand / Marketplace App (like Uber, Zomato)
 - **Features**: Real-time tracking, notifications, admin panel, APIs
-- **Estimated Cost (India)**: ₹5,00,000 – ₹15,00,000+
+- **Estimated Cost**: $5,999 – $19,999+
 - **Timeline**: 4–8 months
 
 ## React Native vs Native iOS/Android — Which to Choose?
@@ -168,10 +168,10 @@ One of the most common questions we get at **SiteCreation.in** is: *"How much do
 
 ## Hidden Costs to Budget For
 
-1. **App Store fees**: ₹8,000/year (Apple), ₹1,700 one-time (Google)
-2. **Backend / API hosting**: ₹2,000–10,000/month on AWS/Azure
+1. **App Store fees**: $99/year (Apple), $25 one-time (Google)
+2. **Backend / API hosting**: $30–$150/month on AWS/Azure
 3. **Maintenance & updates**: Budget 15–20% of build cost per year
-4. **UI/UX design**: Often quoted separately — budget ₹30,000–1,00,000
+4. **UI/UX design**: Often quoted separately — budget $499–$1,499
 
 ## Why Choose SiteCreation.in for Mobile App Development?
 
@@ -289,11 +289,11 @@ How will your OTT or TV app generate revenue?
 
 ## 6. Estimated Cost Framework (India vs Global)
 
-| App Tier | Standard features | Est. Cost (INR) | Timeline |
+| App Tier | Standard features | Est. Cost (USD) | Timeline |
 | :--- | :--- | :--- | :--- |
-| **Basic OTT App** | Free videos, Search, Categories (Any 1 TV platform) | ₹2,50,000 – ₹4,50,000 | 6-8 Weeks |
-| **Cross-Platform TV** | React Native (Android TV + tvOS), User Profiles, Sync | ₹6,00000 – ₹10,00,000 | 10-14 Weeks |
-| **Elite OTT Ecosystem** | Mobile and TV Apps, Custom CMS Backend, DRM, SSAI, Analytics | ₹15,00,000 – ₹30,00,000+ | 4-6 Months |
+| **Basic OTT App** | Free videos, Search, Categories | $3,000 – $5,500 | 6-8 Weeks |
+| **Cross-Platform TV** | React Native (TV), User Profiles | $7,500 – $12,500 | 10-14 Weeks |
+| **Elite OTT Ecosystem** | Mobile/TV apps, Backend, DRM | $19,999 – $39,999+ | 4-6 Months |
 
 ---
 
@@ -346,18 +346,18 @@ Whether you are launching a **fitness network**, a **corporate training portal**
 ## Deployment Options for Next.js on Azure
 
 ### Option 1: Azure Static Web Apps (Best for Most Projects)
-- **Cost**: Free tier available, ₹0 for small projects
+- **Cost**: Free tier available, $0 for small projects
 - **Best for**: Next.js sites with SSG or hybrid rendering
 - **CI/CD**: Built-in GitHub Actions — connect your GitHub repo in the Azure Portal and deployments trigger automatically on every push to main
 - **How to deploy**: Use "az staticwebapp create" in Azure CLI with your GitHub repo URL, branch, and app/output location settings
 
 ### Option 2: Azure App Service (Best for SSR / API Routes)
-- **Cost**: Basic tier starts at ~₹1,200/month
+- **Cost**: Basic tier starts at ~$15/month
 - **Best for**: Full Next.js SSR, API routes, WebSockets
 - **Scaling**: Auto-scale to handle traffic spikes
 
 ### Option 3: Azure Container Apps (Best for Microservices)
-- **Cost**: Pay per usage (~₹2/1000 requests)
+- **Cost**: Pay per usage (~$0.02/1000 requests)
 - **Best for**: Next.js + microservices, multi-service architectures
 - **Tech**: Docker + Kubernetes managed by Azure
 
@@ -393,15 +393,15 @@ steps:
 
 Every git push to \`main\` triggers an automatic deployment.
 
-## Estimated Azure Costs for Indian Startups
+## Estimated Azure Costs for Startups
 
-| Setup | Monthly Cost (INR) |
+| Setup | Monthly Cost (USD) |
 |---|---|
-| Azure Static Web Apps (Free) | ₹0 |
-| App Service B1 (1 core) | ₹1,200 – ₹1,800 |
-| App Service P1v3 (production) | ₹8,000 – ₹12,000 |
-| Azure SQL Database (Basic) | ₹600 – ₹1,500 |
-| Azure CDN (per 100GB) | ₹700 |
+| Azure Static Web Apps (Free) | $0 |
+| App Service B1 (1 core) | $15 – $25 |
+| App Service P1v3 (production) | $100 – $150 |
+| Azure SQL Database (Basic) | $8 – $20 |
+| Azure CDN (per 100GB) | $10 |
 
 ## SiteCreation.in Azure Services
 
@@ -542,7 +542,7 @@ Ready to build the elite version of your brand? [Explore our portfolio](/portfol
         `,
         date: "Mar 10, 2026",
         category: "Strategy",
-        image: "/images/blog_placeholder.avif",
+        image: "/images/seo_marketing.avif",
         author: "SiteCreation Editorial Team",
         authorProfile: "https://www.linkedin.com/company/sitecreation",
         keywords: ["best web design agency Chandigarh", "top web developers Chandigarh", "SiteCreation vs BootesNull", "webdew Chandigarh review", "Chandigarh digital agency comparison"],

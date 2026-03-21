@@ -92,7 +92,7 @@ export default function AboutPage() {
                                 At SiteCreation.in, we believe that every brand deserves a digital presence that is as unique and powerful as its vision. We combine artistic flair with technical precision to build websites and applications that don't just exist—they excel.
                             </p>
 
-                            <div className="grid grid-cols-2 gap-8">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                                 <div className="space-y-2">
                                     <h3 className="text-3xl font-black text-accent">100+</h3>
                                     <p className="text-sm font-bold uppercase tracking-widest text-muted-foreground">Projects Delivered</p>

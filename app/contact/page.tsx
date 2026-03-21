@@ -124,7 +124,7 @@ export default function ContactPage() {
                         </div>
 
                         {/* Contact Form */}
-                        <div className="bg-card p-10 md:p-12 rounded-[2.5rem] border border-border/50 shadow-2xl relative">
+                        <div className="bg-card p-6 md:p-12 rounded-[2.5rem] border border-border/50 shadow-2xl relative">
                             {status === "success" ? (
                                 <div className="flex flex-col items-center justify-center py-20 text-center animate-in fade-in zoom-in duration-500">
                                     <div className="h-20 w-20 bg-accent/10 rounded-full flex items-center justify-center mb-6 border border-accent/30">

@@ -56,14 +56,14 @@ export function AIShowcase() {
             <div className="container-custom relative z-10">
                 {/* Header with Balanced Grid to Fill Empty Space */}
                 <div className="grid grid-cols-1 md:grid-cols-2 items-start gap-12 lg:gap-24 mb-20 md:mb-32">
-                    {/* Left: Content - Purely Left Aligned */}
-                    <div className="text-left w-full">
+                    {/* Left: Content - Centered on mobile, Left on Desktop */}
+                    <div className="text-center md:text-left w-full">
                         <h2 className="text-5xl md:text-8xl font-black mb-8 tracking-tighter text-foreground leading-[0.95]">
                             The New Era of <br />
                             <span className="text-shimmer italic inline-block pr-10">Digital Brilliance</span>
                         </h2>
 
-                        <p className="text-lg md:text-xl font-medium text-foreground/60 max-w-2xl leading-relaxed">
+                        <p className="text-lg md:text-xl font-medium text-foreground/60 max-w-2xl mx-auto md:mx-0 leading-relaxed">
                             We fuse human architectural insight with generative intelligence to deliver
                             unparalleled speed, precision, and business scalability.
                         </p>
@@ -76,7 +76,7 @@ export function AIShowcase() {
 
                         <div className="relative overflow-hidden rounded-[2.5rem] border border-foreground/10 group-hover:border-accent/40 transition-all duration-700 shadow-[0_35px_80px_-15px_rgba(0,0,0,0.5)] card-3d-deep backdrop-blur-xl bg-background/5 max-h-[400px]">
                             <Image
-                                src="/images/ai/ai_showcase_hero.png"
+                                src="/images/ai/ai_cybernetic_laptop.png"
                                 alt="AI Intelligence Visualization"
                                 width={1200}
                                 height={600}
