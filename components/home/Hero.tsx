@@ -60,7 +60,7 @@ export function Hero({ stats, brands }: Readonly<HeroProps>) {
                     <div className="flex flex-col items-center justify-center gap-3 mb-4 animate-slide-up [animation-delay:100ms]">
                         <div className="flex items-center gap-2">
                             <div className="h-px w-8 bg-gradient-to-r from-transparent to-accent/50" />
-                            <span className="text-accent font-black uppercase tracking-[0.4em] text-[10px]">Chandigarh&apos;s Elite Choice</span>
+                            <span className="text-accent font-black uppercase tracking-[0.4em] text-[10px]">Elite Digital Engineering</span>
                             <div className="h-px w-8 bg-gradient-to-l from-transparent to-accent/50" />
                         </div>
                         <span className="text-accent text-xl">◆</span>
@@ -69,7 +69,7 @@ export function Hero({ stats, brands }: Readonly<HeroProps>) {
 
                     <h1 className="relative text-5xl md:text-7xl lg:text-8xl font-black tracking-tight mb-6 leading-tight drop-shadow-2xl animate-slide-up [animation-delay:150ms]">
                         <span className="text-white">
-                            Chandigarh&apos;s <span className="text-accent italic">Software</span>
+                            Global <span className="text-accent italic">Software</span>
                         </span>
                         {" "}
                         <br className="md:hidden" />

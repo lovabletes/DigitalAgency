@@ -246,10 +246,10 @@ export const expertiseTopics: Record<string, ExpertiseTopic> = {
     },
     "apple-tv": {
         slug: "apple-tv",
-        title: "Apple TV (tvOS) Apps",
+        title: "Apple TV App Development Services in India",
         category: "Mobile / TV",
-        shortDesc: "Immersive living room experiences tailored for the Apple ecosystem.",
-        fullDesc: "We design and develop premium apps for Apple TV. Leveraging tvOS frameworks, we create remote-friendly, cinematic interfaces that bring your content to the biggest screen in the house.",
+        shortDesc: "Immersive living room experiences and custom tvOS layouts tailored for the Apple ecosystem.",
+        fullDesc: "We design and develop premium apps for Apple TV. Leveraging tvOS frameworks, we create remote-friendly, cinematic interfaces that bring your content to the biggest screen in the house with perfect scale aesthetics setups framing.",
         icon: <Monitor className="text-accent" size={32} />,
         techDetails: [
             { label: "Framework", value: "tvOS / SwiftUI / UIKit" },
@@ -258,10 +258,31 @@ export const expertiseTopics: Record<string, ExpertiseTopic> = {
             { label: "Integration", value: "iCloud / Top Shelf" }
         ],
         highlights: [
+            "Apple TV app development India",
             "Focus-based navigation design",
             "4K HDR content playback",
-            "Smooth parallax effects",
-            "Apple ecosystem integration"
+            "Smooth parallax cinematic effects"
+        ],
+        relatedService: { name: "Mobile Apps", link: "/mobile-apps" }
+    },
+    "tvos-development": {
+        slug: "tvos-development",
+        title: "tvOS App Development: Cost, Features & Process",
+        category: "Mobile / TV",
+        shortDesc: "Complete guide on tvOS application development services benchmarking budget tiers & processes.",
+        fullDesc: "Unlock cinematic user interfaces with absolute fluid scaling. We outline step-by-step cost breakdown matrices and process maps for building full Apple TV application shells securely fully optimized framing.",
+        icon: <Monitor className="text-accent" size={32} />,
+        techDetails: [
+            { label: "Primary Focus", value: "tvos application development services" },
+            { label: "Cost Benchmarks", value: "$3,500 - $12,000+" },
+            { label: "Setup Process", value: "Design -> Focus Engine -> AVKit" },
+            { label: "VOD Syncing", value: "Absolute Native / Swift shells" }
+        ],
+        highlights: [
+            "tvos application development services",
+            "Budget factoring comparison Guide",
+            "Custom Focus Engine architecture",
+            "Secure VOD pipeline buffering setups"
         ],
         relatedService: { name: "Mobile Apps", link: "/mobile-apps" }
     },
