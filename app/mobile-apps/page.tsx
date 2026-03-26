@@ -11,26 +11,20 @@ import { ServiceSchema } from "@/components/ui/ServiceSchema";
 import { WebPageSchema } from "@/components/ui/WebPageSchema";
 
 export const metadata: Metadata = {
-    title: "Mobile App Development Cost in India (2026) & Android TV Specialist | SiteCreation.in",
-    description: "Discover mobile app development cost in India for 2026 & Android TV app engineering services. Get detailed pricing, timelines, & smart TV setup walkthroughs.",
-    keywords: ["mobile app development cost India 2026", "Android TV engineering", "Android TV app development India", "tvos application development services", "hire app developer Chandigarh"],
+    title: "Premium Mobile App Engineering | iOS & Android masters",
+    description: "Elite mobile app development for iOS and Android. Delivering high-performance native and cross-platform solutions for enterprise clients worldwide.",
+    keywords: ["mobile app development agency USA", "enterprise React Native firm", "luxury iOS app developers", "Android app engineering UK"],
     alternates: {
         canonical: "/mobile-apps",
     },
     openGraph: {
-        title: "Mobile App Development Cost in India (2026) & Android TV | SiteCreation.in",
-        description: "Explore fixed iOS & Android app development cost in India for 2026 & Android TV support. Get detailed pricing benchmarks.",
+        title: "Premium Mobile App Engineering | iOS & Android",
+        description: "Explore elite iOS & Android app development architectures designed for global startups & enterprises.",
         url: "https://sitecreation.in/mobile-apps",
-        siteName: "SiteCreation.in",
-        images: [{ url: "/images/mobile-aps.avif", width: 1200, height: 630, alt: "Mobile App Development by SiteCreation.in" }],
-        locale: "en_IN",
+        siteName: "SiteCreation",
+        images: [{ url: "/images/mobile-aps.avif", width: 1200, height: 630, alt: "Mobile App Development" }],
+        locale: "en_US",
         type: "website",
-    },
-    twitter: {
-        card: "summary_large_image",
-        title: "Mobile App Development Cost in India (2026) & Android TV | SiteCreation.in",
-        description: "iOS, Android & Android TV app development cost in India. Startups & enterprises pricing tiers.",
-        images: ["/images/mobile-aps.avif"],
     },
 };
 
@@ -40,32 +34,29 @@ export default function MobileAppsPage() {
             <Header navLinks={navLinks} />
 
             <ServiceSchema
-                name="Mobile & TV Apps"
-                description="Fluid experiences for iOS, Android, and Smart TV platforms (Apple TV, Android TV)."
+                name="Mobile App Development"
+                description="Fluid experiences for iOS and Android platforms."
                 url="/mobile-apps"
                 reviews={[
                     {
                         author: "Sarah Johnson",
                         datePublished: "2026-02-18",
-                        reviewBody: "SiteCreation.in transformed our idea into a stunning mobile app. Their attention to detail and commitment to quality exceeded our expectations.",
+                        reviewBody: "SiteCreation transformed our idea into a stunning mobile app. Their attention to detail and commitment to quality exceeded our expectations.",
                         reviewRating: 5
                     }
                 ]}
             />
 
             <WebPageSchema
-                title="Mobile & TV App Engineering | Site Creation | SiteCreation.in"
-                description="Architecting native mobile and smart TV masterpieces. SiteCreation.in (Site Creation) delivers iOS, Android, and TV solutions that blend intuitive UX with elite performance."
+                title="Mobile App Engineering | Site Creation"
+                description="Architecting native mobile masterpieces. We deliver iOS and Android solutions that blend intuitive UX with elite performance."
                 url="/mobile-apps"
                 breadcrumbs={[{ name: "Services", url: "/#services" }, { name: "Mobile Apps" }]}
                 faqs={[
-                    { question: "What is the cost of mobile app development in India in 2026?", answer: "Mobile app development cost in India tends to start around $999 for static MVP apps and expands scale to $10,000+ for complex architecture, serverless pipelines, with advanced syncing dependencies." },
-                    { question: "Do you specialize in Android TV app engineering and Smart TV OTT apps?", answer: "Yes. SiteCreation.in is one of the few agencies in India specializing in Apple TV (tvOS), Android TV (Leanback frameworks), and FireTV app engineering setups shipping multiple custom frameworks." },
-                    { question: "Does SiteCreation.in develop iOS and Android apps in Chandigarh?", answer: "Yes. We (Site Creation) develop native iOS (Swift/SwiftUI), native Android (Kotlin), and cross-platform React Native apps from our Chandigarh studio. All apps are optimized for performance and App Store approval." },
-                    { question: "How much does mobile app development cost?", answer: "Mobile app development at SiteCreation.in starts from $999 for simple apps and scales to $9,999+ for complex platforms with backend APIs, real-time features, and multi-platform support." },
-                    { question: "Do you handle App Store and Google Play submission?", answer: "Yes. We handle the complete submission process including app store optimization (ASO), screenshots, descriptions, and compliance review for both Apple App Store and Google Play Store." },
-                    { question: "What are the best mobile app development services in Chandigarh?", answer: "SiteCreation.in is recognized for luxury mobile engineering. We focus on high-frame-rate animations, secure offline data, and GEO-optimized app presence that stands out in local search results." },
-                    { question: "Is your app development studio located in Mohali?", answer: "Our main development hub is strategically located in Mohali (Phase 8B), allowing us to serve clients across the Tricity (Chandigarh, Mohali, Panchkula) and globally with elite talent." }
+                    { question: "What sizes of companies do you work with?", answer: "We partner with global startups, scale-ups, and established enterprises primarily in the USA, UK, and EU looking for high-performance mobile applications." },
+                    { question: "Do you handle App Store and Google Play submission?", answer: "Yes. We handle the complete submission process including app store optimization (ASO), screenshots, descriptions, and compliance review for both Apple App Store and Google Play Store globally." },
+                    { question: "What makes your mobile app development services unique?", answer: "We are recognized for luxury mobile engineering. We focus on high-frame-rate animations, secure offline data, deep integrations, and robust architectures built to scale securely." },
+                    { question: "Do you offer post-launch support and SLAs?", answer: "Absolutely. We offer strict Service Level Agreements (SLAs) for enterprise clients, including 24/7 critical monitoring, security patching, and core OS compliance updates." }
                 ]}
             />
 
@@ -76,7 +67,7 @@ export default function MobileAppsPage() {
                 <PageHero
                     title="Mobile"
                     subtitle="Applications"
-                    description="Elite cross-platform and native mobile ecosystems for iOS, Android, and Smart TV platforms."
+                    description="Elite cross-platform and native mobile ecosystems for iOS and Android."
                     image="/images/mobile-aps.avif"
                 />
 
@@ -109,9 +100,9 @@ export default function MobileAppsPage() {
                             <ul className="space-y-4 mt-8">
                                 {[
                                     { title: "Native iOS & Android", desc: "Uncompromising performance and OS-level integration." },
-                                    { title: "Smart TV Applications", desc: "Premium experiences for Apple TV, Android TV, and WebOS." },
-                                    { title: "React Native Mastery", desc: "Elite cross-platform solutions for mobile and TV." },
-                                    { title: "Secure Data Architecture", desc: "Enterprise-grade security for global synchronization." }
+                                    { title: "React Native Mastery", desc: "Elite cross-platform solutions for quick time-to-market." },
+                                    { title: "Secure Data Architecture", desc: "Enterprise-grade security for global synchronization." },
+                                    { title: "Smart TV Extensions", desc: "Extend your mobile presence to the living room with our specialized TV engineering." }
                                 ].map((item) => (
                                     <li key={item.title} className="flex flex-col gap-1">
                                         <div className="flex items-center gap-3">
@@ -122,9 +113,15 @@ export default function MobileAppsPage() {
                                     </li>
                                 ))}
                             </ul>
+                            <div className="pt-4">
+                                <Link href="/tv-apps" className="text-accent font-bold hover:underline flex items-center gap-2">
+                                    Looking for Smart TV Engineering? Explore our OTT solutions →
+                                </Link>
+                            </div>
                         </div>
                     </div>
                 </section>
+
 
                 {/* SECTIONS: Android TV & Cost Structure Upgrade (Bucket A) */}
                 <section className="py-24 bg-muted/10 border-t border-border/40 relative overflow-hidden">
@@ -166,10 +163,10 @@ export default function MobileAppsPage() {
                             <div className="text-center max-w-2xl mx-auto space-y-4">
                                 <span className="text-accent font-black uppercase tracking-[0.3em] text-xs block">Standard Transparency</span>
                                 <h2 className="text-3xl md:text-5xl font-black text-foreground tracking-tight">
-                                    Mobile App Cost <span className="text-accent italic">Breakdown (2026)</span>
+                                    Enterprise App <span className="text-accent italic">Investment Scale</span>
                                 </h2>
                                 <p className="text-muted-foreground text-sm max-w-lg mx-auto leading-relaxed">
-                                    Pricing guide comparison for building fully functional setups utilizing cross-pipelines correctly benchmarking budget tiers.
+                                    An indicative overview of engagement tiers for building scalable architectures and elite cross-platform ecosystems.
                                 </p>
                             </div>
                             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -177,7 +174,7 @@ export default function MobileAppsPage() {
                                     <div>
                                         <h3 className="text-lg font-bold text-foreground mb-2">Basic Setup MVP</h3>
                                         <p className="text-sm text-muted-foreground mb-4">Starting Tier models setup utilizing dynamic layouts and offline frames sync properly.</p>
-                                        <span className="text-2xl font-black text-accent">$999 - $2,499</span>
+                                        <span className="text-2xl font-black text-accent">$4,500 - $7,499</span>
                                     </div>
                                 </div>
                                 <div className="p-6 bg-background border border-accent/20 rounded-2xl flex flex-col justify-between relative">
@@ -185,14 +182,14 @@ export default function MobileAppsPage() {
                                     <div>
                                         <h3 className="text-lg font-bold text-foreground mb-2">Standard Commercial</h3>
                                         <p className="text-sm text-muted-foreground mb-4">Mid-Tier scaling layouts utilizing secure database endpoints syncing multi-tenant frameworks.</p>
-                                        <span className="text-2xl font-black text-accent">$2,500 - $4,999</span>
+                                        <span className="text-2xl font-black text-accent">$7,500 - $12,499</span>
                                     </div>
                                 </div>
                                 <div className="p-6 bg-background border border-border/40 rounded-2xl flex flex-col justify-between">
                                     <div>
                                         <h3 className="text-lg font-bold text-foreground mb-2">Enterprise Plus</h3>
                                         <p className="text-sm text-muted-foreground mb-4">Full multi-tenant endpoints maintaining high frame elite pipelines buffering overlays smoothly.</p>
-                                        <span className="text-2xl font-black text-accent">$5,000+</span>
+                                        <span className="text-2xl font-black text-accent">$12,500+</span>
                                     </div>
                                 </div>
                             </div>
@@ -347,14 +344,14 @@ export default function MobileAppsPage() {
                 {/* SEO Cluster Internal Linking */}
                 <div className="bg-background py-12 border-t border-border/40 text-center">
                     <p className="text-xs text-muted-foreground tracking-wider uppercase font-semibold">
-                        Related Services & Local Support Cluster: 
+                        Global Solutions Hub: 
                     </p>
                     <div className="flex flex-wrap justify-center gap-x-4 gap-y-2 mt-4 text-sm">
-                        <Link href="/expertise/apple-tv" className="text-accent hover:underline font-bold">Apple TV App Development India</Link>
+                        <Link href="/expertise/apple-tv" className="text-accent hover:underline font-bold">Apple TV Engineering</Link>
                         <span className="text-foreground/20">|</span>
-                        <Link href="/expertise/tvos-development" className="text-accent hover:underline font-bold">tvOS Application Development Services</Link>
+                        <Link href="/expertise/tvos-development" className="text-accent hover:underline font-bold">tvOS Application Architecting</Link>
                         <span className="text-foreground/20">|</span>
-                        <Link href="/locations/chandigarh" className="text-accent hover:underline font-bold">Website Development In Chandigarh</Link>
+                        <Link href="/about" className="text-accent hover:underline font-bold">Our Global Mission</Link>
                     </div>
                 </div>
             </main>

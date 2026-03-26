@@ -54,7 +54,8 @@ export function ServicesGrid({ services }: Readonly<ServicesGridProps>) {
                                 idx === 1 ? "md:col-span-3 lg:col-span-5 h-[360px]" : "",
                                 idx === 2 ? "md:col-span-2 lg:col-span-4 h-[320px]" : "",
                                 idx === 3 ? "md:col-span-2 lg:col-span-4 h-[320px]" : "",
-                                idx === 4 ? "md:col-span-2 lg:col-span-4 h-[320px]" : ""
+                                idx === 4 ? "md:col-span-2 lg:col-span-4 h-[320px]" : "",
+                                idx === 5 ? "md:col-span-6 lg:col-span-12 h-[260px]" : ""
                             )}
                             style={{
                                 animationDelay: `${idx * 150}ms`,

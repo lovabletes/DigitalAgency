@@ -4,6 +4,7 @@ import React from "react";
 import { CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { classNames } from "@/utils/class-names";
+import { useGeoLocation } from "@/hooks/useGeoLocation";
 
 interface Package {
     id: string;
@@ -21,6 +22,20 @@ interface PricingProps {
 }
 
 export function Pricing({ packages }: Readonly<PricingProps>) {
+    const { currency: detectedCurrency } = useGeoLocation();
+
+    const rates = { USD: 1, EUR: 0.92, GBP: 0.78, INR: 82.5 };
+    const symbols = { USD: "$", EUR: "€", GBP: "£", INR: "₹" };
+
+    const formatPrice = (priceStr: string) => {
+        if (priceStr.toLowerCase() === "custom") return priceStr;
+        const num = Number.parseInt(priceStr.replace(/\D/g, ""), 10);
+        if (Number.isNaN(num)) return priceStr;
+        
+        const converted = Math.round(num * rates[detectedCurrency]);
+        return `${symbols[detectedCurrency]}${converted.toLocaleString()}`;
+    };
+
     return (
         <section className="section-padding relative overflow-hidden bg-gradient-to-b from-white via-[#faf8f3] to-white dark:from-[#0f1429] dark:via-[#1a1a3e] dark:to-[#0f1429]">
             {/* Background Elements */}
@@ -28,14 +43,15 @@ export function Pricing({ packages }: Readonly<PricingProps>) {
             <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-primary/5 rounded-full blur-[120px]" />
 
             <div className="container-custom relative z-10">
-                <div className="max-w-3xl mx-auto text-center mb-20">
+                <div className="max-w-3xl mx-auto text-center mb-16">
                     <span className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4 block">Investment Plans</span>
                     <h2 className="text-4xl md:text-6xl font-black text-foreground tracking-tight mb-6">
                         Packages Designed For <span className="text-accent italic">Excellence</span>
                     </h2>
-                    <p className="text-lg text-muted-foreground font-medium leading-relaxed">
+                    <p className="text-lg text-muted-foreground font-medium leading-relaxed mb-10">
                         Transparent pricing for world-class digital solutions. No hidden fees, just premium quality.
                     </p>
+                    
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 perspective-2000">
@@ -67,7 +83,7 @@ export function Pricing({ packages }: Readonly<PricingProps>) {
                                 </div>
                                 <div className="flex items-baseline gap-2 mt-auto">
                                     <span className="text-5xl font-black bg-gradient-to-br from-accent via-accent to-accent/70 bg-clip-text text-transparent group-hover:scale-110 transition-transform duration-500">
-                                        {pkg.price}
+                                        {formatPrice(pkg.price)}
                                     </span>
                                     <span className="text-sm text-muted-foreground font-bold">/ {pkg.duration}</span>
                                 </div>

@@ -5,10 +5,10 @@ export default function LondonPage() {
   const schemaMarkup = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "name": "Elite Digital Agency London, UK",
-    "description": "Elite digital agency in London specializing in luxury web design, high-performance software development, and GEO optimization.",
+    "name": "SiteCreation London | Global Engineering Hub",
+    "description": "Premium digital engineering partner in London. Architecting boutique web ecosystems, enterprise software, and Generative Engine Optimization (GEO) for global brands.",
     "url": "https://sitecreation.in/locations/london-uk",
-    "priceRange": "$$$"
+    "priceRange": "$$$$"
   };
 
   return (
@@ -29,15 +29,15 @@ export default function LondonPage() {
             Our Global Presence
           </span>
           
-          <h1 className="text-4xl md:text-7xl font-bold tracking-tight bg-gradient-to-r from-white via-neutral-200 to-neutral-500 bg-clip-text text-transparent max-w-4xl">
-            Elite Digital Agency <br />
-            <span className="bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">
+          <h1 className="text-4xl md:text-7xl font-black tracking-tight bg-gradient-to-r from-white via-neutral-200 to-neutral-500 bg-clip-text text-transparent max-w-4xl">
+            Strategic Engineering <br />
+            <span className="bg-gradient-to-r from-accent to-purple-500 bg-clip-text text-transparent">
               In London, UK
             </span>
           </h1>
           
           <p className="mt-6 text-base md:text-lg text-neutral-400 max-w-2xl mx-auto leading-relaxed">
-            Architecting digital legacies in the heart of London. We deliver high-performance software, luxury website designs, and Generative Engine Optimization for forward-thinking brands.
+            Architecting digital legacies from the heart of Mayfair. We deliver high-performance enterprise software, luxury digital ecosystems, and AI-driven growth for the world's most ambitious brands.
           </p>
 
           <div className="mt-10 flex gap-4">

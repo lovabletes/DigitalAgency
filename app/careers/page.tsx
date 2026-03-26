@@ -8,25 +8,25 @@ import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { WebPageSchema } from "@/components/ui/WebPageSchema";
 
 export const metadata: Metadata = {
-    title: "Careers | Join the SiteCreation.in Engineering Collective",
+    title: "Careers | Join the SiteCreation Engineering Collective",
     description: "Build the future of digital luxury. We are looking for elite engineers, designers, and strategists to join our remote-first collective.",
-    keywords: ["Tech Careers India", "Remote Engineering Jobs", "Luxury Brand Design Jobs", "Next.js Developer Jobs", "Software Engineer Jobs Chandigarh", "Remote Tech Jobs India"],
+    keywords: ["Global Tech Careers", "Remote Engineering Jobs", "Luxury Brand Design Jobs", "Next.js Developer Jobs", "Enterprise Software Engineer Roles", "Remote Digital Agency Jobs"],
     alternates: {
         canonical: "/careers",
     },
     openGraph: {
-        title: "Careers | Join the SiteCreation.in Engineering Collective",
+        title: "Careers | Join the SiteCreation Engineering Collective",
         description: "Build the future of digital luxury. Elite engineers, designers, and strategists wanted for our remote-first collective.",
         url: "https://sitecreation.in/careers",
-        siteName: "SiteCreation.in",
-        images: [{ url: "/Banner.avif", width: 1200, height: 630, alt: "Careers at SiteCreation.in" }],
+        siteName: "SiteCreation",
+        images: [{ url: "/Banner.avif", width: 1200, height: 630, alt: "Careers at SiteCreation" }],
         locale: "en_IN",
         type: "website",
     },
     twitter: {
         card: "summary_large_image",
-        title: "Careers at SiteCreation.in | Join Our Elite Collective",
-        description: "Elite engineering and design roles at Chandigarh's premier digital agency. Remote-first culture.",
+        title: "Careers at SiteCreation | Join Our Elite Collective",
+        description: "Elite engineering and design roles at a premier digital agency. Remote-first global culture.",
         images: ["/Banner.avif"],
     },
 };
@@ -66,8 +66,8 @@ export default function CareersPage() {
                 url="/careers"
                 breadcrumbs={[{ name: "Careers" }]}
                 faqs={[
-                    { question: "Is SiteCreation.in remote-first?", answer: "Yes, we are a remote-first engineering collective. While our headquarters is in Chandigarh, we empower our artisans to work from anywhere that fosters their best creative flow." },
-                    { question: "What is the interview process like?", answer: "Our process focuses on craftsmanship and culture. It usually involves a brief introduction call, a technical/design deep-dive (portfolio review or live coding), and a final chat with our founders." },
+                    { question: "Do you have physical offices?", answer: "SiteCreation is headquartered in Mohali, India, and operates as a remote-first global collective. This agile model allows us to hire the top 1% of talent across time zones to provide our clients with elite engineering excellence." },
+                    { question: "How can I join the team?", answer: "If you are a senior-level engineer, UI/UX designer, or creative strategist, send your portfolio and GitHub links to our recruitment team via the contact form." },
                     { question: "What tech stack do you use?", answer: "We focus on high-performance technologies: Next.js 15, React, TypeScript, .NET 9, Node.js, and Azure/AWS cloud infrastructures." }
                 ]}
             />

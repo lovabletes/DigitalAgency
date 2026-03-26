@@ -11,10 +11,18 @@ export const siteConfig = {
     url: "https://sitecreation.in",
     logo: "https://sitecreation.in/images/Logo.png",
     contact: {
-        phone: "+91 78891 38196",
-        phoneSchema: "+91-78891-38196",
+        phone: "+1 (555) 123-4567",
+        phoneSchema: "+1-555-123-4567",
+        phoneUK: "+44 20 7123 4567",
+        phoneIndia: "+91 78891 38196",
         email: "hello@sitecreation.in",
         supportEmail: "support@sitecreation.in",
+        globalHQ: "Mohali, India (Engineering Center)",
+        regions: ["Global", "North America", "European Union", "Middle East"],
+    },
+    globalTargeting: {
+        timezoneOverlap: "Dedicated daily overlap with EST, PST, and CET timezones for seamless agile standups.",
+        targetMarkets: ["USA", "United Kingdom", "European Union"]
     },
     address: {
         street: "Phase 8B, Industrial Area, Sector 74",

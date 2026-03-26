@@ -9,7 +9,8 @@ import dynamic from 'next/dynamic';
 export { Header } from './home/Header';
 export { Footer } from './home/Footer';
 export { ScrollProgressBar } from './home/ScrollProgressBar';
-export { Hero } from './home/Hero'; // ← NOT lazy loaded! Above the fold!
+export { Hero } from './home/Hero';
+export { TrustSection } from './home/TrustSection';
 
 // Below-the-fold components - lazy load when scrolled into view
 export const ServicesGrid = dynamic(() => import('./home/ServicesGrid').then(mod => ({ default: mod.ServicesGrid })), {
@@ -21,6 +22,14 @@ export const WhyChooseUs = dynamic(() => import('./home/WhyChooseUs').then(mod =
 });
 
 export const AIShowcase = dynamic(() => import('./home/AIShowcase').then(mod => ({ default: mod.AIShowcase })), {
+    loading: () => <div className="min-h-[600px] animate-pulse bg-secondary/20" />
+});
+
+export const GlobalPresence = dynamic(() => import('./home/GlobalPresence').then(mod => ({ default: mod.GlobalPresence })), {
+    loading: () => <div className="min-h-[600px] animate-pulse bg-secondary/20" />
+});
+
+export const BudgetEstimator = dynamic(() => import('./home/BudgetEstimator').then(mod => ({ default: mod.BudgetEstimator })), {
     loading: () => <div className="min-h-[600px] animate-pulse bg-secondary/20" />
 });
 

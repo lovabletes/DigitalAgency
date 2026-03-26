@@ -49,7 +49,7 @@ export const projects = [
             { icon: "💳", title: "Loyalty Programme", desc: "Tiered rewards system — Bronze, Silver, and Gold — driving repeat purchase behavior." },
         ],
         fullDescription: "### Business Objective\nMaison Belle, a luxury Parisian cosmetics brand, required a digital storefront that mirrored the exclusivity and prestige of their physical boutiques. The challenge was to create high-fidelity, highly interactive micro-animations (glassmorphism, kinetic typography) without severely degrading the loading speed or the mobile conversion rate.\n\n### Technical Architecture & SEO Impact\nWe deployed a headless e-commerce architecture. The frontend was constructed using the Next.js App Router and Framer Motion for cinematic, 60FPS scroll animations. To ensure maximum transaction security and speed, we integrated the Stripe API directly with a PostgreSQL database managed via Prisma ORM. Crucially, we utilized Next.js Image Optimization to serve WebP/AVIF formats dynamically, ensuring that the high-resolution cosmetic photography didn't block the Largest Contentful Paint (LCP).\n\n### Results\nCart abandonment dropped by 42%. The site consistently ranks in the top 3 spots for 'Luxury Vegan Cosmetics' largely due to the semantic HTML5 structuring and dynamic SEO metadata generated server-side for every product variant.",
-        liveUrl: "https://maisonbelle.onrender.com/"
+        liveUrl: "https://maison-belle-cosmetics.onrender.com"
     },
 
     {
@@ -76,7 +76,7 @@ export const projects = [
             { icon: "🔔", title: "Push Notifications", desc: "Automated class reminders, new session alerts, and personalized wellness tips via Firebase Cloud Messaging." },
         ],
         fullDescription: "### Business Objective\nDuring the rapid transition to remote wellness, Avni Yoga required a digital studio capable of hosting real-time, interactive virtual yoga sessions. Third-party video tools (like Zoom) broke the immersion and branding of the studio. They needed a white-labeled, embedded, and latency-free video conferencing solution directly in their platform.\n\n### Technical Architecture & SEO Impact\nWe bypassed traditional video APIs and implemented native WebRTC protocols coupled with Socket.io for instantaneous signaling. This allowed for 1080p, peer-to-peer live streaming without relying on external servers. The authentication, scheduling, and membership tiering were built on a robust serverless architecture using Firebase, allowing the platform to scale infinitely without DevOps overhead.\n\n### Results\nA frictionless user experience. Retention rates for digital memberships skyrocketed by 60%, and the platform is heavily favored by search engines due to its custom 'VideoObject' Schema.org tags, allowing their recorded sessions to appear in Google Video Search results.",
-        liveUrl: "https://avniyoga.onrender.com"
+        liveUrl: "https://avniyoga-wxws.onrender.com"
     },
 
 
@@ -104,7 +104,7 @@ export const projects = [
             { icon: "💅", title: "Bespoke Design System", desc: "Custom luxury brand design tokens — typography, color, spacing — ensuring every pixel perfectly reflects the premium brand." },
         ],
         fullDescription: "### Business Objective\nAurelis Cosmetics was hitting performance limits on standard Shopify themes. The lack of customizability and slow loading speeds were negatively affecting their premium brand positioning and SEO parity with larger competitors. They needed a lightning-fast custom frontend that still utilized Shopify for backend fulfillment.\n\n### Technical Architecture & SEO Impact\nWe engineered a custom headless storefront leveraging the Next.js 15 App Router. We utilized the Shopify Storefront GraphQL API for inventory and checkout, while offloading rich editorial content to Sanity CMS. To ensure perfect accessibility (A11y) and keyboard navigation without sacrificing the bespoke aesthetic, we built the design system on top of headless Radix UI primitives.\n\n### Results\nLoading speeds improved by 400%. The separation of commerce and content allowed us to aggressively construct 'Siloed' URL architectures, which allowed Aurelis to dominate long-tail keyword searches for niche organic skincare products.",
-        liveUrl: "https://aureliscosmetics.onrender.com"
+        liveUrl: "https://aureliscosmetics-r25y.onrender.com"
     },
     {
         id: "proj-meridian",
@@ -130,7 +130,7 @@ export const projects = [
             { icon: "🔄", title: "Easy Returns Portal", desc: "Self-service returns initiation with prepaid label generation and live return tracking status." },
         ],
         fullDescription: "### Business Objective\nMeridian Line faced a critical issue: as their inventory expanded to thousands of SKUs, their legacy e-commerce platform's search function degraded, taking up to 5 seconds to return results. They needed an enterprise-grade migration to a fast, modern stack with an elite, typo-tolerant search experience.\n\n### Technical Architecture & SEO Impact\nThe frontend was entirely rewritten in Next.js to leverage Incremental Static Regeneration (ISR). This meant that product pages were served instantly as static HTML, but automatically rebuilt in the background if pricing or inventory changed. For the search bottleneck, we ripped out the old SQL queries and implemented Meilisearch, a rust-based search engine, enabling sub-50ms typo-tolerant search across 50,000+ items.\n\n### Results\nSearch-driven conversion rates increased by 210%. The switch to ISR meant that Google bots were served lightning-fast static HTML, leading to a massive increase in crawl budget utilization and hundreds of product pages indexed on page 1 of search results.",
-        liveUrl: "https://meridianlinestore.onrender.com"
+        liveUrl: "https://meridianclothstore.onrender.com"
     },
     {
         id: "proj-inviteera",

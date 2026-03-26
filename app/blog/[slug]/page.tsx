@@ -237,7 +237,7 @@ export default async function BlogPostPage({ params }: Readonly<PageProps>) {
                                 <KeyInsights insights={post.keyInsights} />
                             )}
 
-                            <div className="prose prose-invert prose-lux max-w-none">
+                            <div className="prose dark:prose-invert prose-lux max-w-none">
                                 <div className="space-y-8 text-lg leading-relaxed text-muted-foreground font-medium">
                                     {post.content.split('\n\n').filter(p => p.trim()).map((para, index) => (
                                         <div key={`${para.substring(0, 30)}-${index}`}>

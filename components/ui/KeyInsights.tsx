@@ -9,7 +9,7 @@ export function KeyInsights({ insights, title = "Key Takeaways" }: Readonly<KeyI
     if (!insights || insights.length === 0) return null;
 
     return (
-        <section className="my-12 p-8 rounded-3xl bg-gradient-to-br from-accent/10 via-accent/5 to-transparent border border-accent/20 animate-in fade-in slide-in-from-bottom-4 duration-700">
+        <section className="my-12 p-8 rounded-3xl bg-white dark:bg-gradient-to-br dark:from-accent/10 dark:via-accent/5 dark:to-transparent border border-accent/20 shadow-xl dark:shadow-none animate-in fade-in slide-in-from-bottom-4 duration-700">
             <div className="flex items-center gap-3 mb-6">
                 <div className="h-10 w-10 rounded-xl bg-accent/20 flex items-center justify-center text-accent">
                     <Target size={20} />

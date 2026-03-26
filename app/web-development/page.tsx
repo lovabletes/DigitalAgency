@@ -10,24 +10,24 @@ import { ServiceSchema } from "@/components/ui/ServiceSchema";
 import { WebPageSchema } from "@/components/ui/WebPageSchema";
 
 export const metadata: Metadata = {
-    title: "Web Development Company in Chandigarh | Node.js & Next.js Experts | SiteCreation.in",
-    description: "Looking for a web development company in Chandigarh? SiteCreation.in builds fast, scalable websites using Node.js, Next.js & .NET Core for businesses across India. Get a free quote.",
-    keywords: ["web development company Chandigarh", "website development agency India", "Node.js development Chandigarh", "Next.js developer India", "custom web app development", "hire web developer Chandigarh", "SiteCreation", "sitecreation.in"],
+    title: "Enterprise Web Development | Node.js & Next.js Experts | SiteCreation",
+    description: "SiteCreation architect's high-performance, scalable web ecosystems for global enterprises. Specializing in Node.js, Next.js 15, and .NET 9 for USA & EU markets.",
+    keywords: ["enterprise web development", "global digital agency", "Node.js experts USA", "Next.js development EU", "custom web app engineering", "hire elite web developers", "SiteCreation"],
     alternates: {
         canonical: "/web-development",
     },
     openGraph: {
-        title: "Web Development Company in Chandigarh | SiteCreation.in",
-        description: "Fast, scalable websites built with Node.js, Next.js & .NET Core. Top-rated web development agency in Chandigarh, India. Free consultation available.",
+        title: "Enterprise Web Development | SiteCreation",
+        description: "Fast, scalable web ecosystems architected with Node.js, Next.js & .NET 9. Elite engineering partner for global enterprises.",
         url: "https://sitecreation.in/web-development",
-        siteName: "SiteCreation.in",
-        images: [{ url: "/images/web_development.avif", width: 1200, height: 630, alt: "Web Development by SiteCreation.in" }],
+        siteName: "SiteCreation",
+        images: [{ url: "/images/web_development.avif", width: 1200, height: 630, alt: "Web Development by SiteCreation" }],
         locale: "en_IN",
         type: "website",
     },
     twitter: {
         card: "summary_large_image",
-        title: "Elite .NET & Node.js Development | SiteCreation.in",
+        title: "Elite .NET & Node.js Development | SiteCreation",
         description: "High-performance web experiences built with Node.js, .NET Core, and Next.js 15.",
         images: ["/images/web_development.avif"],
     },
@@ -53,17 +53,17 @@ export default function WebDevelopmentPage() {
             />
 
             <WebPageSchema
-                title="Elite .NET & Node.js Development | Site Creation | SiteCreation.in"
-                description="Architecting high-performance, scalable, and visually stunning web experiences. SiteCreation.in (Site Creation) specializes in Node.js, .NET Core, and luxury digital craftsmanship."
+                title="Elite .NET & Node.js Development | Site Creation | SiteCreation"
+                description="Architecting high-performance, scalable, and visually stunning web experiences. SiteCreation (Site Creation) specializes in Node.js, .NET Core, and luxury digital craftsmanship."
                 url="/web-development"
                 breadcrumbs={[{ name: "Services", url: "/#services" }, { name: "Web Development" }]}
                 faqs={[
-                    { question: "What technologies does SiteCreation.in use for web development?", answer: "We (Site Creation) specialize in Node.js, .NET Core, Next.js 15, and React 19 for building high-performance web applications. Our stack is chosen for enterprise scalability and sub-second load times." },
-                    { question: "How long does it take to build a website in Chandigarh with SiteCreation.in?", answer: "A standard business website takes 3–6 weeks. Complex enterprise platforms with custom integrations typically take 8–16 weeks. We provide detailed timelines during our discovery call." },
+                    { question: "What technologies does SiteCreation use for web development?", answer: "We specialize in Node.js, .NET 9, Next.js 15, and React 19 for building high-performance web applications. Our stack is chosen for enterprise scalability and sub-second load times." },
+                    { question: "How long does it take to build a complex enterprise platform?", answer: "Strategic discovery and MVP architecture typically take 4–8 weeks. Full-scale enterprise platforms with custom integrations typically take 12–24 weeks. We provide detailed milestones during our discovery phase." },
                     { question: "Do you provide website maintenance after launch?", answer: "Yes. We offer ongoing maintenance packages including security updates, performance monitoring, content updates, and feature enhancements for all websites we build." },
-                     { question: "What is the cost of web development?", answer: "Web development projects at SiteCreation.in start from $799 for business websites and scale to $7,999+ for enterprise platforms. We provide transparent, fixed-price quotes after understanding your requirements." },
-                    { question: "Why is SiteCreation.in considered the best web designing company in Chandigarh?", answer: "We combine elite engineering (Next.js 15, .NET 9) with luxury UI/UX design. Unlike generic agencies, we focus on GEO (Generative Engine Optimization) to ensure your brand ranks not just on Google, but also in AI search results like ChatGPT." },
-                    { question: "Do you offer e-commerce solutions for businesses in Mohali?", answer: "Yes, we specialize in high-conversion e-commerce platforms using Next.js and Headless CMS architectures, providing Mohali-based businesses with global-scale performance and security." }
+                     { question: "What is the investment for web development?", answer: "Strategic web engineering projects at SiteCreation start from $4,500 for business platforms and scale to $25,000+ for enterprise ecosystems. We provide value-based pricing tailored to your ROI targets." },
+                    { question: "Why is SiteCreation considered a premium engineering hub?", answer: "We combine elite engineering (Next.js 15, .NET 9) with luxury UI/UX design. Unlike generic agencies, we focus on GEO (Generative Engine Optimization) to ensure your brand ranks not just on Google, but also in AI search results like ChatGPT and Perplexity." },
+                    { question: "Do you offer e-commerce solutions for global brands?", answer: "Yes, we specialize in high-conversion headless e-commerce platforms using Next.js and specialized API architectures, providing global brands with sub-second performance and multi-region security." }
                 ]}
             />
 

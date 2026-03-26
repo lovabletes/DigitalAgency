@@ -46,10 +46,10 @@ export function Header({ navLinks }: Readonly<HeaderProps>) {
 
     return (
         <header className={classNames(
-            "sticky top-0 z-50 w-full border-b border-accent/30 backdrop-blur-xl transition-[background-color,border-color,box-shadow,transform] duration-500",
+            "sticky top-0 z-50 w-full border-b border-accent/20 backdrop-blur-xl transition-[background-color,border-color,box-shadow,transform] duration-500",
             isScrolled
-                ? "bg-[#1a1a3e]/95 dark:bg-[#0f1429]/95 shadow-2xl shadow-accent/10"
-                : "bg-gradient-to-r from-[#1a1a3e] via-[#1a1a3e] to-[#2a2a4e] dark:from-[#0f1429] dark:to-[#1a1a3e] shadow-lg"
+                ? "bg-white/95 dark:bg-[#0f1429]/95 shadow-2xl shadow-accent/10"
+                : "bg-white/80 dark:bg-[#0f1429]/80 shadow-lg border-accent/10"
         )}>
             <div className="container-custom flex h-16 items-center justify-between px-4 sm:px-6">
                 <Link href="/" className="flex items-center gap-2 sm:gap-2.5 shrink-0 group cursor-pointer">
@@ -63,18 +63,18 @@ export function Header({ navLinks }: Readonly<HeaderProps>) {
                             priority
                         />
                     </div>
-                    <span className="text-lg sm:text-xl font-black tracking-tight text-white dark:text-[#f7e7ce] truncate">
+                    <span className="text-lg sm:text-xl font-black tracking-tight text-foreground dark:text-[#f7e7ce] truncate">
                         SiteCreation<span className="text-accent italic">.in</span>
                     </span>
                 </Link>
-
+ 
                 {/* Desktop Nav */}
                 <nav className="hidden md:flex items-center gap-10">
                     {navLinks.map((link) => (
                         <a
                             key={link.name}
                             href={link.href}
-                            className="text-xs font-bold uppercase tracking-[0.15em] text-[#f7e7ce]/80 hover:text-accent transition-all duration-300"
+                            className="text-xs font-bold uppercase tracking-[0.15em] text-muted-foreground hover:text-accent dark:text-[#f7e7ce]/80 dark:hover:text-accent transition-all duration-300"
                         >
                             {link.name}
                         </a>
@@ -86,7 +86,7 @@ export function Header({ navLinks }: Readonly<HeaderProps>) {
                         </Link>
                     </Button>
                 </nav>
-
+ 
                 {/* Mobile Toggle */}
                 <button
                     className="flex h-10 w-10 items-center justify-center rounded-xl border border-accent/30 bg-accent/10 md:hidden"
@@ -96,17 +96,17 @@ export function Header({ navLinks }: Readonly<HeaderProps>) {
                     {isMenuOpen ? <CloseIcon size={20} className="text-accent" /> : <MenuIcon size={20} className="text-accent" />}
                 </button>
             </div>
-
+ 
             {/* Mobile Menu */}
             {isMenuOpen && (
-                <div className="absolute inset-x-0 top-full z-50 animate-in fade-in slide-in-from-top-4 border-b border-accent/30 bg-[#1a1a3e]/98 dark:bg-[#0f1429]/98 p-8 backdrop-blur-3xl md:hidden">
+                <div className="absolute inset-x-0 top-full z-50 animate-in fade-in slide-in-from-top-4 border-b border-accent/30 bg-white/98 dark:bg-[#0f1429]/98 p-8 backdrop-blur-3xl md:hidden">
                     <nav className="flex flex-col gap-6">
                         {navLinks.map((link) => (
                             <a
                                 key={link.name}
                                 href={link.href}
                                 onClick={() => setIsMenuOpen(false)}
-                                className="text-xl font-bold uppercase tracking-widest text-[#f7e7ce]/80 hover:text-accent transition-colors"
+                                className="text-xl font-bold uppercase tracking-widest text-foreground hover:text-accent dark:text-[#f7e7ce]/80 dark:hover:text-accent transition-colors"
                             >
                                 {link.name}
                             </a>

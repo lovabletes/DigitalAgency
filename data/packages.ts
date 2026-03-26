@@ -1,58 +1,55 @@
 export const packages = [
     {
         id: "pkg-1",
-        name: "Starter",
-        tagline: "Perfect for launching your digital presence",
-        price: "$799",
+        name: "Growth",
+        tagline: "Dynamic website for growing businesses",
+        price: "$1,299",
         duration: "one-time",
         featured: false,
         features: [
-            "5-Page Elite Responsive Website",
-            "Smart PWA (Installable on Mobile)",
-            "AI-Assisted Smart SEO Meta Tagging",
-            "AI-Powered Speed Optimization Threshold",
-            "Contact Form with Smart Analytics",
-            "3 Months Priority Support"
+            "Dynamic Website (React + Node.js)",
+            "Mobile & Tablet Responsive",
+            "Google Search Optimization",
+            "AI Search Visibility (ChatGPT, Perplexity)",
+            "Contact Forms & Maps Integration",
+            "6 Months Bug Fixes & Updates"
         ],
-        cta: "Start Building"
+        cta: "Get Started"
     },
     {
         id: "pkg-2",
-        name: "Professional",
-        tagline: "Comprehensive solution for growing businesses",
-        price: "$1,999",
+        name: "Business Suite",
+        tagline: "Dynamic website + Native mobile apps",
+        price: "$2,499",
         duration: "one-time",
         featured: true,
         features: [
-            "Elite Custom Website Design",
-            "Companion Mobile App (iOS & Android)",
-            "Custom-Trained AI Chatbot Integration",
-            "Smart CMS with AI Copywriter Plugin",
-            "Generative Engine Optimization (GEO) Signals",
-            "Advanced Animations & Interactions",
-            "E-commerce Ready (Up to 50 Products)",
-            "Universal Data Sync & Cloud Backups"
+            "Everything in Growth, plus:",
+            "Native Mobile Apps (iOS & Android)",
+            "Payment Gateway Integration",
+            "AI Chatbot for Customer Support",
+            "Admin Dashboard (Manage Content)",
+            "Cloud Hosting & Database Setup",
+            "1 Year Technical Support"
         ],
-        cta: "Go Professional"
+        cta: "Choose Business Suite"
     },
     {
         id: "pkg-3",
         name: "Enterprise",
-        tagline: "Full-scale digital transformation",
+        tagline: "Full digital ecosystem + Smart TV apps",
         price: "Custom",
-        duration: "based on scope",
+        duration: "Consultation required",
         featured: false,
         features: [
-            "Unlimited Pages & Global Scaling",
-            "Full Ecosystem: Web, iOS, Android Smart TV",
-            "Custom Apple TV & Android TV Support",
-            "Dedicated Elite Development Team",
-            "Azure/AWS Cloud Infrastructure Architecture",
-            "Monolith to Microservices Migration",
-            "Advanced Generative AI Strategy (GEO)",
-            "Systems Interoperability & API Mesh",
-            "24/7 White-Glove Support & Maintenance"
+            "Everything in Business, plus:",
+            "Smart TV Applications (Apple TV, Android TV)",
+            "Legacy Software Modernization",
+            "Enterprise Security & Compliance",
+            "Auto-Scaling Cloud Infrastructure",
+            "Dedicated Project Manager",
+            "Service Level Agreement (SLA)"
         ],
-        cta: "Discuss Enterprise"
+        cta: "Book Consultation"
     }
 ];

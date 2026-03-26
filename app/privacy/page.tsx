@@ -15,8 +15,8 @@ export default function PrivacyPolicy() {
             <Header navLinks={navLinks} />
 
             <WebPageSchema
-                title="Privacy Policy | SiteCreation.in"
-                description="SiteCreation.in's privacy policy. Learn how we collect, use, and protect your personal data in compliance with applicable data protection laws."
+                title="Privacy Policy | SiteCreation"
+                description="SiteCreation's privacy policy. Learn how we collect, use, and protect your personal data in compliance with global standards (GDPR)."
                 url="/privacy"
                 breadcrumbs={[{ name: "Privacy Policy" }]}
             />
@@ -36,8 +36,9 @@ export default function PrivacyPolicy() {
                             <section className="space-y-6">
                                 <h2 className="text-2xl font-bold text-foreground border-l-4 border-accent pl-6">1. Introduction</h2>
                                 <p className="text-muted-foreground leading-relaxed text-lg">
-                                    At SiteCreation.in, we respect your privacy and are committed to protecting your personal data. This privacy policy will inform you as to how we look after your personal data when you visit our website and tell you about your privacy rights and how the law protects you.
+                                    At SiteCreation, we respect your privacy and are committed to protecting your personal data in alignment with global standards including GDPR and CCPA. This privacy policy will inform you as to how we look after your personal data when you visit our website and tell you about your privacy rights.
                                 </p>
+
                             </section>
 
                             <section className="space-y-6">
@@ -50,6 +51,7 @@ export default function PrivacyPolicy() {
                                         "Identity Data (name, username)",
                                         "Contact Data (email, telephone)",
                                         "Technical Data (IP address, browser type)",
+                                        "Geographical Data (IP-based location for personalized pricing)",
                                         "Usage Data (how you use our website)",
                                         "Marketing Data (preferences in receiving marketing)"
                                     ].map((item) => (
@@ -66,7 +68,11 @@ export default function PrivacyPolicy() {
                                 <p className="text-muted-foreground leading-relaxed text-lg">
                                     We will only use your personal data when the law allows us to. Most commonly, we will use your personal data in the following circumstances:
                                 </p>
-                                <div className="space-y-4">
+                                <div className="space-y-6">
+                                    <div className="p-6 bg-secondary/30 rounded-2xl border border-border/50">
+                                        <h3 className="font-bold text-foreground mb-2">Performance & Personalization</h3>
+                                        <p className="text-sm text-muted-foreground">To optimize our platform performance and provide a localized experience, including displaying the most relevant currency and pricing based on your approximate geographical location (derived from your IP address).</p>
+                                    </div>
                                     <div className="p-6 bg-secondary/30 rounded-2xl border border-border/50">
                                         <h3 className="font-bold text-foreground mb-2">Service Delivery</h3>
                                         <p className="text-sm text-muted-foreground">To provide the architectural digital services you have requested from us.</p>

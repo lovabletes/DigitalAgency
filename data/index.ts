@@ -8,4 +8,5 @@ export * from "./projects";
 export * from "./brands";
 export * from "./blog";
 export * from "./site";
+export * from "./accreditations";
 

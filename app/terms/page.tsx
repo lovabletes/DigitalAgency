@@ -15,8 +15,8 @@ export default function TermsOfService() {
             <Header navLinks={navLinks} />
 
             <WebPageSchema
-                title="Terms of Service | SiteCreation.in"
-                description="Terms of service by SiteCreation.in. Our branding, code architectures, and design patterns follow professional standards."
+                title="Terms of Service | SiteCreation"
+                description="SiteCreation's terms of service. Our commitment to excellence, architectural digital craftsmanship, and professional engagement standards."
                 url="/terms"
                 breadcrumbs={[{ name: "Terms of Service" }]}
             />
@@ -27,62 +27,43 @@ export default function TermsOfService() {
                 </div>
                 <div className="container-custom px-6">
                     <div className="max-w-4xl mx-auto">
-                        <span className="text-xs font-black uppercase tracking-[0.4em] text-accent mb-4 block">Legal Documentation</span>
+                        <span className="text-xs font-black uppercase tracking-[0.4em] text-accent mb-4 block">Professional Standards</span>
                         <h1 className="text-4xl md:text-6xl font-black text-foreground tracking-tight mb-12">
                             Terms of <span className="text-accent italic">Service</span>
                         </h1>
 
                         <div className="prose prose-invert max-w-none space-y-12">
                             <section className="space-y-6">
-                                <h2 className="text-2xl font-bold text-foreground border-l-4 border-accent pl-6">1. Agreement to Terms</h2>
+                                <h2 className="text-2xl font-bold text-foreground border-l-4 border-accent pl-6">1. Engagement Standards</h2>
                                 <p className="text-muted-foreground leading-relaxed text-lg">
-                                    By accessing or using SiteCreation.in, you agree to be bound by these Terms of Service. If you disagree with any part of these terms, you may not access our elite digital services.
+                                    SiteCreation operates as a global engineering collective. By engaging our services, you agree to a partnership built on transparency, technical excellence, and architectural integrity. We commit to delivering high-performance digital ecosystems that align with international enterprise standards.
                                 </p>
                             </section>
 
                             <section className="space-y-6">
                                 <h2 className="text-2xl font-bold text-foreground border-l-4 border-accent pl-6">2. Intellectual Property</h2>
                                 <p className="text-muted-foreground leading-relaxed text-lg">
-                                    The service and its original content, features, and functionality are and will remain the exclusive property of SiteCreation.in and its licensors. Our branding, code architectures, and design patterns are protected by international copyright and trademark laws.
+                                    Upon full payment of all fees due, SiteCreation transfers all intellectual property rights for the specific digital assets created under the scope of work to the client, unless otherwise specified in the service agreement for proprietary frameworks or licensed components.
                                 </p>
                             </section>
 
                             <section className="space-y-6">
-                                <h2 className="text-2xl font-bold text-foreground border-l-4 border-accent pl-6">3. Professional Services</h2>
+                                <h2 className="text-2xl font-bold text-foreground border-l-4 border-accent pl-6">3. Professional Liability</h2>
                                 <p className="text-muted-foreground leading-relaxed text-lg">
-                                    Our engagement for web development, mobile applications, and cloud orchestration is governed by specific Project Agreements. These terms serve as a foundational framework for those elite partnerships.
-                                </p>
-                                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
-                                    {[
-                                        { title: "Precision", icon: "✨" },
-                                        { title: "Scalability", icon: "🚀" },
-                                        { title: "Security", icon: "🛡️" }
-                                    ].map((item) => (
-                                        <div key={item.title} className="p-6 rounded-2xl bg-secondary/30 border border-border/50 text-center">
-                                            <div className="text-3xl mb-3">{item.icon}</div>
-                                            <div className="font-bold text-foreground uppercase tracking-widest text-xs">{item.title}</div>
-                                        </div>
-                                    ))}
-                                </div>
-                            </section>
-
-                            <section className="space-y-6">
-                                <h2 className="text-2xl font-bold text-foreground border-l-4 border-accent pl-6">4. Limitation of Liability</h2>
-                                <p className="text-muted-foreground leading-relaxed text-lg">
-                                    In no event shall SiteCreation.in, nor its directors, employees, or partners, be liable for any indirect, incidental, special, consequential or punitive damages resulting from your use of our services.
+                                    We architect systems for maximum uptime and performance. While we leverage industry-leading security practices and cloud infrastructure (including Azure and AWS), SiteCreation's liability is limited to the fees paid for the specific engineering phase in which any discrepancy may arise.
                                 </p>
                             </section>
 
                             <section className="space-y-6">
-                                <h2 className="text-2xl font-bold text-foreground border-l-4 border-accent pl-6">5. Governing Law</h2>
+                                <h2 className="text-2xl font-bold text-foreground border-l-4 border-accent pl-6">4. Global Jurisdiction</h2>
                                 <p className="text-muted-foreground leading-relaxed text-lg">
-                                    These Terms shall be governed and construed in accordance with the laws of India, without regard to its conflict of law provisions.
+                                    These terms are governed by the laws of the jurisdiction in which our strategic hubs are located, primarily Dubai, UAE, and are interpreted in alignment with international commercial standards for digital services.
                                 </p>
                             </section>
 
                             <div className="mt-20 p-8 rounded-3xl bg-gradient-to-br from-[#1a1a3e] to-[#0f1429] border border-accent/30">
-                                <p className="text-white font-bold mb-2">Need a detailed service agreement?</p>
-                                <p className="text-[#f7e7ce]/60 text-sm">Consult our elite legal team at <a href="mailto:support@sitecreation.in" className="text-accent underline">support@sitecreation.in</a></p>
+                                <p className="text-white font-bold mb-2">Request a Formal Agreement?</p>
+                                <p className="text-[#f7e7ce]/60 text-sm">For enterprise contracts and detailed SLAs, please contact our legal team at <a href="mailto:legal@sitecreation.in" className="text-accent underline">legal@sitecreation.in</a></p>
                             </div>
                         </div>
                     </div>

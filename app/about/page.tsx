@@ -9,25 +9,24 @@ import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { WebPageSchema } from "@/components/ui/WebPageSchema";
 
 export const metadata: Metadata = {
-    title: "About Us | Web Design & Development Agency Chandigarh | SiteCreation.in",
-    description: "SiteCreation.in is a web design and development agency based in Chandigarh, India. We help businesses build fast websites, mobile apps, and grow online. Learn our story.",
-    keywords: ["web design agency Chandigarh", "about SiteCreation", "IT company Chandigarh", "software development company India", "digital agency Mohali", "web developer team Chandigarh"],
+    title: "About Our Global Engineering Hub | SiteCreation",
+    description: "SiteCreation is a premium digital engineering partner for global enterprises. Architecting high-performance .NET, Node.js, and Smart TV solutions from our strategic hubs.",
+    keywords: ["global digital agency", "enterprise software engineering", "about SiteCreation", "digital transformation partner USA", "software development hub EU", "elite engineering collective"],
     alternates: {
         canonical: "/about",
     },
-    openGraph: {
-        title: "About SiteCreation.in | Web Design & Development Agency in Chandigarh",
-        description: "Web design and development agency in Chandigarh helping businesses build fast websites, mobile apps & grow online.",
+        title: "About SiteCreation | Global Engineering Hub",
+        description: "Premium digital engineering partner helping global enterprises build elite software ecosystems.",
         url: "https://sitecreation.in/about",
-        siteName: "SiteCreation.in",
-        images: [{ url: "/Banner.avif", width: 1200, height: 630, alt: "About SiteCreation.in" }],
-        locale: "en_IN",
+        siteName: "SiteCreation",
+        images: [{ url: "/Banner.avif", width: 1200, height: 630, alt: "About SiteCreation" }],
+        locale: "en_US",
         type: "website",
-    },
+
     twitter: {
         card: "summary_large_image",
         title: "About SiteCreation.in | Elite Digital Agency",
-        description: "Premier software development collective in Chandigarh. High-performance .NET, Node.js, and Cloud solutions for global brands.",
+        description: "Premier software development collective. High-performance .NET, Node.js, and Cloud solutions for global enterprise brands.",
         images: ["/Banner.avif"],
     },
 };
@@ -49,9 +48,9 @@ export default function AboutPage() {
                 url="/about"
                 breadcrumbs={[{ name: "About" }]}
                 faqs={[
-                    { question: "Where is SiteCreation.in located?", answer: "SiteCreation.in is headquartered in Chandigarh, India, serving clients across Chandigarh, Mohali, Panchkula (the Tricity region), and globally across India, USA, and UK." },
-                    { question: "How many projects has SiteCreation.in delivered?", answer: "SiteCreation.in has delivered 100+ projects across web development, mobile apps, cloud infrastructure, and digital marketing since our founding. Our portfolio spans startups to enterprise brands." },
-                    { question: "What makes SiteCreation.in different from other agencies in Chandigarh?", answer: "We combine enterprise-grade engineering (Next.js 15, .NET Core, Azure) with luxury design craftsmanship. Unlike typical agencies, we focus on performance, Core Web Vitals, and long-term digital strategy rather than just aesthetics." }
+                    { question: "Where is SiteCreation headquartered?", answer: "SiteCreation is strategically headquartered in Dubai, UAE, with a global engineering reach serving enterprises across North America, the European Union, and Asia." },
+                    { question: "How many projects has SiteCreation delivered?", answer: "SiteCreation has architected 150+ premium digital ecosystems across web, mobile, and Smart TV platforms since our inception. Our portfolio spans from innovative AI startups to Fortune 500 enterprises." },
+                    { question: "What makes SiteCreation a premium partner?", answer: "We combine enterprise-grade engineering (Next.js 15, .NET 9, Azure) with luxury design craftsmanship. Unlike typical agencies, we focus on sub-second performance, Core Web Vitals, and long-term digital ROI for high-value brands." }
                 ]}
             />
 
@@ -61,9 +60,10 @@ export default function AboutPage() {
                 </div>
                 <PageHero
                     title="Our"
-                    subtitle="Legacy"
-                    description="Architecting high-performance digital ecosystems since 2018. Based in Chandigarh, we empower global brands with elite engineering in .NET, Node.js, and Azure Cloud."
+                    subtitle="Global Mission"
+                    description="Architecting elite digital ecosystems and high-performance software for the world's most ambitious brands. Headquartered in Dubai, we empower global enterprises with premium engineering in .NET, Node.js, and Cloud Infrastructure."
                 />
+
 
                 <section className="py-20 bg-background container-custom">
                     <div className="grid md:grid-cols-2 gap-16 items-center">

@@ -1,20 +1,20 @@
 export const testimonials = [
     {
-        quote: "SiteCreation.in transformed our idea into a stunning mobile app. Their attention to detail and commitment to quality exceeded our expectations.",
-        name: "Sarah Johnson",
-        role: "CEO, TechStart",
-        image: "/images/avatar-placeholder.svg"
+        quote: "DigitalAgency (SiteCreation) transformed our complex IoT vision into a seamless Smart TV and mobile ecosystem. Their technical depth in React 19 and .NET 9 is world-class.",
+        name: "Alexander von H.",
+        role: "Director of Digital Transformation, EU Tech-Hub",
+        image: "/images/testimonials/avatar-1.svg"
     },
     {
-        quote: "Working with the team was a game-changer. They delivered our web platform on time and the performance improvements were incredible.",
-        name: "Michael Chen",
-        role: "Founder, DataFlow",
-        image: "/images/avatar-placeholder.svg"
+        quote: "The team's ability to navigate the intricacies of Next.js 15 while maintaining sub-second performance for our global e-commerce platform was exceptional.",
+        name: "Sarah L. Jenkins",
+        role: "Head of Engineering, Global Logistics Corp",
+        image: "/images/testimonials/avatar-2.svg"
     },
     {
-        quote: "The teams expertise in both web and mobile development helped us launch across all platforms seamlessly. Highly recommended!",
-        name: "Emily Rodriguez",
-        role: "CTO, HealthPlus",
-        image: "/images/avatar-placeholder.svg"
+        quote: "Pivoting our entire mobile strategy to their Native Fabric architecture resulted in a 40% increase in user retention. They are true engineering partners.",
+        name: "Marcus Thorne",
+        role: "CTO, VentureLogic (San Francisco)",
+        image: "/images/testimonials/avatar-3.svg"
     }
 ];

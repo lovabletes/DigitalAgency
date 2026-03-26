@@ -52,19 +52,19 @@ export default function ContactPage() {
 
             <ServiceSchema
                 name="Inquiry & Partnership"
-                description="Secure your digital legacy with a strategic partnership with SiteCreation.in."
+                description="Secure your digital legacy with a strategic partnership with SiteCreation."
                 url="/contact"
             />
 
             <WebPageSchema
-                title="Contact SiteCreation.in | Start Your Project in Chandigarh"
-                description="Get in touch with SiteCreation.in, elite digital agency in Chandigarh. Start your journey with high-performance web development and cloud engineering today."
+                title="Contact SiteCreation | Global Strategy & Engineering"
+                description="Secure your digital legacy. Partner with SiteCreation, a premium digital engineering hub serving global enterprises in the USA, EU, and Middle East."
                 url="/contact"
                 breadcrumbs={[{ name: "Contact" }]}
                 faqs={[
                     { question: "How quickly do you respond to inquiries?", answer: "Our team typically responds to all inquiries within 24 hours. For urgent project discussions, booking a strategy call via our calendar is the fastest way to connect." },
                     { question: "Do you offer free consultations?", answer: "Yes, we provide initial 15-minute consultations to understand your vision and determine how our elite engineering collective can best assist your brand." },
-                    { question: "Where is your office located?", answer: "We are based in the heart of Chandigarh, India, though we operate as a remote-first collective serving clients globally." }
+                    { question: "Where is SiteCreation headquartered?", answer: "SiteCreation is headquartered in Mohali, India, operating as a global engineering hub serving high-value brands across North America, the European Union, and the Middle East." }
                 ]}
             />
 
@@ -94,17 +94,18 @@ export default function ContactPage() {
 
                             <div className="grid sm:grid-cols-2 gap-10">
                                 <div className="space-y-4">
-                                    <h4 className="text-sm font-black uppercase tracking-wider text-accent">Office</h4>
+                                    <h4 className="text-sm font-black uppercase tracking-wider text-accent">Global Support Center</h4>
                                     <p className="text-foreground font-semibold leading-relaxed">
-                                        Chandigarh, India<br />
-                                        {siteConfig.address.display}
+                                        US: {siteConfig.contact.phone}<br />
+                                        UK: {siteConfig.contact.phoneUK}<br />
+                                        IN: {siteConfig.contact.phoneIndia}
                                     </p>
                                 </div>
                                 <div className="space-y-4">
-                                    <h4 className="text-sm font-black uppercase tracking-wider text-accent">Inquiries</h4>
+                                    <h4 className="text-sm font-black uppercase tracking-wider text-accent">Partnerships & Inquiries</h4>
                                     <p className="text-foreground font-semibold">
-                                        {siteConfig.contact.supportEmail}<br />
-                                        {siteConfig.contact.phone}
+                                        {siteConfig.contact.email}<br />
+                                        {siteConfig.globalTargeting?.timezoneOverlap}
                                     </p>
                                 </div>
                             </div>
@@ -154,10 +155,25 @@ export default function ContactPage() {
                                                 name="name"
                                                 type="text"
                                                 required
+                                                suppressHydrationWarning
                                                 className="w-full bg-background border-2 border-border/50 rounded-2xl px-6 py-4 focus:border-accent focus:outline-none transition-all font-medium"
                                                 placeholder="Your Name"
                                             />
                                         </div>
+                                        <div className="space-y-3">
+                                            <label htmlFor="company" className="text-xs font-black uppercase tracking-widest text-muted-foreground ml-1">Company</label>
+                                            <input
+                                                id="company"
+                                                name="company"
+                                                type="text"
+                                                required
+                                                suppressHydrationWarning
+                                                className="w-full bg-background border-2 border-border/50 rounded-2xl px-6 py-4 focus:border-accent focus:outline-none transition-all font-medium"
+                                                placeholder="Company Name"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="grid sm:grid-cols-2 gap-8">
                                         <div className="space-y-3">
                                             <label htmlFor="email" className="text-xs font-black uppercase tracking-widest text-muted-foreground ml-1">Email</label>
                                             <input
@@ -165,24 +181,66 @@ export default function ContactPage() {
                                                 name="email"
                                                 type="email"
                                                 required
+                                                suppressHydrationWarning
                                                 className="w-full bg-background border-2 border-border/50 rounded-2xl px-6 py-4 focus:border-accent focus:outline-none transition-all font-medium"
-                                                placeholder="your@email.com"
+                                                placeholder="work@yourcompany.com"
                                             />
                                         </div>
+                                        <div className="space-y-3">
+                                            <label htmlFor="budget" className="text-xs font-black uppercase tracking-widest text-muted-foreground ml-1">Est. Budget</label>
+                                            <select
+                                                id="budget"
+                                                name="budget"
+                                                required
+                                                defaultValue=""
+                                                suppressHydrationWarning
+                                                className="w-full bg-background border-2 border-border/50 rounded-2xl px-6 py-4 focus:border-accent focus:outline-none transition-all font-medium appearance-none"
+                                            >
+                                                <option value="" disabled>Select Budget Range</option>
+                                                <option value="5k-10k">$5k - $10k</option>
+                                                <option value="10k-25k">$10k - $25k</option>
+                                                <option value="25k-50k">$25k - $50k</option>
+                                                <option value="50k+">$50k+</option>
+                                            </select>
+                                        </div>
                                     </div>
-                                    <div className="space-y-3">
-                                        <label htmlFor="interest" className="text-xs font-black uppercase tracking-widest text-muted-foreground ml-1">Interested In</label>
-                                        <select
-                                            id="interest"
-                                            name="interest"
-                                            className="w-full bg-background border-2 border-border/50 rounded-2xl px-6 py-4 focus:border-accent focus:outline-none transition-all font-medium appearance-none"
-                                        >
-                                            <option>Web Development</option>
-                                            <option>Mobile Applications</option>
-                                            <option>UI/UX Design</option>
-                                            <option>Cloud Architecture</option>
-                                            <option>Strategic Consulting</option>
-                                        </select>
+                                    <div className="grid sm:grid-cols-2 gap-8">
+                                        <div className="space-y-3">
+                                            <label htmlFor="interest" className="text-xs font-black uppercase tracking-widest text-muted-foreground ml-1">Interested In</label>
+                                            <select
+                                                id="interest"
+                                                name="interest"
+                                                required
+                                                defaultValue=""
+                                                suppressHydrationWarning
+                                                className="w-full bg-background border-2 border-border/50 rounded-2xl px-6 py-4 focus:border-accent focus:outline-none transition-all font-medium appearance-none"
+                                            >
+                                                <option value="" disabled>Select Primary Interest</option>
+                                                <option value="enterprise-mobile">Enterprise Mobile Apps</option>
+                                                <option value="smart-tv">Smart TV (Apple TV, Android TV)</option>
+                                                <option value="luxury-web">Luxury Web Architecture</option>
+                                                <option value="cloud-migration">Cloud & Backend Infrastructure</option>
+                                            </select>
+                                        </div>
+                                        <div className="space-y-3">
+                                            <label htmlFor="timezone" className="text-xs font-black uppercase tracking-widest text-muted-foreground ml-1">Your Timezone</label>
+                                            <select
+                                                id="timezone"
+                                                name="timezone"
+                                                required
+                                                defaultValue=""
+                                                suppressHydrationWarning
+                                                className="w-full bg-background border-2 border-border/50 rounded-2xl px-6 py-4 focus:border-accent focus:outline-none transition-all font-medium appearance-none"
+                                            >
+                                                <option value="" disabled>Select Timezone</option>
+                                                <option value="EST">EST (Eastern Time)</option>
+                                                <option value="PST">PST (Pacific Time)</option>
+                                                <option value="CST">CST (Central Time)</option>
+                                                <option value="GMT">GMT / BST (UK)</option>
+                                                <option value="CET">CET (Central Europe)</option>
+                                                <option value="Other">Other</option>
+                                            </select>
+                                        </div>
                                     </div>
                                     <div className="space-y-3">
                                         <label htmlFor="message" className="text-xs font-black uppercase tracking-widest text-muted-foreground ml-1">Message</label>
@@ -192,8 +250,21 @@ export default function ContactPage() {
                                             rows={4}
                                             required
                                             className="w-full bg-background border-2 border-border/50 rounded-2xl px-6 py-4 focus:border-accent focus:outline-none transition-all font-medium resize-none"
-                                            placeholder="How can we help you?"
+                                            placeholder="Tell us about your project requirements..."
                                         />
+                                    </div>
+
+                                    <div className="flex items-start gap-4 p-4 border border-border/30 rounded-2xl bg-muted/10">
+                                        <input
+                                            type="checkbox"
+                                            id="gdpr"
+                                            name="gdpr"
+                                            required
+                                            className="mt-1 w-5 h-5 accent-accent"
+                                        />
+                                        <label htmlFor="gdpr" className="text-sm text-muted-foreground leading-relaxed cursor-pointer select-none">
+                                            I consent to the collection and processing of my data in accordance with the Privacy Policy (GDPR). I understand my information will be used solely to process this inquiry.
+                                        </label>
                                     </div>
 
                                     {status === "error" && (

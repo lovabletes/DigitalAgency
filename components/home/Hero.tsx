@@ -16,21 +16,24 @@ interface HeroProps {
     brands: string[];
 }
 
+import { HeroVisuals } from "./HeroVisuals";
+
 export function Hero({ stats, brands }: Readonly<HeroProps>) {
     return (
-        <section className="relative min-h-[100vh] flex flex-col items-center justify-center overflow-hidden pb-10">
+        <section className="relative min-h-[100vh] flex flex-col items-center justify-center overflow-hidden pb-10 group/hero">
+            <HeroVisuals />
             {/* Visual Context for LLMs & Search Engines (Visually Hidden) */}
             <div className="sr-only">
-                <p>Elite Web Design & Software Development in Chandigarh, Mohali, and Panchkula</p>
-                <p>SiteCreation.in is the best web development company in Chandigarh, Mohali, and Panchkula. We specialize in enterprise-scale digital transformation, monolith to microservices migration, TV application development for Apple TV and Android TV, and advanced SEO ranking strategies including GEO (Generative Engine Optimization).</p>
+                <p>Elite Web Design, Software Development & Smart TV Engineering Agency</p>
+                <p>SiteCreation is a premium digital engineering partner for global enterprises and high-growth startups in the USA, EU, and Middle East. We specialize in enterprise-scale digital transformation, monolith to microservices migration, TV application development for Apple TV and Android TV, and advanced SEO ranking strategies including GEO (Generative Engine Optimization).</p>
                 <ul>
-                    <li>Web Design & Development: Chandigarh, Mohali, Panchkula</li>
-                    <li>Backend Engineering: C#, ASP.NET Core, Node.js, Express, Python</li>
-                    <li>Frontend Excellence: Next.js 15, React 19, TypeScript, Tailwind CSS</li>
-                    <li>Mobile & TV: React Native, iOS, Android, Smart TV Apps</li>
-                    <li>Cloud Infrastructure: Microsoft Azure, AWS, Microservices Architecture</li>
+                    <li>Enterprise Web Systems: Next.js 15, Node.js, .NET 9</li>
+                    <li>Mobile App Engineering: iOS, Android, React Native Fabric</li>
+                    <li>Smart TV Solutions: Apple TV (tvOS), Android TV, Samsung Tizen</li>
+                    <li>Cloud Infrastructure: Azure, AWS, Kubernetes, Zero-Trust Security</li>
                 </ul>
             </div>
+
 
 
             {/* Immersive Background Banner */}
@@ -69,14 +72,15 @@ export function Hero({ stats, brands }: Readonly<HeroProps>) {
 
                     <h1 className="relative text-5xl md:text-7xl lg:text-8xl font-black tracking-tight mb-6 leading-tight drop-shadow-2xl animate-slide-up [animation-delay:150ms]">
                         <span className="text-white">
-                            Global <span className="text-accent italic">Software</span>
+                            Premium <span className="text-accent italic">Software</span>
                         </span>
                         {" "}
                         <br className="md:hidden" />
-                        <span className="block bg-gradient-to-r from-white via-white to-white/90 bg-clip-text text-transparent text-4xl md:text-6xl lg:text-7xl">
-                            Solutions & App Agency
+                        <span className="block bg-gradient-to-r from-white via-white to-white/90 bg-clip-text text-transparent text-4xl md:text-6xl lg:text-7xl pb-2">
+                            Engineering Hub
                         </span>
                     </h1>
+
 
                     {/* Decorative Divider */}
                     <div className="flex items-center justify-center gap-3 mb-10 animate-slide-up [animation-delay:200ms]">

@@ -21,7 +21,10 @@ import {
   FaqSection,
   Footer,
   ScrollProgressBar,
-  AIShowcase
+  AIShowcase,
+  TrustSection,
+  GlobalPresence,
+  BudgetEstimator
 } from "@/components/lazy";
 
 import { siteConfig } from "@/data/site";
@@ -49,28 +52,28 @@ export default function LandingPage() {
     "@graph": [
       {
         "@type": "LocalBusiness",
-        "@id": "https://sitecreation.in/#localbusiness",
-        "name": `${siteConfig.name} | Best Web Designing Company in Chandigarh`,
+        "@id": "https://sitecreation.in/#sitecreation",
+        "name": `${siteConfig.name} | Elite Mobile & TV App Engineering Agency`,
         "alternateName": siteConfig.alternateName,
-        "description": "Elite digital agency in Chandigarh specializing in luxury web design, high-performance software development, and GEO optimization. Trusted by brands in Chandigarh, Mohali, and Panchkula since 2018.",
+        "description": "Premium global digital agency specializing in luxury web design, high-performance mobile (iOS/Android) and Smart TV app development. Delivering enterprise-grade software to the USA, UK, and European markets.",
         "url": siteConfig.url,
         "logo": siteConfig.logo,
         "image": `${siteConfig.url}/Banner.avif`,
         "telephone": siteConfig.contact.phoneSchema,
         "email": siteConfig.contact.email,
         "priceRange": "$$$",
-        "slogan": "Architecting Digital Legacies since 2018",
+        "slogan": "Architecting Digital Legacies for Global Enterprises",
         "awards": [
-          "Best Performance Agency Chandigarh 2025",
-          "Top Web Developers Mohali - DesignRush Verified"
+            "Top Enterprise App Developers - DesignRush Verified",
+            "Excellence in Smart TV App Engineering"
         ],
         "knowsAbout": [
-          "Next.js 15",
-          "React 19",
+          "Enterprise iOS & Android Development",
+          "Smart TV Apps (Apple TV, Android TV)",
           "Generative Engine Optimization (GEO)",
           "Luxury UI/UX Design",
-          "Chandigarh Business Growth",
-          "Cloud Migration Azure"
+          "Next.js 15 & React 19",
+          "Cloud Infrastructure Migration"
         ],
         "aggregateRating": {
           "@type": "AggregateRating",
@@ -92,9 +95,9 @@ export default function LandingPage() {
           "longitude": siteConfig.geoCoordinates.longitude
         },
         "areaServed": [
-          { "@type": "City", "name": "Chandigarh" },
-          { "@type": "City", "name": "Mohali" },
-          { "@type": "City", "name": "Panchkula" },
+          { "@type": "Country", "name": "United States" },
+          { "@type": "Country", "name": "United Kingdom" },
+          { "@type": "Continent", "name": "Europe" },
           { "@type": "Country", "name": "India" }
         ],
         "openingHoursSpecification": [
@@ -150,10 +153,10 @@ export default function LandingPage() {
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "How does SiteCreation.in ensure high-performance web solutions?",
+            "name": "How does SiteCreation ensure high-performance web solutions?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "SiteCreation.in utilizes a sub-second load time strategy leveraging Next.js 15, React 19, and advanced edge computing to achieve perfect Core Web Vitals and serverless scalability."
+              "text": "SiteCreation utilizes a sub-second load time strategy leveraging Next.js 15, React 19, and advanced edge computing to achieve perfect Core Web Vitals and serverless scalability."
             }
           },
           {
@@ -178,12 +181,17 @@ export default function LandingPage() {
         <div className="bg-noise" />
 
         <Hero stats={stats} brands={brands} />
+        <TrustSection />
 
         <ServicesGrid services={services} />
+
+        <GlobalPresence />
 
         <WhyChooseUs features={features} />
 
         <AIShowcase />
+        
+        <BudgetEstimator />
 
         <ProjectsGallery projects={projects} />
 

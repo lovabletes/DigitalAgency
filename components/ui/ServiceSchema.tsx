@@ -56,10 +56,10 @@ export function ServiceSchema({
                 "longitude": siteConfig.geoCoordinates.longitude
             },
             "areaServed": [
-                { "@type": "City", "name": "Chandigarh" },
-                { "@type": "City", "name": "Mohali" },
-                { "@type": "City", "name": "Panchkula" },
-                { "@type": "Country", "name": "India" }
+                { "@type": "Country", "name": "United States" },
+                { "@type": "Country", "name": "United Kingdom" },
+                { "@type": "Country", "name": "United Arab Emirates" },
+                { "@type": "Country", "name": "European Union" }
             ],
             "aggregateRating": {
                 "@type": "AggregateRating",
@@ -76,9 +76,9 @@ export function ServiceSchema({
             ]
         },
         "areaServed": [
-            { "@type": "City", "name": "Chandigarh" },
-            { "@type": "City", "name": "Mohali" },
-            { "@type": "City", "name": "Panchkula" }
+            { "@type": "Country", "name": "United States" },
+            { "@type": "Country", "name": "United Kingdom" },
+            { "@type": "Country", "name": "European Union" }
         ],
         "hasOfferCatalog": {
             "@type": "OfferCatalog",

@@ -123,11 +123,12 @@ export function Footer() {
                             </span>
                         </div>
                         <p className="text-accent font-black uppercase tracking-widest text-[10px] mb-4">
-                            Best Web Designing Company in Chandigarh
+                            Premium Global Digital Engineering Partner
                         </p>
                         <p className="text-[#f7e7ce]/70 text-base leading-relaxed font-medium mb-8 max-w-sm">
-                            Architecting premium digital experiences for the world&apos;s most ambitious brands. Uncompromising quality, elegant execution.
+                            Architecting elite digital ecosystems for the world&apos;s most ambitious enterprises. Headquartered in Dubai with a global engineering reach across North America and the EU.
                         </p>
+
 
                         {/* Social Icons */}
                         <div className="flex gap-3">
@@ -203,8 +204,8 @@ export function Footer() {
                                 </li>
                                 <li>
                                     <p className="text-[11px] font-bold text-[#f7e7ce]/40 uppercase tracking-widest mb-2">Contact</p>
-                                    <a href={`mailto:${siteConfig.contact.email}`} className="text-white/80 hover:text-accent font-medium text-sm block">{siteConfig.contact.email}</a>
-                                    <a href={`tel:${siteConfig.contact.phone.replaceAll(" ", "")}`} className="text-white/80 hover:text-accent font-medium text-sm block mt-1">{siteConfig.contact.phone}</a>
+                                    <a suppressHydrationWarning href={`mailto:${siteConfig.contact.email}`} className="text-white/80 hover:text-accent font-medium text-sm block">{siteConfig.contact.email}</a>
+                                    <a suppressHydrationWarning href={`tel:${siteConfig.contact.phone.replaceAll(" ", "")}`} className="text-white/80 hover:text-accent font-medium text-sm block mt-1">{siteConfig.contact.phone}</a>
                                 </li>
                                 <li className="flex items-center gap-2 text-[#f7e7ce]/60">
                                     <span className="text-accent">🕐</span>

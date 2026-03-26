@@ -38,7 +38,7 @@ export function WebPageSchema({
                 "@id": "https://sitecreation.in/#website",
                 "url": "https://sitecreation.in",
                 "name": "SiteCreation.in",
-                "description": "Elite digital agency in Chandigarh specializing in web development, mobile apps, and cloud solutions.",
+                "description": "Elite digital engineering partner for global enterprises specializing in web development, mobile apps, and Smart TV solutions.",
                 "publisher": {
                     "@type": "Organization",
                     "@id": "https://sitecreation.in/#organization",
