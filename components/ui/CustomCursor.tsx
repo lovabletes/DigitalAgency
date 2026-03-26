@@ -1,21 +1,17 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { motion, useSpring, useMotionValue } from "framer-motion";
+import React, { useEffect, useState, useRef } from "react";
 
 export function CustomCursor() {
     const [isHovering, setIsHovering] = useState(false);
-    const cursorX = useMotionValue(-100);
-    const cursorY = useMotionValue(-100);
-
-    const springConfig = { damping: 25, stiffness: 150 };
-    const springX = useSpring(cursorX, springConfig);
-    const springY = useSpring(cursorY, springConfig);
+    const cursorRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const moveCursor = (e: MouseEvent) => {
-            cursorX.set(e.clientX);
-            cursorY.set(e.clientY);
+            if (cursorRef.current) {
+                cursorRef.current.style.left = `${e.clientX}px`;
+                cursorRef.current.style.top = `${e.clientY}px`;
+            }
         };
 
         const handleHover = (e: MouseEvent) => {
@@ -39,22 +35,20 @@ export function CustomCursor() {
             window.removeEventListener("mousemove", moveCursor);
             window.removeEventListener("mouseover", handleHover);
         };
-    }, [cursorX, cursorY]);
+    }, []);
 
     return (
-        <motion.div
-            className="fixed top-0 left-0 w-8 h-8 rounded-full border border-accent pointer-events-none z-[9999] mix-blend-difference hidden lg:block"
+        <div
+            ref={cursorRef}
+            className={`fixed top-0 left-0 w-8 h-8 rounded-full border border-accent pointer-events-none z-[9999] mix-blend-difference hidden lg:block transition-transform duration-200 ease-out ${
+                isHovering ? "scale-[2.5]" : "scale-100"
+            }`}
             style={{
-                x: springX,
-                y: springY,
-                translateX: "-50%",
-                translateY: "-50%",
-                scale: isHovering ? 2.5 : 1,
+                transform: "translate(-50%, -50%)",
                 backgroundColor: isHovering ? "rgba(247, 231, 206, 0.2)" : "transparent",
             }}
-            transition={{ type: "spring", damping: 20, stiffness: 100 }}
         >
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1 h-1 bg-accent rounded-full" />
-        </motion.div>
+        </div>
     );
 }
