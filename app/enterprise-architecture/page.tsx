@@ -232,7 +232,7 @@ export default function EnterpriseArchitecturePage() {
                                     </h2>
                                 </div>
                                 <p className="text-muted-foreground text-lg leading-relaxed">
-                                    CQRS and Modular Monoliths aren't ideal for every application. They are strategic weapons intended for businesses solving high-efficiency, concurrent data bottlenecks at scale.
+                                    CQRS and Modular Monoliths aren&apos;t ideal for every application. They are strategic weapons intended for businesses solving high-efficiency, concurrent data bottlenecks at scale.
                                 </p>
                             </div>
                             <div className="grid gap-6">

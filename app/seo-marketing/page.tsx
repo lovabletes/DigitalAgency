@@ -94,7 +94,7 @@ export default function SeoMarketingPage() {
                                 </h2>
                             </div>
                             <p className="text-muted-foreground text-lg leading-relaxed">
-                                In an era of atmospheric noise, visibility is the ultimate currency. Our SEO and marketing collective leverage deep analytics and proprietary strategies to elevate your brand above the competition. We don't just chase clicks; we curate high-value connections.
+                                In an era of atmospheric noise, visibility is the ultimate currency. Our SEO and marketing collective leverage deep analytics and proprietary strategies to elevate your brand above the competition. We don&apos;t just chase clicks; we curate high-value connections.
                             </p>
                             <ul className="space-y-4 mt-8">
                                 {[

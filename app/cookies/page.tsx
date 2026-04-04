@@ -71,7 +71,7 @@ export default function CookiePolicy() {
                             <section className="space-y-6">
                                 <h2 className="text-2xl font-bold text-foreground border-l-4 border-accent pl-6">4. Your Choices</h2>
                                 <p className="text-muted-foreground leading-relaxed text-lg">
-                                    If you'd like to delete cookies or instruct your web browser to delete or refuse cookies, please visit the help pages of your web browser. Please note, however, that if you delete cookies or refuse to accept them, you might not be able to use all of the features we offer.
+                                    If you&apos;d like to delete cookies or instruct your web browser to delete or refuse cookies, please visit the help pages of your web browser. Please note, however, that if you delete cookies or refuse to accept them, you might not be able to use all of the features we offer.
                                 </p>
                             </section>
 

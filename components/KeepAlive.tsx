@@ -4,8 +4,8 @@ import { useEffect, useRef } from "react";
 import registry from "@/data/wake-registry.json";
 
 const pingService = (url: string) => {
-    fetch(url, { method: "HEAD", mode: "no-cors" }).catch(err =>
-        console.warn(`Keep-alive ping failed for ${url}:`, err)
+    fetch(url, { method: "HEAD", mode: "no-cors" }).catch(() =>
+        console.log(`Keep-alive ping sent to ${url} (service may be waking up)`)
     );
 };
 

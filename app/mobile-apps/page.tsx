@@ -95,7 +95,7 @@ export default function MobileAppsPage() {
                                 </h2>
                             </div>
                             <p className="text-muted-foreground text-lg leading-relaxed">
-                                In a mobile-first world, your application is your most powerful asset. We design and develop mobile solutions that are not just tools, but extensions of your brand's excellence. From native Swift/Kotlin to powerful cross-platform architectures, we ensure your presence is felt on every device.
+                                In a mobile-first world, your application is your most powerful asset. We design and develop mobile solutions that are not just tools, but extensions of your brand&apos;s excellence. From native Swift/Kotlin to powerful cross-platform architectures, we ensure your presence is felt on every device.
                             </p>
                             <ul className="space-y-4 mt-8">
                                 {[

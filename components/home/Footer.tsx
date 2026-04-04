@@ -4,7 +4,6 @@
 
 import React from "react";
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
 import { siteConfig } from "@/data/site";
 
 // Inline icons to fix persistent lucide-react build error
@@ -110,12 +109,11 @@ export function Footer() {
                     <div className="lg:col-span-2">
                         <div className="flex items-center gap-2.5 mb-8 group cursor-pointer">
                             <div className="relative h-12 w-12 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
-                                <Image
+                                <img
                                     src="/images/Logo.png"
                                     alt="SiteCreation.in Logo"
-                                    width={48}
-                                    height={48}
                                     className="object-contain"
+                                    style={{ width: '100%', height: 'auto' }}
                                 />
                             </div>
                             <span className="text-2xl font-black tracking-tight text-white">

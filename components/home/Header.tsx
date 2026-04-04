@@ -2,7 +2,6 @@
 
 import React from "react";
 import { ChevronRightIcon, MenuIcon, CloseIcon } from "@/components/icons/icons";
-import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { classNames } from "@/utils/class-names";
 import Link from "next/link";
@@ -54,13 +53,11 @@ export function Header({ navLinks }: Readonly<HeaderProps>) {
             <div className="container-custom flex h-16 items-center justify-between px-4 sm:px-6">
                 <Link href="/" className="flex items-center gap-2 sm:gap-2.5 shrink-0 group cursor-pointer">
                     <div className="relative h-8 w-8 sm:h-10 sm:w-10 shrink-0 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
-                        <Image
+                        <img
                             src="/images/Logo.png"
                             alt="SiteCreation.in - Elite Digital Agency Logo"
-                            width={40}
-                            height={40}
                             className="object-contain"
-                            priority
+                            style={{ width: '100%', height: 'auto' }}
                         />
                     </div>
                     <span className="text-lg sm:text-xl font-black tracking-tight text-foreground dark:text-[#f7e7ce] truncate">

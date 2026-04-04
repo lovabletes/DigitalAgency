@@ -23,7 +23,7 @@ export function WhyChooseUs({ features }: Readonly<WhyChooseUsProps>) {
                     <span className="text-xs font-black uppercase tracking-[0.3em] text-accent mb-4 block">The Advantage</span>
                     <h2 className="text-3xl md:text-5xl font-black text-white tracking-tight mb-8">We Turn Ideas Into <span className="text-shimmer italic">Digital Reality</span></h2>
                     <p className="text-lg text-[#f7e7ce]/80 leading-relaxed font-medium">
-                        With years of experience building web and mobile applications, we've perfected a process that ensures success for every project.
+                        With years of experience building web and mobile applications, we&apos;ve perfected a process that ensures success for every project.
                     </p>
                 </div>
 

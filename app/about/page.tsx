@@ -90,7 +90,7 @@ export default function AboutPage() {
                             </div>
 
                             <p className="text-muted-foreground text-lg leading-relaxed">
-                                At SiteCreation.in, we believe that every brand deserves a digital presence that is as unique and powerful as its vision. We combine artistic flair with technical precision to build websites and applications that don't just exist—they excel.
+                                At SiteCreation.in, we believe that every brand deserves a digital presence that is as unique and powerful as its vision. We combine artistic flair with technical precision to build websites and applications that don&apos;t just exist—they excel.
                             </p>
 
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">

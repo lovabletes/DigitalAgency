@@ -113,9 +113,9 @@ export default function CareersPage() {
 
                     <div className="mt-24 p-8 md:p-12 rounded-[3rem] bg-gradient-to-br from-[#1a1a3e] to-[#0f1429] border border-accent/20 text-center text-white relative overflow-hidden">
                         <div className="absolute top-0 right-0 w-64 h-64 bg-accent/10 rounded-full blur-[100px]" />
-                        <h3 className="text-3xl md:text-4xl font-black mb-6 relative z-10">Don't See a <span className="text-accent italic">Perfect Fit?</span></h3>
+                        <h3 className="text-3xl md:text-4xl font-black mb-6 relative z-10">Don&apos;t See a <span className="text-accent italic">Perfect Fit?</span></h3>
                         <p className="max-w-xl mx-auto text-white/70 mb-10 text-lg relative z-10 font-medium">
-                            We're always scouting for extraordinary humans. Drop us your portfolio or CV and let's start a conversation about what we could build together.
+                            We&apos;re always scouting for extraordinary humans. Drop us your portfolio or CV and let&apos;s start a conversation about what we could build together.
                         </p>
                         <button className="btn-lux-primary relative z-10">
                             General Inquiry

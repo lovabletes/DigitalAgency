@@ -88,7 +88,7 @@ export default function ContactPage() {
                                     Collaborate with <span className="text-accent italic">Excellence</span>
                                 </h2>
                                 <p className="text-muted-foreground text-lg leading-relaxed max-w-lg">
-                                    Whether you have a specific project in mind or just want to explore the possibilities, we're ready to engage. Our team responds to all inquiries within 24 hours.
+                                    Whether you have a specific project in mind or just want to explore the possibilities, we&apos;re ready to engage. Our team responds to all inquiries within 24 hours.
                                 </p>
                             </div>
 

@@ -122,7 +122,7 @@ export function Pricing({ packages }: Readonly<PricingProps>) {
                 {/* Bottom CTA */}
                 <div className="mt-16 text-center">
                     <p className="text-muted-foreground font-medium mb-6">
-                        Need a custom solution? <span className="text-accent font-black">Let's discuss your vision.</span>
+                        Need a custom solution? <span className="text-accent font-black">Let&apos;s discuss your vision.</span>
                     </p>
                     <Button variant="outline" className="btn-lux-outline px-10 py-6" aria-label="Schedule a Custom Consultation">
                         Schedule Consultation

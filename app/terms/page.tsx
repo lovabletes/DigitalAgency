@@ -50,7 +50,7 @@ export default function TermsOfService() {
                             <section className="space-y-6">
                                 <h2 className="text-2xl font-bold text-foreground border-l-4 border-accent pl-6">3. Professional Liability</h2>
                                 <p className="text-muted-foreground leading-relaxed text-lg">
-                                    We architect systems for maximum uptime and performance. While we leverage industry-leading security practices and cloud infrastructure (including Azure and AWS), SiteCreation's liability is limited to the fees paid for the specific engineering phase in which any discrepancy may arise.
+                                    We architect systems for maximum uptime and performance. While we leverage industry-leading security practices and cloud infrastructure (including Azure and AWS), SiteCreation&apos;s liability is limited to the fees paid for the specific engineering phase in which any discrepancy may arise.
                                 </p>
                             </section>
 

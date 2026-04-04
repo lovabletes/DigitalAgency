@@ -28,7 +28,7 @@ export default function NotFound() {
                         </h1>
 
                         <p className="text-muted-foreground text-xl md:text-2xl font-medium leading-relaxed animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-200">
-                            The architectural masterpiece you're looking for was either moved, demolished, or never existed in this realm.
+                            The architectural masterpiece you&apos;re looking for was either moved, demolished, or never existed in this realm.
                         </p>
 
                         <div className="grid sm:grid-cols-3 gap-6 mt-16 animate-in fade-in zoom-in duration-1000 delay-500">
