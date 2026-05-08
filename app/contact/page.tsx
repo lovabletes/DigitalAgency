@@ -97,8 +97,8 @@ export default function ContactPage() {
                                     <h4 className="text-sm font-black uppercase tracking-wider text-accent">Global Support Center</h4>
                                     <p className="text-foreground font-semibold leading-relaxed">
                                         US: {siteConfig.contact.phone}<br />
-                                        UK: {siteConfig.contact.phoneUK}<br />
-                                        IN: {siteConfig.contact.phoneIndia}
+                                        UK: {siteConfig.contact.phoneUK}
+
                                     </p>
                                 </div>
                                 <div className="space-y-4">

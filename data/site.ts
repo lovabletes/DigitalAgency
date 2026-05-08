@@ -14,7 +14,6 @@ export const siteConfig = {
         phone: "+1 (555) 123-4567",
         phoneSchema: "+1-555-123-4567",
         phoneUK: "+44 20 7123 4567",
-        phoneIndia: "+91 78891 38196",
         email: "hello@sitecreation.in",
         supportEmail: "support@sitecreation.in",
         globalHQ: "Mohali, India (Engineering Center)",
